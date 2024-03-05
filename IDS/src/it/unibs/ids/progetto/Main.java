@@ -1,4 +1,4 @@
-package it.unibs.ids;
+package it.unibs.ids.progetto;
 
 public class Main {
 
