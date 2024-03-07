@@ -12,7 +12,8 @@ public abstract class Utente {
 	/**
 	 * Attributi
 	 * 
-	 *Credenziali
+	 * Credenziali
+	 * TipoUtente c o f
 	 * 
 	 */
 	

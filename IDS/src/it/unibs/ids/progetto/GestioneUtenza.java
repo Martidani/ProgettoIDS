@@ -7,10 +7,15 @@ package it.unibs.ids.progetto;
  */
 public class GestioneUtenza {
 	
+	//Static
+	
 	/**
 	 * Attributi
 	 * 
 	 * HashMap<Utente, Credenziali>
+	 * ArrayList<comprensorio> 
+	 * ArrayList<Configuratori> 
+	 *
 	 */
 	
 	
@@ -18,6 +23,9 @@ public class GestioneUtenza {
 	 * Metodi
 	 * 
 	 * Bool VerificaUtente(ID,Password) 
+	 * addUtente sia in Hashmap che arraylist
+	 * addComprensorio in Arraylist
+	 * 
 	 */
 	
 
