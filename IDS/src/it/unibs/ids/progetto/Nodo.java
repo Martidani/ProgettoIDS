@@ -84,12 +84,17 @@ public class Nodo {
 		this.children.add(child);
 	}
 	
+	
 	public boolean esisteFoglia(Nodo foglia) {
 		
 		if(this.getFattori().get(foglia) != null)
 			return true;
 		else
 			return false;
+	}
+	
+	public double valoreRelazione(Nodo foglia) {
+		return this.getFattori().get(foglia);
 	}
 	
 	

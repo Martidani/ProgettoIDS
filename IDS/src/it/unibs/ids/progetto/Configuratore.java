@@ -6,16 +6,21 @@ package it.unibs.ids.progetto;
  *
  */
 
-public class Configuratore {
+public class Configuratore extends Utente {
+
+	public static final char TIPOUTENTE = 'c';
 	
-	// extends utente
 	
-	/**
-	 * Attributi
-	 * 
-	 * 
-	 * 
-	 */
+	public Configuratore(Credenziali credenziali) {
+		super(TIPOUTENTE,credenziali);
+
+	}
+	
+	
+	public Configuratore() {
+		super(TIPOUTENTE,GestioneUtenza.credenzialiPredefinite());
+
+	}
 	
 	
 	/**
@@ -29,7 +34,6 @@ public class Configuratore {
 	 * 
 	 * VisualizzaComprensorio
 	 * 
-	 * CostruisciGerarchia
 	 * 
 	 *
 	 */

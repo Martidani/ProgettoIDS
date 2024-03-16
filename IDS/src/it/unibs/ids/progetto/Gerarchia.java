@@ -1,7 +1,9 @@
 package it.unibs.ids.progetto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Gerarchia {
 	
@@ -50,58 +52,63 @@ public class Gerarchia {
 		Exception ("Fattore di conversione sbagliato, deve essere 0.5<__<2.0 ");
 		
 		addFattoreConversione(nodo1, nodo2, fattore);
-		addInversoFattoreConversione(nodo1, nodo2, fattore);
+		addInverso(nodo1, nodo2, fattore);
 		addTransitivoFattoreConversione(nodo1, nodo2, fattore);
 		
 	}
 	
-	public boolean verificaFattoreConversione(double fattore) {
+	private boolean verificaFattoreConversione(double fattore) {
 		if (fattore >= MAX_FATTORECONVERSIONE || fattore <= MIN_FATTORECONVERSIONE) 
 			return false;
 		
 		return true;
 	}
 	
-	public void addFattoreConversione(Nodo nodo1, Nodo nodo2, Double fattore) {
+	private void addFattoreConversione(Nodo nodo1, Nodo nodo2, Double fattore) {
 		nodo1.addFattori(nodo2,fattore);
 	}
-	
-	public void addInversoFattoreConversione(Nodo nodo1, Nodo nodo2, double fattore) {
-		addFattoreConversione(nodo2, nodo1, 1/fattore);
-	}
-	
-	public void addTransitivoFattoreConversione(Nodo nodo1, Nodo nodo2, double fattore) {
+
+	private void addTransitivoFattoreConversione(Nodo nodo1, Nodo nodo2, double fattore) {
 		
 		for (Nodo nodo3 : this.foglie) {
 			if (!nodo1.esisteFoglia(nodo3)) {
-				nodo1.addFattori(nodo3, calcTransitivo(nodo1,nodo2,nodo3));
+				nodo1.addFattori(nodo3, calcTransitivo(nodo1,nodo2,nodo3,fattore));
+				
 			}
 			
 		}
 		
 	}
 	
-	private Double calcTransitivo(Nodo nodo1,Nodo nodo2, Nodo nodo3) {
+	private Double calcTransitivo(Nodo nodo1,Nodo nodo2, Nodo nodo3,double fattore) {
 		
+		if (nodo1.equals(nodo3)) {
+			return 1.0;
+		}
+		if (nodo2.esisteFoglia(nodo3)) {
+			return fattore * nodo2.valoreRelazione(nodo3);
+		}else {
+			HashMap<Nodo, Double> foglieNodo2 = nodo2.getFattori();
+			for (Map.Entry<Nodo, Double> entry : foglieNodo2.entrySet()) {
+				Nodo key = entry.getKey();
+				Double val = entry.getValue();
+				calcTransitivo(nodo2, key, nodo3, val);
+				
+			}
+			
+		}
 		
-		return 0.0;
+		return null;	
 	}
 	
-	/**
-	 * 
-	 * Metodi
-	 * 
-	 * bool VerificafattoreConversione
-	 * void addFattoreConversione
-	 * void addInverso
-	 * void addTronsitivoFattoreConversione
-	 * 
-	 * 
-	 * void aggiungiFattoriconversione (nodo1, nodo2, double) insieme degli addFattori
-	 * 
-	 * 
-	 * VisualizzaFattoriConversione della foglia assegnata
-	 * 
-	 */
+	
+	
+	private void addInverso(Nodo nodo1, Nodo nodo2, double fattore) {
+		addFattoreConversione(nodo2, nodo1, 1/fattore);
+		addTransitivoFattoreConversione(nodo2, nodo1, 1/fattore);
+	}
+	
+	
+
 
 }

@@ -8,6 +8,8 @@ public class Main {
 				System.out.println(Metodi.isPrimo(7));
 	
 	
-	
+	/**
+	 * Costruisci gerarchia (configuratore)
+	 */
 	}
 }
