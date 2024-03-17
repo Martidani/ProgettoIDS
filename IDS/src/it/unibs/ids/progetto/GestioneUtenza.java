@@ -26,7 +26,7 @@ public  class GestioneUtenza {
 	 */
 
 	private ArrayList<Utente> utenti;
-	private ArrayList<Compresiorio> geografia;
+	private ArrayList<Comprensorio> geografia;
 
 	/**
 	 * Metodi
@@ -50,7 +50,7 @@ public  class GestioneUtenza {
 		this.utenti.add(utente);
 	}
 
-	public void addComprensorio(Compresiorio compresiorio) {
+	public void addComprensorio(Comprensorio compresiorio) {
 		this.geografia.add(compresiorio);
 	}
 	
@@ -99,6 +99,9 @@ public  class GestioneUtenza {
 		}
 		return false;
 	}
+	
+	
+	
 	
 
 }

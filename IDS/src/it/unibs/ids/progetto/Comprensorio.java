@@ -2,7 +2,7 @@ package it.unibs.ids.progetto;
 
 import java.util.ArrayList;
 
-public class Compresiorio {
+public class Comprensorio {
 	
 	/**
 	 * 
@@ -17,7 +17,7 @@ public class Compresiorio {
 	
 	
 
-	public Compresiorio(ArrayList<String> comprensorio) {
+	public Comprensorio(ArrayList<String> comprensorio) {
 	
 		this.comprensorio = new ArrayList<>();
 	}
