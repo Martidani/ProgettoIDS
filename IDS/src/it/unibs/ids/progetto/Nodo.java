@@ -1,12 +1,13 @@
 package it.unibs.ids.progetto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
 
-public class Nodo {
+public class Nodo implements Serializable {
 	
 	private String nome;
 	private boolean isLeaf;

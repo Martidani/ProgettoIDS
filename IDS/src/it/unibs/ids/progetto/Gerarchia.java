@@ -1,11 +1,12 @@
 package it.unibs.ids.progetto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Gerarchia {
+public class Gerarchia implements Serializable {
 	
 	private static final double MIN_FATTORECONVERSIONE = 0.5;
 	private static final double MAX_FATTORECONVERSIONE = 2.0;
@@ -20,6 +21,7 @@ public class Gerarchia {
 
 	public Gerarchia() {
 		this.alberi = new ArrayList<>();
+		this.foglie = new ArrayList<Nodo>();
 		
 	}
 	
@@ -30,7 +32,7 @@ public class Gerarchia {
 	}
 
 	public void addAlberi(Nodo albero) throws Exception {
-		if (albero.isRoot()) throw new Exception("Il nodo immesso non è radice");
+		if (!albero.isRoot()) throw new Exception("Il nodo immesso non è radice");
 		
 		alberi.add(albero);
 		

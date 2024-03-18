@@ -1,7 +1,8 @@
 package it.unibs.ids.progetto;
 
+import java.io.Serializable;
 
-public class Credenziali {
+public class Credenziali implements Serializable {
 
 
 	

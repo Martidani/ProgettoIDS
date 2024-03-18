@@ -1,5 +1,6 @@
 package it.unibs.ids.progetto;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Random;
  * @author marti
  *
  */
-public abstract class Utente {
+public abstract class Utente implements Serializable {
 
 	
 	private char tipoUtente;

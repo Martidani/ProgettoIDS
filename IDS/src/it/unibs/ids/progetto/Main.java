@@ -1,5 +1,7 @@
 package it.unibs.ids.progetto;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.fp.mylib.MyMenu;
@@ -19,32 +21,54 @@ public class Main {
 			
 			MyMenu menuAccesso = new MyMenu("Menu accesso",vociAccesso);
 			MyMenu menu = new MyMenu("Menu principale",voci);
+			
 			Gerarchia gerarchia = caricaGerarchia();
-			if(gerarchia!=null) {
-				System.out.println("Lettura da file: \n\n"+ gerarchia.toString());
-			}
-			
 			GestioneUtenza gestioneUtenza = caricaGestioneUtenza();
-			if(gestioneUtenza!=null) {
-				System.out.println("Lettura da file: \n\n"+ gestioneUtenza.toString());
+			//Gerarchia gerarchia = new Gerarchia();
+			//GestioneUtenza gestioneUtenza = new GestioneUtenza();
+			
+			if(gerarchia!=null && gestioneUtenza!=null) {
+				System.out.println("Lettura da file: \n\n");
 			}
 			
+			
+			
+			
+			
+			/*
+			Credenziali cred = new Credenziali("sabba","sabba");
+			Configuratore utente = new Configuratore(cred);
+			gestioneUtenza.addUtente(utente);
+			Comprensorio com = new Comprensorio();
+			com.addComune("Brescia");
+			gestioneUtenza.addComprensorio(com);
+			
+			Nodo nodo2 = new Nodo("rootchild", false);
+			ArrayList<String[]> dominio = new ArrayList<String[]>();
+			String [] val = { "root", null};
+			dominio.add(val);
+			
+			Nodo nodo = new Nodo("root", true, "root", dominio);
+			nodo.addChild(nodo2);
+			gerarchia.addAlberi(nodo);
+			*/
 			
 			int accesso;
-			do {
-				 accesso = menuAccesso.scegli();
-				 switch(accesso) {
-				 case 1:
-					 registrazione(gestioneUtenza);
-					 break; 
-				 case 2:
-					 login(gestioneUtenza);
-					break;
-				 default:
-					 break;
+			accesso = menuAccesso.scegli();
+				 
+			switch(accesso) {
+				case 1:
+				registrazione(gestioneUtenza); 
+				break; 
+				 
+				case 2:
+				login(gestioneUtenza);
+				 break;
+				 
+				default:	
+				break;
 				 }
 				 
-			} while(accesso!=0);
 			
 			
 			
@@ -109,7 +133,7 @@ public class Main {
 		private static void login(GestioneUtenza gestioneUtenza) {
 			for (int i = 0; i < NUM_MAX_TENTATIVI; i++) {
 			 System.out.println("Inserisci dati di login: ");
-			 Credenziali credenzialiLogin = inserisciCredenziali(gestioneUtenza);
+			 Credenziali credenzialiLogin = inserisciCredenzialiLogin(gestioneUtenza);
 				
 			 if (!gestioneUtenza.verificaEsistenzaConfiguratore
 				(credenzialiLogin.getID(), credenzialiLogin.getPassword())) {
@@ -128,21 +152,32 @@ public class Main {
 			 System.out.println("ID di default: " + configuratore.getID());
 			 System.out.println("Password di default " + configuratore.getPSSW());	
 			 System.out.println("Scegli nuove credenziali: ");	
-			 Credenziali credenzialiRegistrazione = inserisciCredenziali(gestioneUtenza);
+			 Credenziali credenzialiRegistrazione = inserisciCredenzialiRegistrazione(gestioneUtenza);
 			 configuratore.setCredenziali(credenzialiRegistrazione);
 			 gestioneUtenza.addUtente(configuratore);
 		}
 
 
 
-		private static Credenziali inserisciCredenziali(GestioneUtenza gestioneUtenza) {
+		private static Credenziali inserisciCredenzialiRegistrazione(GestioneUtenza gestioneUtenza) {
 			String ID;
+			
 			do {
 				ID = InputDati.leggiStringaNonVuota("Immetti ID: ");
-				
+				if (gestioneUtenza.verificaEsistenzaID(ID)) System.out.println("ID gia utilizzato");
 			} while (gestioneUtenza.verificaEsistenzaID(ID));
 			
 			
+			
+			String PSSW = InputDati.leggiStringaNonVuota("Immetti Password: ");
+			return new Credenziali(ID, PSSW);
+		}
+		
+		private static Credenziali inserisciCredenzialiLogin(GestioneUtenza gestioneUtenza) {
+			String ID;
+						
+			ID = InputDati.leggiStringaNonVuota("Immetti ID: ");
+
 			String PSSW = InputDati.leggiStringaNonVuota("Immetti Password: ");
 			return new Credenziali(ID, PSSW);
 		}

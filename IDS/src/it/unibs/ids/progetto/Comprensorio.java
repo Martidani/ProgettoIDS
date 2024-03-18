@@ -1,8 +1,9 @@
 package it.unibs.ids.progetto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Comprensorio {
+public class Comprensorio implements Serializable {
 	
 
 	

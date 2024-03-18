@@ -1,5 +1,6 @@
 package it.unibs.ids.progetto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -9,7 +10,7 @@ import java.util.Random;
  * @author marti
  *
  */
-public  class GestioneUtenza {
+public  class GestioneUtenza implements Serializable {
 	
 	//Static
 	
@@ -104,10 +105,10 @@ public  class GestioneUtenza {
 	public boolean verificaEsistenzaID(String id) {
 		for (Utente utente : utenti) {
 			if (utente.getID().equals(id)) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 		
 	}
 	
