@@ -33,9 +33,6 @@ public abstract class Utente {
 	public char getTipoUtente() {
 		return tipoUtente;
 	}
-	public void setTipoUtente(char tipoUtente) {
-		this.tipoUtente = tipoUtente;
-	}
 	
 	
 	
