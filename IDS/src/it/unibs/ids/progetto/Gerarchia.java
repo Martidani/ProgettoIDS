@@ -14,7 +14,7 @@ public class Gerarchia {
 	 * Attributi 
 	 */
 	
-	private ArrayList<Nodo> alberi;
+	private ArrayList<Nodo> alberi; 
 	private ArrayList<Nodo> foglie;
 	//private ArrayList<Nodo>
 
@@ -31,19 +31,50 @@ public class Gerarchia {
 
 	public void addAlberi(Nodo albero) throws Exception {
 		if (albero.isRoot()) throw new Exception("Il nodo immesso non è radice");
+		
 		alberi.add(albero);
+		
 		addFoglie(albero);
 	}
 	
 	private void addFoglie(Nodo albero) {
 		
-		if (albero.getChildren() == null) 
+		if (albero.isLeaf()) 
 			foglie.add(albero);
 		else {
 			for (Nodo child : albero.getChildren()) {
 				addFoglie(child);
 			}
 		}
+	}
+	
+	private boolean verificaNomeRadice(String nome) {
+		for (Nodo nodo : alberi) {
+			if (nodo.getNome().equals(nome)) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	private boolean verificaNomeNonRadice(String nome,Nodo radice) {
+		
+		if (radice.isLeaf()) {
+			if (radice.getNome().equals(nome)) 
+				return false;
+		}else {
+		
+			for (Nodo nodo : radice.getChildren()) {
+				if (nodo.getNome().equals(nome)) {
+					return false;
+				}else {
+					verificaNomeNonRadice(nome, nodo);
+				}
+			}
+		
+		}
+		
+		return true;
 	}
 	
 	
@@ -107,6 +138,29 @@ public class Gerarchia {
 		addFattoreConversione(nodo2, nodo1, 1/fattore);
 		addTransitivoFattoreConversione(nodo2, nodo1, 1/fattore);
 	}
+	
+	public boolean checkFoglia(String foglia) {
+		for (Nodo nodo : foglie) {
+			if (nodo.getNome().equalsIgnoreCase(foglia)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public String visualizzaFoglia(String nomeFoglia) {
+		StringBuffer bf = new StringBuffer();
+		
+		for (Nodo foglia : foglie) {
+			if (checkFoglia(nomeFoglia)) {
+				bf.append(foglia.toString());
+			}
+		}
+		
+		return bf.toString();
+		
+	}
+	
 	
 	
 

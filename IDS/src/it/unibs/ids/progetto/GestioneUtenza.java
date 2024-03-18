@@ -17,28 +17,23 @@ public  class GestioneUtenza {
 	private static final String PSSWCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@^&%$£";
 	private static final int IDLENTGH = 6;
 	private static final int PSSWLENTGH = 8;
-	/**
-	 * Attributi
-	 * 
-	 * 
-	 * ArrayList<comprensorio> 
-	 *
-	 */
+	
+	
 
 	private ArrayList<Utente> utenti;
 	private ArrayList<Comprensorio> geografia;
 
-	/**
-	 * Metodi
-	 * 
-	 * addComprensorio in Arraylist
-	 * 
-	 */
+	
 	
 
 	
 	public GestioneUtenza() {
-		super();
+		
+		this.utenti = new ArrayList<>();
+		Configuratore configuratoreDefault = new Configuratore();
+		addUtente(configuratoreDefault);
+		
+		this.geografia = new ArrayList<>();
 	}
 	
 	
@@ -50,10 +45,16 @@ public  class GestioneUtenza {
 		this.utenti.add(utente);
 	}
 
-	public void addComprensorio(Comprensorio compresiorio) {
-		this.geografia.add(compresiorio);
+	public void addComprensorio(Comprensorio comprensorio) {
+		this.geografia.add(comprensorio);
 	}
 	
+
+	public ArrayList<Comprensorio> getGeografia() {
+		return geografia;
+	}
+
+
 
 	public static Credenziali credenzialiPredefinite() {
 		StringBuilder userID = new StringBuilder();
@@ -73,10 +74,10 @@ public  class GestioneUtenza {
 		return new Credenziali(userID.toString(), userPSSW.toString());
 	}
 	
-	public boolean verificaConfiguratore(String ID, String Password) {
+	public boolean verificaEsistenzaConfiguratore(String ID, String Password) {
 		for (Utente utente : utenti) {
-			if (utente.getCredenziali().getID().equals(ID)) {
-				if (utente.getCredenziali().getPassword().equals(Password)) {
+			if (utente.getID().equals(ID)) {
+				if (utente.getPSSW().equals(Password)) {
 					if (utente.getTipoUtente() == Configuratore.TIPOUTENTE ){
 						return true;
 					}
@@ -91,13 +92,33 @@ public  class GestioneUtenza {
 	public boolean verificaEsistenzaUtente(String ID,String Password) {
 		
 		for (Utente utente : utenti) {
-			if (utente.getCredenziali().getID().equals(ID)) {
-				if (utente.getCredenziali().getPassword().equals(Password)) {
+			if (utente.getID().equals(ID)) {
+				if (utente.getPSSW().equals(Password)) {
 					return true;
 				}
 			}
 		}
 		return false;
+	}
+	
+	public boolean verificaEsistenzaID(String id) {
+		for (Utente utente : utenti) {
+			if (utente.getID().equals(id)) {
+				return false;
+			}
+		}
+		return true;
+		
+	}
+	
+	public String toString() {
+		StringBuffer bf = new StringBuffer();
+		for (Comprensorio comprensorio : geografia) {
+			bf.append(comprensorio.toString());
+			bf.append("\n");
+		}
+		
+		return bf.toString();
 	}
 	
 	

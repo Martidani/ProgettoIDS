@@ -26,6 +26,16 @@ public abstract class Utente {
 	public Credenziali getCredenziali() {
 		return credenziali;
 	}
+	public String getID() {
+		return this.credenziali.getID();
+	}
+	public String getPSSW() {
+		return this.credenziali.getPassword();
+	}
+	public void setCredenziali(Credenziali credenziali) {
+		this.credenziali.setID(credenziali.getID());
+		this.credenziali.setPassword(credenziali.getPassword());
+	}
 	public void setCredenziali(String ID, String password) {
 		this.credenziali.setID(ID);
 		this.credenziali.setPassword(password);

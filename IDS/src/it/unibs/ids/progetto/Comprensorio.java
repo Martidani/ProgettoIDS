@@ -4,40 +4,35 @@ import java.util.ArrayList;
 
 public class Comprensorio {
 	
-	/**
-	 * 
-	 * Attributi 
-	 * 
-	 * ArrayList<String>
-	 * 
-	 */
+
 	
 	private ArrayList<String> comprensorio;
 	
-	
-	
 
-	public Comprensorio(ArrayList<String> comprensorio) {
-	
+
+	public Comprensorio() {
 		this.comprensorio = new ArrayList<>();
 	}
+
 
 	public ArrayList<String> getComprensorio() {
 		return comprensorio;
 	}
 
-	public void addComprensorio(String luogo) {
+	public void addComune(String luogo) {
 		this.comprensorio.add(luogo);
+	}
+	
+	public String toString() {
+		StringBuffer bf = new StringBuffer();
+		for (String comune : comprensorio) {
+			bf.append(comune);
+			bf.append("\n");
+		}
+		
+		return bf.toString();
 	}
 	
 	
 	
-	/**
-	 * 
-	 * 
-	 * Metodi
-	 * 
-	 * Get e Setters per visualizzare/modifcare 
-	 */
-
 }

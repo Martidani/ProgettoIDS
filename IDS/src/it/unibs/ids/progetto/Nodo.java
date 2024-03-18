@@ -3,6 +3,7 @@ package it.unibs.ids.progetto;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 
 public class Nodo {
@@ -95,6 +96,23 @@ public class Nodo {
 	
 	public double valoreRelazione(Nodo foglia) {
 		return this.getFattori().get(foglia);
+	}
+	
+	public String toString() {
+		
+		StringBuffer bf = new StringBuffer();
+		
+
+		for (Entry<Nodo, Double> fatt : fattori.entrySet()) {
+			Nodo key = fatt.getKey();
+			Double val = fatt.getValue();
+			
+			bf.append(this.nome + " - " + key.getNome() + " - " + val);
+			bf.append("\n");
+		}
+		
+		return bf.toString();
+		
 	}
 	
 	
