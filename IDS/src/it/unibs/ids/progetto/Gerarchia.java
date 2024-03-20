@@ -81,8 +81,7 @@ public class Gerarchia implements Serializable {
 	
 	
 	public void aggiungiFattoreConversione(Nodo nodo1, Nodo nodo2, double fattore) throws Exception {
-		if (!verificaFattoreConversione(fattore)) throw new 
-		Exception ("Fattore di conversione sbagliato, deve essere 0.5<__<2.0 ");
+		
 		
 		addFattoreConversione(nodo1, nodo2, fattore);
 		addInverso(nodo1, nodo2, fattore);
