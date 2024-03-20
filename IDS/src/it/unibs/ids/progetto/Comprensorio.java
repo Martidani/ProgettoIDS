@@ -24,6 +24,7 @@ public class Comprensorio implements Serializable {
 		this.comprensorio.add(luogo);
 	}
 	
+	
 	public String toString() {
 		StringBuffer bf = new StringBuffer();
 		for (String comune : comprensorio) {

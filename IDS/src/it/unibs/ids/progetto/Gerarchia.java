@@ -50,33 +50,33 @@ public class Gerarchia implements Serializable {
 		}
 	}
 	
-	private boolean verificaNomeRadice(String nome) {
+	public boolean verificaEsistenzaNomeRadice(String nome) {
 		for (Nodo nodo : alberi) {
 			if (nodo.getNome().equals(nome)) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 	
-	private boolean verificaNomeNonRadice(String nome,Nodo radice) {
+	public boolean verificaEsistenzaNomeNonRadice(String nome,Nodo radice) {
 		
 		if (radice.isLeaf()) {
 			if (radice.getNome().equals(nome)) 
-				return false;
+				return true;
 		}else {
 		
 			for (Nodo nodo : radice.getChildren()) {
 				if (nodo.getNome().equals(nome)) {
-					return false;
+					return true;
 				}else {
-					verificaNomeNonRadice(nome, nodo);
+					verificaEsistenzaNomeNonRadice(nome, nodo);
 				}
 			}
 		
 		}
 		
-		return true;
+		return false;
 	}
 	
 	
@@ -90,7 +90,7 @@ public class Gerarchia implements Serializable {
 		
 	}
 	
-	private boolean verificaFattoreConversione(double fattore) {
+	public boolean verificaFattoreConversione(double fattore) {
 		if (fattore >= MAX_FATTORECONVERSIONE || fattore <= MIN_FATTORECONVERSIONE) 
 			return false;
 		
@@ -149,6 +149,28 @@ public class Gerarchia implements Serializable {
 		}
 		return false;
 	}
+	public boolean checkFoglia(String foglia,ArrayList<String> foglieAttuali) {
+		for (String nodo : foglieAttuali) {
+			if (nodo.equalsIgnoreCase(foglia)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public ArrayList<String> foglieNonAttuali(ArrayList<String> foglieAttuali){
+		
+		ArrayList<String> foglieNonAttuali = new ArrayList<>();
+		
+		for (String nodo : foglieAttuali) {
+			if (!checkFoglia(nodo)) {
+				foglieNonAttuali.add(nodo);
+			}
+		}
+		return foglieNonAttuali;
+		
+	}
+	
 	
 	public String visualizzaFoglia(String nomeFoglia) {
 		StringBuffer bf = new StringBuffer();

@@ -35,23 +35,23 @@ public class Main {
 			
 			
 			
-			/*
-			Credenziali cred = new Credenziali("sabba","sabba");
-			Configuratore utente = new Configuratore(cred);
-			gestioneUtenza.addUtente(utente);
-			Comprensorio com = new Comprensorio();
-			com.addComune("Brescia");
-			gestioneUtenza.addComprensorio(com);
 			
-			Nodo nodo2 = new Nodo("rootchild", false);
-			ArrayList<String[]> dominio = new ArrayList<String[]>();
-			String [] val = { "root", null};
-			dominio.add(val);
-			
-			Nodo nodo = new Nodo("root", true, "root", dominio);
-			nodo.addChild(nodo2);
-			gerarchia.addAlberi(nodo);
-			*/
+//			Credenziali cred = new Credenziali("sabba","sabba");
+//			Configuratore utente = new Configuratore(cred);
+//			gestioneUtenza.addUtente(utente);
+//			Comprensorio com = new Comprensorio();
+//			com.addComune("Brescia");
+//			gestioneUtenza.addComprensorio(com);
+//			
+//			Nodo nodo2 = new Nodo("rootchild", false);
+//			ArrayList<String[]> dominio = new ArrayList<String[]>();
+//			String [] val = { "root", null};
+//			dominio.add(val);
+//			
+//			Nodo nodo = new Nodo("root", true, "root", dominio);
+//			nodo.addChild(nodo2);
+//			gerarchia.addAlberi(nodo);
+//			
 			
 			int accesso;
 			accesso = menuAccesso.scegli();
@@ -84,10 +84,53 @@ public class Main {
 					 break;
 					 
 				 case 2:
+					 
+					 ArrayList<String> foglieAttuali = new ArrayList<>();
+					 String radice;
+					 do {
+						radice = InputDati.leggiStringaNonVuota("Immetti nome radice -> ");
+						
+					} while (!gerarchia.verificaEsistenzaNomeRadice(radice));
+					 
+					 String campo = InputDati.leggiStringaNonVuota("Inserisci campo -> ");
+					 Nodo root = new Nodo(radice,true, campo);
+					 
+					 creaNodiFiglio(root,gerarchia,root,foglieAttuali);
+					 gerarchia.addAlberi(root);
+					 
+					 ArrayList<String> foglieNonAttuali = gerarchia.foglieNonAttuali(foglieAttuali);
+					 String foglia1;
+					 String foglia2;
+					 boolean condizione;
+					 do {
+						foglia1 = InputDati.leggiStringaNonVuota("Inserisci foglia 1 ");
+						if (gerarchia.checkFoglia(foglia1, foglieAttuali)) {
+							foglieAttuali.remove(foglia1);
+						}
+						foglia2 = InputDati.leggiStringaNonVuota("Inserisci foglia 2 ");
+						
+						if (gerarchia.checkFoglia(foglia2, foglieAttuali)) {
+							foglieAttuali.remove(foglia2);
+						}
+						
+						double fattoreDiConversione;
+						do {
+							fattoreDiConversione = InputDati.leggiDouble("Inserisci fattore di conversione -> ");
+						} while (!gerarchia.verificaFattoreConversione(fattoreDiConversione));
+						
+						
+						condizione = gerarchia.checkFoglia(foglia2, foglieNonAttuali) && gerarchia.checkFoglia(foglia1, foglieNonAttuali);
+						if (!condizione) {
+							
+							gerarchia.aggiungiFattoreConversione(foglia1, foglia2, fattoreDiConversione);
+							
+						}
+					} while (foglieAttuali.size() != 0 && condizione );
+					 
 					 break;
 					 
 				 case 3:
-					 System.out.println(gestioneUtenza.getGeografia().toString());
+					 System.out.println(gestioneUtenza.toString());
 					break;
 				
 				 case 4:
@@ -108,6 +151,60 @@ public class Main {
 
 
 
+		private static void creaNodiFiglio(Nodo nodoParent,Gerarchia gerarchia,Nodo radice,ArrayList<String> foglieAttuali) {
+			do{
+				 System.out.println("Inserisci nodo figlio di " + nodoParent.getNome());
+				 
+				 String nome;
+				 do {
+					  nome = InputDati.leggiStringaNonVuota("Inserisci nome -> ");
+						
+				 } while (!gerarchia.verificaEsistenzaNomeNonRadice(nome,radice));
+				 boolean risposta = InputDati.yesOrNo("è foglia? -> " );
+				 Nodo nodoChild;
+				 if (risposta) {
+					 nodoChild = new Nodo(nome,false);
+					 foglieAttuali.add(nodoChild.getNome());
+					
+				}else {
+					String campo = InputDati.leggiStringaNonVuota("Inserisci campo -> ");
+					nodoChild = new Nodo(nome,false,campo);
+					
+				   int num = 0;
+					do {
+					    num++;
+						String valoreDominio = InputDati.leggiStringaNonVuota("Inserisci il " + num + "'" + 
+						" valore del dominio");
+						if (InputDati.yesOrNo("Vuoi inserire una descrizione di " + valoreDominio)) {
+							String descrizioneDominio = InputDati.leggiStringaNonVuota("Inserisci descrizione -> ");
+							nodoChild.addElementiDominio(valoreDominio, descrizioneDominio);
+						}else 
+							nodoChild.addElementiDominio(valoreDominio);
+						
+						
+					}while(InputDati.yesOrNo("Vuoi aggiugere un altro elemento al dominio? -> "));
+					
+					
+				}
+				try {
+					nodoParent.addChild(nodoChild);
+				} catch (Exception e) {
+					e.getMessage();
+				}
+			 }while(InputDati.yesOrNo("Vuoi aggiungere un altro figlio a " + nodoParent.getNome()));
+			
+			
+			
+			for (Nodo nodo : nodoParent.getChildren() ) {
+				if (!nodo.isLeaf()) {
+					creaNodiFiglio(nodo,gerarchia,radice,foglieAttuali);
+				}
+			}
+			
+		}
+
+
+
 		private static void stampaFattori(Gerarchia gerarchia) {
 			String foglia = InputDati.leggiStringaNonVuota("Inserisci foglia");
 			gerarchia.visualizzaFoglia(foglia);
@@ -121,10 +218,16 @@ public class Main {
 			 String comune;
 			 
 			 do {
-				comune = InputDati.leggiStringaNonVuota("Inserisci comune");
+				comune = InputDati.leggiStringaNonVuota("Inserisci comune -> ");
+				
 				comprensorio.addComune(comune);
 				
-			} while (comune.equalsIgnoreCase("Exit"));
+				
+			} while (!comune.equalsIgnoreCase("Exit"));
+			
+			 int size = comprensorio.getComprensorio().size();
+			 comprensorio.getComprensorio().remove(size - 1);
+			
 			 gestioneUtenza.addComprensorio(comprensorio);
 		}
 

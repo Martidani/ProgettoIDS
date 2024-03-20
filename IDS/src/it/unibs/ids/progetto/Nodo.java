@@ -1,6 +1,7 @@
 package it.unibs.ids.progetto;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,11 +26,10 @@ public class Nodo implements Serializable {
 	 * @param dominio
 	 */
 	
-	public Nodo(String nome,boolean isRoot, String campo, List<String[]> dominio) {
+	public Nodo(String nome,boolean isRoot, String campo) {
 	
 		this.isRoot = isRoot;
 		this.campo = campo;
-		this.dominio = dominio;
 		this.nome = nome;
 		this.isLeaf = false;
 		this.children = new ArrayList<>();
@@ -76,7 +76,21 @@ public class Nodo implements Serializable {
 
 	public List<String[]> getDominio() {return dominio;}
 
-	public void setDominio(List<String[]> dominio) {this.dominio = dominio;}
+	public void addElementiDominio(String valore, String descrizione) {
+		
+		this.dominio.add(new String [] {
+				valore, descrizione
+		});
+		
+	}
+	public void addElementiDominio(String valore) {
+		
+		this.dominio.add(new String [] {
+				valore
+		});
+		
+	}
+
 	
 	
 	// Metodi
@@ -85,6 +99,7 @@ public class Nodo implements Serializable {
 		if (this.isLeaf) throw new Exception("Le foglie non possono avere figli");
 		this.children.add(child);
 	}
+	
 	
 	
 	public boolean esisteFoglia(Nodo foglia) {
