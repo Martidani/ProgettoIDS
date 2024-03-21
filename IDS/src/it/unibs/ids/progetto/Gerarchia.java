@@ -124,7 +124,7 @@ public class Gerarchia implements Serializable {
 			for (Map.Entry<Nodo, Double> entry : foglieNodo2.entrySet()) {
 				Nodo key = entry.getKey();
 				Double val = entry.getValue();
-				calcTransitivo(nodo2, key, nodo3, val);
+				return calcTransitivo(nodo2, key, nodo3, val);
 				
 			}
 			
