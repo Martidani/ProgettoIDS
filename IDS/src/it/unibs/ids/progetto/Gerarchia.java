@@ -3,8 +3,11 @@ package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.Stack;
 
 public class Gerarchia implements Serializable {
 	
@@ -85,6 +88,7 @@ public class Gerarchia implements Serializable {
 		
 		addFattoreConversione(nodo1, nodo2, fattore);
 		addInverso(nodo1, nodo2, fattore);
+		
 
 		
 	}
@@ -100,39 +104,44 @@ public class Gerarchia implements Serializable {
 		nodo1.addFattori(nodo2,fattore);
 	}
 
-	public void addTransitivoFattoreConversione(Nodo nodo1, Nodo nodo2, double fattore) {
+
+	
+	public void addTransitivoFattoreConversione() {
 		
-		for (Nodo nodo3 : this.foglie) {
-			if (!nodo1.esisteFoglia(nodo3)) {
-				nodo1.addFattori(nodo3, calcTransitivo(nodo1,nodo2,nodo3,fattore));
-				
+		for (Nodo nodo1 : this.foglie) {
+			for (Nodo nodo2 : this.foglie) {
+				if (!nodo1.esisteFoglia(nodo2)) {
+					ArrayList<Nodo> visitati = new ArrayList<Nodo>();
+					nodo1.addFattori(nodo2, calcTransitivo(nodo1,nodo2,visitati));
+				}
+
 			}
 			
 		}
 		
 	}
 	
-	private Double calcTransitivo(Nodo nodo1,Nodo nodo2, Nodo nodo3,double fattore) {
-		
-		if (nodo1.equals(nodo3)) {
-			return 1.0;
-		}
-		if (nodo2.esisteFoglia(nodo3)) {
-			return fattore * nodo2.valoreRelazione(nodo3);
-		}else {
-			HashMap<Nodo, Double> foglieNodo2 = nodo2.getFattori();
-			for (Map.Entry<Nodo, Double> entry : foglieNodo2.entrySet()) {
-				Nodo key = entry.getKey();
-				Double val = entry.getValue();
-				return calcTransitivo(nodo2, key, nodo3, val);
-				
-			}
-			
-		}
-		
-		return null;	
+	private Double calcTransitivo(Nodo nodo1, Nodo nodo2, List<Nodo> visitati) {
+	    if (nodo1.equals(nodo2)) {
+	        return 1.0;
+	    } else if (nodo1.esisteFoglia(nodo2)) {
+	        return nodo1.valoreRelazione(nodo2);
+	    } else {
+	        HashMap<Nodo, Double> foglieNodo1 = nodo1.getFattori();
+	        if (foglieNodo1.isEmpty()) return null;
+	        for (Map.Entry<Nodo, Double> entry : foglieNodo1.entrySet()) {
+	            Nodo key = entry.getKey();
+	            if (!visitati.contains(key)) {
+	            	visitati.add(key);
+	            	Double val = entry.getValue();
+		            return val*calcTransitivo(key, nodo2, visitati);
+	            }
+	            
+	            
+	        }
+	    }
+	    return null;
 	}
-	
 	
 	
 	private void addInverso(Nodo nodo1, Nodo nodo2, double fattore) {
@@ -161,7 +170,7 @@ public class Gerarchia implements Serializable {
 	
 
 	
-	
+	/*
 	public String visualizzaFoglia(Nodo nomeFoglia) {
 		StringBuffer bf = new StringBuffer();
 		
@@ -173,7 +182,7 @@ public class Gerarchia implements Serializable {
 		return bf.toString();
 		
 	}
-	
+	*/
 	
 	public Nodo visualizzaNodo(String nomeNodo, String root, List<Nodo> list) {
 		

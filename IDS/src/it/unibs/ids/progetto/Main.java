@@ -22,10 +22,10 @@ public class Main {
 			MyMenu menuAccesso = new MyMenu("Menu accesso",vociAccesso);
 			MyMenu menu = new MyMenu("Menu principale",voci);
 			
-			//Gerarchia gerarchia = caricaGerarchia();
-			//GestioneUtenza gestioneUtenza = caricaGestioneUtenza();
-			Gerarchia gerarchia = new Gerarchia();
-			GestioneUtenza gestioneUtenza = new GestioneUtenza();
+			Gerarchia gerarchia = caricaGerarchia();
+			GestioneUtenza gestioneUtenza = caricaGestioneUtenza();
+			//Gerarchia gerarchia = new Gerarchia();
+			//GestioneUtenza gestioneUtenza = new GestioneUtenza();
 			
 			if(gerarchia!=null && gestioneUtenza!=null) {
 				System.out.println("Lettura da file: \n\n");
@@ -35,7 +35,7 @@ public class Main {
 			
 			
 			
-			
+			/*
 			Credenziali cred = new Credenziali("sabba","sabba");
 			Configuratore utente = new Configuratore(cred);
 			gestioneUtenza.addUtente(utente);
@@ -55,6 +55,7 @@ public class Main {
 			nodo.addChild(nodo22);
 			gerarchia.aggiungiFattoreConversione(nodo21, nodo23, 2);
 			gerarchia.addAlberi(nodo);
+			*/
 			
 			
 			int accesso;
@@ -107,7 +108,7 @@ public class Main {
 					 String radice1;
 					 String foglia2;
 					 String radice2;
-					 boolean condizione, condizioneTransitivo;
+					 boolean condizione;
 					 System.out.println("\nInizia inserimento fattori di conversione:");
 					 do {
 						foglia1 = InputDati.leggiStringaNonVuota("Inserisci foglia: ");
@@ -118,10 +119,6 @@ public class Main {
 						radice2 = InputDati.leggiStringaNonVuota("Inserisci la radice della gerarchia della foglia " + foglia2 + ": ");
 						Nodo nodo2 = gerarchia.visualizzaNodo(foglia2, radice2, gerarchia.getAlberi());
 						
-						condizioneTransitivo = (!gerarchia.checkFoglia(nodo1, foglieAttuali) && gerarchia.checkFoglia(nodo2, foglieAttuali))
-								|| (gerarchia.checkFoglia(nodo1, foglieAttuali) && !gerarchia.checkFoglia(nodo2, foglieAttuali));
-						
-						
 						
 						double fattoreDiConversione;
 						do {
@@ -130,19 +127,12 @@ public class Main {
 						
 						condizione = !gerarchia.checkFoglia(nodo1, foglieAttuali) && !gerarchia.checkFoglia(nodo2, foglieAttuali);
 						
-						if (!condizione) {
+						if (!condizione) 
 							gerarchia.aggiungiFattoreConversione(nodo1, nodo2, fattoreDiConversione);
-							
-							if (condizioneTransitivo) {
-								gerarchia.addTransitivoFattoreConversione(nodo1, nodo2, fattoreDiConversione);
-								gerarchia.addTransitivoFattoreConversione(nodo1, nodo2, 1/fattoreDiConversione);
-							}
-								
-						}
 						
 					} while (InputDati.yesOrNo("Vuoi continuare l'inserimento?"));
 						
-					 
+					 gerarchia.addTransitivoFattoreConversione();
 					 break;
 					 
 				 case 3:
@@ -225,7 +215,7 @@ public class Main {
 			String foglia = InputDati.leggiStringaNonVuota("Inserisci nome foglia: ");
 			String root = InputDati.leggiStringaNonVuota("Inserisci radice della gerarchia della foglia: ");
 			Nodo nodo = gerarchia.visualizzaNodo(foglia, root, gerarchia.getAlberi());
-			System.out.println(gerarchia.visualizzaFoglia(nodo));;
+			System.out.println(nodo.toString());;
 		}
 
 

@@ -124,8 +124,10 @@ public class Nodo implements Serializable {
 			Nodo key = fatt.getKey();
 			Double val = fatt.getValue();
 			
-			bf.append(this.nome + " - " + key.getNome() + " - " + val);
-			bf.append("\n");
+			if (!this.nome.equals(key.getNome())) {
+				bf.append(this.nome + " - " + key.getNome() + " - " + val);
+				bf.append("\n");
+			}
 		}
 		
 		return bf.toString();
