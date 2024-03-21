@@ -33,6 +33,7 @@ public class Nodo implements Serializable {
 		this.nome = nome;
 		this.isLeaf = false;
 		this.children = new ArrayList<>();
+		this.dominio = new ArrayList<>();
 	}
 
 	/**

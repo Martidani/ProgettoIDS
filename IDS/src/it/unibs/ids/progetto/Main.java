@@ -22,10 +22,10 @@ public class Main {
 			MyMenu menuAccesso = new MyMenu("Menu accesso",vociAccesso);
 			MyMenu menu = new MyMenu("Menu principale",voci);
 			
-			Gerarchia gerarchia = caricaGerarchia();
-			GestioneUtenza gestioneUtenza = caricaGestioneUtenza();
-			//Gerarchia gerarchia = new Gerarchia();
-			//GestioneUtenza gestioneUtenza = new GestioneUtenza();
+			//Gerarchia gerarchia = caricaGerarchia();
+			//GestioneUtenza gestioneUtenza = caricaGestioneUtenza();
+			Gerarchia gerarchia = new Gerarchia();
+			GestioneUtenza gestioneUtenza = new GestioneUtenza();
 			
 			if(gerarchia!=null && gestioneUtenza!=null) {
 				System.out.println("Lettura da file: \n\n");
@@ -36,22 +36,26 @@ public class Main {
 			
 			
 			
-//			Credenziali cred = new Credenziali("sabba","sabba");
-//			Configuratore utente = new Configuratore(cred);
-//			gestioneUtenza.addUtente(utente);
-//			Comprensorio com = new Comprensorio();
-//			com.addComune("Brescia");
-//			gestioneUtenza.addComprensorio(com);
-//			
-//			Nodo nodo2 = new Nodo("rootchild", false);
-//			ArrayList<String[]> dominio = new ArrayList<String[]>();
-//			String [] val = { "root", null};
-//			dominio.add(val);
-//			
-//			Nodo nodo = new Nodo("root", true, "root", dominio);
-//			nodo.addChild(nodo2);
-//			gerarchia.addAlberi(nodo);
-//			
+			Credenziali cred = new Credenziali("sabba","sabba");
+			Configuratore utente = new Configuratore(cred);
+			gestioneUtenza.addUtente(utente);
+			Comprensorio com = new Comprensorio();
+			com.addComune("Brescia");
+			gestioneUtenza.addComprensorio(com);
+			
+
+			Nodo nodo = new Nodo("root", true, "root");
+			Nodo nodo21 = new Nodo("rootchild", false);
+			Nodo nodo22 = new Nodo("nonf", false, "c");
+			nodo22.addElementiDominio("dom");
+			Nodo nodo23 = new Nodo("rootchild2", false);
+			nodo22.addChild(nodo23);
+			nodo.addElementiDominio("root");			
+			nodo.addChild(nodo21);
+			nodo.addChild(nodo22);
+			gerarchia.aggiungiFattoreConversione(nodo21, nodo23, 2);
+			gerarchia.addAlberi(nodo);
+			
 			
 			int accesso;
 			accesso = menuAccesso.scegli();
@@ -85,12 +89,12 @@ public class Main {
 					 
 				 case 2:
 					 
-					 ArrayList<String> foglieAttuali = new ArrayList<>();
+					 ArrayList<Nodo> foglieAttuali = new ArrayList<>();
 					 String radice;
 					 do {
 						radice = InputDati.leggiStringaNonVuota("Immetti nome radice -> ");
 						
-					} while (!gerarchia.verificaEsistenzaNomeRadice(radice));
+					} while (gerarchia.verificaEsistenzaNomeRadice(radice));
 					 
 					 String campo = InputDati.leggiStringaNonVuota("Inserisci campo -> ");
 					 Nodo root = new Nodo(radice,true, campo);
@@ -98,34 +102,46 @@ public class Main {
 					 creaNodiFiglio(root,gerarchia,root,foglieAttuali);
 					 gerarchia.addAlberi(root);
 					 
-					 ArrayList<String> foglieNonAttuali = gerarchia.foglieNonAttuali(foglieAttuali);
+
 					 String foglia1;
+					 String radice1;
 					 String foglia2;
-					 boolean condizione;
+					 String radice2;
+					 boolean condizione, condizioneTransitivo;
+					 System.out.println("\nInizia inserimento fattori di conversione:");
 					 do {
-						foglia1 = InputDati.leggiStringaNonVuota("Inserisci foglia 1 ");
-						if (gerarchia.checkFoglia(foglia1, foglieAttuali)) {
-							foglieAttuali.remove(foglia1);
-						}
-						foglia2 = InputDati.leggiStringaNonVuota("Inserisci foglia 2 ");
+						foglia1 = InputDati.leggiStringaNonVuota("Inserisci foglia: ");
+						radice1 = InputDati.leggiStringaNonVuota("Inserisci la radice della gerarchia della foglia " + foglia1 + ": ");
+						Nodo nodo1 = gerarchia.visualizzaNodo(foglia1, radice1, gerarchia.getAlberi());
 						
-						if (gerarchia.checkFoglia(foglia2, foglieAttuali)) {
-							foglieAttuali.remove(foglia2);
-						}
+						foglia2 = InputDati.leggiStringaNonVuota("Inserisci foglia 2 ");
+						radice2 = InputDati.leggiStringaNonVuota("Inserisci la radice della gerarchia della foglia " + foglia2 + ": ");
+						Nodo nodo2 = gerarchia.visualizzaNodo(foglia2, radice2, gerarchia.getAlberi());
+						
+						condizioneTransitivo = (!gerarchia.checkFoglia(nodo1, foglieAttuali) && gerarchia.checkFoglia(nodo2, foglieAttuali))
+								|| (gerarchia.checkFoglia(nodo1, foglieAttuali) && !gerarchia.checkFoglia(nodo2, foglieAttuali));
+						
+						
 						
 						double fattoreDiConversione;
 						do {
 							fattoreDiConversione = InputDati.leggiDouble("Inserisci fattore di conversione -> ");
 						} while (!gerarchia.verificaFattoreConversione(fattoreDiConversione));
 						
+						condizione = !gerarchia.checkFoglia(nodo1, foglieAttuali) && !gerarchia.checkFoglia(nodo2, foglieAttuali);
 						
-						condizione = gerarchia.checkFoglia(foglia2, foglieNonAttuali) && gerarchia.checkFoglia(foglia1, foglieNonAttuali);
 						if (!condizione) {
+							gerarchia.aggiungiFattoreConversione(nodo1, nodo2, fattoreDiConversione);
 							
-							gerarchia.aggiungiFattoreConversione(foglia1, foglia2, fattoreDiConversione);
-							
+							if (condizioneTransitivo) {
+								gerarchia.addTransitivoFattoreConversione(nodo1, nodo2, fattoreDiConversione);
+								gerarchia.addTransitivoFattoreConversione(nodo1, nodo2, 1/fattoreDiConversione);
+							}
+								
 						}
-					} while (foglieAttuali.size() != 0 && condizione );
+						
+					} while (InputDati.yesOrNo("Vuoi continuare l'inserimento?"));
+						
 					 
 					 break;
 					 
@@ -151,20 +167,20 @@ public class Main {
 
 
 
-		private static void creaNodiFiglio(Nodo nodoParent,Gerarchia gerarchia,Nodo radice,ArrayList<String> foglieAttuali) {
+		private static void creaNodiFiglio(Nodo nodoParent,Gerarchia gerarchia,Nodo radice,ArrayList<Nodo> foglieAttuali) {
 			do{
-				 System.out.println("Inserisci nodo figlio di " + nodoParent.getNome());
+				 System.out.println("Inserisci nodo figlio di " + nodoParent.getNome() + ": ");
 				 
 				 String nome;
 				 do {
 					  nome = InputDati.leggiStringaNonVuota("Inserisci nome -> ");
 						
-				 } while (!gerarchia.verificaEsistenzaNomeNonRadice(nome,radice));
+				 } while (gerarchia.verificaEsistenzaNomeNonRadice(nome,radice));
 				 boolean risposta = InputDati.yesOrNo("è foglia? -> " );
 				 Nodo nodoChild;
 				 if (risposta) {
 					 nodoChild = new Nodo(nome,false);
-					 foglieAttuali.add(nodoChild.getNome());
+					 foglieAttuali.add(nodoChild);
 					
 				}else {
 					String campo = InputDati.leggiStringaNonVuota("Inserisci campo -> ");
@@ -206,8 +222,10 @@ public class Main {
 
 
 		private static void stampaFattori(Gerarchia gerarchia) {
-			String foglia = InputDati.leggiStringaNonVuota("Inserisci foglia");
-			gerarchia.visualizzaFoglia(foglia);
+			String foglia = InputDati.leggiStringaNonVuota("Inserisci nome foglia: ");
+			String root = InputDati.leggiStringaNonVuota("Inserisci radice della gerarchia della foglia: ");
+			Nodo nodo = gerarchia.visualizzaNodo(foglia, root, gerarchia.getAlberi());
+			System.out.println(gerarchia.visualizzaFoglia(nodo));;
 		}
 
 

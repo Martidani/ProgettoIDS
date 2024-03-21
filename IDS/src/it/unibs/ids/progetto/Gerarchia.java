@@ -85,12 +85,12 @@ public class Gerarchia implements Serializable {
 		
 		addFattoreConversione(nodo1, nodo2, fattore);
 		addInverso(nodo1, nodo2, fattore);
-		addTransitivoFattoreConversione(nodo1, nodo2, fattore);
+
 		
 	}
 	
 	public boolean verificaFattoreConversione(double fattore) {
-		if (fattore >= MAX_FATTORECONVERSIONE || fattore <= MIN_FATTORECONVERSIONE) 
+		if (fattore > MAX_FATTORECONVERSIONE || fattore < MIN_FATTORECONVERSIONE) 
 			return false;
 		
 		return true;
@@ -100,7 +100,7 @@ public class Gerarchia implements Serializable {
 		nodo1.addFattori(nodo2,fattore);
 	}
 
-	private void addTransitivoFattoreConversione(Nodo nodo1, Nodo nodo2, double fattore) {
+	public void addTransitivoFattoreConversione(Nodo nodo1, Nodo nodo2, double fattore) {
 		
 		for (Nodo nodo3 : this.foglie) {
 			if (!nodo1.esisteFoglia(nodo3)) {
@@ -137,54 +137,66 @@ public class Gerarchia implements Serializable {
 	
 	private void addInverso(Nodo nodo1, Nodo nodo2, double fattore) {
 		addFattoreConversione(nodo2, nodo1, 1/fattore);
-		addTransitivoFattoreConversione(nodo2, nodo1, 1/fattore);
 	}
 	
-	public boolean checkFoglia(String foglia) {
+	
+	
+	public boolean checkFoglia(Nodo foglia) {
 		for (Nodo nodo : foglie) {
-			if (nodo.getNome().equalsIgnoreCase(foglia)) {
+			if (nodo.equals(foglia)) {
 				return true;
 			}
 		}
 		return false;
 	}
-	public boolean checkFoglia(String foglia,ArrayList<String> foglieAttuali) {
-		for (String nodo : foglieAttuali) {
-			if (nodo.equalsIgnoreCase(foglia)) {
+	public boolean checkFoglia(Nodo foglia, ArrayList<Nodo> foglieAttuali) {
+		String nome = foglia.getNome();
+		for (Nodo nodo : foglieAttuali) {
+			if (nodo.getNome().equalsIgnoreCase(nome)) {
 				return true;
 			}
 		}
 		return false;
 	}
 	
-	public ArrayList<String> foglieNonAttuali(ArrayList<String> foglieAttuali){
-		
-		ArrayList<String> foglieNonAttuali = new ArrayList<>();
-		
-		for (String nodo : foglieAttuali) {
-			if (!checkFoglia(nodo)) {
-				foglieNonAttuali.add(nodo);
-			}
-		}
-		return foglieNonAttuali;
-		
-	}
+
 	
 	
-	public String visualizzaFoglia(String nomeFoglia) {
+	public String visualizzaFoglia(Nodo nomeFoglia) {
 		StringBuffer bf = new StringBuffer();
 		
-		for (Nodo foglia : foglie) {
+		for (Nodo foglia : foglie) 
 			if (checkFoglia(nomeFoglia)) {
 				bf.append(foglia.toString());
 			}
-		}
 		
 		return bf.toString();
 		
 	}
 	
 	
+	public Nodo visualizzaNodo(String nomeNodo, String root, List<Nodo> list) {
+		
+		for (Nodo nodo : list) {
+			
+			if (nodo.getNome().equals(root)) {
+				
+				
+				for (Nodo nodoChild : nodo.getChildren()) {
+					
+					if (nodoChild.isLeaf()) {
+						if (nodoChild.getNome().equals(nomeNodo))
+							return nodoChild;
+					} else 
+							return visualizzaNodo(nomeNodo, nodoChild.getNome(), nodo.getChildren());
+						
+					
+				}
+				
+			}
+		}
+		return null;
+	}
 	
 
 
