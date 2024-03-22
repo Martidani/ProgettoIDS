@@ -34,26 +34,29 @@ public class Main {
 			
 			
 			
-			
-			/*
-			Credenziali cred = new Credenziali("sabba","sabba");
+		/*
+			Credenziali cred = new Credenziali("admin","admin");
 			Configuratore utente = new Configuratore(cred);
 			gestioneUtenza.addUtente(utente);
+			
 			Comprensorio com = new Comprensorio();
 			com.addComune("Brescia");
 			gestioneUtenza.addComprensorio(com);
 			
-
-			Nodo nodo = new Nodo("root", true, "root");
-			Nodo nodo21 = new Nodo("rootchild", false);
-			Nodo nodo22 = new Nodo("nonf", false, "c");
-			nodo22.addElementiDominio("dom");
-			Nodo nodo23 = new Nodo("rootchild2", false);
-			nodo22.addChild(nodo23);
-			nodo.addElementiDominio("root");			
+			Nodo nodo = new Nodo("root", true, "firstRoot");
+			nodo.addElementiDominio("root");
+			Nodo nodo21 = new Nodo("rootchild1", false);
+			Nodo nodo22 = new Nodo("rootchild2", false, "firstRootchild");
 			nodo.addChild(nodo21);
 			nodo.addChild(nodo22);
+			nodo22.addElementiDominio("first");
+			nodo22.addElementiDominio("second");
+			Nodo nodo23 = new Nodo("rootchild2.1", false);
+			Nodo nodo24 = new Nodo("rootchild2.2", false);
+			nodo22.addChild(nodo23);	
+			nodo22.addChild(nodo24);
 			gerarchia.aggiungiFattoreConversione(nodo21, nodo23, 2);
+			gerarchia.aggiungiFattoreConversione(nodo23, nodo24, 1.5);
 			gerarchia.addAlberi(nodo);
 			*/
 			
@@ -140,6 +143,7 @@ public class Main {
 					break;
 				
 				 case 4:
+					 System.out.println(gerarchia.toString());;
 					break;
 				
 				 case 5:
@@ -215,7 +219,7 @@ public class Main {
 			String foglia = InputDati.leggiStringaNonVuota("Inserisci nome foglia: ");
 			String root = InputDati.leggiStringaNonVuota("Inserisci radice della gerarchia della foglia: ");
 			Nodo nodo = gerarchia.visualizzaNodo(foglia, root, gerarchia.getAlberi());
-			System.out.println(nodo.toString());;
+			System.out.println(nodo.toStringF());;
 		}
 
 

@@ -170,6 +170,31 @@ public class Gerarchia implements Serializable {
 	
 
 	
+	
+	public String toString() {
+		StringBuffer bf = new StringBuffer();
+		
+		for (Nodo nodo : alberi)  {
+			bf.append("\n");
+			iterative(bf, nodo);
+		}
+		return bf.toString();
+			
+	}
+	
+	private String iterative(StringBuffer bf, Nodo nodo) {
+		if (nodo.isLeaf()) {
+			bf.append("\n*nome: " + nodo.getNome());
+		} else {
+			bf.append("\n*nome: " + nodo.getNome() + " " + "- campo: " + nodo.getCampo() + ", " + nodo.toString());
+			for (Nodo nodoChild : nodo.getChildren()) {
+				iterative(bf, nodoChild);
+
+			}
+		}
+		return bf.toString();
+	}
+	
 	/*
 	public String visualizzaFoglia(Nodo nomeFoglia) {
 		StringBuffer bf = new StringBuffer();

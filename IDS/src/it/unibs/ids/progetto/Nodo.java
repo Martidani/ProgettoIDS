@@ -75,7 +75,8 @@ public class Nodo implements Serializable {
 	public String getCampo() {return campo;}
 	public void setCampo(String campo) {this.campo = campo;}
 
-	public List<String[]> getDominio() {return dominio;}
+	public List<String[]> getDominio() {
+		return this.dominio;}
 
 	public void addElementiDominio(String valore, String descrizione) {
 		
@@ -115,7 +116,7 @@ public class Nodo implements Serializable {
 		return this.getFattori().get(foglia);
 	}
 	
-	public String toString() {
+	public String toStringF() {
 		
 		StringBuffer bf = new StringBuffer();
 		
@@ -134,8 +135,18 @@ public class Nodo implements Serializable {
 		
 	}
 	
-	
-	
+	public String toString() {
+		StringBuffer bf = new StringBuffer();
+		
+		bf.append("[");
+		for (String[] elem : this.dominio) {
+			bf.append(" valore: " + elem[0].toString());
+			if (elem.length>1)
+				bf.append("descrizione: " + elem[1].toString() + "\n");
+		}
+		bf.append(" ]");
+		return bf.toString();
+	}
 	
 	
 	
