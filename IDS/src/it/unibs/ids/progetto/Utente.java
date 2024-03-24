@@ -44,6 +44,12 @@ public abstract class Utente implements Serializable {
 	public char getTipoUtente() {
 		return tipoUtente;
 	}
+	public void setIsDefinitivo(boolean x) {
+		this.credenziali.setDefinitive(x);
+	}
+	public boolean getIsDefinitivo() {
+		return this.credenziali.isDefinitive();
+	}
 	
 	
 	

@@ -26,19 +26,6 @@ public class Configuratore extends Utente implements Serializable {
 	}
 	
 	
-	/**
-	 * 
-	 * 
-	 * Metodi
-	 *
-	 *
-	 *
-	 * CostruisciComprensorio(Arraylist<String>) richiamo il costruttore di comprensorio
-	 * 
-	 * VisualizzaComprensorio
-	 * 
-	 * 
-	 *
-	 */
+
 
 }

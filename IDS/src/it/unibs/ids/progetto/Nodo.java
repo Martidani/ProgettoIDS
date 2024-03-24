@@ -135,19 +135,33 @@ public class Nodo implements Serializable {
 		
 	}
 	
-	public String toString() {
+	public String toStringD() {
 		StringBuffer bf = new StringBuffer();
 		
-		bf.append("[");
+		bf.append("dominio: [");
 		for (String[] elem : this.dominio) {
-			bf.append(" valore: " + elem[0].toString());
+			bf.append("(valore: " + elem[0].toString());
 			if (elem.length>1)
-				bf.append("descrizione: " + elem[1].toString() + "\n");
+				bf.append(", descrizione: " + elem[1].toString() + "\n");
+			bf.append(")");
 		}
-		bf.append(" ]");
+		bf.append("]");
 		return bf.toString();
 	}
 	
+	public String toStringC() {
+		StringBuffer bf = new StringBuffer();
+		
+		bf.append("figli: [");
+		for (Nodo nodo : this.children) {
+			bf.append("(" + nodo.getNome());
+			bf.append(")");
+			
+		}
+		bf.append("]");
+		return bf.toString();
+		
+	}
 	
 	
 	

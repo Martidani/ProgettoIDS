@@ -28,7 +28,7 @@ public class Comprensorio implements Serializable {
 	public String toString() {
 		StringBuffer bf = new StringBuffer();
 		for (String comune : comprensorio) {
-			bf.append(comune);
+			bf.append(" - " + comune);
 			bf.append("\n");
 		}
 		

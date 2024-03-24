@@ -75,17 +75,17 @@ public  class GestioneUtenza implements Serializable {
 		return new Credenziali(userID.toString(), userPSSW.toString());
 	}
 	
-	public boolean verificaEsistenzaConfiguratore(String ID, String Password) {
+	public Configuratore verificaEsistenzaConfiguratore(String ID, String Password) {
 		for (Utente utente : utenti) {
 			if (utente.getID().equals(ID)) {
 				if (utente.getPSSW().equals(Password)) {
 					if (utente.getTipoUtente() == Configuratore.TIPOUTENTE ){
-						return true;
+						return (Configuratore) utente;
 					}
 				}
 			}
 		}
-		return false;
+		return null;
 		
 	}
 	
@@ -114,9 +114,12 @@ public  class GestioneUtenza implements Serializable {
 	
 	public String toString() {
 		StringBuffer bf = new StringBuffer();
+		int num = 0;
 		for (Comprensorio comprensorio : geografia) {
+			bf.append("C" + num + "\n");
 			bf.append(comprensorio.toString());
 			bf.append("\n");
+			num++;
 		}
 		
 		return bf.toString();

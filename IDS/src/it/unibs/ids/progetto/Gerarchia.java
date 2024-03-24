@@ -176,38 +176,30 @@ public class Gerarchia implements Serializable {
 		
 		for (Nodo nodo : alberi)  {
 			bf.append("\n");
-			iterative(bf, nodo);
+			iterative(bf, nodo, 1);
+
 		}
 		return bf.toString();
 			
 	}
 	
-	private String iterative(StringBuffer bf, Nodo nodo) {
+	private void iterative(StringBuffer bf, Nodo nodo, int depth) {
+		String asterischi = "*".repeat(depth); // Genera una stringa di asterischi in base al grado di "figlio di"
+		String blank = " ".repeat(depth+1);
 		if (nodo.isLeaf()) {
-			bf.append("\n*nome: " + nodo.getNome());
+			bf.append(asterischi + " " + nodo.getNome());
 		} else {
-			bf.append("\n*nome: " + nodo.getNome() + " " + "- campo: " + nodo.getCampo() + ", " + nodo.toString());
+			bf.append(asterischi + " " + nodo.getNome() + "\n" + blank + "campo: " + nodo.getCampo() + "\n" 
+		+ blank + nodo.toStringD() + "\n" + blank + nodo.toStringC());
 			for (Nodo nodoChild : nodo.getChildren()) {
-				iterative(bf, nodoChild);
+				bf.append("\n");
+				iterative(bf, nodoChild, depth+1);
 
 			}
 		}
-		return bf.toString();
+		
 	}
 	
-	/*
-	public String visualizzaFoglia(Nodo nomeFoglia) {
-		StringBuffer bf = new StringBuffer();
-		
-		for (Nodo foglia : foglie) 
-			if (checkFoglia(nomeFoglia)) {
-				bf.append(foglia.toString());
-			}
-		
-		return bf.toString();
-		
-	}
-	*/
 	
 	public Nodo visualizzaNodo(String nomeNodo, String root, List<Nodo> list) {
 		
