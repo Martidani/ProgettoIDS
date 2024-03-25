@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * La classe Gerarchia rappresenta la gerarchia degli alberi e gestisce le operazioni su di essa.
+ * La classe Gerarchia rappresenta l'insieme di tutti gli 
+ * alberi nel sistema e gestisce le operazioni su di essi.
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
@@ -81,7 +82,8 @@ public class Gerarchia implements Serializable {
 	}
 	
 	/**
-	 * Verifica se esiste un nodo non radice con il dato nome sotto il nodo radice specificato.
+	 * Verifica se esiste un nodo non radice con il dato 
+	 * nome sotto il nodo radice specificato.
 	 * 
 	 * @param nome Il nome del nodo da cercare
 	 * @param radice Il nodo radice sotto il quale cercare
@@ -104,7 +106,8 @@ public class Gerarchia implements Serializable {
 	}
 	
 	/**
-	 * Aggiunge un fattore di conversione tra due nodi, considerando anche l'inverso del fattore.
+	 * Aggiunge un fattore di conversione tra due nodi, 
+	 * e l'inverso del fattore stesso nella relazione inversa.
 	 * 
 	 * @param nodo1 Il primo nodo
 	 * @param nodo2 Il secondo nodo
@@ -141,7 +144,7 @@ public class Gerarchia implements Serializable {
 	}
 	
 	/**
-	 * Aggiunge i fattori di conversione transitivi tra tutte le coppie di foglie nella gerarchia.
+	 * Aggiunge i fattori di conversione transitivi tra TUTTE le coppie di foglie nella gerarchia.
 	 */
 	public void addTransitivoFattoreConversione() {
 	    for (Nodo nodo1 : this.foglie) {
@@ -155,7 +158,7 @@ public class Gerarchia implements Serializable {
 	}
 	
 	/**
-	 * Metodo privato per calcolare il fattore di conversione transitivo tra due nodi.
+	 * Metodo per calcolare il fattore di conversione transitivo tra due nodi.
 	 * 
 	 * @param nodo1 Il primo nodo
 	 * @param nodo2 Il secondo nodo
@@ -226,7 +229,8 @@ public class Gerarchia implements Serializable {
 	}
 	
 	/**
-	 * Restituisce una rappresentazione testuale della gerarchia.
+	 * Restituisce una rappresentazione testuale della 
+	 * gerarchia (di tutti i suoi alberi).
 	 * 
 	 * @return Una stringa che rappresenta la gerarchia
 	 */
@@ -243,7 +247,8 @@ public class Gerarchia implements Serializable {
 	}
 	
 	/**
-	 * Metodo ausiliario ricorsivo per generare una rappresentazione testuale della gerarchia.
+	 * Metodo ausiliario ricorsivo per generare una rappresentazione 
+	 * testuale della gerarchia.
 	 * 
 	 * @param bf Il buffer in cui aggiungere la rappresentazione
 	 * @param nodo Il nodo corrente

@@ -7,9 +7,9 @@ import java.util.Map.Entry;
 
 /**
  * La classe Nodo rappresenta un nodo all'interno di un albero.
- * Ogni nodo può essere una foglia o un nodo interno.
+ * Ogni nodo può essere una foglia o una non foglia.
  * Se un nodo è una foglia, contiene i fattori di conversione verso altri nodi.
- * Se un nodo è un nodo interno, può avere figli e contiene informazioni sul campo e sul dominio.
+ * Se un nodo è una non foglia, può avere figli e contiene informazioni sul campo e sul dominio.
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
@@ -44,13 +44,14 @@ public class Nodo implements Serializable {
 
 	/**
 	 * Costruttore foglia
+	 * Una foglia non può essere radice, in quanto una radice 
+	 * deve avere necessariamente almeno un figlio
 	 * 
 	 * @param nome Il nome del nodo
-	 * @param isRoot True se il nodo è la radice dell'albero, false altrimenti
 	 */
-	public Nodo(String nome, boolean isRoot) {
+	public Nodo(String nome) {
 		this.nome = nome;
-		this.isRoot = isRoot;
+		this.isRoot = false;
 		this.isLeaf = true;
 		this.fattori = new HashMap<>();
 	}
@@ -190,7 +191,7 @@ public class Nodo implements Serializable {
 	}
 
 	/**
-	 * Verifica se esiste una relazione di conversione con una data foglia.
+	 * Verifica se esiste un fattore di conversione con una data foglia.
 	 * 
 	 * @param foglia La foglia con cui verificare la relazione
 	 * @return true se esiste una relazione di conversione con la foglia, false altrimenti
@@ -200,7 +201,7 @@ public class Nodo implements Serializable {
 	}
 
 	/**
-	 * Restituisce il valore della relazione di conversione con una foglia.
+	 * Restituisce il valore del fattore di conversione con un'altra foglia.
 	 * 
 	 * @param foglia La foglia con cui verificare la relazione
 	 * @return Il valore della relazione di conversione
@@ -210,7 +211,7 @@ public class Nodo implements Serializable {
 	}
 
 	/**
-	 * Genera una rappresentazione testuale delle relazioni con le foglie.
+	 * Genera una stringa delle relazioni di una foglia con le altre foglie.
 	 * 
 	 * @return Una stringa rappresentante le relazioni con le foglie
 	 */
@@ -230,7 +231,7 @@ public class Nodo implements Serializable {
 	}
 
 	/**
-	 * Genera una rappresentazione testuale del dominio associato al nodo.
+	 * Genera una stringa del dominio associato al nodo.
 	 * 
 	 * @return Una stringa rappresentante il dominio associato al nodo
 	 */

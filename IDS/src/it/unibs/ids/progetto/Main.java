@@ -1,9 +1,10 @@
 package it.unibs.ids.progetto;
-import java.io.File;
 import java.util.ArrayList;
+
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.fp.mylib.MyMenu;
-import it.unibs.fp.mylib.ServizioFile;
+import it.unibs.ids.progetto.news.DefaultInitializer;
+import it.unibs.ids.progetto.news.FileManager;
 
 /**
  * Classe Main per l'esecuzione del programma.
@@ -12,9 +13,7 @@ import it.unibs.fp.mylib.ServizioFile;
  */
 public class Main {
 
-	
-	private static final String GESTIONE_UTENZA_FILE = "gestioneUtenza.txt";
-	private static final String GERARCHIA_FILE = "gerarchia.txt";
+
 	private static final int NUM_MAX_TENTATIVI = 3;
 	public final static String[] voci = {"Introdurre comprensorio geografico", "Introdurre albero", "Visualizza comprensorio", 
 			"Visualizza gerarchia", "Visualizza fattori di conversione"};
@@ -26,18 +25,18 @@ public class Main {
 			MyMenu menu = new MyMenu("Menu principale",voci);
 			
 			
-			 //  default initialization
-			 //Gerarchia gerarchia = defaultTree();
-			 //GestioneUtenza gestioneUtenza = defaultAccess();
-			
-			
-			 //  file initialization
-			Gerarchia gerarchia = caricaGerarchia();
-			GestioneUtenza gestioneUtenza = caricaGestioneUtenza();
-			
-			if(gerarchia!=null && gestioneUtenza!=null) {
-				System.out.println("Lettura da file: " + GESTIONE_UTENZA_FILE + ", " + GERARCHIA_FILE );
-			}
+	        // Caricamento da file
+			GestioneUtenza gestioneUtenza = FileManager.caricaGestioneUtenza();
+	        Gerarchia gerarchia = FileManager.caricaGerarchia();
+
+	        if (gestioneUtenza == null || gerarchia == null) {
+	            // Inizializzazione predefinita degli oggetti solo se non sono stati caricati da file
+	            gerarchia = DefaultInitializer.defaultTree();
+	            gestioneUtenza = DefaultInitializer.defaultAccess();
+	        } else {
+	            System.out.println("Lettura da file: " + FileManager.getGestioneUtenzaFile() + ", " + FileManager.getGerarchiaFile());
+	        }
+	        
 			
 			int accesso;
 				 
@@ -183,66 +182,9 @@ public class Main {
 				} while(scelta!=0);
 			}
 			
-			salvaSuFile(gerarchia);
-			salvaSuFile(gestioneUtenza);
+	        FileManager.salvaSuFile(gerarchia);
+	        FileManager.salvaSuFile(gestioneUtenza);
 		}
-
-		
-		/**
-		 * Crea e restituisce un albero gerarchico di default.
-		 * 
-		 * @return L'albero gerarchico di default
-		 * @throws Exception Se si verifica un errore durante la creazione dell'albero
-		 */
-		public static Gerarchia defaultTree() throws Exception {
-			  	Gerarchia gerarchia = new Gerarchia();
-
-				// Creazione del nodo radice
-				Nodo nodo1 = new Nodo("system", true, "firstRoot");
-				nodo1.setCampo("field");
-				nodo1.addElementiDominio("rootchildM");
-				nodo1.addElementiDominio("rootchildF");
-				
-				// Creazione dei nodi figli
-				Nodo nodo21 = new Nodo("rootchild1", false);
-				nodo1.addChild(nodo21);
-				
-				Nodo nodo22 = new Nodo("rootchild2", false, "1' Rootchild");
-				nodo1.addChild(nodo22);
-				nodo22.setCampo("field2");
-				nodo22.addElementiDominio("first");
-				nodo22.addElementiDominio("second");
-				
-				Nodo nodo23 = new Nodo("rootchild2.1", false);
-				nodo22.addChild(nodo23);
-				Nodo nodo24 = new Nodo("rootchild2.2", false);	
-				nodo22.addChild(nodo24);
-				
-				// Aggiunta dei nodi all'albero e definizione dei fattori di conversione
-				gerarchia.aggiungiFattoreConversione(nodo21, nodo23, 2);
-				gerarchia.aggiungiFattoreConversione(nodo23, nodo24, 1.5);
-				gerarchia.addAlberi(nodo1);
-				gerarchia.addTransitivoFattoreConversione();
-				
-				return gerarchia;
-			}
-
-		/**
-		 * Crea e restituisce una gestione utenza di default.
-		 * 
-		 * @return La gestione utenza di default
-		 */
-		public static GestioneUtenza defaultAccess() {
-				GestioneUtenza gestioneUtenza = new GestioneUtenza();
-				
-				// Creazione delle credenziali di default per l'utente admin
-				Credenziali cred = new Credenziali("admin","admin");
-				cred.setDefinitive(true);
-				Configuratore utente = new Configuratore(cred);
-				gestioneUtenza.addUtente(utente);
-				
-				return gestioneUtenza;
-			}
 
 		/**
 		 * 
@@ -267,7 +209,7 @@ public class Main {
 					 boolean risposta = InputDati.yesOrNo("È foglia? " );
 					 Nodo nodoChild;
 					 if (risposta) {
-						 nodoChild = new Nodo(nome,false);
+						 nodoChild = new Nodo(nome);
 						 foglieAttuali.add(nodoChild);
 						
 					}else {
@@ -383,53 +325,5 @@ public class Main {
 				
 				String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
 				return new Credenziali(ID, PSSW);
-			}
-		
-		/**
-		 * Carica la gerarchia da file.
-		 * 
-		 * @return La gerarchia caricata da file, null se non esiste o si verifica un errore durante il caricamento
-		 */
-		private static Gerarchia caricaGerarchia() {
-			File file = new File(GERARCHIA_FILE);
-			Gerarchia gerarchia = (Gerarchia) ServizioFile.caricaSingoloOggetto(file);
-			return gerarchia;
-		}
-		
-		
-		/**
-		 * Salva la gerarchia su file.
-		 * 
-		 * @param gerarchia La gerarchia da salvare su file
-		 */
-		private static void salvaSuFile(Gerarchia gerarchia) {
-			File dst = new File(GERARCHIA_FILE);
-			ServizioFile.salvaSingoloOggetto(dst, gerarchia);
-		}
-		
-		
-		/**
-		 * Carica la gestione utenza da file.
-		 * 
-		 * @return La gestione utenza caricata da file, null se non esiste o si verifica un errore durante il caricamento
-		 */
-		private static GestioneUtenza caricaGestioneUtenza() {
-			File file = new File(GESTIONE_UTENZA_FILE);
-			GestioneUtenza gestioneUtenza = (GestioneUtenza) ServizioFile.caricaSingoloOggetto(file);
-			return gestioneUtenza;
-		}
-		
-		
-		/**
-		 * Salva la gestione utenza su file.
-		 * 
-		 * @param gestioneUtenza La gestione utenza da salvare su file
-		 */
-		private static void salvaSuFile(GestioneUtenza gestioneUtenza) {
-			File dst = new File(GESTIONE_UTENZA_FILE);
-			ServizioFile.salvaSingoloOggetto(dst, gestioneUtenza);
-		}
-
-		
-		
+			}		
 }

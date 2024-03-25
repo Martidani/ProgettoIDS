@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * La classe GestioneUtenza gestisce gli utenti e i comprensori nel sistema.
+ * La classe GestioneUtenza gestisce gli utenti 
+ * ed i comprensori nel sistema.
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
@@ -25,13 +26,9 @@ public  class GestioneUtenza implements Serializable {
 
 	/**
 	 * Costruttore della classe GestioneUtenza.
-	 * Inizializza la lista degli utenti con un configuratore predefinito.
 	 */
 	public GestioneUtenza() {
 		this.utenti = new ArrayList<>();
-		// Configuratore predefinito
-		Configuratore configuratoreDefault = new Configuratore();
-		addUtente(configuratoreDefault);
 		this.geografia = new ArrayList<>();
 	}
 	
@@ -73,7 +70,8 @@ public  class GestioneUtenza implements Serializable {
 	}
 
 	/**
-	 * Genera e restituisce delle credenziali predefinite per un utente.
+	 * Genera e restituisce delle credenziali predefinite per 
+	 * un utente (da utilizzarsi nella registrazione).
 	 * 
 	 * @return Le credenziali predefinite
 	 */

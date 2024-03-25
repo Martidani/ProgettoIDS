@@ -85,9 +85,10 @@ public abstract class Utente implements Serializable {
     }
 
     /**
-     * Imposta lo stato di definitività delle credenziali.
+     * Imposta la definitività delle credenziali.
+     * Per un utente appena creato è false.
      * 
-     * @param x Lo stato di definitività da impostare
+     * @param x La definitività da impostare.
      */
     public void setIsDefinitivo(boolean x) {
         this.credenziali.setDefinitive(x);

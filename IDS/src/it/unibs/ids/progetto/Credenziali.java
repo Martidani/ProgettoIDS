@@ -5,6 +5,8 @@ import java.io.Serializable;
  * La classe Credenziali rappresenta le credenziali di accesso di un utente.
  * Ogni credenziale è composta da un ID (identificativo dell'utente) e una password.
  * Inoltre, tiene traccia se le credenziali sono definitive o meno.
+ * Se un utente si è appena registrato avrà delle credenziali 
+ * non definitive fino alla loro modifica
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
@@ -74,7 +76,7 @@ public class Credenziali implements Serializable {
     }
 
     /**
-     * Imposta lo stato di definitive delle credenziali.
+     * Imposta lo stato di definitività delle credenziali.
      * 
      * @param definitive true se le credenziali sono definitive, false altrimenti
      */

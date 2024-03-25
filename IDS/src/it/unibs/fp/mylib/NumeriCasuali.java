@@ -1,16 +1,15 @@
 package it.unibs.fp.mylib;
-
 import java.util.*;
-
 
 /**
  * Classe per generare Numeri Casuali
- * @author federico
+ * 
+ * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class NumeriCasuali {
 	
+
 	private static Random estrattore = new Random();
-	
 	
 	/**
 	 * Metodo per estrarre un numero int tra min e max

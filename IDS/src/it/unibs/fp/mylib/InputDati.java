@@ -8,7 +8,8 @@ import java.util.Date;
 
 /**
  * classe per ricevere dati in input
- * @author federico
+ * 
+ * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class InputDati 
 {
