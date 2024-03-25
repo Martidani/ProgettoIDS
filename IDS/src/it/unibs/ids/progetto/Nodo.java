@@ -216,18 +216,18 @@ public class Nodo implements Serializable {
 	 * @return Una stringa rappresentante le relazioni con le foglie
 	 */
 	public String toStringF() {
-	    StringBuffer bf = new StringBuffer();
-	    for (Entry<Nodo, Double> fatt : fattori.entrySet()) {
-	        Nodo key = fatt.getKey();
-	        Double val = fatt.getValue();
-	        if (!this.nome.equals(key.getNome())) {
-	            // Formatta il double con un massimo di tre decimali
-	            String formattedVal = String.format("%.3f", val);
-	            bf.append(this.nome + " - " + key.getNome() + " - " + formattedVal);
-	            bf.append("\n");
-	        }
-	    }
-	    return bf.toString();
+		 StringBuffer bf = new StringBuffer();
+		    for (Entry<Nodo, Double> fatt : fattori.entrySet()) {
+		        Nodo key = fatt.getKey();
+		        Double val = fatt.getValue();
+		        if (!this.nome.equals(key.getNome())) {
+		            // Formatta il double con un massimo di tre decimali
+		            String formattedVal = String.format("%.3f", val);
+		            bf.append(this.nome + " - " + key.getNome() + " - " + formattedVal);
+		            bf.append("\n");
+		        }
+		    }
+		 return bf.toString();
 	}
 
 	/**
@@ -255,7 +255,11 @@ public class Nodo implements Serializable {
 	 */
 	public String toStringC() {
 		StringBuffer bf = new StringBuffer();
-		bf.append("figli: [");
+		int num = this.children.size();
+		if (num==1) 
+			bf.append(num + " figlio: [");
+		else
+			bf.append(num + " figli: [");
 		for (Nodo nodo : this.children) {
 			bf.append("(" + nodo.getNome());
 			bf.append(")");

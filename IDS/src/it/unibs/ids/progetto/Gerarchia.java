@@ -149,9 +149,11 @@ public class Gerarchia implements Serializable {
 	public void addTransitivoFattoreConversione() {
 	    for (Nodo nodo1 : this.foglie) {
 	        for (Nodo nodo2 : this.foglie) {
-	            if (!nodo1.esisteFoglia(nodo2)) {
-	                ArrayList<Nodo> visitati = new ArrayList<Nodo>();
-	                nodo1.addFattori(nodo2, calcTransitivo(nodo1, nodo2, visitati));
+	            if (!nodo1.equals(nodo2) && !nodo1.esisteFoglia(nodo2)) {
+	                Double fattore = calcTransitivo(nodo1, nodo2, new ArrayList<>());
+	                if (fattore != null) {
+	                    nodo1.addFattori(nodo2, fattore);
+	                }
 	            }
 	        }
 	    }
@@ -176,13 +178,15 @@ public class Gerarchia implements Serializable {
 	        for (Map.Entry<Nodo, Double> entry : foglieNodo1.entrySet()) {
 	            Nodo key = entry.getKey();
 	            if (!visitati.contains(key)) {
-	            	visitati.add(key);
-	            	Double val = entry.getValue();
-		            return val * calcTransitivo(key, nodo2, visitati);
+	                visitati.add(key);
+	                Double val = calcTransitivo(key, nodo2, visitati);
+	                if (val != null) {
+	                    return entry.getValue() * val;
+	                }
 	            }
 	        }
 	    }
-	    return null;
+	    return null; // Restituiamo null se non è possibile calcolare il fattore di conversione
 	}
 	
 	/**
@@ -238,7 +242,7 @@ public class Gerarchia implements Serializable {
 		StringBuffer bf = new StringBuffer();
 		
 		for (Nodo nodo : alberi)  {
-			bf.append("\n");
+			bf.append("\n\n");
 			iterative(bf, nodo, 1);
 
 		}
