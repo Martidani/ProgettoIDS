@@ -13,18 +13,30 @@ public class Comprensorio implements Serializable {
 
 	
     private static final long serialVersionUID = 1L;
+    private String nome;
     private ArrayList<String> comprensorio;
     
     /**
      * Costruttore della classe Comprensorio.
      * Crea un nuovo oggetto Comprensorio con una lista vuota di comuni.
      */
-    public Comprensorio() {
+    public Comprensorio(String nome) {
         this.comprensorio = new ArrayList<>();
+        this.nome = nome;
     }
 
     
-    /**
+    public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	/**
      * Restituisce la lista di comuni contenuti nel comprensorio.
      * 
      * @return ArrayList<String> La lista di comuni
@@ -50,6 +62,7 @@ public class Comprensorio implements Serializable {
      */
     public String toString() {
         StringBuffer bf = new StringBuffer();
+        bf.append(this.nome);
         for (String comune : comprensorio) {
             bf.append(" - " + comune);
             bf.append("\n");

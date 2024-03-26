@@ -1,8 +1,7 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import it.unibs.ids.progetto.Nodo;
 
 /**
  * Classe per la gestione della gerarchia dei nodi.

@@ -13,7 +13,7 @@ public abstract class Utente implements Serializable {
 	
     private static final long serialVersionUID = 1L;
     private char tipoUtente;
-    private Credenziali credenziali;
+    protected Credenziali credenziali;
     
     /**
      * Costruttore della classe Utente.
@@ -84,24 +84,7 @@ public abstract class Utente implements Serializable {
         return tipoUtente;
     }
 
-    /**
-     * Imposta la definitività delle credenziali.
-     * Per un utente appena creato è false.
-     * 
-     * @param x La definitività da impostare.
-     */
-    public void setIsDefinitivo(boolean x) {
-        this.credenziali.setDefinitive(x);
-    }
-
-    /**
-     * Restituisce lo stato di definitività delle credenziali.
-     * 
-     * @return boolean True se le credenziali sono definitive, false altrimenti
-     */
-    public boolean getIsDefinitivo() {
-        return this.credenziali.isDefinitive();
-    }
+	protected abstract void setIsDefinitivo(boolean b);
 
 
 }

@@ -31,5 +31,22 @@ public class Configuratore extends Utente implements Serializable {
         super(TIPOUTENTE, Credenziali.credenzialiPredefinite());
     }
 
+    /**
+     * Imposta la definitività delle credenziali.
+     * Per un configuratore appena creato è false.
+     * 
+     * @param x La definitività da impostare.
+     */
+    public void setIsDefinitivo(boolean x) {
+        this.credenziali.setDefinitive(x);
+    }
 
+    /**
+     * Restituisce lo stato di definitività delle credenziali.
+     * 
+     * @return boolean True se le credenziali sono definitive, false altrimenti
+     */
+    public boolean getIsDefinitivo() {
+        return this.credenziali.isDefinitive();
+    }
 }

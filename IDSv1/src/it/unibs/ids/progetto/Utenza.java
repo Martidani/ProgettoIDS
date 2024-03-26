@@ -50,7 +50,7 @@ public class Utenza implements Serializable {
 	 * @param Password La password dell'utente
 	 * @return Il configuratore corrispondente alle credenziali, null se non trovato
 	 */
-	public Configuratore verificaEsistenzaConfiguratore(String ID, String Password) {
+	public Configuratore autenticazioneConfiguratore(String ID, String Password) {
 		for (Utente utente : utenti) {
 			if (utente.getID().equals(ID)) {
 				if (utente.getPSSW().equals(Password)) {
@@ -71,7 +71,7 @@ public class Utenza implements Serializable {
 	 * @param Password La password dell'utente
 	 * @return true se l'utente esiste, false altrimenti
 	 */
-	public boolean verificaEsistenzaUtente(String ID,String Password) {
+	public boolean autenticazioneUtente(String ID,String Password) {
 		for (Utente utente : utenti) {
 			if (utente.getID().equals(ID)) {
 				if (utente.getPSSW().equals(Password)) {

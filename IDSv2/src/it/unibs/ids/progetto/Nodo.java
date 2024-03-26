@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import it.unibs.ids.progetto.news.LeafHasChildrenException;
-
 /**
  * La classe Nodo rappresenta un nodo all'interno di un albero.
  * Ogni nodo può essere una foglia o una non foglia.

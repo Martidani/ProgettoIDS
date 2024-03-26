@@ -3,11 +3,7 @@ import java.util.ArrayList;
 
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.fp.mylib.MyMenu;
-import it.unibs.ids.progetto.news.DefaultInitializer;
-import it.unibs.ids.progetto.news.FileManager;
-import it.unibs.ids.progetto.news.Geografia;
-import it.unibs.ids.progetto.news.GestioneGerarchia;
-import it.unibs.ids.progetto.news.LeafHasChildrenException;
+import it.unibs.ids.progetto.news.Fruitore;
 
 /**
  * Classe Main per l'esecuzione del programma.
@@ -49,11 +45,20 @@ public class Main {
 	        accesso = menuAccesso.scegli();
 	        switch (accesso) {
 	            case 1:
-	                registrazione(utenza);
+	            	if (InputDati.yesOrNo("Vuoi essere un fruitore? ")) {
+	                    System.out.print(geografia.toString());
+		            	registrazioneF(utenza, geografia);
+	            	}
+
+	            	else
+	            		registrazioneC(utenza);
 	                break;
 
 	            case 2:
-	                accesso = login(utenza, accesso);
+	            	if (InputDati.yesOrNo("Sei un fruitore?"))
+	            		accesso = login(utenza, accesso, Fruitore.TIPOUTENTE);
+	            	else
+	            		accesso = login(utenza, accesso, Configuratore.TIPOUTENTE);
 	                break;
 
 	            default:
@@ -109,7 +114,7 @@ public class Main {
 	 * 
 	 * @param utenza   L'oggetto Utenza utilizzato per registrare il nuovo utente.
 	 */
-	private static void registrazione(Utenza utenza) {
+	private static void registrazioneC(Utenza utenza) {
 	    Configuratore configuratore = new Configuratore();
 	    String id = configuratore.getID();
 	    String psswd = configuratore.getPSSW();
@@ -120,6 +125,25 @@ public class Main {
 	    configuratore.setCredenziali(credenziali);
 	    configuratore.setIsDefinitivo(false);
 	    utenza.addUtente(configuratore);
+	}
+	/**
+	 * Metodo per registrare un nuovo utente.
+	 * 
+	 * @param utenza   L'oggetto Utenza utilizzato per registrare il nuovo utente.
+	 */
+	private static void registrazioneF(Utenza utenza, Geografia geografia) {
+		
+		String c;
+		do {
+			c = InputDati.leggiStringaNonVuota("  Comprensorio: ");
+		} while (!geografia.verificaEsistenzaComprensorio(c));
+		
+	    Credenziali credenziali = primoAccesso(utenza);
+	    String indirizzo = InputDati.leggiStringaNonVuota("  Indirizzo e-mail: ");
+	    Comprensorio comprensorio = geografia.cercaComprensorio(c);
+
+	    Fruitore fruitore = new Fruitore(comprensorio, credenziali, indirizzo);
+	    utenza.addUtente(fruitore);
 	}
 	/**
 	 * Metodo per inserire le credenziali di registrazione.
@@ -145,12 +169,12 @@ public class Main {
 	 * @param accesso         L'accesso corrente.
 	 * @return                L'accesso aggiornato.
 	 */
-	private static int login(Utenza utenza, int accesso) {
+	private static int login(Utenza utenza, int accesso, char type) {
 	    for (int i = 0; i < NUM_MAX_TENTATIVI; i++) {
 	        System.out.println("Inserisci dati di login: ");
 	        String ID = InputDati.leggiStringaNonVuota("  ID: ");
 	        String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
-	        accesso = autenticazione(utenza, ID, PSSW);
+	        accesso = autenticazione(utenza, ID, PSSW, type);
 	        if (accesso != 0) {
 	            break;
 	        }
@@ -165,16 +189,24 @@ public class Main {
 	 * @param PSSW            La password inserita.
 	 * @return                Il risultato del login.
 	 */
-	private static int autenticazione(Utenza utenza, String ID, String PSSW) {
-	    Configuratore conf = utenza.verificaEsistenzaConfiguratore(ID, PSSW);
-	    if (conf == null) {
-	        System.out.println(" ! Non esiste configuratore con queste credenziali !");
+	private static int autenticazione(Utenza utenza, String ID, String PSSW, char type) {
+		Utente utente;
+		if (type == Configuratore.TIPOUTENTE)
+			utente = utenza.autenticazioneConfiguratore(ID, PSSW);
+		else
+			utente = utenza.autenticazioneFruitore(ID, PSSW);
+		
+	    if (utente == null) {
+	    	if (type == Configuratore.TIPOUTENTE)
+	    		System.out.println(" ! Non esiste alcun configuratore con queste credenziali !");
+	    	else
+	    		System.out.println(" ! Non esiste alcun fruitore con queste credenziali !");
 	        return 1;
-	    } else if (!conf.getCredenziali().isDefinitive()) {
-	        System.out.println("Scegli nuove credenziali: ");
+	    } else if (!utente.getCredenziali().isDefinitive() && type == Configuratore.TIPOUTENTE) {
+	    	System.out.println("Scegli nuove credenziali: ");
 	        Credenziali credenzialiRegistrazione = primoAccesso(utenza);
-	        conf.setCredenziali(credenzialiRegistrazione);
-	        conf.setIsDefinitivo(true);
+	        utente.setCredenziali(credenzialiRegistrazione);
+	        utente.setIsDefinitivo(true);
 	        return 2;
 	    } else {
 	        System.out.println("-> Utente riconosciuto");
@@ -189,7 +221,13 @@ public class Main {
 	 * @param gestioneUtenza  L'oggetto GestioneUtenza utilizzato per aggiungere il comprensorio.
 	 */
 	private static void creaComprensorio(Geografia geografia) {
-	    Comprensorio comprensorio = new Comprensorio();
+		
+		String nome;
+		do {
+			nome = InputDati.leggiStringaNonVuota("Nome: ");
+		} while (geografia.verificaEsistenzaComprensorio(nome));
+		
+	    Comprensorio comprensorio = new Comprensorio(nome);
 	    System.out.println("Inserisci comprensorio (Exit per uscire) ");
 	    String comune;
 

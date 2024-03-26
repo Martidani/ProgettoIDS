@@ -1,7 +1,6 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
-import it.unibs.ids.progetto.Comprensorio;
 
 /**
  * La classe Geografia rappresenta l'insieme di 
@@ -42,6 +41,21 @@ public class Geografia implements Serializable {
 		return geografia;
 	}
 	
+	
+	public Comprensorio cercaComprensorio (String nome) {
+		
+		for (Comprensorio comprensorio : geografia) {
+			if (comprensorio.getNome().equals(nome))
+				return comprensorio;
+		}
+		return null;
+	}
+	
+	public boolean verificaEsistenzaComprensorio (String nome) {
+		if (cercaComprensorio(nome) == null)
+			return false;
+		return true;
+	}
 	/**
 	 * Restituisce una rappresentazione testuale della geografia, includendo la lista dei comprensori.
 	 * 
@@ -50,12 +64,9 @@ public class Geografia implements Serializable {
 	@Override
 	public String toString() {
 		StringBuffer bf = new StringBuffer();
-		int num = 0;
 		for (Comprensorio comprensorio : geografia) {
-			bf.append("C" + num + "\n");
 			bf.append(comprensorio.toString());
 			bf.append("\n");
-			num++;
 		}
 		
 		return bf.toString();

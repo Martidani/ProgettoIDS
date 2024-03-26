@@ -1,10 +1,4 @@
-package it.unibs.ids.progetto.news;
-import it.unibs.ids.progetto.Comprensorio;
-import it.unibs.ids.progetto.Configuratore;
-import it.unibs.ids.progetto.Credenziali;
-import it.unibs.ids.progetto.Gerarchia;
-import it.unibs.ids.progetto.Utenza;
-import it.unibs.ids.progetto.Nodo;
+package it.unibs.ids.progetto;
 
 /**
  * Classe per l'inizializzazione predefinita del sistema.
@@ -15,7 +9,7 @@ public class DefaultInitializer {
     
 
 	private static final String ROOT_NAME = "system";
-    private static final String ROOT_FIELD = "field";
+    private static final String ROOT_FIELD = "root";
     private static final String[] ROOT_DOMAIN = {"rootchildM", "rootchildF"};
     private static final String CHILD2_NAME = "rootchild2";
 	private static final String CHILD1_NAME = "rootchild1";
@@ -26,6 +20,7 @@ public class DefaultInitializer {
     private static final String DEFAULT_COMMUNITY_1 = "Comune1";
     private static final String DEFAULT_COMMUNITY_2 = "Comune2";
     private static final String DEFAULT_COMMUNITY_3 = "Comune3";
+	private static final String DEFAULT_COMMUNITY_0 = "C0";
 
 
     private Gerarchia gerarchia;
@@ -127,7 +122,7 @@ public class DefaultInitializer {
      * @return Il comprensorio di default
      */
     private static Comprensorio defaultComprensorio() {
-        Comprensorio comprensorio = new Comprensorio();
+        Comprensorio comprensorio = new Comprensorio(DEFAULT_COMMUNITY_0);
         comprensorio.addComune(DEFAULT_COMMUNITY_1);
         comprensorio.addComune(DEFAULT_COMMUNITY_2);
         comprensorio.addComune(DEFAULT_COMMUNITY_3);

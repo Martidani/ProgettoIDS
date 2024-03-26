@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import it.unibs.ids.progetto.news.LeafHasChildrenException;
 
 /**
  * La classe Gerarchia rappresenta l'insieme di tutti gli 

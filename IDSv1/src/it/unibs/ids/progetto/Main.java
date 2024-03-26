@@ -166,7 +166,7 @@ public class Main {
 	 * @return                Il risultato del login.
 	 */
 	private static int autenticazione(Utenza utenza, String ID, String PSSW) {
-	    Configuratore conf = utenza.verificaEsistenzaConfiguratore(ID, PSSW);
+	    Configuratore conf = utenza.autenticazioneConfiguratore(ID, PSSW);
 	    if (conf == null) {
 	        System.out.println(" ! Non esiste configuratore con queste credenziali !");
 	        return 1;
