@@ -6,9 +6,9 @@ import java.util.*;
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
-public class NumeriCasuali {
-	
+public class Estrattore {
 
+	
 	private static Random estrattore = new Random();
 	
 	/**
@@ -34,4 +34,18 @@ public class NumeriCasuali {
 	 return posEstratto + min;
 	}
 
+	/**
+	 * Metodo per estrarre una stringa di una certa 
+	 * lunghezza, tra un insieme di caratteri
+	 */
+	public static String estraiString(String lista, int lenght) {
+		StringBuilder identificator = new StringBuilder();
+		Random rand = new Random();
+		
+		for (int i = 0; i < lenght; i++) {
+			identificator.append(lista.charAt(rand.nextInt(lista.length())));
+		}
+		
+		return identificator.toString();
+	}
 }

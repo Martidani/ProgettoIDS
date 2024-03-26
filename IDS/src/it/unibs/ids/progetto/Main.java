@@ -5,6 +5,9 @@ import it.unibs.fp.mylib.InputDati;
 import it.unibs.fp.mylib.MyMenu;
 import it.unibs.ids.progetto.news.DefaultInitializer;
 import it.unibs.ids.progetto.news.FileManager;
+import it.unibs.ids.progetto.news.Geografia;
+import it.unibs.ids.progetto.news.GestioneGerarchia;
+import it.unibs.ids.progetto.news.LeafHasChildrenException;
 
 /**
  * Classe Main per l'esecuzione del programma.
@@ -22,20 +25,23 @@ public class Main {
 		{"Registrazione","Login"};
 	
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws LeafHasChildrenException {
 	    MyMenu menuAccesso = new MyMenu("Menu accesso", vociAccesso);
 	    MyMenu menu = new MyMenu("Menu principale", voci);
 
 	    // Caricamento da file
-	    GestioneUtenza gestioneUtenza = FileManager.caricaGestioneUtenza();
+	    Utenza utenza = FileManager.caricaUtenza();
 	    Gerarchia gerarchia = FileManager.caricaGerarchia();
+	    Geografia geografia = FileManager.caricaGeografia();
 
-	    if (gestioneUtenza == null || gerarchia == null) {
+	    if (utenza == null || gerarchia == null || geografia == null) {
 	        // Inizializzazione predefinita degli oggetti solo se non sono stati caricati da file
 	        gerarchia = DefaultInitializer.defaultTree();
-	        gestioneUtenza = DefaultInitializer.defaultAccess();
+	        utenza = DefaultInitializer.defaultAccess();
+	        geografia = DefaultInitializer.defaultWorld();
 	    } else {
-	        System.out.println("Lettura da file: " + FileManager.getGestioneUtenzaFile() + ", " + FileManager.getGerarchiaFile());
+	        System.out.println("Lettura da file: " + FileManager.getUtenzaFile() 
+	        + ", " + FileManager.getGerarchiaFile() + ", " + FileManager.getGeografiaFile());
 	    }
 
 	    int accesso;
@@ -43,11 +49,11 @@ public class Main {
 	        accesso = menuAccesso.scegli();
 	        switch (accesso) {
 	            case 1:
-	                registrazione(gestioneUtenza);
+	                registrazione(utenza);
 	                break;
 
 	            case 2:
-	                accesso = login(gestioneUtenza, accesso);
+	                accesso = login(utenza, accesso);
 	                break;
 
 	            default:
@@ -62,23 +68,24 @@ public class Main {
 	            switch (scelta) {
 
 	                case 1:
-	                    aggiungiComprensorio(gestioneUtenza);
+	                    creaComprensorio(geografia);
 	                    break;
 
 	                case 2:
 	                    ArrayList<Nodo> foglieAttuali = new ArrayList<>();
-	                    Nodo root = creaNodoRadice(gerarchia);
+	                    Nodo root = creaRadice(gerarchia);
 	                    creaNodiFiglio(root, gerarchia, root, foglieAttuali);
 	                    gerarchia.addAlberi(root);
-	                    inserisciFattoriConversione(gerarchia, foglieAttuali);
+	                    creaFattoriConversione(gerarchia, foglieAttuali);
 	                    break;
 
 	                case 3:
-	                    System.out.println(gestioneUtenza.toString());
+	                    System.out.println(geografia.toString());
 	                    break;
 
 	                case 4:
-	                    System.out.println(gerarchia.toString());
+	                	String ger = GestioneGerarchia.toString(gerarchia.getAlberi());
+	                    System.out.println(ger);
 	                    break;
 
 	                case 5:
@@ -92,36 +99,137 @@ public class Main {
 	    }
 
 	    FileManager.salvaSuFile(gerarchia);
-	    FileManager.salvaSuFile(gestioneUtenza);
+	    FileManager.salvaSuFile(utenza);
+	    FileManager.salvaSuFile(geografia);
 	}
 
 
+	/**
+	 * Metodo per registrare un nuovo utente.
+	 * 
+	 * @param utenza   L'oggetto Utenza utilizzato per registrare il nuovo utente.
+	 */
+	private static void registrazione(Utenza utenza) {
+	    Configuratore configuratore = new Configuratore();
+	    String id = configuratore.getID();
+	    String psswd = configuratore.getPSSW();
+	    System.out.println("ID di default: " + id);
+	    System.out.println("Password di default " + psswd);
+
+	    Credenziali credenziali = new Credenziali(id, psswd);
+	    configuratore.setCredenziali(credenziali);
+	    configuratore.setIsDefinitivo(false);
+	    utenza.addUtente(configuratore);
+	}
+	/**
+	 * Metodo per inserire le credenziali di registrazione.
+	 * 
+	 * @param utenza          L'oggetto Utenza utilizzato per verificare l'esistenza dell'ID.
+	 * @return                Le credenziali inserite dall'utente.
+	 */
+	private static Credenziali primoAccesso(Utenza utenza) {
+	    String ID;
+	    do {
+	        ID = InputDati.leggiStringaNonVuota("  ID: ");
+	        if (utenza.verificaEsistenzaID(ID)) System.out.println(" ! ID già utilizzato ! ");
+	    } while (utenza.verificaEsistenzaID(ID));
+
+	    String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
+	    return new Credenziali(ID, PSSW);
+	}
+	
+	/**
+	 * Metodo per il login.
+	 * 
+	 * @param utenza  		  L'oggetto Utenza utilizzato per gestire l'accesso.
+	 * @param accesso         L'accesso corrente.
+	 * @return                L'accesso aggiornato.
+	 */
+	private static int login(Utenza utenza, int accesso) {
+	    for (int i = 0; i < NUM_MAX_TENTATIVI; i++) {
+	        System.out.println("Inserisci dati di login: ");
+	        String ID = InputDati.leggiStringaNonVuota("  ID: ");
+	        String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
+	        accesso = autenticazione(utenza, ID, PSSW);
+	        if (accesso != 0) {
+	            break;
+	        }
+	    }
+	    return accesso;
+	}
+	/**
+	 * Metodo per effettuare il login.
+	 * 
+	 * @param utenza 	      L'oggetto Utenza utilizzato per verificare le credenziali.
+	 * @param ID              L'ID inserito.
+	 * @param PSSW            La password inserita.
+	 * @return                Il risultato del login.
+	 */
+	private static int autenticazione(Utenza utenza, String ID, String PSSW) {
+	    Configuratore conf = utenza.verificaEsistenzaConfiguratore(ID, PSSW);
+	    if (conf == null) {
+	        System.out.println(" ! Non esiste configuratore con queste credenziali !");
+	        return 1;
+	    } else if (!conf.getCredenziali().isDefinitive()) {
+	        System.out.println("Scegli nuove credenziali: ");
+	        Credenziali credenzialiRegistrazione = primoAccesso(utenza);
+	        conf.setCredenziali(credenzialiRegistrazione);
+	        conf.setIsDefinitivo(true);
+	        return 2;
+	    } else {
+	        System.out.println("-> Utente riconosciuto");
+	        return 2;
+	    }
+	}
+
+
+	/**
+	 * Metodo per aggiungere un comprensorio.
+	 * 
+	 * @param gestioneUtenza  L'oggetto GestioneUtenza utilizzato per aggiungere il comprensorio.
+	 */
+	private static void creaComprensorio(Geografia geografia) {
+	    Comprensorio comprensorio = new Comprensorio();
+	    System.out.println("Inserisci comprensorio (Exit per uscire) ");
+	    String comune;
+
+	    do {
+	        comune = InputDati.leggiStringaNonVuota("  comune -> ");
+	        comprensorio.addComune(comune);
+	    } while (!comune.equalsIgnoreCase("Exit"));
+
+	    int size = comprensorio.getComprensorio().size();
+	    comprensorio.getComprensorio().remove(size - 1);
+
+	    geografia.addComprensorio(comprensorio);
+	}
+
+	
 	/**
 	 * Metodo per creare la radice dell'albero.
 	 * 
 	 * @param gerarchia L'oggetto Gerarchia utilizzato per verificare l'esistenza del nome radice.
 	 * @return Il nodo radice creato.
 	 */
-	private static Nodo creaNodoRadice(Gerarchia gerarchia) {
+	private static Nodo creaRadice(Gerarchia gerarchia) {
 	    String radice;
 	    do {
 	        radice = InputDati.leggiStringaNonVuota("Nome radice -> ");
-	    } while (gerarchia.verificaEsistenzaNomeRadice(radice));
+	    } while (GestioneGerarchia.verificaEsistenzaNomeRadice(radice, gerarchia.getAlberi()));
 
 	    String campo = InputDati.leggiStringaNonVuota("Campo -> ");
 	    Nodo root = new Nodo(radice, true, campo);
 
-	    aggiungiValoriDominio(root);
+	    creaValoriDominio(root);
 
 	    return root;
 	}
-
 	/**
 	 * Metodo per aggiungere i valori del dominio a un nodo.
 	 * 
 	 * @param nodo Il nodo a cui aggiungere i valori del dominio.
 	 */
-	private static void aggiungiValoriDominio(Nodo nodo) {
+	private static void creaValoriDominio(Nodo nodo) {
 	    int num = 0;
 	    do {
 	        num++;
@@ -134,107 +242,6 @@ public class Main {
 	        }
 	    } while (InputDati.yesOrNo("Vuoi aggiugere un altro elemento al dominio? "));
 	}
-
-	/**
-	 * Metodo per inserire i fattori di conversione tra nodi.
-	 * 
-	 * @param gerarchia       L'oggetto Gerarchia utilizzato per gestire la struttura gerarchica.
-	 * @param foglieAttuali  La lista delle foglie attuali.
-	 * @throws Exception     Eccezione in caso di problemi durante l'inserimento.
-	 */
-	private static void inserisciFattoriConversione(Gerarchia gerarchia, ArrayList<Nodo> foglieAttuali) throws Exception {
-	    System.out.println("\nInserimento fattori di conversione:");
-	    do {
-	        Nodo nodo1 = chiediFogliaRadice("Foglia 1:", gerarchia);
-	        Nodo nodo2 = chiediFogliaRadice("Foglia 2:", gerarchia);
-
-	        double fattoreDiConversione = chiediFattoreConversione(gerarchia);
-
-	        boolean condizione = !gerarchia.checkFoglia(nodo1, foglieAttuali) && !gerarchia.checkFoglia(nodo2, foglieAttuali);
-	        if (!condizione) {
-	            gerarchia.aggiungiFattoreConversione(nodo1, nodo2, fattoreDiConversione);
-	        }
-	    } while (InputDati.yesOrNo("Vuoi continuare l'inserimento? "));
-
-	    gerarchia.addTransitivoFattoreConversione();
-	}
-
-	/**
-	 * Metodo per chiedere la foglia e la radice e ottenere il nodo corrispondente.
-	 * 
-	 * @param messaggio   Il messaggio da visualizzare.
-	 * @param gerarchia   L'oggetto Gerarchia utilizzato per cercare il nodo.
-	 * @return            Il nodo corrispondente alla foglia e alla radice specificate.
-	 */
-	private static Nodo chiediFogliaRadice(String messaggio, Gerarchia gerarchia) {
-	    Nodo nodo;
-	    do {
-	        System.out.println(messaggio);
-	        String foglia = InputDati.leggiStringaNonVuota("  Nome -> ");
-	        String radice = InputDati.leggiStringaNonVuota("  Radice -> ");
-	        nodo = gerarchia.visualizzaNodo(foglia, radice, gerarchia.getAlberi());
-	    } while (nodo == null);
-	    return nodo;
-	}
-
-	/**
-	 * Metodo per chiedere il fattore di conversione.
-	 * @param gerarchia   L'oggetto Gerarchia utilizzato per verificare il fattore di conversione.
-	 * @return            Il fattore di conversione inserito.
-	 */
-	private static double chiediFattoreConversione(Gerarchia gerarchia) {
-	    double fattoreDiConversione;
-	    do {
-	        fattoreDiConversione = InputDati.leggiDouble("Fattore di conversione -> ");
-	    } while (!gerarchia.verificaFattoreConversione(fattoreDiConversione));
-	    return fattoreDiConversione;
-	}
-
-	/**
-	 * Metodo per il login.
-	 * 
-	 * @param gestioneUtenza  L'oggetto GestioneUtenza utilizzato per gestire l'accesso.
-	 * @param accesso         L'accesso corrente.
-	 * @return                L'accesso aggiornato.
-	 */
-	private static int login(GestioneUtenza gestioneUtenza, int accesso) {
-	    for (int i = 0; i < NUM_MAX_TENTATIVI; i++) {
-	        System.out.println("Inserisci dati di login: ");
-	        String ID = InputDati.leggiStringaNonVuota("  ID: ");
-	        String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
-	        accesso = effettuaLogin(gestioneUtenza, ID, PSSW);
-	        if (accesso != 0) {
-	            break;
-	        }
-	    }
-	    return accesso;
-	}
-
-	/**
-	 * Metodo per effettuare il login.
-	 * 
-	 * @param gestioneUtenza  L'oggetto GestioneUtenza utilizzato per verificare le credenziali.
-	 * @param ID              L'ID inserito.
-	 * @param PSSW            La password inserita.
-	 * @return                Il risultato del login.
-	 */
-	private static int effettuaLogin(GestioneUtenza gestioneUtenza, String ID, String PSSW) {
-	    Configuratore conf = gestioneUtenza.verificaEsistenzaConfiguratore(ID, PSSW);
-	    if (conf == null) {
-	        System.out.println(" ! Non esiste configuratore con queste credenziali !");
-	        return 1;
-	    } else if (!conf.getCredenziali().isDefinitive()) {
-	        System.out.println("Scegli nuove credenziali: ");
-	        Credenziali credenzialiRegistrazione = inserisciCredenzialiRegistrazione(gestioneUtenza);
-	        conf.setCredenziali(credenzialiRegistrazione);
-	        conf.setIsDefinitivo(true);
-	        return 2;
-	    } else {
-	        System.out.println("-> Utente riconosciuto");
-	        return 2;
-	    }
-	}
-
 	/**
 	 * Metodo per creare i figli di un nodo.
 	 * 
@@ -252,7 +259,7 @@ public class Main {
 	        String nome;
 	        do {
 	            nome = InputDati.leggiStringaNonVuota("Nome -> ");
-	        } while (gerarchia.verificaEsistenzaNomeNonRadice(nome, radice));
+	        } while (GestioneGerarchia.verificaEsistenzaNomeNonRadice(nome, radice));
 
 	        boolean isFoglia = InputDati.yesOrNo("È foglia? ");
 	        Nodo nodoChild;
@@ -260,7 +267,7 @@ public class Main {
 	            nodoChild = new Nodo(nome);
 	            foglieAttuali.add(nodoChild);
 	        } else {
-	            nodoChild = creaNodoNonFoglia(nome);
+	            nodoChild = creaNonFoglia(nome);
 	        }
 
 	        try {
@@ -276,22 +283,77 @@ public class Main {
 	        }
 	    }
 	}
-
 	/**
 	 * Metodo per creare un nodo non foglia.
 	 * 
 	 * @param nome  Il nome del nodo.
 	 * @return      Il nodo non foglia creato.
 	 */
-	private static Nodo creaNodoNonFoglia(String nome) {
+	private static Nodo creaNonFoglia(String nome) {
 	    String campo = InputDati.leggiStringaNonVuota("Campo -> ");
 	    Nodo nodoChild = new Nodo(nome, false, campo);
 
-	    aggiungiValoriDominio(nodoChild);
+	    creaValoriDominio(nodoChild);
 
 	    return nodoChild;
 	}
 
+	
+	/**
+	 * Metodo per inserire i fattori di conversione tra nodi.
+	 * 
+	 * @param gerarchia       L'oggetto Gerarchia utilizzato per gestire la struttura gerarchica.
+	 * @param foglieAttuali  La lista delle foglie attuali.
+	 * @throws Exception     Eccezione in caso di problemi durante l'inserimento.
+	 */
+	private static void creaFattoriConversione(Gerarchia gerarchia, ArrayList<Nodo> foglieAttuali) {
+	    System.out.println("\nInserimento fattori di conversione:");
+	    do {
+	        Nodo nodo1 = chiediFoglia("Foglia 1:", gerarchia);
+	        Nodo nodo2 = chiediFoglia("Foglia 2:", gerarchia);
+
+	        double fattoreDiConversione = chiediFattoreConversione(gerarchia);
+
+	        boolean condizione = !GestioneGerarchia.checkFoglia(nodo1, foglieAttuali) 
+	        		&& !GestioneGerarchia.checkFoglia(nodo2, foglieAttuali);
+	        if (!condizione) {
+	            gerarchia.aggiungiFattoreConversione(nodo1, nodo2, fattoreDiConversione);
+	        }
+	    } while (InputDati.yesOrNo("Vuoi continuare l'inserimento? "));
+
+	    gerarchia.addTransitivoFattoreConversione();
+	}
+	/**
+	 * Metodo per chiedere la foglia e la radice e ottenere il nodo corrispondente.
+	 * 
+	 * @param messaggio   Il messaggio da visualizzare.
+	 * @param gerarchia   L'oggetto Gerarchia utilizzato per cercare il nodo.
+	 * @return            Il nodo corrispondente alla foglia e alla radice specificate.
+	 */
+	private static Nodo chiediFoglia(String messaggio, Gerarchia gerarchia) {
+	    Nodo nodo;
+	    do {
+	        System.out.println(messaggio);
+	        String foglia = InputDati.leggiStringaNonVuota("  Nome -> ");
+	        String radice = InputDati.leggiStringaNonVuota("  Radice -> ");
+	        nodo = GestioneGerarchia.visualizzaNodo(foglia, radice, gerarchia.getAlberi());
+	    } while (nodo == null);
+	    return nodo;
+	}
+	/**
+	 * Metodo per chiedere il fattore di conversione.
+	 * @param gerarchia   L'oggetto Gerarchia utilizzato per verificare il fattore di conversione.
+	 * @return            Il fattore di conversione inserito.
+	 */
+	private static double chiediFattoreConversione(Gerarchia gerarchia) {
+	    double fattoreDiConversione;
+	    do {
+	        fattoreDiConversione = InputDati.leggiDouble("Fattore di conversione -> ");
+	    } while (!gerarchia.verificaFattoreConversione(fattoreDiConversione));
+	    return fattoreDiConversione;
+	}
+
+	
 	/**
 	 * Metodo per stampare i fattori di conversione.
 	 * 
@@ -300,68 +362,12 @@ public class Main {
 	private static void stampaFattori(Gerarchia gerarchia) {
 	    String foglia = InputDati.leggiStringaNonVuota("Inserisci nome foglia: ");
 	    String radice = InputDati.leggiStringaNonVuota("Inserisci radice della gerarchia della foglia: ");
-	    Nodo nodo = gerarchia.visualizzaNodo(foglia, radice, gerarchia.getAlberi());
+	    Nodo nodo = GestioneGerarchia.visualizzaNodo(foglia, radice, gerarchia.getAlberi());
 	    if (nodo == null)
 	        System.out.println("  Non è stata trovata nessuna corrispondenza");
 	    else
 	        System.out.println(nodo.toStringF());
 	}
 
-	/**
-	 * Metodo per aggiungere un comprensorio.
-	 * 
-	 * @param gestioneUtenza  L'oggetto GestioneUtenza utilizzato per aggiungere il comprensorio.
-	 */
-	private static void aggiungiComprensorio(GestioneUtenza gestioneUtenza) {
-	    Comprensorio comprensorio = new Comprensorio();
-	    System.out.println("Inserisci comprensorio (Exit per uscire) ");
-	    String comune;
-
-	    do {
-	        comune = InputDati.leggiStringaNonVuota("  comune -> ");
-	        comprensorio.addComune(comune);
-	    } while (!comune.equalsIgnoreCase("Exit"));
-
-	    int size = comprensorio.getComprensorio().size();
-	    comprensorio.getComprensorio().remove(size - 1);
-
-	    gestioneUtenza.addComprensorio(comprensorio);
-	}
-
-	/**
-	 * Metodo per registrare un nuovo utente.
-	 * 
-	 * @param gestioneUtenza  L'oggetto GestioneUtenza utilizzato per registrare il nuovo utente.
-	 */
-	private static void registrazione(GestioneUtenza gestioneUtenza) {
-	    Configuratore configuratore = new Configuratore();
-	    String id = configuratore.getID();
-	    String psswd = configuratore.getPSSW();
-	    System.out.println("ID di default: " + id);
-	    System.out.println("Password di default " + psswd);
-
-	    Credenziali credenziali = new Credenziali(id, psswd);
-	    configuratore.setCredenziali(credenziali);
-	    configuratore.setIsDefinitivo(false);
-	    gestioneUtenza.addUtente(configuratore);
-	}
-
-	/**
-	 * Metodo per inserire le credenziali di registrazione.
-	 * 
-	 * @param gestioneUtenza  L'oggetto GestioneUtenza utilizzato per verificare l'esistenza dell'ID.
-	 * @return                Le credenziali inserite dall'utente.
-	 */
-	private static Credenziali inserisciCredenzialiRegistrazione(GestioneUtenza gestioneUtenza) {
-	    String ID;
-	    do {
-	        ID = InputDati.leggiStringaNonVuota("  ID: ");
-	        if (gestioneUtenza.verificaEsistenzaID(ID)) System.out.println(" ! ID già utilizzato ! ");
-	    } while (gestioneUtenza.verificaEsistenzaID(ID));
-
-	    String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
-	    return new Credenziali(ID, PSSW);
-	}
-	
 	
 }

@@ -3,7 +3,7 @@ import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.Configuratore;
 import it.unibs.ids.progetto.Credenziali;
 import it.unibs.ids.progetto.Gerarchia;
-import it.unibs.ids.progetto.GestioneUtenza;
+import it.unibs.ids.progetto.Utenza;
 import it.unibs.ids.progetto.Nodo;
 
 /**
@@ -29,23 +29,27 @@ public class DefaultInitializer {
 
 
     private Gerarchia gerarchia;
-    private GestioneUtenza gestioneUtenza;
+    private Utenza utenza;
+    private Geografia geografia;
     
     /**
      * Costruttore che inizializza gli oggetti di default.
      */
     public DefaultInitializer() {
         this.gerarchia = defaultTree();
-        this.gestioneUtenza = defaultAccess();
+        this.utenza = defaultAccess();
+        this.geografia = defaultWorld();
     }
 
-    /**
+
+
+	/**
      * Restituisce l'albero gerarchico predefinito.
      * 
      * @return L'albero gerarchico predefinito
      */
     public Gerarchia getGerarchia() {
-        return gerarchia;
+        return this.gerarchia;
     }
 
     /**
@@ -53,12 +57,21 @@ public class DefaultInitializer {
      * 
      * @return La gestione utenza predefinita
      */
-    public GestioneUtenza getGestioneUtenza() {
-        return gestioneUtenza;
+    public Utenza getUtenza() {
+        return this.utenza;
     }
 
 
     /**
+     * Restituisce la geografia predefinita.
+     * 
+     * @return La geografia predefinita
+     */
+    public Geografia getGeografia() {
+		return this.geografia;
+	}
+
+	/**
      * Crea e restituisce un albero gerarchico di default.
      * 
      * @return L'albero gerarchico di default
@@ -92,22 +105,20 @@ public class DefaultInitializer {
     }
 
     /**
-     * Crea e restituisce una gestione utenza di default.
+     * Crea e restituisce un' utenza di default.
      * 
-     * @return La gestione utenza di default
+     * @return L' utenza di default
      */
-    public static GestioneUtenza defaultAccess() {
-        GestioneUtenza gestioneUtenza = new GestioneUtenza();
+    public static Utenza defaultAccess() {
+        Utenza utenza = new Utenza();
 
         // Creazione delle credenziali di default per l'utente admin
         Credenziali cred = new Credenziali(DEFAULT_USERNAME, DEFAULT_PASSWORD);
         cred.setDefinitive(true);
         Configuratore utente = new Configuratore(cred);
-        gestioneUtenza.addUtente(utente);
-
-        gestioneUtenza.addComprensorio(defaultComprensorio());
+        utenza.addUtente(utente);
         
-        return gestioneUtenza;
+        return utenza;
     }
 
     /**
@@ -115,13 +126,26 @@ public class DefaultInitializer {
      * 
      * @return Il comprensorio di default
      */
-    public static Comprensorio defaultComprensorio() {
+    private static Comprensorio defaultComprensorio() {
         Comprensorio comprensorio = new Comprensorio();
         comprensorio.addComune(DEFAULT_COMMUNITY_1);
         comprensorio.addComune(DEFAULT_COMMUNITY_2);
         comprensorio.addComune(DEFAULT_COMMUNITY_3);
         return comprensorio;
     }
+    
+    /**
+     * Crea e restituisce una geografia di default.
+     * 
+     * @return La geografia di default
+     */
+    public static Geografia defaultWorld() {
+
+    	Geografia geografia = new Geografia();
+    	
+    	geografia.addComprensorio(defaultComprensorio());
+		return geografia;
+	}
 
 
 }

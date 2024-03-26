@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
+import it.unibs.ids.progetto.news.LeafHasChildrenException;
+
 /**
  * La classe Nodo rappresenta un nodo all'interno di un albero.
  * Ogni nodo può essere una foglia o una non foglia.
@@ -185,8 +187,8 @@ public class Nodo implements Serializable {
 	 * @param child Il nodo figlio da aggiungere
 	 * @throws Exception Se il nodo è una foglia, non può avere figli
 	 */
-	public void addChild(Nodo child) throws Exception {
-		if (this.isLeaf) throw new Exception("Le foglie non possono avere figli");
+	public void addChild(Nodo child) throws LeafHasChildrenException {
+		if (this.isLeaf) throw new LeafHasChildrenException();
 		this.children.add(child);
 	}
 

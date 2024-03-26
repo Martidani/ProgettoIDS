@@ -1,35 +1,32 @@
 package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Random;
+import it.unibs.fp.mylib.Estrattore;
 
 /**
- * La classe GestioneUtenza gestisce gli utenti 
- * ed i comprensori nel sistema.
+ * La classe Utenza gestisce gli utenti nel sistema.
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
-public  class GestioneUtenza implements Serializable {
+public class Utenza implements Serializable {
 	
 	
 	private static final long serialVersionUID = 1L;
-	// Attributi statici per la generazione casuale di ID e password
-	private static final String IDCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	private static final String PSSWCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@^&%$£";
+	// Attributi per la generazione di ID e password
 	private static final int IDLENTGH = 6;
 	private static final int PSSWLENTGH = 8;
+	private static final String IDCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	private static final String PSSWCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@^&%$£";
 	
 	// Lista degli utenti nel sistema
 	private ArrayList<Utente> utenti;
-	// Lista dei comprensori geografici nel sistema
-	private ArrayList<Comprensorio> geografia;
+
 
 	/**
-	 * Costruttore della classe GestioneUtenza.
+	 * Costruttore della classe Utenza.
 	 */
-	public GestioneUtenza() {
+	public Utenza() {
 		this.utenti = new ArrayList<>();
-		this.geografia = new ArrayList<>();
 	}
 	
 	
@@ -51,23 +48,7 @@ public  class GestioneUtenza implements Serializable {
 		this.utenti.add(utente);
 	}
 
-	/**
-	 * Aggiunge un comprensorio alla lista dei comprensori geografici nel sistema.
-	 * 
-	 * @param comprensorio Il comprensorio da aggiungere
-	 */
-	public void addComprensorio(Comprensorio comprensorio) {
-		this.geografia.add(comprensorio);
-	}
-	
-	/**
-	 * Restituisce la lista dei comprensori geografici nel sistema.
-	 * 
-	 * @return La lista dei comprensori geografici
-	 */
-	public ArrayList<Comprensorio> getGeografia() {
-		return geografia;
-	}
+
 
 	/**
 	 * Genera e restituisce delle credenziali predefinite per 
@@ -76,20 +57,8 @@ public  class GestioneUtenza implements Serializable {
 	 * @return Le credenziali predefinite
 	 */
 	public static Credenziali credenzialiPredefinite() {
-		StringBuilder userID = new StringBuilder();
-		Random rand = new Random();
-		
-		for (int i = 0; i < IDLENTGH; i++) {
-			userID.append(IDCHAR.charAt(rand.nextInt(IDCHAR.length())));
-		}
-		
-		StringBuilder userPSSW = new StringBuilder();
-		Random rand2 = new Random();
-		
-		for (int i = 0; i < PSSWLENTGH; i++) {
-			userPSSW.append(PSSWCHAR.charAt(rand2.nextInt(PSSWCHAR.length())));
-		}
-		
+		String userID = Estrattore.estraiString(IDCHAR, IDLENTGH);
+		String userPSSW = Estrattore.estraiString(PSSWCHAR, PSSWLENTGH);
 		return new Credenziali(userID.toString(), userPSSW.toString());
 	}
 	
@@ -145,25 +114,6 @@ public  class GestioneUtenza implements Serializable {
 			}
 		}
 		return false;
-	}
-	
-	/**
-	 * Restituisce una rappresentazione testuale della geografia, includendo la lista dei comprensori.
-	 * 
-	 * @return Una stringa che rappresenta la geografia
-	 */
-	@Override
-	public String toString() {
-		StringBuffer bf = new StringBuffer();
-		int num = 0;
-		for (Comprensorio comprensorio : geografia) {
-			bf.append("C" + num + "\n");
-			bf.append(comprensorio.toString());
-			bf.append("\n");
-			num++;
-		}
-		
-		return bf.toString();
 	}
 
 	
