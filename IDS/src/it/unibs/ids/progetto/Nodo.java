@@ -116,14 +116,6 @@ public class Nodo implements Serializable {
     }
 
     /**
-     * Imposta la lista dei figli del nodo.
-     * @param children La lista dei figli da impostare.
-     */
-    public void setChildren(List<Nodo> children) {
-        this.children = children;
-    }
-
-    /**
      * Restituisce i fattori di conversione associati al nodo.
      * @return Una mappa contenente i nodi e i relativi fattori di conversione.
      */
@@ -162,6 +154,17 @@ public class Nodo implements Serializable {
      */
     public List<String[]> getDominio() {
         return dominio;
+    }
+    
+    /**
+     * Restituisce il valore del dominio associato all' i-esimo 
+     * figlio, il cui numero è dato in ingresso.
+     * @param i l'i-esimo figlio del nodo.
+     * @return Il dominio associato al nodo.
+     */
+    public String getDominio(int i) {
+        String[] ret = this.dominio.get(i-1);
+    	return ret[0];
     }
 
     /**
@@ -243,7 +246,7 @@ public class Nodo implements Serializable {
 		for (String[] elem : this.dominio) {
 			bf.append("(valore: " + elem[0].toString());
 			if (elem.length>1)
-				bf.append(", descrizione: " + elem[1].toString() + "\n");
+				bf.append(", descrizione: " + elem[1].toString());
 			bf.append(")");
 		}
 		bf.append("]");

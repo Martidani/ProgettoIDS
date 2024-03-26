@@ -1,6 +1,8 @@
 package it.unibs.ids.progetto;
 import java.io.Serializable;
 
+import it.unibs.fp.mylib.Estrattore;
+
 /**
  * La classe Credenziali rappresenta le credenziali di accesso di un utente.
  * Ogni credenziale è composta da un ID (identificativo dell'utente) e una password.
@@ -14,6 +16,12 @@ public class Credenziali implements Serializable {
 
 	
     private static final long serialVersionUID = 1L;
+ // Attributi per la generazione di ID e password
+ 	private static final int IDLENTGH = 6;
+ 	private static final int PSSWLENTGH = 8;
+ 	private static final String IDCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+ 	private static final String PSSWCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@^&%$£";
+ 	
     private String ID;
     private String password;
     private boolean definitive;
@@ -84,5 +92,17 @@ public class Credenziali implements Serializable {
         this.definitive = definitive;
     }
 
+    
+	/**
+	 * Genera e restituisce delle credenziali predefinite per 
+	 * un utente (da utilizzarsi nella registrazione).
+	 * 
+	 * @return Le credenziali predefinite
+	 */
+	public static Credenziali credenzialiPredefinite() {
+		String userID = Estrattore.estraiString(IDCHAR, IDLENTGH);
+		String userPSSW = Estrattore.estraiString(PSSWCHAR, PSSWLENTGH);
+		return new Credenziali(userID.toString(), userPSSW.toString());
+	}
 
 }

@@ -47,8 +47,9 @@ public class Gerarchia implements Serializable {
 	 * @throws LeafHasChildrenException 
 	 * @throws Exception Se il nodo immesso non è una radice
 	 */
-	public void addAlberi(Nodo albero) throws LeafHasChildrenException  {
-		if (!albero.isRoot()) throw new LeafHasChildrenException();
+	public void addAlbero(Nodo albero) throws LeafHasChildrenException  {
+		if (!albero.isRoot()) 
+			throw new LeafHasChildrenException();
 		alberi.add(albero);
 		addFoglie(albero);
 	}
@@ -68,31 +69,17 @@ public class Gerarchia implements Serializable {
 		}
 	}
 	
-
-	
-	/**
-	 * Aggiunge un fattore di conversione tra due nodi, 
-	 * e l'inverso del fattore stesso nella relazione inversa.
-	 * 
-	 * @param nodo1 Il primo nodo
-	 * @param nodo2 Il secondo nodo
-	 * @param fattore Il fattore di conversione da nodo1 a nodo2
-	 * @throws Exception Se si cerca di aggiungere un fattore di conversione tra una foglia e un nodo non foglia
-	 */
-	public void aggiungiFattoreConversione(Nodo nodo1, Nodo nodo2, double fattore) {
-		addFattoreConversione(nodo1, nodo2, fattore);
-		addInverso(nodo1, nodo2, fattore);
-	}
-	
-	/**
-	 * Aggiunge un fattore di conversione tra due nodi.
-	 * 
-	 * @param nodo1 Il primo nodo
-	 * @param nodo2 Il secondo nodo
-	 * @param fattore Il fattore di conversione da aggiungere
-	 */
-	private void addFattoreConversione(Nodo nodo1, Nodo nodo2, Double fattore) {
-		nodo1.addFattori(nodo2, fattore);
+    /**
+     * Aggiunge un fattore di conversione tra due nodi, 
+     * e l'inverso del fattore stesso nella relazione inversa.
+     * 
+     * @param nodo1 Il primo nodo
+     * @param nodo2 Il secondo nodo
+     * @param fattore Il fattore di conversione da nodo1 a nodo2
+     */
+	public void addFattoreConversione(Nodo nodo1, Nodo nodo2, double fattore) {
+        nodo1.addFattori(nodo2, fattore);
+        nodo2.addFattori(nodo1, 1 / fattore); // Aggiunge il fattore inverso
 	}
 	
 	/**
@@ -102,11 +89,8 @@ public class Gerarchia implements Serializable {
 	 * @return true se il fattore è compreso nell'intervallo consentito, false altrimenti
 	 */
 	public boolean verificaFattoreConversione(double fattore) {
-		if (fattore > MAX_FATTORECONVERSIONE || fattore < MIN_FATTORECONVERSIONE) 
-			return false;
-		
-		return true;
-	}
+		return (fattore >= MIN_FATTORECONVERSIONE && fattore <= MAX_FATTORECONVERSIONE);
+    }
 	
 	/**
 	 * Aggiunge i fattori di conversione transitivi tra TUTTE le coppie di foglie nella gerarchia.
@@ -153,19 +137,6 @@ public class Gerarchia implements Serializable {
 	    }
 	    return null; // Restituiamo null se non è possibile calcolare il fattore di conversione
 	}
-	
-	/**
-	 * Aggiunge un fattore di conversione inverso tra due nodi.
-	 * 
-	 * @param nodo1 Il primo nodo
-	 * @param nodo2 Il secondo nodo
-	 * @param fattore Il fattore di conversione da nodo2 a nodo1
-	 */
-	private void addInverso(Nodo nodo1, Nodo nodo2, double fattore) {
-		addFattoreConversione(nodo2, nodo1, 1 / fattore);
-	}
-
-	
 	
 
 }

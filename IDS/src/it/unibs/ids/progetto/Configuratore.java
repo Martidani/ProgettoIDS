@@ -28,7 +28,7 @@ public class Configuratore extends Utente implements Serializable {
      * Crea un nuovo configuratore con le credenziali predefinite.
      */
     public Configuratore() {
-        super(TIPOUTENTE, Utenza.credenzialiPredefinite());
+        super(TIPOUTENTE, Credenziali.credenzialiPredefinite());
     }
 
 

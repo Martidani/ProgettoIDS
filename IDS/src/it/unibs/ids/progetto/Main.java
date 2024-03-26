@@ -75,7 +75,7 @@ public class Main {
 	                    ArrayList<Nodo> foglieAttuali = new ArrayList<>();
 	                    Nodo root = creaRadice(gerarchia);
 	                    creaNodiFiglio(root, gerarchia, root, foglieAttuali);
-	                    gerarchia.addAlberi(root);
+	                    gerarchia.addAlbero(root);
 	                    creaFattoriConversione(gerarchia, foglieAttuali);
 	                    break;
 
@@ -114,7 +114,7 @@ public class Main {
 	    String id = configuratore.getID();
 	    String psswd = configuratore.getPSSW();
 	    System.out.println("ID di default: " + id);
-	    System.out.println("Password di default " + psswd);
+	    System.out.println("Password di default: " + psswd);
 
 	    Credenziali credenziali = new Credenziali(id, psswd);
 	    configuratore.setCredenziali(credenziali);
@@ -254,7 +254,8 @@ public class Main {
 	    int numFigli = 0;
 	    do {
 	        numFigli++;
-	        System.out.println("\n" + numFigli + "' figlio (di " + nodoParent.getNome() + "): ");
+	        System.out.println("\n" + numFigli + "' figlio (di " + nodoParent.getNome() 
+	        + " [" +nodoParent.getDominio(numFigli)+ "]): ");
       
 	        String nome;
 	        do {
@@ -317,7 +318,7 @@ public class Main {
 	        boolean condizione = !GestioneGerarchia.checkFoglia(nodo1, foglieAttuali) 
 	        		&& !GestioneGerarchia.checkFoglia(nodo2, foglieAttuali);
 	        if (!condizione) {
-	            gerarchia.aggiungiFattoreConversione(nodo1, nodo2, fattoreDiConversione);
+	            gerarchia.addFattoreConversione(nodo1, nodo2, fattoreDiConversione);
 	        }
 	    } while (InputDati.yesOrNo("Vuoi continuare l'inserimento? "));
 

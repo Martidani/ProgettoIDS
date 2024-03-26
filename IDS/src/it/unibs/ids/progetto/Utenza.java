@@ -1,7 +1,6 @@
 package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
-import it.unibs.fp.mylib.Estrattore;
 
 /**
  * La classe Utenza gestisce gli utenti nel sistema.
@@ -12,11 +11,6 @@ public class Utenza implements Serializable {
 	
 	
 	private static final long serialVersionUID = 1L;
-	// Attributi per la generazione di ID e password
-	private static final int IDLENTGH = 6;
-	private static final int PSSWLENTGH = 8;
-	private static final String IDCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	private static final String PSSWCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@^&%$£";
 	
 	// Lista degli utenti nel sistema
 	private ArrayList<Utente> utenti;
@@ -48,19 +42,6 @@ public class Utenza implements Serializable {
 		this.utenti.add(utente);
 	}
 
-
-
-	/**
-	 * Genera e restituisce delle credenziali predefinite per 
-	 * un utente (da utilizzarsi nella registrazione).
-	 * 
-	 * @return Le credenziali predefinite
-	 */
-	public static Credenziali credenzialiPredefinite() {
-		String userID = Estrattore.estraiString(IDCHAR, IDLENTGH);
-		String userPSSW = Estrattore.estraiString(PSSWCHAR, PSSWLENTGH);
-		return new Credenziali(userID.toString(), userPSSW.toString());
-	}
 	
 	/**
 	 * Verifica l'esistenza di un configuratore con le credenziali specificate.

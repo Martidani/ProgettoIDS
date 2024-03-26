@@ -93,8 +93,8 @@ public class DefaultInitializer {
             nodo1.addChild(nodo12);
 
             // Aggiunta dei nodi all'albero e definizione dei fattori di conversione
-            gerarchia.aggiungiFattoreConversione(nodo11, nodo12, 2);
-            gerarchia.addAlberi(nodo1);
+            gerarchia.addFattoreConversione(nodo11, nodo12, 2);
+            gerarchia.addAlbero(nodo1);
             gerarchia.addTransitivoFattoreConversione();
         
         } catch (Exception e) {
