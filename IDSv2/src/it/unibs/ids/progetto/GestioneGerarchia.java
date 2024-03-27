@@ -78,6 +78,24 @@ public class GestioneGerarchia implements Serializable {
     }
     
     /**
+     * Restituisce una rappresentazione testuale della 
+     * gerarchia (di tutti i suoi alberi).
+     * 
+     * @param alberi La lista degli alberi di nodi
+     * @return Una stringa che rappresenta la gerarchia
+     */
+    public static String toStringR(ArrayList<Nodo> alberi) {
+        StringBuffer bf = new StringBuffer();
+        
+        for (Nodo nodo : alberi)  {
+            bf.append("\n* " + nodo.getNome());
+
+        }
+        return bf.toString();
+            
+    }
+    
+    /**
      * Metodo ausiliario ricorsivo per generare una rappresentazione 
      * testuale della gerarchia.
      * 

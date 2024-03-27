@@ -14,16 +14,19 @@ public class Main {
 
 
 	private static final int NUM_MAX_TENTATIVI = 3;
-	public final static String[] voci = 
+	public final static String[] vociC = 
 		{"Introdurre comprensorio geografico", "Introdurre albero", "Visualizza comprensorio", 
 			"Visualizza gerarchia", "Visualizza fattori di conversione"};
+	public final static String[] vociF = 
+		{"Visualizza gerarchia"};
 	public final static String[] vociAccesso = 
 		{"Registrazione","Login"};
 	
 	
 	public static void main(String[] args) throws LeafHasChildrenException {
 	    MyMenu menuAccesso = new MyMenu("Menu accesso", vociAccesso);
-	    MyMenu menu = new MyMenu("Menu principale", voci);
+	    MyMenu menuC = new MyMenu("Menu principale", vociC);
+	    MyMenu menuF = new MyMenu("Menu principale", vociF);
 
 	    // Caricamento da file
 	    Utenza utenza = FileManager.caricaUtenza();
@@ -40,6 +43,7 @@ public class Main {
 	        + ", " + FileManager.getGerarchiaFile() + ", " + FileManager.getGeografiaFile());
 	    }
 
+	    boolean tipoFunzionamento = false;
 	    int accesso;
 	    do {
 	        accesso = menuAccesso.scegli();
@@ -55,10 +59,14 @@ public class Main {
 	                break;
 
 	            case 2:
-	            	if (InputDati.yesOrNo("Sei un fruitore?"))
-	            		accesso = login(utenza, accesso, Fruitore.TIPOUTENTE);
-	            	else
-	            		accesso = login(utenza, accesso, Configuratore.TIPOUTENTE);
+	            	if (InputDati.yesOrNo("Sei un fruitore?")) {
+	            		
+	            		accesso = login(utenza, Fruitore.TIPOUTENTE);
+	            		tipoFunzionamento=false;
+	            	} else {
+	            		accesso = login(utenza, Configuratore.TIPOUTENTE);
+	            		tipoFunzionamento=true;
+	            	}
 	                break;
 
 	            default:
@@ -66,10 +74,11 @@ public class Main {
 	        }
 	    } while (accesso == 1);
 
-	    if (accesso != 0) {
-	        int scelta;
+	    //modalità configuratre
+        int scelta;
+	    if (accesso != 0 && tipoFunzionamento) {
 	        do {
-	            scelta = menu.scegli();
+	            scelta = menuC.scegli();
 	            switch (scelta) {
 
 	                case 1:
@@ -95,6 +104,23 @@ public class Main {
 
 	                case 5:
 	                    stampaFattori(gerarchia);
+	                    break;
+
+	                default:
+	                    break;
+	            }
+	        } while (scelta != 0);
+	    }
+	    
+	    //modalità fruitore
+	    if (accesso != 0 && !tipoFunzionamento) {
+	        do {
+	            scelta = menuF.scegli();
+	            switch (scelta) {
+
+	                case 1:
+	                	String ger = GestioneGerarchia.toStringR(gerarchia.getAlberi());
+	                    System.out.println(ger);
 	                    break;
 
 	                default:
@@ -169,13 +195,14 @@ public class Main {
 	 * @param accesso         L'accesso corrente.
 	 * @return                L'accesso aggiornato.
 	 */
-	private static int login(Utenza utenza, int accesso, char type) {
+	private static int login(Utenza utenza, char type) {
+		int accesso = 2;
 	    for (int i = 0; i < NUM_MAX_TENTATIVI; i++) {
 	        System.out.println("Inserisci dati di login: ");
 	        String ID = InputDati.leggiStringaNonVuota("  ID: ");
 	        String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
 	        accesso = autenticazione(utenza, ID, PSSW, type);
-	        if (accesso != 0) {
+	        if (accesso != 1) {
 	            break;
 	        }
 	    }

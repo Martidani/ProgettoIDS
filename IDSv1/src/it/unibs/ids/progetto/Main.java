@@ -53,7 +53,7 @@ public class Main {
 	                break;
 
 	            case 2:
-	                accesso = login(utenza, accesso);
+	                accesso = login(utenza);
 	                break;
 
 	            default:
@@ -145,13 +145,14 @@ public class Main {
 	 * @param accesso         L'accesso corrente.
 	 * @return                L'accesso aggiornato.
 	 */
-	private static int login(Utenza utenza, int accesso) {
+	private static int login(Utenza utenza) {
+		int accesso = 2;
 	    for (int i = 0; i < NUM_MAX_TENTATIVI; i++) {
 	        System.out.println("Inserisci dati di login: ");
 	        String ID = InputDati.leggiStringaNonVuota("  ID: ");
 	        String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
 	        accesso = autenticazione(utenza, ID, PSSW);
-	        if (accesso != 0) {
+	        if (accesso != 1) {
 	            break;
 	        }
 	    }
