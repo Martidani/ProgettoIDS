@@ -53,7 +53,7 @@ public class Utenza implements Serializable {
 	public Configuratore autenticazioneConfiguratore(String ID, String Password) {
 		for (Utente utente : utenti) {
 			if (utente.getID().equals(ID)) {
-				if (utente.getPSSW().equals(Password)) {
+				if (utente.getPassword().equals(Password)) {
 					if (utente.getTipoUtente() == Configuratore.TIPOUTENTE ){
 						return (Configuratore) utente;
 					}
@@ -74,7 +74,7 @@ public class Utenza implements Serializable {
 	public boolean autenticazioneUtente(String ID,String Password) {
 		for (Utente utente : utenti) {
 			if (utente.getID().equals(ID)) {
-				if (utente.getPSSW().equals(Password)) {
+				if (utente.getPassword().equals(Password)) {
 					return true;
 				}
 			}

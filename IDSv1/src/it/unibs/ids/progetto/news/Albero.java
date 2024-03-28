@@ -1,4 +1,5 @@
 package it.unibs.ids.progetto.news;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,69 +8,70 @@ import it.unibs.ids.progetto.Utente;
 
 public class Albero implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private Nodo radice;
-	private ArrayList<Nodo> foglie;
-	private Utente utente;
-	
-	/**
-	 * Costruttore della classe Gerarchia.
-	 * @throws RootTreeException 
-	 * @throws Exception 
-	 */
-	public Albero(Nodo radice) throws RootTreeException {
-		if (!radice.isRoot()) throw new RootTreeException();
-		this.foglie = new ArrayList<Nodo>();
-		this.radice = radice;
-		addFoglie(radice);
-	}
-	
-	
-	public Utente getUtente() {
-		return utente;
-	}
+    private static final long serialVersionUID = 1L;
+    private Nodo radice;
+    private ArrayList<Nodo> foglie;
+    private Utente utente;
 
-
-	public void setUtente(Utente utente) {
-		this.utente = utente;
-	}
-
-
-	/**
-	 * Aggiunge le foglie dell'albero all'elenco delle foglie della gerarchia.
-	 * 
-	 * @param albero Il nodo radice dell'albero
-	 */
-	private void addFoglie(Nodo albero) {
-		if (albero.isLeaf()) 
-			foglie.add(albero);
-		else {
-			for (Nodo child : albero.getChildren()) {
-				addFoglie(child);
-			}
-		}
-	}
-	
-
-    
     /**
-     * Restituisce una rappresentazione testuale della 
-     * gerarchia (di tutti i suoi alberi).
+     * Costruttore della classe Albero.
      * 
-     * @param alberi La lista degli alberi di nodi
-     * @return Una stringa che rappresenta la gerarchia
+     * @param radice Il nodo radice dell'albero
+     * @throws RootTreeException Se il nodo specificato non è una radice
+     */
+    public Albero(Nodo radice) throws RootTreeException {
+        if (!radice.isRoot()) throw new RootTreeException();
+        this.foglie = new ArrayList<Nodo>();
+        this.radice = radice;
+        addFoglie(radice);
+    }
+
+    /**
+     * Restituisce l'utente associato all'albero.
+     * 
+     * @return Utente L'utente associato all'albero
+     */
+    public Utente getUtente() {
+        return utente;
+    }
+
+    /**
+     * Imposta l'utente associato all'albero.
+     * 
+     * @param utente L'utente da impostare
+     */
+    public void setUtente(Utente utente) {
+        this.utente = utente;
+    }
+
+    /**
+     * Aggiunge le foglie dell'albero all'elenco delle foglie dell'albero.
+     * 
+     * @param albero Il nodo radice dell'albero
+     */
+    private void addFoglie(Nodo albero) {
+        if (albero.isLeaf()) 
+            foglie.add(albero);
+        else {
+            for (Nodo child : albero.getChildren()) {
+                addFoglie(child);
+            }
+        }
+    }
+
+    /**
+     * Restituisce una rappresentazione testuale dell'albero.
+     * 
+     * @return Una stringa che rappresenta l'albero
      */
     public String toString() {
         StringBuffer bf = new StringBuffer();
         iterative(bf, this.radice, 1);
-
         return bf.toString();
-            
     }
-    
+
     /**
-     * Metodo ausiliario ricorsivo per generare una rappresentazione 
-     * testuale della gerarchia.
+     * Metodo ausiliario ricorsivo per generare una rappresentazione testuale dell'albero.
      * 
      * @param bf Il buffer in cui aggiungere la rappresentazione
      * @param nodo Il nodo corrente
@@ -90,20 +92,26 @@ public class Albero implements Serializable {
         }
     }
 
-
-	public Nodo getRadice() {
-		return radice;
-	}
-
-
-	public ArrayList<Nodo> getFoglie() {
-		return foglie;
-	}
-	
- 
     /**
-     * Verifica se esiste un nodo non radice con il dato 
-     * nome sotto il nodo radice specificato.
+     * Restituisce la radice dell'albero.
+     * 
+     * @return Nodo La radice dell'albero
+     */
+    public Nodo getRadice() {
+        return radice;
+    }
+
+    /**
+     * Restituisce l'elenco delle foglie dell'albero.
+     * 
+     * @return ArrayList<Nodo> L'elenco delle foglie dell'albero
+     */
+    public ArrayList<Nodo> getFoglie() {
+        return foglie;
+    }
+
+    /**
+     * Verifica se esiste un nodo non radice con il dato nome sotto il nodo radice specificato.
      * 
      * @param nome Il nome del nodo da cercare
      * @param radice Il nodo radice sotto il quale cercare
@@ -121,6 +129,4 @@ public class Albero implements Serializable {
             return false;
         }
     }
-    
-
 }

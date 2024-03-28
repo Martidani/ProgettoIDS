@@ -15,80 +15,71 @@ import it.unibs.ids.progetto.news.Albero;
 public class Gerarchia implements Serializable {
 	
 	
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
 	
-	private ArrayList<Nodo> alberi; 
+    private ArrayList<Nodo> alberi; 
 
-	/**
-	 * Costruttore della classe Gerarchia.
-	 */
-	public Gerarchia() {
-		this.alberi = new ArrayList<>();
-
-	}
-	
+    /**
+     * Costruttore della classe Gerarchia.
+     */
+    public Gerarchia() {
+        this.alberi = new ArrayList<>();
+    }
+    
     /**
      * Restituisce una rappresentazione testuale della 
      * gerarchia (di tutti i suoi alberi).
      * 
-     * @param alberi La lista degli alberi di nodi
      * @return Una stringa che rappresenta la gerarchia
      */
+    @Override
     public String toString() {
-        StringBuffer bf = new StringBuffer();
+        StringBuilder builder = new StringBuilder();
         
         for (Nodo nodo : alberi)  {
-            bf.append("\n\n");
+            builder.append("\n\n");
             try {
-				bf.append( new Albero(nodo) .toString());
-			} catch (Exception e) {
-
-				
-				e.printStackTrace();
-			}
+                builder.append(new Albero(nodo).toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
         }
-        return bf.toString();
-            
+        return builder.toString();     
     }
 
 	
-	/**
-	 * Restituisce l'elenco degli alberi presenti nella gerarchia.
-	 * 
-	 * @return Lista di alberi nella gerarchia
-	 */
-	public ArrayList<Nodo> getAlberi() {
-		return alberi;
-	}
-
-	/**
-	 * Aggiunge un albero alla gerarchia.
-	 * 
-	 * @param albero Il nodo radice dell'albero da aggiungere
-	 * @throws LeafHasChildrenException 
-	 * @throws Exception Se il nodo immesso non è una radice
-	 */
-	public void addAlbero(Albero albero)   {
-
-		alberi.add(albero.getRadice());
-
-	}
-	
     /**
-     * Verifica se esiste un nodo radice con il dato nome.
+     * Restituisce l'elenco degli alberi presenti nella gerarchia.
+     * 
+     * @return Lista di alberi nella gerarchia
+     */
+    public ArrayList<Nodo> getAlberi() {
+        return alberi;
+    }
+
+    /**
+     * Aggiunge un albero alla gerarchia.
+     * 
+     * @param albero Il nodo radice dell'albero da aggiungere
+     */
+    public void addAlbero(Albero albero) {
+        alberi.add(albero.getRadice());
+    }
+    
+    /**
+     * Verifica se esiste un nodo radice con il dato nome nella gerarchia.
      * 
      * @param nome Il nome del nodo radice da cercare
-     * @param alberi La lista degli alberi di nodi
      * @return true se esiste un nodo radice con il nome specificato, false altrimenti
      */
     public boolean verificaEsistenzaNomeRadice(String nome) {
-        for (Nodo albero : alberi) 
-            if (albero.getNome().equals(nome)) 
+        for (Nodo albero : alberi) {
+            if (albero.getNome().equals(nome)) {
                 return true;
-            
-        
+            }
+        }
         return false;
     }
 
@@ -97,14 +88,10 @@ public class Gerarchia implements Serializable {
      * 
      * @param nomeNodo Il nome del nodo da cercare
      * @param root La radice della gerarchia
-     * @param list La lista di nodi in cui cercare
      * @return Il nodo corrispondente al nome specificato, null se non trovato
      */
     public Nodo visualizzaNodo(String nomeNodo, String root) {
-    	Nodo nodo = visualizza(nomeNodo, root, this.alberi);
-    	if (nodo == null)
-    		return nodo;
-        return null;
+        return visualizza(nomeNodo, root, this.alberi);
     }
     
     /**

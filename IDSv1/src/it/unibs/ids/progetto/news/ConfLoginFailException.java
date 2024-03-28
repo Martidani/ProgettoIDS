@@ -1,20 +1,19 @@
 package it.unibs.ids.progetto.news;
 
 /**
- * Eccezione personalizzata per gestire il caso in cui unafoglia 
- * tenti di aggiungere figli, il che non è consentito.
+ * Eccezione personalizzata per gestire il caso 
+ * in cui un tentativo di login da parte di un configuratore 
+ * fallisca a causa di credenziali errate.
  */
 public class ConfLoginFailException extends Exception {
     
     private static final long serialVersionUID = 1L;
 
     /**
-     * Costruttore predefinito per l'eccezione LeafHasChildrenException.
-     * Viene chiamato quando una foglia tenta di aggiungere figli.
+     * Costruttore predefinito per l'eccezione ConfLoginFailException.
+     * Viene chiamato quando un tentativo di login da parte di un configuratore fallisce a causa di credenziali errate.
      */
     public ConfLoginFailException() {
-        super(" ! Non esiste configuratore con queste credenziali !");
+        super("Credenziali di accesso del configuratore non valide!");
     }
-    
-    
 }

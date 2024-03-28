@@ -1,4 +1,5 @@
 package it.unibs.ids.progetto;
+
 import java.io.Serializable;
 
 /**
@@ -10,7 +11,6 @@ import java.io.Serializable;
  */
 public abstract class Utente implements Serializable {
 
-	
     private static final long serialVersionUID = 1L;
     private char tipoUtente;
     private Credenziali credenziali;
@@ -18,15 +18,14 @@ public abstract class Utente implements Serializable {
     /**
      * Costruttore della classe Utente.
      * 
-     * @param tipoUtente Il tipo di utente (carattere)
-     * @param credenziali Le credenziali associate all'utente
+     * @param tipoUtente   Il tipo di utente (carattere)
+     * @param credenziali  Le credenziali associate all'utente
      */
     public Utente(char tipoUtente, Credenziali credenziali) {
         this.tipoUtente = tipoUtente;
         this.credenziali = credenziali;
     }
   
-
     /**
      * Restituisce le credenziali dell'utente.
      * 
@@ -50,14 +49,14 @@ public abstract class Utente implements Serializable {
      * 
      * @return String La password dell'utente
      */
-    public String getPSSW() {
+    public String getPassword() {
         return this.credenziali.getPassword();
     }
 
     /**
      * Imposta le credenziali dell'utente.
      * 
-     * @param credenziali Le nuove credenziali da impostare
+     * @param credenziali  Le nuove credenziali da impostare
      */
     public void setCredenziali(Credenziali credenziali) {
         this.credenziali.setID(credenziali.getID());
@@ -67,8 +66,8 @@ public abstract class Utente implements Serializable {
     /**
      * Imposta le credenziali dell'utente a partire da un ID e una password.
      * 
-     * @param ID       Il nuovo ID da impostare
-     * @param password La nuova password da impostare
+     * @param ID        Il nuovo ID da impostare
+     * @param password  La nuova password da impostare
      */
     public void setCredenziali(String ID, String password) {
         this.credenziali.setID(ID);
@@ -102,6 +101,4 @@ public abstract class Utente implements Serializable {
     public boolean getIsDefinitivo() {
         return this.credenziali.isDefinitive();
     }
-
-
 }

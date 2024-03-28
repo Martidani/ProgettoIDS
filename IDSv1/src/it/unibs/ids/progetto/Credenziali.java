@@ -1,6 +1,5 @@
 package it.unibs.ids.progetto;
 import java.io.Serializable;
-
 import it.unibs.fp.mylib.Estrattore;
 
 /**
@@ -8,23 +7,26 @@ import it.unibs.fp.mylib.Estrattore;
  * Ogni credenziale è composta da un ID (identificativo dell'utente) e una password.
  * Inoltre, tiene traccia se le credenziali sono definitive o meno.
  * Se un utente si è appena registrato avrà delle credenziali 
- * non definitive fino alla loro modifica
+ * non definitive fino alla loro modifica.
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class Credenziali implements Serializable {
 
-	
+    // Numero di versione per la serializzazione
     private static final long serialVersionUID = 1L;
- // Attributi per la generazione di ID e password
- 	private static final int IDLENTGH = 6;
- 	private static final int PSSWLENTGH = 8;
- 	private static final String IDCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
- 	private static final String PSSWCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@^&%$£";
- 	
-    private String ID;
-    private String password;
-    private boolean definitive;
+    
+    // Lunghezza predefinita per l'ID e la password
+    private static final int IDLENTGH = 6;
+    private static final int PSSWLENTGH = 8;
+    
+    // Caratteri utilizzati per la generazione di ID e password
+    private static final String IDCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    private static final String PSSWCHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!?@^&%$£";
+    
+    private String ID; // Identificativo dell'utente
+    private String password; // Password associata all'identificativo
+    private boolean definitive; // Indica se le credenziali sono definitive o meno
     
     /**
      * Costruttore della classe Credenziali.
@@ -37,7 +39,6 @@ public class Credenziali implements Serializable {
         this.password = password;
     }
 
-    
     /**
      * Restituisce l'ID associato alle credenziali.
      * 
@@ -92,17 +93,16 @@ public class Credenziali implements Serializable {
         this.definitive = definitive;
     }
 
-    
-	/**
-	 * Genera e restituisce delle credenziali predefinite per 
-	 * un utente (da utilizzarsi nella registrazione).
-	 * 
-	 * @return Le credenziali predefinite
-	 */
-	public static Credenziali credenzialiPredefinite() {
-		String userID = Estrattore.estraiString(IDCHAR, IDLENTGH);
-		String userPSSW = Estrattore.estraiString(PSSWCHAR, PSSWLENTGH);
-		return new Credenziali(userID.toString(), userPSSW.toString());
-	}
-
+    /**
+     * Genera e restituisce delle credenziali predefinite per 
+     * un utente (da utilizzarsi nella registrazione).
+     * 
+     * @return Le credenziali predefinite
+     */
+    public static Credenziali credenzialiPredefinite() {
+        // Genera un ID e una password casuali
+        String userID = Estrattore.estraiString(IDCHAR, IDLENTGH);
+        String userPSSW = Estrattore.estraiString(PSSWCHAR, PSSWLENTGH);
+        return new Credenziali(userID.toString(), userPSSW.toString());
+    }
 }

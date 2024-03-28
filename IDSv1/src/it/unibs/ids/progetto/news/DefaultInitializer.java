@@ -1,4 +1,5 @@
 package it.unibs.ids.progetto.news;
+
 import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.Configuratore;
 import it.unibs.ids.progetto.Credenziali;
@@ -13,21 +14,19 @@ import it.unibs.ids.progetto.Nodo;
  */
 public class DefaultInitializer {
     
-
-	private static final String ROOT_NAME = "system";
+    private static final String ROOT_NAME = "system";
     private static final String ROOT_FIELD = "field";
     private static final String[] ROOT_DOMAIN = {"rootchildM", "rootchildF"};
     private static final String CHILD2_NAME = "rootchild2";
-	private static final String CHILD1_NAME = "rootchild1";
-	
-    private static final String DEFAULT_USERNAME = "admin";
-    private static final String DEFAULT_PASSWORD = "admin";
+    private static final String CHILD1_NAME = "rootchild1";
     
     private static final String DEFAULT_COMMUNITY_1 = "Comune1";
     private static final String DEFAULT_COMMUNITY_2 = "Comune2";
     private static final String DEFAULT_COMMUNITY_3 = "Comune3";
-
-
+    
+    private static final String DEFAULT_USERNAME = "admin";
+    private static final String DEFAULT_PASSWORD = "admin";
+    
     private Gerarchia gerarchia;
     private Utenza utenza;
     private Geografia geografia;
@@ -41,9 +40,7 @@ public class DefaultInitializer {
         this.geografia = defaultWorld();
     }
 
-
-
-	/**
+    /**
      * Restituisce l'albero gerarchico predefinito.
      * 
      * @return L'albero gerarchico predefinito
@@ -61,17 +58,16 @@ public class DefaultInitializer {
         return this.utenza;
     }
 
-
     /**
      * Restituisce la geografia predefinita.
      * 
      * @return La geografia predefinita
      */
     public Geografia getGeografia() {
-		return this.geografia;
-	}
+        return this.geografia;
+    }
 
-	/**
+    /**
      * Crea e restituisce un albero gerarchico di default.
      * 
      * @return L'albero gerarchico di default
@@ -101,16 +97,16 @@ public class DefaultInitializer {
             FattoriDiConversione.addTransitivoFattoreConversione(gerarchia);
         
         } catch (Exception e) {
-            System.out.println(e.getMessage());;
+            System.out.println(e.getMessage());
         }
         
         return gerarchia;
     }
 
     /**
-     * Crea e restituisce un' utenza di default.
+     * Crea e restituisce un'utenza di default.
      * 
-     * @return L' utenza di default
+     * @return L'utenza di default
      */
     public Utenza defaultAccess() {
         Utenza utenza = new Utenza();
@@ -143,12 +139,8 @@ public class DefaultInitializer {
      * @return La geografia di default
      */
     public Geografia defaultWorld() {
-
-    	Geografia geografia = new Geografia();
-    	
-    	geografia.addComprensorio(defaultComprensorio());
-		return geografia;
-	}
-
-
+        Geografia geografia = new Geografia();
+        geografia.addComprensorio(defaultComprensorio());
+        return geografia;
+    }
 }

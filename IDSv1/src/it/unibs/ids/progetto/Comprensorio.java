@@ -11,8 +11,10 @@ import java.util.ArrayList;
  */
 public class Comprensorio implements Serializable {
 
-	
+    // Numero di versione per la serializzazione
     private static final long serialVersionUID = 1L;
+    
+    // Lista dei comuni nel comprensorio
     private ArrayList<String> comprensorio;
     
     /**
@@ -23,7 +25,6 @@ public class Comprensorio implements Serializable {
         this.comprensorio = new ArrayList<>();
     }
 
-    
     /**
      * Restituisce la lista di comuni contenuti nel comprensorio.
      * 
@@ -48,15 +49,14 @@ public class Comprensorio implements Serializable {
      * 
      * @return String La rappresentazione testuale del comprensorio
      */
+    @Override
     public String toString() {
-        StringBuffer bf = new StringBuffer();
+        // Costruisce una rappresentazione testuale del comprensorio
+        StringBuilder builder = new StringBuilder();
         for (String comune : comprensorio) {
-            bf.append(" - " + comune);
-            bf.append("\n");
+            builder.append(" - ").append(comune).append("\n");
         }
         
-        return bf.toString();
+        return builder.toString();
     }
-
-
 }

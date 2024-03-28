@@ -9,8 +9,10 @@ import java.io.Serializable;
  */
 public class Configuratore extends Utente implements Serializable {
 
-	
+    // Numero di versione per la serializzazione
     private static final long serialVersionUID = 1L;
+    
+    // Tipo di utente: configuratore
     public static final char TIPOUTENTE = 'c';
     
     /**
@@ -30,6 +32,4 @@ public class Configuratore extends Utente implements Serializable {
     public Configuratore() {
         super(TIPOUTENTE, Credenziali.credenzialiPredefinite());
     }
-
-
 }
