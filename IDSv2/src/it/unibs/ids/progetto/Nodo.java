@@ -250,6 +250,27 @@ public class Nodo implements Serializable {
 		bf.append("]");
 		return bf.toString();
 	}
+	
+    public String stampaElencoFruitore () {
+    	StringBuilder b = new StringBuilder();
+    	b.append(" nome: " + this.nome);
+    	
+    	if (!this.isLeaf) {
+        	b.append("\n |campo: " + this.campo);
+        	b.append("\n |dominio: ");
+        	int var = 0;
+        	for (String[] valore : this.dominio) {
+        		var++;
+    			b.append("\n  " + var + " - " + valore[0]);
+    			if (valore.length>1)
+    				b.append(", " + valore [1]);
+    		}
+    	}	else
+    		b.append(" |foglia!|");
+    	return b.toString();
+    }
+    
+ 
 
 	/**
 	 * Genera una rappresentazione testuale dei figli del nodo.

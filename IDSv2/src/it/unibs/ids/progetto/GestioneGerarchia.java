@@ -127,25 +127,31 @@ public class GestioneGerarchia implements Serializable {
      * @return Il nodo corrispondente al nome specificato, null se non trovato
      */
     public static Nodo visualizzaNodo(String nomeNodo, String root, List<Nodo> list) {
-        
         for (Nodo nodo : list) {
-            
             if (nodo.getNome().equals(root)) {
-                
                 for (Nodo nodoChild : nodo.getChildren()) {
-                    
                     if (nodoChild.isLeaf()) {
                         if (nodoChild.getNome().equals(nomeNodo))
                             return nodoChild;
-                    } else 
-                            return visualizzaNodo(nomeNodo, nodoChild.getNome(), nodo.getChildren());
-                        
+                    } else {
+                        Nodo foundNode = visualizzaNodo(nomeNodo, nodoChild.getNome(), nodo.getChildren());
+                        if (foundNode != null) {
+                            return foundNode;
+                        }
+                    }
                 }
-                
             }
         }
         return null;
     }
+
     
+    
+public static Nodo visualizzaRadice(String root, List<Nodo> list) {   
+        for (Nodo nodo : list) 
+            if (nodo.getNome().equals(root)) 
+            	return nodo;
+        return null;
+    }
     
 }

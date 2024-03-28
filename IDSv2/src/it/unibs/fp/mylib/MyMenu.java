@@ -54,6 +54,4 @@ public class MyMenu {
         System.out.println(VOCE_USCITA);
         System.out.println();
     }
-
-
 }

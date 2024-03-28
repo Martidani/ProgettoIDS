@@ -18,7 +18,7 @@ public class Main {
 		{"Introdurre comprensorio geografico", "Introdurre albero", "Visualizza comprensorio", 
 			"Visualizza gerarchia", "Visualizza fattori di conversione"};
 	public final static String[] vociF = 
-		{"Visualizza gerarchia"};
+		{"Naviga nella gerarchia"};
 	public final static String[] vociAccesso = 
 		{"Registrazione","Login"};
 	
@@ -120,8 +120,24 @@ public class Main {
 
 	                case 1:
 	                	String ger = GestioneGerarchia.toStringR(gerarchia.getAlberi());
-	                    System.out.println(ger);
+	                    System.out.println(ger + "\n");
+	                   
+	                    String nomeRadice = InputDati.leggiStringaNonVuota("Scegli radice -> ");
+						Nodo radice = GestioneGerarchia.visualizzaRadice(nomeRadice, gerarchia.getAlberi());
+						System.out.println(radice.stampaElencoFruitore() + "\n");
+						Nodo child;
+								
+						do {
+							int valoreDominio = InputDati.leggiIntero("Scegli l'opzione -> ");	
+							child = radice.getChildren().get(valoreDominio-1);
+							radice = child;
+							System.out.println(child.stampaElencoFruitore()+ "\n");
+						} while (!child.isLeaf());
+							
+	                    
+	                    
 	                    break;
+	                    
 
 	                default:
 	                    break;
@@ -403,7 +419,7 @@ public class Main {
 	        String foglia = InputDati.leggiStringaNonVuota("  Nome -> ");
 	        String radice = InputDati.leggiStringaNonVuota("  Radice -> ");
 	        nodo = GestioneGerarchia.visualizzaNodo(foglia, radice, gerarchia.getAlberi());
-	    } while (nodo == null);
+	    } while (nodo == null || !nodo.isLeaf());
 	    return nodo;
 	}
 	/**
