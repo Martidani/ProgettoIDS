@@ -36,8 +36,8 @@ public class DefaultInitializer {
      * Costruttore che inizializza gli oggetti di default.
      */
     public DefaultInitializer() {
-        this.gerarchia = defaultTree();
         this.utenza = defaultAccess();
+        this.gerarchia = defaultTree();
         this.geografia = defaultWorld();
     }
 
@@ -76,7 +76,7 @@ public class DefaultInitializer {
      * 
      * @return L'albero gerarchico di default
      */
-    public static Gerarchia defaultTree() {
+    public Gerarchia defaultTree() {
         Gerarchia gerarchia = new Gerarchia();
 
         // Creazione del nodo radice
@@ -94,11 +94,14 @@ public class DefaultInitializer {
 
             // Aggiunta dei nodi all'albero e definizione dei fattori di conversione
             FattoriDiConversione.addFattoreConversione(nodo11, nodo12, 2);
-            gerarchia.addAlbero(new Albero(nodo1));
+            Albero albero = new Albero(nodo1);
+            
+            albero.setUtente(utenza.autenticazioneConfiguratore(DEFAULT_USERNAME, DEFAULT_PASSWORD));
+            gerarchia.addAlbero(albero);
             FattoriDiConversione.addTransitivoFattoreConversione(gerarchia);
         
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());;
         }
         
         return gerarchia;
@@ -109,7 +112,7 @@ public class DefaultInitializer {
      * 
      * @return L' utenza di default
      */
-    public static Utenza defaultAccess() {
+    public Utenza defaultAccess() {
         Utenza utenza = new Utenza();
 
         // Creazione delle credenziali di default per l'utente admin
@@ -126,7 +129,7 @@ public class DefaultInitializer {
      * 
      * @return Il comprensorio di default
      */
-    private static Comprensorio defaultComprensorio() {
+    private Comprensorio defaultComprensorio() {
         Comprensorio comprensorio = new Comprensorio();
         comprensorio.addComune(DEFAULT_COMMUNITY_1);
         comprensorio.addComune(DEFAULT_COMMUNITY_2);
@@ -139,7 +142,7 @@ public class DefaultInitializer {
      * 
      * @return La geografia di default
      */
-    public static Geografia defaultWorld() {
+    public Geografia defaultWorld() {
 
     	Geografia geografia = new Geografia();
     	

@@ -21,10 +21,14 @@ public class FattoriDiConversione {
      * @param nodo1 Il primo nodo
      * @param nodo2 Il secondo nodo
      * @param fattore Il fattore di conversione da nodo1 a nodo2
+     * @throws InvalidConversionFactorException 
      */
 	public static void addFattoreConversione(Nodo nodo1, Nodo nodo2, double fattore) {
-        nodo1.addFattori(nodo2, fattore);
-        nodo2.addFattori(nodo1, 1 / fattore); // Aggiunge il fattore inverso
+	
+	        nodo1.addFattori(nodo2, fattore);
+	        nodo2.addFattori(nodo1, 1 / fattore); // Aggiunge il fattore inverso
+
+
 	}
 	
 	/**
@@ -39,18 +43,24 @@ public class FattoriDiConversione {
 	
 	/**
 	 * Aggiunge i fattori di conversione transitivi tra TUTTE le coppie di foglie nella gerarchia.
+	 * @throws RootTreeException 
 	 * @throws Exception 
 	 */
-	public static void addTransitivoFattoreConversione(Gerarchia gerarchia) throws Exception {
+	public static void addTransitivoFattoreConversione(Gerarchia gerarchia)  {
 		ArrayList<Nodo> foglie = new ArrayList<Nodo>();
 		for (Nodo nodo : gerarchia.getAlberi())  {
-			Albero albero = new Albero(nodo);
+			Albero albero = null;
+			try {
+				albero = new Albero(nodo);
+			} catch (RootTreeException e) {
+				System.out.println(e.getMessage());
+			}
 			foglie.addAll(albero.getFoglie());
 		}
 		
 	    for (Nodo nodo1 : foglie) {
 	        for (Nodo nodo2 : foglie) {
-	            if (!nodo1.equals(nodo2) && !nodo1.esisteFoglia(nodo2)) {
+	            if (!nodo1.equals(nodo2) && nodo1.fattoreFoglia(nodo2)==0) {
 	                Double fattore = calcTransitivo(nodo1, nodo2, new ArrayList<>());
 	                if (fattore != null) {
 	                    nodo1.addFattori(nodo2, fattore);
@@ -71,8 +81,8 @@ public class FattoriDiConversione {
 	private static Double calcTransitivo(Nodo nodo1, Nodo nodo2, List<Nodo> visitati) {
 	    if (nodo1.equals(nodo2)) {
 	        return 1.0;
-	    } else if (nodo1.esisteFoglia(nodo2)) {
-	        return nodo1.valoreRelazione(nodo2);
+	    } else if (nodo1.fattoreFoglia(nodo2)!=0) {
+	        return nodo1.fattoreFoglia(nodo2);
 	    } else {
 	        HashMap<Nodo, Double> foglieNodo1 = nodo1.getFattori();
 	        if (foglieNodo1.isEmpty()) return null;

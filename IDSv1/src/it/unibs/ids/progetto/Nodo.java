@@ -83,13 +83,7 @@ public class Nodo implements Serializable {
         return isLeaf;
     }
 
-    /**
-     * Imposta se il nodo è una foglia o meno.
-     * @param isLeaf True se il nodo è una foglia, altrimenti False.
-     */
-    public void setLeaf(boolean isLeaf) {
-        this.isLeaf = isLeaf;
-    }
+
 
     /**
      * Verifica se il nodo è una radice.
@@ -99,13 +93,7 @@ public class Nodo implements Serializable {
         return isRoot;
     }
 
-    /**
-     * Imposta se il nodo è una radice o meno.
-     * @param isRoot True se il nodo è una radice, altrimenti False.
-     */
-    public void setRoot(boolean isRoot) {
-        this.isRoot = isRoot;
-    }
+
 
     /**
      * Restituisce la lista dei figli del nodo.
@@ -201,19 +189,13 @@ public class Nodo implements Serializable {
 	 * @param foglia La foglia con cui verificare la relazione
 	 * @return true se esiste una relazione di conversione con la foglia, false altrimenti
 	 */
-	public boolean esisteFoglia(Nodo foglia) {
-		return this.getFattori().containsKey(foglia);
+	public double fattoreFoglia(Nodo foglia) {
+		if (this.getFattori().containsKey(foglia))
+			return this.getFattori().get(foglia);
+		return 0;
 	}
 
-	/**
-	 * Restituisce il valore del fattore di conversione con un'altra foglia.
-	 * 
-	 * @param foglia La foglia con cui verificare la relazione
-	 * @return Il valore della relazione di conversione
-	 */
-	public double valoreRelazione(Nodo foglia) {
-		return this.getFattori().get(foglia);
-	}
+
 
 	/**
 	 * Genera una stringa delle relazioni di una foglia con le altre foglie.

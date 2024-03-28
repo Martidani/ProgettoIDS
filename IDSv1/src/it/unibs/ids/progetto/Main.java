@@ -7,6 +7,7 @@ import it.unibs.ids.progetto.news.DefaultInitializer;
 import it.unibs.ids.progetto.news.FattoriDiConversione;
 import it.unibs.ids.progetto.news.FileManager;
 import it.unibs.ids.progetto.news.Geografia;
+import it.unibs.ids.progetto.news.ConfLoginFailException;
 
 /**
  * Classe Main per l'esecuzione del programma.
@@ -35,9 +36,10 @@ public class Main {
 
 	    if (utenza == null || gerarchia == null || geografia == null) {
 	        // Inizializzazione predefinita degli oggetti solo se non sono stati caricati da file
-	        gerarchia = DefaultInitializer.defaultTree();
-	        utenza = DefaultInitializer.defaultAccess();
-	        geografia = DefaultInitializer.defaultWorld();
+	    	DefaultInitializer defaultInitializer = new DefaultInitializer();
+	        gerarchia = defaultInitializer.getGerarchia();
+	        utenza = defaultInitializer.getUtenza();
+	        geografia = defaultInitializer.getGeografia();
 	    } else {
 	        System.out.println("Lettura da file: " + FileManager.getUtenzaFile() 
 	        + ", " + FileManager.getGerarchiaFile() + ", " + FileManager.getGeografiaFile());
@@ -143,17 +145,26 @@ public class Main {
 	 * @param utenza  		  L'oggetto Utenza utilizzato per gestire l'accesso.
 	 * @param accesso         L'accesso corrente.
 	 * @return                L'accesso aggiornato.
+	 * @throws ConfLoginFailException 
 	 */
 	private static int login(Utenza utenza) {
-		int accesso = 2;
+		int accesso = 1;
 	    for (int i = 0; i < NUM_MAX_TENTATIVI; i++) {
 	        System.out.println("Inserisci dati di login: ");
 	        String ID = InputDati.leggiStringaNonVuota("  ID: ");
 	        String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
-	        accesso = autenticazione(utenza, ID, PSSW);
-	        if (accesso != 1) {
+	        try {
+				accesso = autenticazione(utenza, ID, PSSW);
+			} catch (ConfLoginFailException e) {
+				System.out.println(e.getMessage());
+				System.out.println();
+			}
+	        if (accesso != 1) 
 	            break;
-	        }
+	       
+		    	
+	        
+	    
 	    }
 	    return accesso;
 	}
@@ -165,11 +176,10 @@ public class Main {
 	 * @param PSSW            La password inserita.
 	 * @return                Il risultato del login.
 	 */
-	private static int autenticazione(Utenza utenza, String ID, String PSSW) {
+	private static int autenticazione(Utenza utenza, String ID, String PSSW) throws ConfLoginFailException {
 	    Configuratore conf = utenza.autenticazioneConfiguratore(ID, PSSW);
 	    if (conf == null) {
-	        System.out.println(" ! Non esiste configuratore con queste credenziali !");
-	        return 1;
+	    	throw new ConfLoginFailException();
 	    } else if (!conf.getCredenziali().isDefinitive()) {
 	        System.out.println("Scegli nuove credenziali: ");
 	        Credenziali credenzialiRegistrazione = primoAccesso(utenza);
@@ -307,7 +317,7 @@ public class Main {
 	 * @param foglieAttuali  La lista delle foglie attuali.
 	 * @throws Exception     Eccezione in caso di problemi durante l'inserimento.
 	 */
-	private static void creaFattoriConversione(Gerarchia gerarchia, ArrayList<Nodo> foglieAttuali) throws Exception {
+	private static void creaFattoriConversione(Gerarchia gerarchia, ArrayList<Nodo> foglieAttuali)  {
 	    System.out.println("\nInserimento fattori di conversione:");
 	    do {
 	        Nodo nodo1 = chiediFoglia("Foglia 1:", gerarchia);
@@ -337,7 +347,7 @@ public class Main {
 	        System.out.println(messaggio);
 	        String foglia = InputDati.leggiStringaNonVuota("  Nome -> ");
 	        String radice = InputDati.leggiStringaNonVuota("  Radice -> ");
-	        nodo = Gerarchia.visualizzaNodo(foglia, radice, gerarchia.getAlberi());
+	        nodo = gerarchia.visualizzaNodo(foglia, radice);
 	        
 	    } while (nodo == null);
 	    return nodo;
@@ -364,7 +374,7 @@ public class Main {
 	private static void stampaFattori(Gerarchia gerarchia) {
 	    String foglia = InputDati.leggiStringaNonVuota("Inserisci nome foglia: ");
 	    String radice = InputDati.leggiStringaNonVuota("Inserisci radice della gerarchia della foglia: ");
-	    Nodo nodo = Gerarchia.visualizzaNodo(foglia, radice, gerarchia.getAlberi());
+	    Nodo nodo = gerarchia.visualizzaNodo(foglia, radice);
 	    if (nodo == null)
 	        System.out.println("  Non è stata trovata nessuna corrispondenza");
 	    else

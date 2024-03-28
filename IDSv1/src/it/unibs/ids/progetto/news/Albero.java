@@ -3,25 +3,38 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.unibs.ids.progetto.Nodo;
+import it.unibs.ids.progetto.Utente;
 
 public class Albero implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Nodo radice;
 	private ArrayList<Nodo> foglie;
+	private Utente utente;
 	
 	/**
 	 * Costruttore della classe Gerarchia.
+	 * @throws RootTreeException 
 	 * @throws Exception 
 	 */
-	public Albero(Nodo radice) throws Exception {
-		if (!radice.isRoot()) throw new Exception();
+	public Albero(Nodo radice) throws RootTreeException {
+		if (!radice.isRoot()) throw new RootTreeException();
 		this.foglie = new ArrayList<Nodo>();
 		this.radice = radice;
 		addFoglie(radice);
 	}
 	
 	
+	public Utente getUtente() {
+		return utente;
+	}
+
+
+	public void setUtente(Utente utente) {
+		this.utente = utente;
+	}
+
+
 	/**
 	 * Aggiunge le foglie dell'albero all'elenco delle foglie della gerarchia.
 	 * 

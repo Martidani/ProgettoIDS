@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibs.ids.progetto.news.Albero;
-import it.unibs.ids.progetto.news.LeafHasChildrenException;
+
 
 /**
  * La classe Gerarchia rappresenta l'insieme di tutti gli 
@@ -100,7 +100,22 @@ public class Gerarchia implements Serializable {
      * @param list La lista di nodi in cui cercare
      * @return Il nodo corrispondente al nome specificato, null se non trovato
      */
-    public static Nodo visualizzaNodo(String nomeNodo, String root, List<Nodo> list) {
+    public Nodo visualizzaNodo(String nomeNodo, String root) {
+    	Nodo nodo = visualizza(nomeNodo, root, this.alberi);
+    	if (nodo == null)
+    		return nodo;
+        return null;
+    }
+    
+    /**
+     * Restituisce il nodo corrispondente al nome specificato nella gerarchia.
+     * 
+     * @param nomeNodo Il nome del nodo da cercare
+     * @param root La radice della gerarchia
+     * @param list La lista di nodi in cui cercare
+     * @return Il nodo corrispondente al nome specificato, null se non trovato
+     */
+    private static Nodo visualizza(String nomeNodo, String root, List<Nodo> list) {
         for (Nodo nodo : list) {
             if (nodo.getNome().equals(root)) {
                 for (Nodo nodoChild : nodo.getChildren()) {
@@ -108,7 +123,7 @@ public class Gerarchia implements Serializable {
                         if (nodoChild.getNome().equals(nomeNodo))
                             return nodoChild;
                     } else {
-                        Nodo foundNode = visualizzaNodo(nomeNodo, nodoChild.getNome(), nodo.getChildren());
+                        Nodo foundNode = visualizza(nomeNodo, nodoChild.getNome(), nodo.getChildren());
                         if (foundNode != null) {
                             return foundNode;
                         }
