@@ -1,13 +1,12 @@
 package it.unibs.ids.progetto;
 import java.util.ArrayList;
-
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.fp.mylib.MyMenu;
+import it.unibs.ids.progetto.news.Albero;
 import it.unibs.ids.progetto.news.DefaultInitializer;
+import it.unibs.ids.progetto.news.FattoriDiConversione;
 import it.unibs.ids.progetto.news.FileManager;
 import it.unibs.ids.progetto.news.Geografia;
-import it.unibs.ids.progetto.news.GestioneGerarchia;
-import it.unibs.ids.progetto.news.LeafHasChildrenException;
 
 /**
  * Classe Main per l'esecuzione del programma.
@@ -25,7 +24,7 @@ public class Main {
 		{"Registrazione","Login"};
 	
 	
-	public static void main(String[] args) throws LeafHasChildrenException {
+	public static void main(String[] args) throws Exception {
 	    MyMenu menuAccesso = new MyMenu("Menu accesso", vociAccesso);
 	    MyMenu menu = new MyMenu("Menu principale", voci);
 
@@ -75,7 +74,7 @@ public class Main {
 	                    ArrayList<Nodo> foglieAttuali = new ArrayList<>();
 	                    Nodo root = creaRadice(gerarchia);
 	                    creaNodiFiglio(root, gerarchia, root, foglieAttuali);
-	                    gerarchia.addAlbero(root);
+	                    gerarchia.addAlbero(new Albero(root));
 	                    creaFattoriConversione(gerarchia, foglieAttuali);
 	                    break;
 
@@ -84,7 +83,7 @@ public class Main {
 	                    break;
 
 	                case 4:
-	                	String ger = GestioneGerarchia.toString(gerarchia.getAlberi());
+	                	String ger = gerarchia.toString();
 	                    System.out.println(ger);
 	                    break;
 
@@ -216,7 +215,7 @@ public class Main {
 	    String radice;
 	    do {
 	        radice = InputDati.leggiStringaNonVuota("Nome radice -> ");
-	    } while (GestioneGerarchia.verificaEsistenzaNomeRadice(radice, gerarchia.getAlberi()));
+	    } while (gerarchia.verificaEsistenzaNomeRadice(radice));
 
 	    String campo = InputDati.leggiStringaNonVuota("Campo -> ");
 	    Nodo root = new Nodo(radice, true, campo);
@@ -261,7 +260,7 @@ public class Main {
 	        String nome;
 	        do {
 	            nome = InputDati.leggiStringaNonVuota("Nome -> ");
-	        } while (GestioneGerarchia.verificaEsistenzaNomeNonRadice(nome, radice));
+	        } while (Albero.verificaEsistenzaNome(nome, radice));
 
 	        boolean isFoglia = InputDati.yesOrNo("È foglia? ");
 	        Nodo nodoChild;
@@ -308,7 +307,7 @@ public class Main {
 	 * @param foglieAttuali  La lista delle foglie attuali.
 	 * @throws Exception     Eccezione in caso di problemi durante l'inserimento.
 	 */
-	private static void creaFattoriConversione(Gerarchia gerarchia, ArrayList<Nodo> foglieAttuali) {
+	private static void creaFattoriConversione(Gerarchia gerarchia, ArrayList<Nodo> foglieAttuali) throws Exception {
 	    System.out.println("\nInserimento fattori di conversione:");
 	    do {
 	        Nodo nodo1 = chiediFoglia("Foglia 1:", gerarchia);
@@ -316,14 +315,14 @@ public class Main {
 
 	        double fattoreDiConversione = chiediFattoreConversione(gerarchia);
 
-	        boolean condizione = !GestioneGerarchia.checkFoglia(nodo1, foglieAttuali) 
-	        		&& !GestioneGerarchia.checkFoglia(nodo2, foglieAttuali);
+	        boolean condizione = !foglieAttuali.contains(nodo1)
+	        		&& !foglieAttuali.contains(nodo2);
 	        if (!condizione) {
-	            gerarchia.addFattoreConversione(nodo1, nodo2, fattoreDiConversione);
+	            FattoriDiConversione.addFattoreConversione(nodo1, nodo2, fattoreDiConversione);
 	        }
 	    } while (InputDati.yesOrNo("Vuoi continuare l'inserimento? "));
 
-	    gerarchia.addTransitivoFattoreConversione();
+	    FattoriDiConversione.addTransitivoFattoreConversione(gerarchia);
 	}
 	/**
 	 * Metodo per chiedere la foglia e la radice e ottenere il nodo corrispondente.
@@ -338,7 +337,8 @@ public class Main {
 	        System.out.println(messaggio);
 	        String foglia = InputDati.leggiStringaNonVuota("  Nome -> ");
 	        String radice = InputDati.leggiStringaNonVuota("  Radice -> ");
-	        nodo = GestioneGerarchia.visualizzaNodo(foglia, radice, gerarchia.getAlberi());
+	        nodo = Gerarchia.visualizzaNodo(foglia, radice, gerarchia.getAlberi());
+	        
 	    } while (nodo == null);
 	    return nodo;
 	}
@@ -351,7 +351,7 @@ public class Main {
 	    double fattoreDiConversione;
 	    do {
 	        fattoreDiConversione = InputDati.leggiDouble("Fattore di conversione -> ");
-	    } while (!gerarchia.verificaFattoreConversione(fattoreDiConversione));
+	    } while (!FattoriDiConversione.verificaFattoreConversione(fattoreDiConversione));
 	    return fattoreDiConversione;
 	}
 
@@ -364,7 +364,7 @@ public class Main {
 	private static void stampaFattori(Gerarchia gerarchia) {
 	    String foglia = InputDati.leggiStringaNonVuota("Inserisci nome foglia: ");
 	    String radice = InputDati.leggiStringaNonVuota("Inserisci radice della gerarchia della foglia: ");
-	    Nodo nodo = GestioneGerarchia.visualizzaNodo(foglia, radice, gerarchia.getAlberi());
+	    Nodo nodo = Gerarchia.visualizzaNodo(foglia, radice, gerarchia.getAlberi());
 	    if (nodo == null)
 	        System.out.println("  Non è stata trovata nessuna corrispondenza");
 	    else
