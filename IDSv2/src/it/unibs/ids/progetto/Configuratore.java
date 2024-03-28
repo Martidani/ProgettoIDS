@@ -41,12 +41,5 @@ public class Configuratore extends Utente implements Serializable {
         this.credenziali.setDefinitive(x);
     }
 
-    /**
-     * Restituisce lo stato di definitività delle credenziali.
-     * 
-     * @return boolean True se le credenziali sono definitive, false altrimenti
-     */
-    public boolean getIsDefinitivo() {
-        return this.credenziali.isDefinitive();
-    }
+
 }
