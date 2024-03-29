@@ -54,16 +54,13 @@ public class Gerarchia implements Serializable {
     }
 
 	
-    /**
-     * Restituisce l'elenco degli alberi presenti nella gerarchia.
-     * 
-     * @return Lista di alberi nella gerarchia
-     */
-    public ArrayList<Nodo> getRadici() {
-        return radici;
-    }
+ 
 
-    /**
+    public ArrayList<Nodo> getFoglie() {
+		return foglie;
+	}
+
+	/**
      * Aggiunge un albero alla gerarchia.
      * 
      * @param albero Il nodo radice dell'albero da aggiungere
