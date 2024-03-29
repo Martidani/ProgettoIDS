@@ -84,7 +84,7 @@ public class Albero implements Serializable {
             bf.append(asterischi + " " + nodo.getNome());
         } else {
             bf.append(asterischi + " " + nodo.getNome() + "\n" + blank + "campo: " + nodo.getCampo() + "\n" 
-        + blank + nodo.toStringD() + "\n" + blank + nodo.toStringC());
+        + blank + nodo.toStringDomain() + "\n" + blank + nodo.toStringChildren());
             for (Nodo nodoChild : nodo.getChildren()) {
                 bf.append("\n");
                 iterative(bf, nodoChild, depth + 1);

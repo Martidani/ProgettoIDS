@@ -198,7 +198,7 @@ public class Nodo implements Serializable {
 	 * 
 	 * @return Una stringa rappresentante le relazioni con le foglie.
 	 */
-	public String toStringF() {
+	public String toStringFactors() {
 		StringBuffer bf = new StringBuffer();
 		for (Entry<Nodo, Double> fatt : fattori.entrySet()) {
 			Nodo key = fatt.getKey();
@@ -218,7 +218,7 @@ public class Nodo implements Serializable {
 	 * 
 	 * @return Una stringa rappresentante il dominio associato al nodo.
 	 */
-	public String toStringD() {
+	public String toStringDomain() {
 		StringBuffer bf = new StringBuffer();
 		bf.append("dominio: [");
 		for (String[] elem : this.dominio) {
@@ -236,7 +236,7 @@ public class Nodo implements Serializable {
 	 * 
 	 * @return Una stringa rappresentante i figli del nodo.
 	 */
-	public String toStringC() {
+	public String toStringChildren() {
 		StringBuffer bf = new StringBuffer();
 		int num = this.children.size();
 		if (num == 1)
@@ -269,7 +269,7 @@ public class Nodo implements Serializable {
      * @param radice Il nodo radice sotto il quale cercare
      * @return true se esiste un nodo con il nome specificato sotto il nodo radice, false altrimenti
      */
-    public static boolean verifica(String nome, Nodo radice) {
+    private static boolean verifica(String nome, Nodo radice) {
         if (radice.isLeaf()) {
             return radice.getNome().equals(nome);
         } else {

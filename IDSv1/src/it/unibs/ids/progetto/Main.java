@@ -373,7 +373,7 @@ public class Main {
         if (nodo == null)
             System.out.println("  Non è stata trovata nessuna corrispondenza");
         else
-            System.out.println(nodo.toStringF());
+            System.out.println(nodo.toStringFactors());
     }
 
 
