@@ -57,7 +57,7 @@ public class Utenza implements Serializable {
     private Utente autenticazione(String ID, String Password, Predicate<Utente> predicate) {
         return utenti.stream()
                 .filter(utente -> utente.getID().equals(ID))
-                .filter(utente -> utente.getPSSW().equals(Password))
+                .filter(utente -> utente.getPassword().equals(Password))
                 .filter(predicate)
                 .findFirst()
                 .orElse(null);

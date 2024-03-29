@@ -247,13 +247,7 @@ public class Nodo implements Serializable {
     	return verifica(nome, this);
     }
     
-    /**
-     * Verifica se esiste un nodo non radice con il dato nome sotto il nodo radice specificato.
-     * 
-     * @param nome Il nome del nodo da cercare
-     * @param radice Il nodo radice sotto il quale cercare
-     * @return true se esiste un nodo con il nome specificato sotto il nodo radice, false altrimenti
-     */
+
     private static boolean verifica(String nome, Nodo radice) {
         if (radice.isLeaf()) {
             return radice.getNome().equals(nome);

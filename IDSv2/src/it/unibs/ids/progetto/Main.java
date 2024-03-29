@@ -160,11 +160,11 @@ public class Main {
 	private static void registrazioneC(Utenza utenza) {
 	    Configuratore configuratore = new Configuratore();
 	    String id = configuratore.getID();
-	    String psswd = configuratore.getPSSW();
+	    String psswd = configuratore.getPassword();
 	    System.out.println("ID di default: " + id);
 	    System.out.println("Password di default: " + psswd);
 	    
-	    configuratore.setCredenziali(id, psswd);
+	    configuratore.setCredenziali(new Credenziali(id, psswd));
 	    configuratore.setIsDefinitivo(false);
 	    utenza.addUtente(configuratore);
 	}
@@ -248,7 +248,7 @@ public class Main {
 	    } else if (!utente.IsDefinitivo() && type == Configuratore.TIPOUTENTE) {
 	    	System.out.println("Scegli nuove credenziali: ");
 	        Credenziali credenzialiRegistrazione = primoAccesso(utenza);
-	        utente.setCredenziali(credenzialiRegistrazione.getID(), credenzialiRegistrazione.getPassword());
+	        utente.setCredenziali(credenzialiRegistrazione);
 	        utente.setIsDefinitivo(true);
 	        return 2;
 	    } else {

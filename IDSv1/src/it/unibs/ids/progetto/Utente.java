@@ -63,16 +63,7 @@ public abstract class Utente implements Serializable {
         this.credenziali.setPassword(credenziali.getPassword());
     }
 
-    /**
-     * Imposta le credenziali dell'utente a partire da un ID e una password.
-     * 
-     * @param ID        Il nuovo ID da impostare
-     * @param password  La nuova password da impostare
-     */
-    public void setCredenziali(String ID, String password) {
-        this.credenziali.setID(ID);
-        this.credenziali.setPassword(password);
-    }
+
 
     /**
      * Restituisce il tipo di utente.

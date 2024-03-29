@@ -65,24 +65,6 @@ public class Utenza implements Serializable {
 	}
 	
 	/**
-	 * Verifica l'esistenza di un utente con le credenziali specificate.
-	 * 
-	 * @param ID L'ID dell'utente
-	 * @param Password La password dell'utente
-	 * @return true se l'utente esiste, false altrimenti
-	 */
-	public boolean autenticazioneUtente(String ID,String Password) {
-		for (Utente utente : utenti) {
-			if (utente.getID().equals(ID)) {
-				if (utente.getPassword().equals(Password)) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-	
-	/**
 	 * Verifica l'esistenza di un ID utente nel sistema.
 	 * 
 	 * @param id L'ID da verificare
