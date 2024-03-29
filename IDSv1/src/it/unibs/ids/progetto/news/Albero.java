@@ -1,5 +1,6 @@
 package it.unibs.ids.progetto.news;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -83,8 +84,7 @@ public class Albero implements Serializable {
         if (nodo.isLeaf()) {
             bf.append(asterischi + " " + nodo.getNome());
         } else {
-            bf.append(asterischi + " " + nodo.getNome() + "\n" + blank + "campo: " + nodo.getCampo() + "\n" 
-        + blank + nodo.toStringDomain() + "\n" + blank + nodo.toStringChildren());
+            bf.append(asterischi + nodo.toString(blank));
             for (Nodo nodoChild : nodo.getChildren()) {
                 bf.append("\n");
                 iterative(bf, nodoChild, depth + 1);

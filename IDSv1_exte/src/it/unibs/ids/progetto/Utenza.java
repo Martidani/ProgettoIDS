@@ -1,6 +1,7 @@
 package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 import it.unibs.ids.progetto.news.Fruitore;
 
@@ -45,41 +46,30 @@ public class Utenza implements Serializable {
 	}
 
 	
-	/**
-	 * Verifica l'esistenza di un configuratore con le credenziali specificate.
-	 * 
-	 * @param ID L'ID dell'utente
-	 * @param Password La password dell'utente
-	 * @return Il configuratore corrispondente alle credenziali, null se non trovato
-	 */
-	public Configuratore autenticazioneConfiguratore(String ID, String Password) {
-		for (Utente utente : utenti) {
-			if (utente.getID().equals(ID)) 
-				if (utente.getPSSW().equals(Password)) 
-					if (utente.getTipoUtente() == Configuratore.TIPOUTENTE )
-						return (Configuratore) utente;
-		}
-		return null;
-		
-	}
-	
-	/**
-	 * Verifica l'esistenza di un fruitore con le credenziali specificate.
-	 * 
-	 * @param ID L'ID del fruitore
-	 * @param Password La password del fruitore
-	 * @return true se il fruitore esiste, false altrimenti
-	 */
-	public Fruitore autenticazioneFruitore(String ID,String Password) {
-		for (Utente utente : utenti) {
-			if (utente.getID().equals(ID)) 
-				if (utente.getPSSW().equals(Password)) 
-					if (utente.getTipoUtente() == Fruitore.TIPOUTENTE )
-						return (Fruitore) utente;
-		}
-		return null;
-	}
-	
+    /**
+     * Verifica l'esistenza di un utente con le credenziali specificate.
+     * 
+     * @param ID L'ID dell'utente
+     * @param Password La password dell'utente
+     * @param predicate Il predicato per filtrare l'utente desiderato
+     * @return L'utente corrispondente alle credenziali, null se non trovato
+     */
+    private Utente autenticazione(String ID, String Password, Predicate<Utente> predicate) {
+        return utenti.stream()
+                .filter(utente -> utente.getID().equals(ID))
+                .filter(utente -> utente.getPSSW().equals(Password))
+                .filter(predicate)
+                .findFirst()
+                .orElse(null);
+    }
+    
+    public Utente autenticazioneConfiguratore(String ID, String Password) {
+        return autenticazione(ID, Password, utente -> utente.getTipoUtente() == Configuratore.TIPOUTENTE);
+    }
+
+    public Utente autenticazioneFruitore(String ID, String Password) {
+        return autenticazione(ID, Password, utente -> utente.getTipoUtente() == Fruitore.TIPOUTENTE);
+    }
 	/**
 	 * Verifica l'esistenza di un ID utente nel sistema.
 	 * 
@@ -87,11 +77,9 @@ public class Utenza implements Serializable {
 	 * @return true se l'ID esiste, false altrimenti
 	 */
 	public boolean verificaEsistenzaID(String id) {
-		for (Utente utente : utenti) {
-			if (utente.getID().equals(id)) {
+		for (Utente utente : utenti) 
+			if (utente.getID().equals(id)) 
 				return true;
-			}
-		}
 		return false;
 	}
 

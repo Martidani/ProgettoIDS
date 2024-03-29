@@ -120,15 +120,6 @@ public class Nodo implements Serializable {
 	}
 
 	/**
-	 * Imposta il campo associato al nodo.
-	 * 
-	 * @param campo Il campo da impostare.
-	 */
-	public void setCampo(String campo) {
-		this.campo = campo;
-	}
-
-	/**
 	 * Restituisce il dominio associato al nodo.
 	 * 
 	 * @return Il dominio associato al nodo.
@@ -216,7 +207,23 @@ public class Nodo implements Serializable {
 	 * 
 	 * @return Una stringa rappresentante il dominio associato al nodo.
 	 */
-	public String toStringDomain() {
+	public String toString(String blank) {
+		StringBuffer bf = new StringBuffer();
+		bf.append(" " + nome + "\n" );
+		bf.append(blank + "campo: " + campo + "\n" );
+		bf.append(blank + toStringDomain() + "\n" );
+		bf.append(blank + toStringChildren());
+		
+		return bf.toString();
+	}
+	
+
+	/**
+	 * Genera una stringa del dominio associato al nodo.
+	 * 
+	 * @return Una stringa rappresentante il dominio associato al nodo.
+	 */
+	private String toStringDomain() {
 		StringBuffer bf = new StringBuffer();
 		bf.append("dominio: [");
 		for (String[] elem : this.dominio) {
@@ -234,7 +241,7 @@ public class Nodo implements Serializable {
 	 * 
 	 * @return Una stringa rappresentante i figli del nodo.
 	 */
-	public String toStringChildren() {
+	private String toStringChildren() {
 		StringBuffer bf = new StringBuffer();
 		int num = this.children.size();
 		if (num == 1)
@@ -280,7 +287,7 @@ public class Nodo implements Serializable {
         }
     }
     
-    public String stampaElencoFruitore () {
+    public String toNavigationString() {
     	StringBuilder b = new StringBuilder();
     	b.append(" nome: " + this.nome);
     	

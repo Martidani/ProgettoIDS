@@ -95,7 +95,7 @@ public class Main {
 	                    break;
 
 	                case 3:
-	                    System.out.println(geografia.toString());
+	                    System.out.print(geografia.toString());
 	                    break;
 
 	                case 4:
@@ -125,14 +125,14 @@ public class Main {
 	                   
 	                    String nomeRadice = InputDati.leggiStringaNonVuota("Scegli radice -> ");
 						Nodo radice = gerarchia.visualizzaRadice(nomeRadice);
-						System.out.println(radice.stampaElencoFruitore() + "\n");
+						System.out.println(radice.toNavigationString() + "\n");
 						Nodo child;
 								
 						do {
 							int valoreDominio = InputDati.leggiIntero("Scegli l'opzione -> ");	
 							child = radice.getChildren().get(valoreDominio-1);
 							radice = child;
-							System.out.println(child.stampaElencoFruitore()+ "\n");
+							System.out.println(child.toNavigationString()+ "\n");
 						} while (!child.isLeaf());
 							
 	                    
@@ -163,9 +163,8 @@ public class Main {
 	    String psswd = configuratore.getPSSW();
 	    System.out.println("ID di default: " + id);
 	    System.out.println("Password di default: " + psswd);
-
-	    Credenziali credenziali = new Credenziali(id, psswd);
-	    configuratore.setCredenziali(credenziali);
+	    
+	    configuratore.setCredenziali(id, psswd);
 	    configuratore.setIsDefinitivo(false);
 	    utenza.addUtente(configuratore);
 	}
@@ -246,10 +245,10 @@ public class Main {
 	    	else
 	    		System.out.println(" ! Non esiste alcun fruitore con queste credenziali !");
 	        return 1;
-	    } else if (!utente.getCredenziali().isDefinitive() && type == Configuratore.TIPOUTENTE) {
+	    } else if (!utente.IsDefinitivo() && type == Configuratore.TIPOUTENTE) {
 	    	System.out.println("Scegli nuove credenziali: ");
 	        Credenziali credenzialiRegistrazione = primoAccesso(utenza);
-	        utente.setCredenziali(credenzialiRegistrazione);
+	        utente.setCredenziali(credenzialiRegistrazione.getID(), credenzialiRegistrazione.getPassword());
 	        utente.setIsDefinitivo(true);
 	        return 2;
 	    } else {

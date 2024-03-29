@@ -89,7 +89,8 @@ public class DefaultInitializer {
             nodo1.addChild(nodo12);
 
             // Aggiunta dei nodi all'albero e definizione dei fattori di conversione
-            FattoriDiConversione.addFattoreConversione(nodo11, nodo12, 2);
+            nodo11.addFattoreConversione(nodo12, 2);
+            nodo12.addFattoreConversione(nodo11, 0.5);
             Albero albero = new Albero(nodo1);
             
             albero.setUtente(utenza.autenticazioneConfiguratore(DEFAULT_USERNAME, DEFAULT_PASSWORD));

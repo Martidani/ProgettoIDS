@@ -55,16 +55,6 @@ public abstract class Utente implements Serializable {
     }
 
     /**
-     * Imposta le credenziali dell'utente.
-     * 
-     * @param credenziali Le nuove credenziali da impostare
-     */
-    public void setCredenziali(Credenziali credenziali) {
-        this.credenziali.setID(credenziali.getID());
-        this.credenziali.setPassword(credenziali.getPassword());
-    }
-
-    /**
      * Imposta le credenziali dell'utente a partire da un ID e una password.
      * 
      * @param ID       Il nuovo ID da impostare
@@ -91,7 +81,7 @@ public abstract class Utente implements Serializable {
      * 
      * @return boolean True se le credenziali sono definitive, false altrimenti
      */
-    public boolean getIsDefinitivo() {
+    public boolean IsDefinitivo() {
         return this.credenziali.isDefinitive();
     }
 }
