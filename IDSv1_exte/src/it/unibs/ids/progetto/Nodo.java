@@ -1,10 +1,7 @@
 package it.unibs.ids.progetto;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
 
 /**
  * La classe Nodo rappresenta un nodo all'interno di un albero.
@@ -21,7 +18,7 @@ public class Nodo implements Serializable {
 	private boolean isLeaf;
 	private boolean isRoot;
 	private List<Nodo> children;
-	private HashMap<Nodo, Double> fattori;
+	private FattoriDiConversione fattori;
 	private String campo;
 	private List<String[]> dominio;
 	
@@ -52,7 +49,7 @@ public class Nodo implements Serializable {
 		this.nome = nome;
 		this.isRoot = false;
 		this.isLeaf = true;
-		this.fattori = new HashMap<>();
+		this.fattori = new FattoriDiConversione();
 	}
 
 	/**
@@ -92,24 +89,25 @@ public class Nodo implements Serializable {
 	}
 
 	/**
-	 * Restituisce i fattori di conversione associati al nodo.
+	 * Restituisce il dominio associato al nodo.
 	 * 
-	 * @return Una mappa contenente i nodi e i relativi fattori di conversione.
+	 * @return Il dominio associato al nodo.
 	 */
-	public HashMap<Nodo, Double> getFattori() {
+	public FattoriDiConversione getFattori() {
 		return fattori;
 	}
 
 	/**
-	 * Aggiunge un fattore di conversione associato al nodo.
-	 * 
-	 * @param foglia  Il nodo foglia con cui associare il fattore.
-	 * @param fattore Il fattore di conversione da aggiungere.
-	 */
-	public void addFattori(Nodo foglia, Double fattore) {
-		fattori.put(foglia, fattore);
-	}
-
+     * Aggiunge un fattore di conversione tra due nodi e l'inverso del fattore stesso nella relazione inversa.
+     * 
+     * @param nodo1 Il primo nodo
+     * @param nodo2 Il secondo nodo
+     * @param fattore Il fattore di conversione da nodo1 a nodo2
+     */
+    public void addFattoreConversione(Nodo nodo2, double fattore) {
+        fattori.addFattoreConversione(nodo2, fattore);
+    }
+    
 	/**
 	 * Restituisce il campo associato al nodo.
 	 * 
@@ -170,37 +168,7 @@ public class Nodo implements Serializable {
 		this.children.add(child);
 	}
 
-	/**
-	 * Verifica se esiste un fattore di conversione con una data foglia.
-	 * 
-	 * @param foglia La foglia con cui verificare la relazione.
-	 * @return true se esiste una relazione di conversione con la foglia, false altrimenti.
-	 */
-	public double fattoreFoglia(Nodo foglia) {
-		if (this.getFattori().containsKey(foglia))
-			return this.getFattori().get(foglia);
-		return 0;
-	}
 
-	/**
-	 * Genera una stringa delle relazioni di una foglia con le altre foglie.
-	 * 
-	 * @return Una stringa rappresentante le relazioni con le foglie.
-	 */
-	public String toStringFactors() {
-		StringBuffer bf = new StringBuffer();
-		for (Entry<Nodo, Double> fatt : fattori.entrySet()) {
-			Nodo key = fatt.getKey();
-			Double val = fatt.getValue();
-			if (!this.nome.equals(key.getNome())) {
-				// Formatta il double con un massimo di tre decimali
-				String formattedVal = String.format("%.3f", val);
-				bf.append(this.nome + " - " + key.getNome() + " - " + formattedVal);
-				bf.append("\n");
-			}
-		}
-		return bf.toString();
-	}
 
 	/**
 	 * Genera una stringa del dominio associato al nodo.
@@ -215,6 +183,15 @@ public class Nodo implements Serializable {
 		bf.append(blank + toStringChildren());
 		
 		return bf.toString();
+	}
+	
+	/**
+	 * Genera una stringa delle relazioni di una foglia con le altre foglie.
+	 * 
+	 * @return Una stringa rappresentante le relazioni con le foglie.
+	 */
+	public String toStringFactors() {
+		return fattori.toString(this.nome);
 	}
 	
 
@@ -287,6 +264,9 @@ public class Nodo implements Serializable {
         }
     }
     
+
+
+
     public String toNavigationString() {
     	StringBuilder b = new StringBuilder();
     	b.append(" nome: " + this.nome);

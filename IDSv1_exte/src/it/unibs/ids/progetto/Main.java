@@ -399,7 +399,8 @@ public class Main {
             boolean condizione = !foglieAttuali.contains(nodo1)
                     && !foglieAttuali.contains(nodo2);
             if (!condizione) {
-                FattoriDiConversione.addFattoreConversione(nodo1, nodo2, fattoreDiConversione);
+                nodo1.addFattoreConversione(nodo2, fattoreDiConversione);
+                nodo2.addFattoreConversione(nodo1, 1/fattoreDiConversione);
             }
         } while (InputDati.yesOrNo("Vuoi continuare l'inserimento? "));
 
