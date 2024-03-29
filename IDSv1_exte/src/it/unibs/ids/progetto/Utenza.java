@@ -2,6 +2,8 @@ package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import it.unibs.ids.progetto.news.Fruitore;
+
 /**
  * La classe Utenza gestisce gli utenti nel sistema.
  * 
@@ -52,34 +54,30 @@ public class Utenza implements Serializable {
 	 */
 	public Configuratore autenticazioneConfiguratore(String ID, String Password) {
 		for (Utente utente : utenti) {
-			if (utente.getID().equals(ID)) {
-				if (utente.getPassword().equals(Password)) {
-					if (utente.getTipoUtente() == Configuratore.TIPOUTENTE ){
+			if (utente.getID().equals(ID)) 
+				if (utente.getPSSW().equals(Password)) 
+					if (utente.getTipoUtente() == Configuratore.TIPOUTENTE )
 						return (Configuratore) utente;
-					}
-				}
-			}
 		}
 		return null;
 		
 	}
 	
 	/**
-	 * Verifica l'esistenza di un utente con le credenziali specificate.
+	 * Verifica l'esistenza di un fruitore con le credenziali specificate.
 	 * 
-	 * @param ID L'ID dell'utente
-	 * @param Password La password dell'utente
-	 * @return true se l'utente esiste, false altrimenti
+	 * @param ID L'ID del fruitore
+	 * @param Password La password del fruitore
+	 * @return true se il fruitore esiste, false altrimenti
 	 */
-	public boolean autenticazioneUtente(String ID,String Password) {
+	public Fruitore autenticazioneFruitore(String ID,String Password) {
 		for (Utente utente : utenti) {
-			if (utente.getID().equals(ID)) {
-				if (utente.getPassword().equals(Password)) {
-					return true;
-				}
-			}
+			if (utente.getID().equals(ID)) 
+				if (utente.getPSSW().equals(Password)) 
+					if (utente.getTipoUtente() == Fruitore.TIPOUTENTE )
+						return (Fruitore) utente;
 		}
-		return false;
+		return null;
 	}
 	
 	/**

@@ -1,10 +1,7 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import it.unibs.ids.progetto.Nodo;
-import it.unibs.ids.progetto.Utente;
 
 public class Albero implements Serializable {
 

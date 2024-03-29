@@ -1,12 +1,9 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import it.unibs.ids.progetto.Gerarchia;
-import it.unibs.ids.progetto.Nodo;
 
 /**
  * Classe per la gestione dei fattori di conversione.

@@ -93,7 +93,7 @@ public class Gerarchia implements Serializable {
      * @param root La radice della gerarchia
      * @return Il nodo corrispondente al nome specificato, null se non trovato
      */
-    public Nodo visualizzaNodo(String nomeNodo, String root) {
+    public Nodo visualizzaFoglia(String nomeNodo, String root) {
         return visualizza(nomeNodo, root, this.radici);
     }
     

@@ -342,7 +342,7 @@ public class Main {
             System.out.println(messaggio);
             String foglia = InputDati.leggiStringaNonVuota("  Nome -> ");
             String radice = InputDati.leggiStringaNonVuota("  Radice -> ");
-            nodo = gerarchia.visualizzaNodo(foglia, radice);
+            nodo = gerarchia.visualizzaFoglia(foglia, radice);
             
         } while (nodo == null);
         return nodo;
@@ -369,7 +369,7 @@ public class Main {
     private static void stampaFattori(Gerarchia gerarchia) {
         String foglia = InputDati.leggiStringaNonVuota("Inserisci nome foglia: ");
         String radice = InputDati.leggiStringaNonVuota("Inserisci radice della gerarchia della foglia: ");
-        Nodo nodo = gerarchia.visualizzaNodo(foglia, radice);
+        Nodo nodo = gerarchia.visualizzaFoglia(foglia, radice);
         if (nodo == null)
             System.out.println("  Non è stata trovata nessuna corrispondenza");
         else

@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-import it.unibs.ids.progetto.news.LeafHasChildrenException;
-
 /**
  * La classe Nodo rappresenta un nodo all'interno di un albero.
  * Ogni nodo può essere una foglia o una non foglia.
@@ -280,5 +278,24 @@ public class Nodo implements Serializable {
             }
             return false;
         }
+    }
+    
+    public String stampaElencoFruitore () {
+    	StringBuilder b = new StringBuilder();
+    	b.append(" nome: " + this.nome);
+    	
+    	if (!this.isLeaf) {
+        	b.append("\n |campo: " + this.campo);
+        	b.append("\n |dominio: ");
+        	int var = 0;
+        	for (String[] valore : this.dominio) {
+        		var++;
+    			b.append("\n  " + var + " - " + valore[0]);
+    			if (valore.length>1)
+    				b.append(", " + valore [1]);
+    		}
+    	}	else
+    		b.append(" |foglia!|");
+    	return b.toString();
     }
 }

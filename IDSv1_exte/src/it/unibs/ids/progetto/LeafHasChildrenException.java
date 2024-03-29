@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 
 /**
  * Eccezione personalizzata per gestire il caso in cui unafoglia 

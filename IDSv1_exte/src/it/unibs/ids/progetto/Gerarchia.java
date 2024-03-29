@@ -3,7 +3,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unibs.ids.progetto.news.Albero;
 
 
 /**
@@ -31,31 +30,8 @@ public class Gerarchia implements Serializable {
         this.foglie = new ArrayList<>();
     }
     
-    /**
-     * Restituisce una rappresentazione testuale della 
-     * gerarchia (di tutti i suoi alberi).
-     * 
-     * @return Una stringa che rappresenta la gerarchia
-     */
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        
-        for (Nodo nodo : radici)  {
-            builder.append("\n\n");
-            try {
-                builder.append(new Albero(nodo).toString());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-        return builder.toString();     
-    }
-
-	
  
-
+ 
     public ArrayList<Nodo> getFoglie() {
 		return foglie;
 	}
@@ -93,10 +69,16 @@ public class Gerarchia implements Serializable {
      * @param root La radice della gerarchia
      * @return Il nodo corrispondente al nome specificato, null se non trovato
      */
-    public Nodo visualizzaNodo(String nomeNodo, String root) {
+    public Nodo visualizzaFoglia(String nomeNodo, String root) {
         return visualizza(nomeNodo, root, this.radici);
     }
     
+    public Nodo visualizzaRadice(String root) {   
+        for (Nodo nodo : this.radici) 
+            if (nodo.getNome().equals(root)) 
+            	return nodo;
+        return null;
+    }
     /**
      * Restituisce il nodo corrispondente al nome specificato nella gerarchia.
      * 
@@ -122,5 +104,45 @@ public class Gerarchia implements Serializable {
             }
         }
         return null;
+    }
+    
+    /**
+     * Restituisce una rappresentazione testuale della 
+     * gerarchia (di tutti i suoi alberi).
+     * 
+     * @return Una stringa che rappresenta la gerarchia
+     */
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        
+        for (Nodo nodo : radici)  {
+            builder.append("\n\n");
+            try {
+                builder.append(new Albero(nodo).toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return builder.toString();     
+    }
+    
+    /**
+     * Restituisce una rappresentazione testuale della 
+     * gerarchia (di tutti i suoi alberi).
+     * 
+     * @param alberi La lista degli alberi di nodi
+     * @return Una stringa che rappresenta la gerarchia
+     */
+    public String toStringRadici() {
+        StringBuffer bf = new StringBuffer();
+        
+        for (Nodo nodo : this.radici)  {
+            bf.append("\n* " + nodo.getNome());
+
+        }
+        return bf.toString();
+            
     }
 }
