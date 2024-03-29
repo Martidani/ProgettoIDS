@@ -110,23 +110,5 @@ public class Albero implements Serializable {
         return foglie;
     }
 
-    /**
-     * Verifica se esiste un nodo non radice con il dato nome sotto il nodo radice specificato.
-     * 
-     * @param nome Il nome del nodo da cercare
-     * @param radice Il nodo radice sotto il quale cercare
-     * @return true se esiste un nodo con il nome specificato sotto il nodo radice, false altrimenti
-     */
-    public static boolean verificaEsistenzaNome(String nome, Nodo radice) {
-        if (radice.isLeaf()) {
-            return radice.getNome().equals(nome);
-        } else {
-            for (Nodo nodo : radice.getChildren()) {
-                if (nodo.getNome().equals(nome) || verificaEsistenzaNome(nome, nodo)) {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
+
 }

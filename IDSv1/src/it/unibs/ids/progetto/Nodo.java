@@ -250,4 +250,35 @@ public class Nodo implements Serializable {
 		bf.append("]");
 		return bf.toString();
 	}
+	
+    /**
+     * Verifica se esiste un nodo non radice con il dato nome sotto il nodo radice specificato.
+     * 
+     * @param nome Il nome del nodo da cercare
+     * @param radice Il nodo radice sotto il quale cercare
+     * @return true se esiste un nodo con il nome specificato sotto il nodo radice, false altrimenti
+     */
+    public boolean verificaEsistenzaNome(String nome) {
+    	return verifica(nome, this);
+    }
+    
+    /**
+     * Verifica se esiste un nodo non radice con il dato nome sotto il nodo radice specificato.
+     * 
+     * @param nome Il nome del nodo da cercare
+     * @param radice Il nodo radice sotto il quale cercare
+     * @return true se esiste un nodo con il nome specificato sotto il nodo radice, false altrimenti
+     */
+    public static boolean verifica(String nome, Nodo radice) {
+        if (radice.isLeaf()) {
+            return radice.getNome().equals(nome);
+        } else {
+            for (Nodo nodo : radice.getChildren()) {
+                if (nodo.getNome().equals(nome) || verifica(nome, nodo)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
 }

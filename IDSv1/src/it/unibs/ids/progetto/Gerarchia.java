@@ -17,14 +17,18 @@ public class Gerarchia implements Serializable {
 	
     private static final long serialVersionUID = 1L;
 
-	
-    private ArrayList<Nodo> alberi; 
+    private ArrayList<Albero> alberi;
+    
+    private ArrayList<Nodo> radici; 
+    private ArrayList<Nodo> foglie;
 
     /**
      * Costruttore della classe Gerarchia.
      */
     public Gerarchia() {
         this.alberi = new ArrayList<>();
+        this.radici = new ArrayList<>();
+        this.foglie = new ArrayList<>();
     }
     
     /**
@@ -37,7 +41,7 @@ public class Gerarchia implements Serializable {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         
-        for (Nodo nodo : alberi)  {
+        for (Nodo nodo : radici)  {
             builder.append("\n\n");
             try {
                 builder.append(new Albero(nodo).toString());
@@ -55,8 +59,8 @@ public class Gerarchia implements Serializable {
      * 
      * @return Lista di alberi nella gerarchia
      */
-    public ArrayList<Nodo> getAlberi() {
-        return alberi;
+    public ArrayList<Nodo> getRadici() {
+        return radici;
     }
 
     /**
@@ -65,7 +69,9 @@ public class Gerarchia implements Serializable {
      * @param albero Il nodo radice dell'albero da aggiungere
      */
     public void addAlbero(Albero albero) {
-        alberi.add(albero.getRadice());
+    	alberi.add(albero);
+        radici.add(albero.getRadice());
+        foglie.addAll(albero.getFoglie());
     }
     
     /**
@@ -75,7 +81,7 @@ public class Gerarchia implements Serializable {
      * @return true se esiste un nodo radice con il nome specificato, false altrimenti
      */
     public boolean verificaEsistenzaNomeRadice(String nome) {
-        for (Nodo albero : alberi) {
+        for (Nodo albero : radici) {
             if (albero.getNome().equals(nome)) {
                 return true;
             }
@@ -91,7 +97,7 @@ public class Gerarchia implements Serializable {
      * @return Il nodo corrispondente al nome specificato, null se non trovato
      */
     public Nodo visualizzaNodo(String nomeNodo, String root) {
-        return visualizza(nomeNodo, root, this.alberi);
+        return visualizza(nomeNodo, root, this.radici);
     }
     
     /**

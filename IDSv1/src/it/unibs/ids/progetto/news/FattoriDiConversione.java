@@ -47,7 +47,7 @@ public class FattoriDiConversione {
      */
     public static void addTransitivoFattoreConversione(Gerarchia gerarchia) {
         ArrayList<Nodo> foglie = new ArrayList<Nodo>();
-        for (Nodo nodo : gerarchia.getAlberi()) {
+        for (Nodo nodo : gerarchia.getRadici()) {
             Albero albero = null;
             try {
                 albero = new Albero(nodo);

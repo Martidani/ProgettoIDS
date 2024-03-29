@@ -265,7 +265,7 @@ public class Main {
             String nome;
             do {
                 nome = InputDati.leggiStringaNonVuota("Nome -> ");
-            } while (Albero.verificaEsistenzaNome(nome, radice));
+            } while (radice.verificaEsistenzaNome(nome));
 
             boolean isFoglia = InputDati.yesOrNo("È foglia? ");
             Nodo nodoChild;
