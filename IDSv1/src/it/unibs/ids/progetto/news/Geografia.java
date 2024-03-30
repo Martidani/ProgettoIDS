@@ -7,7 +7,8 @@ import it.unibs.ids.progetto.Comprensorio;
  * La classe Geografia rappresenta l'insieme di 
  * tutti i comprensori del sistema
  * 
- * Autore: Daniele Martinelli e Federico Sabbadini
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
  */
 public class Geografia implements Serializable {
 

@@ -1,11 +1,13 @@
 package it.unibs.ids.progetto;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * La classe Utenza gestisce gli utenti nel sistema.
  * 
- * Autore: Daniele Martinelli e Federico Sabbadini
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
  */
 public class Utenza implements Serializable {
 	

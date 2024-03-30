@@ -7,14 +7,14 @@ import it.unibs.ids.progetto.news.DefaultInitializer;
 import it.unibs.ids.progetto.news.FattoriDiConversione;
 import it.unibs.ids.progetto.news.FileManager;
 import it.unibs.ids.progetto.news.Geografia;
-import it.unibs.ids.progetto.news.ConfLoginFailException;
+import it.unibs.ids.progetto.news.ecccezioni.ConfLoginFailException;
 
 /**
  * Classe Main per l'esecuzione del programma.
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
-public class Main {
+public class Main_old {
 
 
     private static final int NUM_MAX_TENTATIVI = 3;

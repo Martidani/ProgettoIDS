@@ -1,12 +1,19 @@
 package it.unibs.ids.progetto.news;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.unibs.ids.progetto.Nodo;
 import it.unibs.ids.progetto.Utente;
+import it.unibs.ids.progetto.news.ecccezioni.RootTreeException;
 
+/**
+ * Questa classe rappresenta un albero gerarchico, composto da nodi, utilizzato per la gestione delle notizie.
+ * Ogni albero ha una radice, foglie e un utente associato.
+ * 
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
+ */
 public class Albero implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -109,6 +116,5 @@ public class Albero implements Serializable {
     public ArrayList<Nodo> getFoglie() {
         return foglie;
     }
-
 
 }

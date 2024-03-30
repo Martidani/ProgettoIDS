@@ -73,7 +73,7 @@ public abstract class Utente implements Serializable {
         return tipoUtente;
     }
 
-	protected abstract void setIsDefinitivo(boolean b);
+	public abstract void setIsDefinitivo(boolean b);
 
     /**
      * Restituisce lo stato di definitività delle credenziali.

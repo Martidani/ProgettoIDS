@@ -1,8 +1,11 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto.news.ecccezioni;
 
 /**
- * Eccezione personalizzata per gestire il caso in cui unafoglia 
+ * Eccezione personalizzata per gestire il caso in cui una foglia 
  * tenti di aggiungere figli, il che non è consentito.
+ * 
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
  */
 public class LeafHasChildrenException extends Exception {
     
@@ -15,6 +18,4 @@ public class LeafHasChildrenException extends Exception {
     public LeafHasChildrenException() {
         super("Le foglie non possono avere figli");
     }
-    
-    
 }

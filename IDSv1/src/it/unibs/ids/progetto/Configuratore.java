@@ -5,7 +5,8 @@ import java.io.Serializable;
  * La classe Configuratore rappresenta un utente con privilegi di configurazione.
  * Estende la classe astratta Utente.
  * 
- * Autore: Daniele Martinelli e Federico Sabbadini
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
  */
 public class Configuratore extends Utente implements Serializable {
 

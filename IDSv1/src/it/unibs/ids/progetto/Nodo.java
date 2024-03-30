@@ -1,10 +1,11 @@
 package it.unibs.ids.progetto;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import it.unibs.ids.progetto.news.FattoriDiConversione;
-import it.unibs.ids.progetto.news.LeafHasChildrenException;
+import it.unibs.ids.progetto.news.ecccezioni.LeafHasChildrenException;
 
 /**
  * La classe Nodo rappresenta un nodo all'interno di un albero.
@@ -12,7 +13,8 @@ import it.unibs.ids.progetto.news.LeafHasChildrenException;
  * Se un nodo è una foglia, contiene i fattori di conversione verso altri nodi.
  * Se un nodo è una non foglia, può avere figli e contiene informazioni sul campo e sul dominio.
  * 
- * Autore: Daniele Martinelli e Federico Sabbadini
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
  */
 public class Nodo implements Serializable {
 	
@@ -103,7 +105,6 @@ public class Nodo implements Serializable {
 	/**
      * Aggiunge un fattore di conversione tra due nodi e l'inverso del fattore stesso nella relazione inversa.
      * 
-     * @param nodo1 Il primo nodo
      * @param nodo2 Il secondo nodo
      * @param fattore Il fattore di conversione da nodo1 a nodo2
      */
@@ -141,7 +142,7 @@ public class Nodo implements Serializable {
 	}
 
 	/**
-	 * Aggiunge un elemento al dominio del nodo.
+	 * Aggiunge una coppia valore:descrizione al dominio del nodo.
 	 * 
 	 * @param valore       Il valore da aggiungere al dominio.
 	 * @param descrizione  La descrizione associata al valore.
@@ -151,7 +152,7 @@ public class Nodo implements Serializable {
 	}
 
 	/**
-	 * Aggiunge un elemento al dominio del nodo.
+	 * Aggiunge un valore al dominio del nodo.
 	 * 
 	 * @param valore Il valore da aggiungere al dominio.
 	 */

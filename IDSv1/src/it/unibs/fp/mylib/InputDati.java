@@ -1,15 +1,12 @@
 package it.unibs.fp.mylib;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Date;
 
 /**
- * classe per ricevere dati in input
+ * Classe per gestire l'input da parte dell'utente.
  * 
- * Autore: Daniele Martinelli e Federico Sabbadini
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
  */
 public class InputDati 
 {
@@ -39,9 +36,10 @@ public class InputDati
 	  }
 	  
 	  /**
-	   * metodo per leggere una stringa
-	   * @param messaggio Messaggio da mostrare in output
-	   * @return stringa in input
+	   * Metodo per leggere una stringa inserita dall'utente.
+	   * 
+	   * @param messaggio Il messaggio da visualizzare prima della richiesta di input
+	   * @return La stringa inserita dall'utente
 	   */
 	  public static String leggiStringa (String messaggio)
 	  {
@@ -50,9 +48,10 @@ public class InputDati
 	  }
 	  
 	  /**
-	   * metodo per leggere una stringa, che non deve essere vuota
-	   * @param messaggio Messaggio da mostrare in output
-	   * @return stringa in input
+	   * Metodo per leggere una stringa inserita dall'utente, che non deve essere vuota.
+	   * 
+	   * @param messaggio Il messaggio da visualizzare prima della richiesta di input
+	   * @return La stringa inserita dall'utente
 	   */
 	  public static String leggiStringaNonVuota(String messaggio)
 	  {
@@ -72,9 +71,10 @@ public class InputDati
 	  }
 	  
 	  /**
-	   * metodo per leggere un carattere
-	   * @param messaggio Messaggio da mostrare in output
-	   * @return carattere in input
+	   * Metodo per leggere un carattere inserito dall'utente.
+	   * 
+	   * @param messaggio Il messaggio da visualizzare prima della richiesta di input
+	   * @return Il carattere inserito dall'utente
 	   */
 	  public static char leggiChar (String messaggio)
 	  {
@@ -96,8 +96,14 @@ public class InputDati
 	    } while (!finito);
 	   return valoreLetto;
 	  }
-	  
-	  
+	    
+	  /**
+	   * Metodo per leggere un carattere inserito dall'utente, convertendolo in maiuscolo.
+	   * 
+	   * @param messaggio Il messaggio da visualizzare prima della richiesta di input
+	   * @param ammissibili Stringa contenente i caratteri ammissibili
+	   * @return Il carattere inserito dall'utente, convertito in maiuscolo
+	   */
 	  public static char leggiUpperChar (String messaggio, String ammissibili)
 	  {
 	   boolean finito = false;
@@ -113,12 +119,12 @@ public class InputDati
 	   } while (!finito);
 	   return valoreLetto;
 	  }
-	  
-	  
+	    
 	  /**
-	   * metodo per leggere un int
-	   * @param messaggio Messaggio da mostrare in output
-	   * @return intero in input
+	   * Metodo per leggere un intero inserito dall'utente.
+	   * 
+	   * @param messaggio Il messaggio da visualizzare prima della richiesta di input
+	   * @return L'intero inserito dall'utente
 	   */
 	  public static int leggiIntero (String messaggio)
 	  {
@@ -139,32 +145,13 @@ public class InputDati
 	    } while (!finito);
 	   return valoreLetto;
 	  }
-
-	  /**
-	   * metodo per leggere un int maggiore di 0
-	   * @param messaggio Messaggio da mostrare in output
-	   * @return intero in input
-	   */
-	  public static int leggiInteroPositivo(String messaggio)
-	  {
-		  return leggiInteroConMinimo(messaggio,1);
-	  }
 	  
 	  /**
-	   * metodo per leggere un int maggiore o uguale a 0
-	   * @param messaggio Messaggio da mostrare in output
-	   * @return intero in input
-	   */
-	  public static int leggiInteroNonNegativo(String messaggio)
-	  {
-		  return leggiInteroConMinimo(messaggio,0);
-	  }
-	  
-	  /**
-	   * metodo per leggere un int con un valore minimo
-	   * @param messaggio Messaggio da mostrare in output
-	   * @param minimo
-	   * @return intero in input
+	   * Metodo per leggere un intero inserito dall'utente, con un valore minimo specificato.
+	   * 
+	   * @param messaggio Il messaggio da visualizzare prima della richiesta di input
+	   * @param minimo Il valore minimo ammesso per l'intero inserito
+	   * @return L'intero inserito dall'utente
 	   */
 	  public static int leggiInteroConMinimo(String messaggio, int minimo)
 	  {
@@ -183,11 +170,12 @@ public class InputDati
 	  }
 
 	  /**
-	   * metodo per leggere un int tra un minimo e un massimo valore
-	   * @param messaggio Messaggio da mostrare in output
-	   * @param minimo
-	   * @param massimo
-	   * @return intero in input
+	   * Metodo per leggere un intero inserito dall'utente, compreso tra un valore minimo e un valore massimo specificati.
+	   * 
+	   * @param messaggio Il messaggio da visualizzare prima della richiesta di input
+	   * @param minimo Il valore minimo ammesso per l'intero inserito
+	   * @param massimo Il valore massimo ammesso per l'intero inserito
+	   * @return L'intero inserito dall'utente
 	   */
 	  public static int leggiInteroRange(String messaggio, int minimo, int massimo)
 	  {
@@ -209,9 +197,10 @@ public class InputDati
 	  }
 
 	  /**
-	   * metodo per leggere un double
-	   * @param messaggio Messaggio da mostrare in output
-	   * @return double in input
+	   * Metodo per leggere un numero decimale (double) inserito dall'utente.
+	   * 
+	   * @param messaggio Il messaggio da visualizzare prima della richiesta di input
+	   * @return Il numero decimale inserito dall'utente
 	   */
 	  public static double leggiDouble (String messaggio)
 	  {
@@ -234,10 +223,11 @@ public class InputDati
 	  }
 	 
 	  /**
-	   * metodo per leggere un double con valore minimo
-	   * @param messaggio Messaggio da mostrare in output
-	   * @param minimo
-	   * @return double in input
+	   * Metodo per leggere un numero decimale (double) inserito dall'utente, con un valore minimo specificato.
+	   * 
+	   * @param messaggio Il messaggio da visualizzare prima della richiesta di input
+	   * @param minimo Il valore minimo ammesso per il numero decimale inserito
+	   * @return Il numero decimale inserito dall'utente
 	   */
 	  public static double leggiDoubleConMinimo (String messaggio, double minimo)
 	  {
@@ -254,8 +244,13 @@ public class InputDati
 	     
 	   return valoreLetto;
 	  }
-
-	  
+  
+	  /**
+	   * Metodo per chiedere all'utente una conferma (risposta Sì o No) tramite input.
+	   * 
+	   * @param messaggio Il messaggio da visualizzare prima della richiesta di conferma
+	   * @return True se l'utente risponde "Sì", False se l'utente risponde "No"
+	   */
 	  public static boolean yesOrNo(String messaggio)
 	  {
 		  String mioMessaggio = messaggio + "("+RISPOSTA_SI+"/"+RISPOSTA_NO+") ";
@@ -267,81 +262,5 @@ public class InputDati
 			return false;
 	  }
 	  
-	 
-	  /**
-	   * metodo per leggere un carattere che rappresenti il sesso dell'individuo: m, f, M , F
-	   * @param messaggio Messaggio da mostrare in output
-	   * @return carattere in input
-	   */
-	  public static char leggiSesso (String msg) {
-			char sesso;
-			do {
-				sesso = InputDati.leggiChar(msg);
-			} while ((sesso != 'M' && sesso != 'F') && (sesso != 'm' && sesso != 'f'));
-			
-			return sesso;
-		}
-	  
-	  
-	  
-	  /**
-	   * metodo per leggere una data del calendario (stringa)
-	   * @return Date
-	   */
-	  public static Date leggiData () {
-		  Date d = null;
-		  String stringa = leggiStringa(DATE_STRING);
-		  
-		  try {
-			  DateFormat formatoData = DateFormat.getDateInstance(DateFormat.SHORT, Locale.ITALY);
-			  formatoData.setLenient(false);
-			  d = formatoData.parse(stringa);
-			  
-		  } catch (ParseException e) {
-			  System.out.println(ERRORE_FORMATO);
-		  }
-		  
-		  return d;
-	  }
-	  
-	  
-	  /**
-	   * metodo per leggere un orario (stringa)
-	   * @return Date
-	   */
-	  public static Date leggiOrarioCompleto () {
-		  Date d = null;
-		  String stringa = leggiStringa(ORARIO_STRING);
-		  
-		  try {
-			  SimpleDateFormat formatoData = new SimpleDateFormat("hh:mm:ss");
-			  d = formatoData.parse(stringa);
-			  
-		  } catch (ParseException e) {
-			  System.out.println(ERRORE_FORMATO);
-		  }
-		  
-		  return d;
-	  }
-	  
-	  
-	  /**
-	   * metodo per leggere un orario senza ore (stringa)
-	   * @return Date
-	   */
-	  public static Date leggiOrarioCompletoNoHour () {
-		  Date d = null;
-		  String stringa = leggiStringa(ORARIO_STRING_NOHOUR);
-		  
-		  try {
-			  SimpleDateFormat formatoData = new SimpleDateFormat("mm:ss");
-			  d = formatoData.parse(stringa);
-			  
-		  } catch (ParseException e) {
-			  System.out.println(ERRORE_FORMATO);
-		  }
-		  
-		  return d;
-	  }
-	  
+	 	  
 }

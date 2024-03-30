@@ -9,7 +9,7 @@ import it.unibs.ids.progetto.news.Fruitore;
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
-public class Main {
+public class Main_old {
 
 
     private static final int NUM_MAX_TENTATIVI = 3;

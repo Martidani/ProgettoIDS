@@ -7,7 +7,8 @@ import java.io.Serializable;
  * Ogni utente ha un tipo (definito da un carattere) e delle credenziali
  * (identificativo e password).
  * 
- * Autore: Daniele Martinelli e Federico Sabbadini
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
  */
 public abstract class Utente implements Serializable {
 

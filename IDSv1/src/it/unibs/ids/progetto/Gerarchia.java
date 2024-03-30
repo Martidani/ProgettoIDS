@@ -5,12 +5,12 @@ import java.util.List;
 
 import it.unibs.ids.progetto.news.Albero;
 
-
 /**
  * La classe Gerarchia rappresenta l'insieme di tutti gli 
  * alberi nel sistema e gestisce le operazioni su di essi.
  * 
- * Autore: Daniele Martinelli e Federico Sabbadini
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
  */
 public class Gerarchia implements Serializable {
 	
@@ -24,6 +24,7 @@ public class Gerarchia implements Serializable {
 
     /**
      * Costruttore della classe Gerarchia.
+     * Inizializza la gerarchia con liste vuote per gli alberi, le radici e le foglie.
      */
     public Gerarchia() {
         this.alberi = new ArrayList<>();
@@ -53,14 +54,16 @@ public class Gerarchia implements Serializable {
         return builder.toString();     
     }
 
-	
- 
-
+    /**
+     * Restituisce la lista delle foglie presenti nella gerarchia.
+     * 
+     * @return Lista di foglie
+     */
     public ArrayList<Nodo> getFoglie() {
 		return foglie;
 	}
 
-	/**
+    /**
      * Aggiunge un albero alla gerarchia.
      * 
      * @param albero Il nodo radice dell'albero da aggiungere

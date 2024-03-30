@@ -7,7 +7,8 @@ import it.unibs.ids.progetto.Utenza;
  * DataManager è una classe utilizzata per gestire il caricamento e il salvataggio dei dati da e verso file di testo.
  * Supporta il caricamento e il salvataggio di oggetti delle classi Gerarchia, Geografia e Utenza.
  * 
- * Autore: Daniele Martinelli e Federico Sabbadini
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
  */
 public class FileManager {
     

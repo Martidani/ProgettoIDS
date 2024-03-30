@@ -10,7 +10,8 @@ import it.unibs.ids.progetto.Nodo;
 /**
  * Classe per l'inizializzazione predefinita del sistema.
  * 
- * Autore: Daniele Martinelli e Federico Sabbadini
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
  */
 public class DefaultInitializer {
     

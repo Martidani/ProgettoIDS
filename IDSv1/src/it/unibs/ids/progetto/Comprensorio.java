@@ -7,7 +7,8 @@ import java.util.ArrayList;
  * Gli oggetti di questa classe contengono una lista di comuni
  * all'interno di un determinato territorio.
  * 
- * Autore: Daniele Martinelli e Federico Sabbadini
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
  */
 public class Comprensorio implements Serializable {
 
