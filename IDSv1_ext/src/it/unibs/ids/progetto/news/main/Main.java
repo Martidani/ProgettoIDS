@@ -35,13 +35,13 @@ public class Main {
 
         int accesso;
         do {
-            accesso = MenuController.menuAccesso(utenza);
+            accesso = MenuConfController.menuAccesso(utenza);
         } while (accesso == 1);
 
         if (accesso != 0) {
             int scelta;
             do {
-                scelta = MenuController.menuConfiguratore(gerarchia, geografia);
+                scelta = MenuConfController.menuConfiguratore(gerarchia, geografia);
             } while (scelta != 0);
         }
 

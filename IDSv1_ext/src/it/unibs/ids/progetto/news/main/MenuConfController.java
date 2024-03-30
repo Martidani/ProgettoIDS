@@ -12,7 +12,7 @@ import it.unibs.ids.progetto.news.ecccezioni.RootTreeException;
  * @author Daniele Martinelli
  * @author Federico Sabbadini
  */
-public class MenuController {
+public class MenuConfController {
 
 	
     public final static String[] voci = 
