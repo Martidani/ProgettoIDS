@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.news.main;
+package it.unibs.ids.progetto.news;
 
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.Credenziali;
@@ -13,13 +13,10 @@ public abstract class AccessController {
     private static final int NUM_MAX_TENTATIVI = 3;
 
 
-    
-
-
 
 	public abstract void registrazione(Utenza utenza, Geografia geografia);
 	
-	
+    
 	public AccessController() {
 		super();
 	}

@@ -21,10 +21,19 @@ public class Gerarchia implements Serializable {
     private ArrayList<Nodo> radici; 
     private ArrayList<Nodo> foglie;
 
+    private static Gerarchia gerarchia;
+    //singleton
+    public static Gerarchia getGerarchia() {
+    	if (gerarchia == null)
+    		gerarchia= new Gerarchia(); 
+    	return gerarchia;
+    }
+
     /**
      * Costruttore della classe Gerarchia.
+     * Inizializza la gerarchia con liste vuote per gli alberi, le radici e le foglie.
      */
-    public Gerarchia() {
+    private Gerarchia() {
         this.alberi = new ArrayList<>();
         this.radici = new ArrayList<>();
         this.foglie = new ArrayList<>();

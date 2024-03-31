@@ -1,17 +1,16 @@
-package it.unibs.ids.progetto.news.main;
+package it.unibs.ids.progetto.news;
 
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.Credenziali;
+import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Utente;
 import it.unibs.ids.progetto.Utenza;
-import it.unibs.ids.progetto.news.Fruitore;
 
 public class AccessFruitorController extends AccessController {
 
 
-    
 	public AccessFruitorController() {
 		super();
 	}

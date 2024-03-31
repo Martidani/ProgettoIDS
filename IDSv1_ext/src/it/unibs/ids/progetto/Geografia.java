@@ -1,7 +1,6 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
-import it.unibs.ids.progetto.Comprensorio;
 
 /**
  * La classe Geografia rappresenta l'insieme di 
@@ -15,13 +14,21 @@ public class Geografia implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	// Lista dei comprensori geografici nel sistema
-	private ArrayList<Comprensorio> geografia;
+	private ArrayList<Comprensorio> comprensori;
 	
+    private static Geografia geografia;
+    //singleton
+    public static Geografia getGeografia() {
+    	if (geografia == null)
+    		geografia = new Geografia(); 
+    	return geografia;
+    }
+    
 	/**
 	 * Costruttore della classe Geografia.
 	 */
-	public Geografia() {
-		this.geografia = new ArrayList<>();
+	private Geografia() {
+		this.comprensori = new ArrayList<>();
 	}
 	
 	
@@ -31,7 +38,7 @@ public class Geografia implements Serializable {
 	 * @param comprensorio Il comprensorio da aggiungere
 	 */
 	public void addComprensorio(Comprensorio comprensorio) {
-		this.geografia.add(comprensorio);
+		this.comprensori.add(comprensorio);
 	}
 	
 	/**
@@ -39,8 +46,8 @@ public class Geografia implements Serializable {
 	 * 
 	 * @return La lista dei comprensori geografici
 	 */
-	public ArrayList<Comprensorio> getGeografia() {
-		return geografia;
+	public ArrayList<Comprensorio> getComprensori() {
+		return comprensori;
 	}
 	
 	/**
@@ -52,7 +59,7 @@ public class Geografia implements Serializable {
 	public String toString() {
 		StringBuffer bf = new StringBuffer();
 		int num = 0;
-		for (Comprensorio comprensorio : geografia) {
+		for (Comprensorio comprensorio : comprensori) {
 			bf.append("C" + num + "\n");
 			bf.append(comprensorio.toString());
 			bf.append("\n");

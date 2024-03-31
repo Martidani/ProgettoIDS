@@ -1,21 +1,23 @@
-package it.unibs.ids.progetto.news.main;
+package it.unibs.ids.progetto.news;
 
 import it.unibs.fp.mylib.MyMenu;
+import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;
+import it.unibs.ids.progetto.RootTreeException;
 import it.unibs.ids.progetto.Utenza;
-import it.unibs.ids.progetto.news.Geografia;
-import it.unibs.ids.progetto.news.ecccezioni.RootTreeException;
 
-/**
- * Questa classe gestisce i menu dell'applicazione e le relative azioni.
- * 
- * @author Daniele Martinelli
- * @author Federico Sabbadini
- */
-public class MenuConfController {
+public class MenuConfController implements MenuController{
 
+	public AccessController accessConfController;
+	public WorkController workConfController;
 	
-    public final static String[] voci = 
+    public MenuConfController() {
+		super();
+		this.accessConfController = new AccessConfController();
+		this.workConfController = new WorkConfController();
+	}
+    
+	public final static String[] voci = 
         {"Introdurre comprensorio geografico", "Introdurre albero", "Visualizza comprensorio", 
             "Visualizza gerarchia", "Visualizza fattori di conversione"};
     
@@ -27,9 +29,9 @@ public class MenuConfController {
      * @param gerarchia L'oggetto Gerarchia su cui effettuare le operazioni.
      * @param geografia L'oggetto Geografia su cui effettuare le operazioni.
      * @return La scelta effettuata dall'utente.
-     * @throws RootTreeException Eccezione sollevata in caso di errore nella manipolazione dell'albero.
+     * @throws RootTreeException 
      */
-    public static int menuConfiguratore(Gerarchia gerarchia, Geografia geografia) throws RootTreeException {
+    public int menu(Gerarchia gerarchia, Geografia geografia) throws RootTreeException {
         int scelta;
         scelta = menuConfiguratore.scegli();
         switch (scelta) {
@@ -47,7 +49,7 @@ public class MenuConfController {
                 break;
 
             case 4:
-                WorkConfController.stampaGerarchia(gerarchia);
+                workConfController.navigaGerarchia(gerarchia);
                 break;
 
             case 5:
@@ -61,6 +63,7 @@ public class MenuConfController {
     }
 
     
+	
     public final static String[] vociAccesso = 
         {"Registrazione","Login"};
     
@@ -72,21 +75,26 @@ public class MenuConfController {
      * @param utenza L'utente che sta effettuando l'accesso.
      * @return La scelta effettuata dall'utente.
      */
-    public static int menuAccesso(Utenza utenza) {
+    public int menuAccesso(Utenza utenza, Geografia geografia) {
         int accesso;
         accesso = menuAccesso.scegli();
         switch (accesso) {
-            case 1:
-                AccessConfController.registrazione(utenza);
-                break;
+        case 1:
+        	accessConfController.registrazione(utenza, geografia);
+            break;
 
-            case 2:
-                accesso = AccessConfController.login(utenza);
-                break;
+        case 2:
 
-            default:
-                break;
-        }
+        	accesso = accessConfController.login(utenza);
+        	
+            break;
+
+        default:
+            break;
+    }
         return accesso;
     }
+    
+
+	
 }

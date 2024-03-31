@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.news.main;
+package it.unibs.ids.progetto.news;
 
 import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;

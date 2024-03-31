@@ -1,10 +1,10 @@
-package it.unibs.ids.progetto.news.main;
+package it.unibs.ids.progetto.news;
 
 import it.unibs.fp.mylib.InputDati;
+import it.unibs.ids.progetto.ConfLoginFailException;
 import it.unibs.ids.progetto.Configuratore;
 import it.unibs.ids.progetto.Credenziali;
 import it.unibs.ids.progetto.Utenza;
-import it.unibs.ids.progetto.news.ecccezioni.ConfLoginFailException;
 
 /**
  * Questa classe gestisce le operazioni di login e registrazione degli utenti.

@@ -13,15 +13,22 @@ public class Geografia implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	// Lista dei comprensori geografici nel sistema
-	private ArrayList<Comprensorio> geografia;
+	private ArrayList<Comprensorio> comprensori;
 	
+    private static Geografia geografia;
+    //singleton
+    public static Geografia getGeografia() {
+    	if (geografia == null)
+    		geografia = new Geografia(); 
+    	return geografia;
+    }
+    
 	/**
 	 * Costruttore della classe Geografia.
 	 */
-	public Geografia() {
-		this.geografia = new ArrayList<>();
+	private Geografia() {
+		this.comprensori = new ArrayList<>();
 	}
-	
 	
 	/**
 	 * Aggiunge un comprensorio alla lista dei comprensori geografici nel sistema.
@@ -29,7 +36,7 @@ public class Geografia implements Serializable {
 	 * @param comprensorio Il comprensorio da aggiungere
 	 */
 	public void addComprensorio(Comprensorio comprensorio) {
-		this.geografia.add(comprensorio);
+		this.comprensori.add(comprensorio);
 	}
 	
 	/**
@@ -37,14 +44,14 @@ public class Geografia implements Serializable {
 	 * 
 	 * @return La lista dei comprensori geografici
 	 */
-	public ArrayList<Comprensorio> getGeografia() {
-		return geografia;
+	public ArrayList<Comprensorio> getComprensori() {
+		return comprensori;
 	}
 	
 	
 	public Comprensorio cercaComprensorio (String nome) {
 		
-		for (Comprensorio comprensorio : geografia) {
+		for (Comprensorio comprensorio : comprensori) {
 			if (comprensorio.getNome().equals(nome))
 				return comprensorio;
 		}
@@ -64,7 +71,7 @@ public class Geografia implements Serializable {
 	@Override
 	public String toString() {
 		StringBuffer bf = new StringBuffer();
-		for (Comprensorio comprensorio : geografia) {
+		for (Comprensorio comprensorio : comprensori) {
 			bf.append(comprensorio.toString());
 			bf.append("\n");
 		}

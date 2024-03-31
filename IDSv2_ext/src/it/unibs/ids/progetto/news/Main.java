@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.news.main;
+package it.unibs.ids.progetto.news;
 
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.DefaultInitializer;
@@ -26,7 +26,7 @@ public class Main {
 
         if (utenza == null || gerarchia == null || geografia == null) {
             // Inizializzazione predefinita degli oggetti solo se non sono stati caricati da file
-            DefaultInitializer defaultInitializer = new DefaultInitializer();
+            DefaultInitializer defaultInitializer = DefaultInitializer.getDefaultInitializer();
             gerarchia = defaultInitializer.getGerarchia();
             utenza = defaultInitializer.getUtenza();
             geografia = defaultInitializer.getGeografia();

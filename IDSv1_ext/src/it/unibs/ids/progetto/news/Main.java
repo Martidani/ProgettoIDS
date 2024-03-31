@@ -1,10 +1,10 @@
-package it.unibs.ids.progetto.news.main;
+package it.unibs.ids.progetto.news;
 
+import it.unibs.ids.progetto.DefaultInitializer;
+import it.unibs.ids.progetto.FileManager;
+import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.Utenza;
-import it.unibs.ids.progetto.news.DefaultInitializer;
-import it.unibs.ids.progetto.news.FileManager;
-import it.unibs.ids.progetto.news.Geografia;
 
 /**
  * Classe che contiene il metodo main per l'esecuzione dell'applicazione.
@@ -24,7 +24,7 @@ public class Main {
 
         if (utenza == null || gerarchia == null || geografia == null) {
             // Inizializzazione predefinita degli oggetti solo se non sono stati caricati da file
-            DefaultInitializer defaultInitializer = new DefaultInitializer();
+            DefaultInitializer defaultInitializer = DefaultInitializer.getDefaultInitializer();
             gerarchia = defaultInitializer.getGerarchia();
             utenza = defaultInitializer.getUtenza();
             geografia = defaultInitializer.getGeografia();

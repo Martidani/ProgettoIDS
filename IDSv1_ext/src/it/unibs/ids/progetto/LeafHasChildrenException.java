@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.news.ecccezioni;
+package it.unibs.ids.progetto;
 
 /**
  * Eccezione personalizzata per gestire il caso in cui una foglia 

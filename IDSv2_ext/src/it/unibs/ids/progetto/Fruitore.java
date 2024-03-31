@@ -1,8 +1,5 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 import java.io.Serializable;
-import it.unibs.ids.progetto.Comprensorio;
-import it.unibs.ids.progetto.Credenziali;
-import it.unibs.ids.progetto.Utente;
 
 /**
  * La classe Configuratore rappresenta un utente con privilegi di configurazione.

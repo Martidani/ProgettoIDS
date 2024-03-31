@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.news.main;
+package it.unibs.ids.progetto.news;
 
 import it.unibs.ids.progetto.Configuratore;
 import it.unibs.ids.progetto.Credenziali;
@@ -15,10 +15,6 @@ import it.unibs.ids.progetto.Utenza;
  */
 public class AccessConfController extends AccessController {
 	
-
-
-
-    
 
     public AccessConfController() {
 		super();

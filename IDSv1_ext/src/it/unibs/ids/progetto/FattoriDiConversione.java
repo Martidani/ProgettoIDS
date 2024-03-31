@@ -3,7 +3,7 @@
  * Autore: Federico Sabbadini
  */
 
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,9 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import it.unibs.ids.progetto.Gerarchia;
-import it.unibs.ids.progetto.Nodo;
 
 /**
  * Classe per la gestione dei fattori di conversione.

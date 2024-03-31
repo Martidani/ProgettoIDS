@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.news.main;
+package it.unibs.ids.progetto.news;
 
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.Gerarchia;
@@ -6,7 +6,7 @@ import it.unibs.ids.progetto.Nodo;
 
 public class WorkFruitorController implements WorkController {
 
-	
+    
 	public WorkFruitorController() {
 		super();
 	}

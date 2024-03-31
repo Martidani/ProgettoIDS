@@ -1,11 +1,7 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import it.unibs.ids.progetto.Nodo;
-import it.unibs.ids.progetto.Utente;
-import it.unibs.ids.progetto.news.ecccezioni.RootTreeException;
 
 /**
  * Questa classe rappresenta un albero gerarchico, composto da nodi, utilizzato per la gestione delle notizie.

@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.news.main;
+package it.unibs.ids.progetto.news;
 
 import java.util.ArrayList;
 
@@ -20,9 +20,7 @@ import it.unibs.ids.progetto.RootTreeException;
  */
 public class WorkConfController implements WorkController {
 
-
-
-    public WorkConfController() {
+	public WorkConfController() {
 		super();
 
 	}

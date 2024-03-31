@@ -3,8 +3,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
-import it.unibs.ids.progetto.news.Fruitore;
-
 /**
  * La classe Utenza gestisce gli utenti nel sistema.
  * 
@@ -19,10 +17,18 @@ public class Utenza implements Serializable {
 	private ArrayList<Utente> utenti;
 
 
+    private static Utenza utenza;
+    //singleton
+    public static Utenza getUtenza() {
+    	if (utenza == null)
+    		utenza= new Utenza(); 
+    	return utenza;
+    }
+
 	/**
 	 * Costruttore della classe Utenza.
 	 */
-	public Utenza() {
+	private Utenza() {
 		this.utenti = new ArrayList<>();
 	}
 	

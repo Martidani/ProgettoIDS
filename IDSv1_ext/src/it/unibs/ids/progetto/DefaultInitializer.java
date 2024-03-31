@@ -1,11 +1,4 @@
-package it.unibs.ids.progetto.news;
-
-import it.unibs.ids.progetto.Comprensorio;
-import it.unibs.ids.progetto.Configuratore;
-import it.unibs.ids.progetto.Credenziali;
-import it.unibs.ids.progetto.Gerarchia;
-import it.unibs.ids.progetto.Utenza;
-import it.unibs.ids.progetto.Nodo;
+package it.unibs.ids.progetto;
 
 /**
  * Classe per l'inizializzazione predefinita del sistema.
@@ -28,6 +21,14 @@ public class DefaultInitializer {
     private static final String DEFAULT_USERNAME = "admin";
     private static final String DEFAULT_PASSWORD = "admin";
     
+    private static DefaultInitializer defaultInitializer;
+    //singleton
+    public static DefaultInitializer getDefaultInitializer() {
+    	if (defaultInitializer == null)
+    		defaultInitializer= new DefaultInitializer(); 
+    	return defaultInitializer;
+    }
+    
     private Gerarchia gerarchia;
     private Utenza utenza;
     private Geografia geografia;
@@ -35,11 +36,12 @@ public class DefaultInitializer {
     /**
      * Costruttore che inizializza gli oggetti di default.
      */
-    public DefaultInitializer() {
+    private DefaultInitializer() {
         this.utenza = defaultAccess();
         this.gerarchia = defaultTree();
         this.geografia = defaultWorld();
     }
+
 
     /**
      * Restituisce l'albero gerarchico predefinito.
@@ -74,7 +76,7 @@ public class DefaultInitializer {
      * @return L'albero gerarchico di default
      */
     public Gerarchia defaultTree() {
-        Gerarchia gerarchia = new Gerarchia();
+        Gerarchia gerarchia = Gerarchia.getGerarchia();
 
         // Creazione del nodo radice
         Nodo nodo1 = new Nodo(ROOT_NAME, true, ROOT_FIELD);
@@ -111,7 +113,7 @@ public class DefaultInitializer {
      * @return L'utenza di default
      */
     public Utenza defaultAccess() {
-        Utenza utenza = new Utenza();
+        Utenza utenza = Utenza.getUtenza();
 
         // Creazione delle credenziali di default per l'utente admin
         Credenziali cred = new Credenziali(DEFAULT_USERNAME, DEFAULT_PASSWORD);
@@ -141,7 +143,7 @@ public class DefaultInitializer {
      * @return La geografia di default
      */
     public Geografia defaultWorld() {
-        Geografia geografia = new Geografia();
+        Geografia geografia = Geografia.getGeografia();
         geografia.addComprensorio(defaultComprensorio());
         return geografia;
     }

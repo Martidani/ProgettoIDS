@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unibs.ids.progetto.news.FattoriDiConversione;
-import it.unibs.ids.progetto.news.ecccezioni.LeafHasChildrenException;
-
 /**
  * La classe Nodo rappresenta un nodo all'interno di un albero.
  * Ogni nodo può essere una foglia o una non foglia.

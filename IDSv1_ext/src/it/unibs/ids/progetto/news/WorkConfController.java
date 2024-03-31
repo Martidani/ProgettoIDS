@@ -1,15 +1,15 @@
-package it.unibs.ids.progetto.news.main;
+package it.unibs.ids.progetto.news;
 
 import java.util.ArrayList;
 
 import it.unibs.fp.mylib.InputDati;
+import it.unibs.ids.progetto.Albero;
 import it.unibs.ids.progetto.Comprensorio;
+import it.unibs.ids.progetto.FattoriDiConversione;
+import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.Nodo;
-import it.unibs.ids.progetto.news.Albero;
-import it.unibs.ids.progetto.news.FattoriDiConversione;
-import it.unibs.ids.progetto.news.Geografia;
-import it.unibs.ids.progetto.news.ecccezioni.RootTreeException;
+import it.unibs.ids.progetto.RootTreeException;
 
 /**
  * Questa classe gestisce le operazioni relative alla configurazione dei dati.
