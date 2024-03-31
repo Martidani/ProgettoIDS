@@ -43,6 +43,21 @@ public class Geografia implements Serializable {
 		return geografia;
 	}
 	
+	public Comprensorio cercaComprensorio (String nome) {
+		
+		for (Comprensorio comprensorio : geografia) {
+			if (comprensorio.getNome().equals(nome))
+				return comprensorio;
+		}
+		return null;
+	}
+	
+	public boolean verificaEsistenzaComprensorio (String nome) {
+		if (cercaComprensorio(nome) == null)
+			return false;
+		return true;
+	}
+	
 	/**
 	 * Restituisce una rappresentazione testuale della geografia, includendo la lista dei comprensori.
 	 * 

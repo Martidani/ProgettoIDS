@@ -1,19 +1,11 @@
 package it.unibs.ids.progetto.news;
 
-
 import java.io.Serializable;
-import java.util.List;
-
 import it.unibs.ids.progetto.FattoriDiConversione;
-import it.unibs.ids.progetto.LeafHasChildrenException;
-
 
 public class Leaf extends Nodo implements Serializable {
 
-	private String nome;
-	private static boolean isLeaf = true;
-	private boolean isRoot = false;
-
+	private static final long serialVersionUID = 1L;
 	private FattoriDiConversione fattori;
 	
 
@@ -44,7 +36,7 @@ public class Leaf extends Nodo implements Serializable {
 	 * @return True se il nodo è una foglia, altrimenti False.
 	 */
 	public boolean isLeaf() {
-		return isLeaf;
+		return true;
 	}
 
 	/**
@@ -62,7 +54,7 @@ public class Leaf extends Nodo implements Serializable {
 	 * @return True se il nodo è una radice, altrimenti False.
 	 */
 	public boolean isRoot() {
-		return isRoot;
+		return false;
 	}
 
 	/**
@@ -97,5 +89,7 @@ public class Leaf extends Nodo implements Serializable {
 		
 		return bf.toString();
 	}
+	
+
 	
 }

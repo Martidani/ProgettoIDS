@@ -9,8 +9,7 @@ import it.unibs.fp.mylib.Estrattore;
  * Se un utente si è appena registrato avrà delle credenziali 
  * non definitive fino alla loro modifica.
  * 
- * @author Daniele Martinelli
- * @author Federico Sabbadini
+ * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class Credenziali implements Serializable {
 

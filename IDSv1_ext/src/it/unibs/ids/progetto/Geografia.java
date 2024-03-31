@@ -6,8 +6,7 @@ import java.util.ArrayList;
  * La classe Geografia rappresenta l'insieme di 
  * tutti i comprensori del sistema
  * 
- * @author Daniele Martinelli
- * @author Federico Sabbadini
+ * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class Geografia implements Serializable {
 
@@ -31,7 +30,6 @@ public class Geografia implements Serializable {
 		this.comprensori = new ArrayList<>();
 	}
 	
-	
 	/**
 	 * Aggiunge un comprensorio alla lista dei comprensori geografici nel sistema.
 	 * 
@@ -50,6 +48,21 @@ public class Geografia implements Serializable {
 		return comprensori;
 	}
 	
+	
+	public Comprensorio cercaComprensorio (String nome) {
+		
+		for (Comprensorio comprensorio : comprensori) {
+			if (comprensorio.getNome().equals(nome))
+				return comprensorio;
+		}
+		return null;
+	}
+	
+	public boolean verificaEsistenzaComprensorio (String nome) {
+		if (cercaComprensorio(nome) == null)
+			return false;
+		return true;
+	}
 	/**
 	 * Restituisce una rappresentazione testuale della geografia, includendo la lista dei comprensori.
 	 * 
@@ -58,12 +71,9 @@ public class Geografia implements Serializable {
 	@Override
 	public String toString() {
 		StringBuffer bf = new StringBuffer();
-		int num = 0;
 		for (Comprensorio comprensorio : comprensori) {
-			bf.append("C" + num + "\n");
 			bf.append(comprensorio.toString());
 			bf.append("\n");
-			num++;
 		}
 		
 		return bf.toString();

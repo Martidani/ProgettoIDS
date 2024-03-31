@@ -7,26 +7,36 @@ import java.util.ArrayList;
  * Gli oggetti di questa classe contengono una lista di comuni
  * all'interno di un determinato territorio.
  * 
- * @author Daniele Martinelli
- * @author Federico Sabbadini
+ * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class Comprensorio implements Serializable {
 
-    // Numero di versione per la serializzazione
+	
     private static final long serialVersionUID = 1L;
-    
-    // Lista dei comuni nel comprensorio
+    private String nome;
     private ArrayList<String> comprensorio;
     
     /**
      * Costruttore della classe Comprensorio.
      * Crea un nuovo oggetto Comprensorio con una lista vuota di comuni.
      */
-    public Comprensorio() {
+    public Comprensorio(String nome) {
         this.comprensorio = new ArrayList<>();
+        this.nome = nome;
     }
 
-    /**
+    
+    public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+	/**
      * Restituisce la lista di comuni contenuti nel comprensorio.
      * 
      * @return ArrayList<String> La lista di comuni
@@ -50,14 +60,16 @@ public class Comprensorio implements Serializable {
      * 
      * @return String La rappresentazione testuale del comprensorio
      */
-    @Override
     public String toString() {
-        // Costruisce una rappresentazione testuale del comprensorio
-        StringBuilder builder = new StringBuilder();
+        StringBuffer bf = new StringBuffer();
+        bf.append(this.nome + "\n");
         for (String comune : comprensorio) {
-            builder.append(" - ").append(comune).append("\n");
+            bf.append(" - " + comune);
+            bf.append("\n");
         }
         
-        return builder.toString();
+        return bf.toString();
     }
+
+
 }

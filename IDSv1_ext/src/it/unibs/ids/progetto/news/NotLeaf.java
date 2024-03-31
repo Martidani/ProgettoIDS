@@ -3,13 +3,13 @@ package it.unibs.ids.progetto.news;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import it.unibs.ids.progetto.FattoriDiConversione;
 import it.unibs.ids.progetto.LeafHasChildrenException;
 
 
 public class NotLeaf extends Nodo implements Serializable {
 
-
+	private static final long serialVersionUID = 1L;
+	private boolean isRoot;
 	private List<Nodo> children;
 	private String campo;
 	private List<String[]> dominio;
@@ -25,7 +25,6 @@ public class NotLeaf extends Nodo implements Serializable {
 		this.isRoot = isRoot;
 		this.campo = campo;
 		this.nome = nome;
-		this.isLeaf = false;
 		this.children = new ArrayList<>();
 		this.dominio = new ArrayList<>();
 	}
@@ -47,6 +46,10 @@ public class NotLeaf extends Nodo implements Serializable {
 	 */
 	public String getCampo() {
 		return campo;
+	}
+	
+	public boolean isRoot() {
+		return isRoot;
 	}
 
 	/**
@@ -95,8 +98,6 @@ public class NotLeaf extends Nodo implements Serializable {
 	 * @throws LeafHasChildrenException Se il nodo è una foglia, non può avere figli.
 	 */
 	public void addChild(Nodo child) throws LeafHasChildrenException {
-		if (this.isLeaf)
-			throw new LeafHasChildrenException();
 		this.children.add(child);
 	}
 
@@ -155,8 +156,12 @@ public class NotLeaf extends Nodo implements Serializable {
 		bf.append("]");
 		return bf.toString();
 	}
-	
- 
-	
+
+
+	@Override
+	public boolean isLeaf() {
+		return false;
+	}
 	
 }
+	

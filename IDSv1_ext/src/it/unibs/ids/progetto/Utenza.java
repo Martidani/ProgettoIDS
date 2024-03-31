@@ -1,13 +1,12 @@
 package it.unibs.ids.progetto;
-
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 /**
  * La classe Utenza gestisce gli utenti nel sistema.
  * 
- * @author Daniele Martinelli
- * @author Federico Sabbadini
+ * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class Utenza implements Serializable {
 	
@@ -16,6 +15,7 @@ public class Utenza implements Serializable {
 	
 	// Lista degli utenti nel sistema
 	private ArrayList<Utente> utenti;
+
 
     private static Utenza utenza;
     //singleton
@@ -52,27 +52,28 @@ public class Utenza implements Serializable {
 	}
 
 	
-	/**
-	 * Verifica l'esistenza di un configuratore con le credenziali specificate.
-	 * 
-	 * @param ID L'ID dell'utente
-	 * @param Password La password dell'utente
-	 * @return Il configuratore corrispondente alle credenziali, null se non trovato
-	 */
-	public Configuratore autenticazioneConfiguratore(String ID, String Password) {
-		for (Utente utente : utenti) {
-			if (utente.getID().equals(ID)) {
-				if (utente.getPassword().equals(Password)) {
-					if (utente.getTipoUtente() == Configuratore.TIPOUTENTE ){
-						return (Configuratore) utente;
-					}
-				}
-			}
-		}
-		return null;
-		
-	}
-	
+    /**
+     * Verifica l'esistenza di un utente con le credenziali specificate.
+     * 
+     * @param ID L'ID dell'utente
+     * @param Password La password dell'utente
+     * @param predicate Il predicato per filtrare l'utente desiderato
+     * @return L'utente corrispondente alle credenziali, null se non trovato
+     */
+    private Utente autenticazione(String ID, String Password, Predicate<Utente> predicate) {
+        return utenti.stream()
+                .filter(utente -> utente.getID().equals(ID))
+                .filter(utente -> utente.getPassword().equals(Password))
+                .filter(predicate)
+                .findFirst()
+                .orElse(null);
+    }
+    
+    public Configuratore autenticazioneConfiguratore(String ID, String Password) {
+        return (Configuratore) autenticazione(ID, Password, 
+        		utente -> utente.getTipoUtente() == Configuratore.TIPOUTENTE);
+    }
+    
 	/**
 	 * Verifica l'esistenza di un ID utente nel sistema.
 	 * 
@@ -80,13 +81,12 @@ public class Utenza implements Serializable {
 	 * @return true se l'ID esiste, false altrimenti
 	 */
 	public boolean verificaEsistenzaID(String id) {
-		for (Utente utente : utenti) {
-			if (utente.getID().equals(id)) {
+		for (Utente utente : utenti) 
+			if (utente.getID().equals(id)) 
 				return true;
-			}
-		}
 		return false;
 	}
+
 
 	
 }

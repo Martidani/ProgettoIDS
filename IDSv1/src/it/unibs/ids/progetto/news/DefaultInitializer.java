@@ -21,6 +21,7 @@ public class DefaultInitializer {
     private static final String CHILD2_NAME = "rootchild2";
     private static final String CHILD1_NAME = "rootchild1";
     
+	private static final String DEFAULT_NAME_COMMUNITY_0 = "C0";
     private static final String DEFAULT_COMMUNITY_1 = "Comune1";
     private static final String DEFAULT_COMMUNITY_2 = "Comune2";
     private static final String DEFAULT_COMMUNITY_3 = "Comune3";
@@ -128,7 +129,7 @@ public class DefaultInitializer {
      * @return Il comprensorio di default
      */
     private Comprensorio defaultComprensorio() {
-        Comprensorio comprensorio = new Comprensorio();
+        Comprensorio comprensorio = new Comprensorio(DEFAULT_NAME_COMMUNITY_0);
         comprensorio.addComune(DEFAULT_COMMUNITY_1);
         comprensorio.addComune(DEFAULT_COMMUNITY_2);
         comprensorio.addComune(DEFAULT_COMMUNITY_3);

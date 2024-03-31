@@ -1,14 +1,12 @@
 package it.unibs.ids.progetto;
 
-import it.unibs.ids.progetto.news.Leaf;
-import it.unibs.ids.progetto.news.Nodo;
 import it.unibs.ids.progetto.news.NotLeaf;
+import it.unibs.ids.progetto.news.Leaf;
 
 /**
  * Classe per l'inizializzazione predefinita del sistema.
  * 
- * @author Daniele Martinelli
- * @author Federico Sabbadini
+ * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class DefaultInitializer {
     
@@ -18,12 +16,17 @@ public class DefaultInitializer {
     private static final String CHILD2_NAME = "rootchild2";
     private static final String CHILD1_NAME = "rootchild1";
     
+	private static final String DEFAULT_NAME_COMMUNITY_0 = "C0";
     private static final String DEFAULT_COMMUNITY_1 = "Comune1";
     private static final String DEFAULT_COMMUNITY_2 = "Comune2";
     private static final String DEFAULT_COMMUNITY_3 = "Comune3";
     
     private static final String DEFAULT_USERNAME = "admin";
     private static final String DEFAULT_PASSWORD = "admin";
+    
+    private Gerarchia gerarchia;
+    private Utenza utenza;
+    private Geografia geografia;
     
     private static DefaultInitializer defaultInitializer;
     //singleton
@@ -33,10 +36,6 @@ public class DefaultInitializer {
     	return defaultInitializer;
     }
     
-    private Gerarchia gerarchia;
-    private Utenza utenza;
-    private Geografia geografia;
-    
     /**
      * Costruttore che inizializza gli oggetti di default.
      */
@@ -45,7 +44,6 @@ public class DefaultInitializer {
         this.gerarchia = defaultTree();
         this.geografia = defaultWorld();
     }
-
 
     /**
      * Restituisce l'albero gerarchico predefinito.
@@ -134,7 +132,7 @@ public class DefaultInitializer {
      * @return Il comprensorio di default
      */
     private Comprensorio defaultComprensorio() {
-        Comprensorio comprensorio = new Comprensorio();
+        Comprensorio comprensorio = new Comprensorio(DEFAULT_NAME_COMMUNITY_0);
         comprensorio.addComune(DEFAULT_COMMUNITY_1);
         comprensorio.addComune(DEFAULT_COMMUNITY_2);
         comprensorio.addComune(DEFAULT_COMMUNITY_3);

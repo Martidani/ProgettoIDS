@@ -7,17 +7,10 @@ import it.unibs.ids.progetto.news.Leaf;
 import it.unibs.ids.progetto.news.Nodo;
 import it.unibs.ids.progetto.news.NotLeaf;
 
-/**
- * Questa classe rappresenta un albero gerarchico, composto da nodi, utilizzato per la gestione delle notizie.
- * Ogni albero ha una radice, foglie e un utente associato.
- * 
- * @author Daniele Martinelli
- * @author Federico Sabbadini
- */
 public class Albero implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Nodo radice;
+    private NotLeaf radice;
     private ArrayList<Leaf> foglie;
     private Utente utente;
 
@@ -26,9 +19,8 @@ public class Albero implements Serializable {
      * 
      * @param radice Il nodo radice dell'albero
      * @throws RootTreeException Se il nodo specificato non è una radice
-     * @throws LeafHasChildrenException 
      */
-    public Albero(Nodo radice) throws RootTreeException, LeafHasChildrenException {
+    public Albero(NotLeaf radice) throws RootTreeException {
         if (!radice.isRoot()) throw new RootTreeException();
         this.foglie = new ArrayList<Leaf>();
         this.radice = radice;
@@ -57,9 +49,8 @@ public class Albero implements Serializable {
      * Aggiunge le foglie dell'albero all'elenco delle foglie dell'albero.
      * 
      * @param albero Il nodo radice dell'albero
-     * @throws LeafHasChildrenException 
      */
-    private void addFoglie(Nodo albero) throws LeafHasChildrenException {
+    private void addFoglie(Nodo albero) {
         if (albero.isLeaf()) 
             foglie.add((Leaf)albero);
         else {
@@ -74,13 +65,9 @@ public class Albero implements Serializable {
      * 
      * @return Una stringa che rappresenta l'albero
      */
-    public String toString(){
+    public String toString() {
         StringBuffer bf = new StringBuffer();
-        try {
-			iterative(bf, this.radice, 1);
-		} catch (LeafHasChildrenException e) {
-			System.out.println(e.getMessage());
-		}
+        iterative(bf, this.radice, 1);
         return bf.toString();
     }
 
@@ -90,9 +77,8 @@ public class Albero implements Serializable {
      * @param bf Il buffer in cui aggiungere la rappresentazione
      * @param nodo Il nodo corrente
      * @param depth La profondità del nodo nella gerarchia
-     * @throws LeafHasChildrenException 
      */
-    private static void iterative(StringBuffer bf, Nodo nodo, int depth) throws LeafHasChildrenException {
+    private static void iterative(StringBuffer bf, Nodo nodo, int depth) {
         String asterischi = "*".repeat(depth); // Genera una stringa di asterischi in base al grado di "figlio di"
         String blank = " ".repeat(depth + 1);
         if (nodo.isLeaf()) {
@@ -111,7 +97,7 @@ public class Albero implements Serializable {
      * 
      * @return Nodo La radice dell'albero
      */
-    public Nodo getRadice() {
+    public NotLeaf getRadice() {
         return radice;
     }
 
@@ -123,5 +109,6 @@ public class Albero implements Serializable {
     public ArrayList<Leaf> getFoglie() {
         return foglie;
     }
+
 
 }

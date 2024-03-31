@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibs.ids.progetto.news.Leaf;
-import it.unibs.ids.progetto.news.Nodo;
 import it.unibs.ids.progetto.news.NotLeaf;
+import it.unibs.ids.progetto.news.Nodo;
+
+
 
 /**
  * La classe Gerarchia rappresenta l'insieme di tutti gli 
  * alberi nel sistema e gestisce le operazioni su di essi.
  * 
- * @author Daniele Martinelli
- * @author Federico Sabbadini
+ * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class Gerarchia implements Serializable {
 	
@@ -23,7 +24,7 @@ public class Gerarchia implements Serializable {
     
     private ArrayList<Nodo> radici; 
     private ArrayList<Leaf> foglie;
-    
+
     private static Gerarchia gerarchia;
     //singleton
     public static Gerarchia getGerarchia() {
@@ -42,38 +43,13 @@ public class Gerarchia implements Serializable {
         this.foglie = new ArrayList<>();
     }
     
-    /**
-     * Restituisce una rappresentazione testuale della 
-     * gerarchia (di tutti i suoi alberi).
-     * 
-     * @return Una stringa che rappresenta la gerarchia
-     */
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        
-        for (Nodo nodo : radici)  {
-            builder.append("\n\n");
-            try {
-                builder.append(new Albero(nodo).toString());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-        return builder.toString();     
-    }
-
-    /**
-     * Restituisce la lista delle foglie presenti nella gerarchia.
-     * 
-     * @return Lista di foglie
-     */
+ 
+ 
     public ArrayList<Leaf> getFoglie() {
 		return foglie;
 	}
 
-    /**
+	/**
      * Aggiunge un albero alla gerarchia.
      * 
      * @param albero Il nodo radice dell'albero da aggiungere
@@ -81,7 +57,7 @@ public class Gerarchia implements Serializable {
     public void addAlbero(Albero albero) {
     	alberi.add(albero);
         radici.add(albero.getRadice());
-        foglie.addAll( albero.getFoglie() );
+        foglie.addAll(albero.getFoglie());
     }
     
     /**
@@ -105,12 +81,17 @@ public class Gerarchia implements Serializable {
      * @param nomeNodo Il nome del nodo da cercare
      * @param root La radice della gerarchia
      * @return Il nodo corrispondente al nome specificato, null se non trovato
-     * @throws LeafHasChildrenException 
      */
-    public Leaf visualizzaFoglia(String nomeNodo, String root) throws LeafHasChildrenException {
-        return visualizza(nomeNodo, root, this.radici);
+    public Leaf visualizzaFoglia(String nomeNodo, String root) {
+        return (Leaf)visualizza(nomeNodo, root, this.radici);
     }
     
+    public NotLeaf visualizzaRadice(String root) {   
+        for (Nodo nodo : this.radici) 
+            if (nodo.getNome().equals(root)) 
+            	return (NotLeaf)nodo;
+        return null;
+    }
     /**
      * Restituisce il nodo corrispondente al nome specificato nella gerarchia.
      * 
@@ -118,24 +99,63 @@ public class Gerarchia implements Serializable {
      * @param root La radice della gerarchia
      * @param list La lista di nodi in cui cercare
      * @return Il nodo corrispondente al nome specificato, null se non trovato
-     * @throws LeafHasChildrenException 
      */
-    private static Leaf visualizza(String nomeNodo, String root, List<Nodo> list) throws LeafHasChildrenException {
+    private static Nodo visualizza(String nomeNodo, String root, List<Nodo> list) {
         for (Nodo nodo : list) {
             if (nodo.getNome().equals(root)) {
                 for (Nodo nodoChild : ((NotLeaf)nodo).getChildren()) {
                     if (nodoChild.isLeaf()) {
                         if (nodoChild.getNome().equals(nomeNodo))
-                            return (Leaf) nodoChild;
+                            return nodoChild;
                     } else {
                         Nodo foundNode = visualizza(nomeNodo, nodoChild.getNome(), ((NotLeaf)nodo).getChildren());
                         if (foundNode != null) {
-                            return (Leaf) foundNode;
+                            return foundNode;
                         }
                     }
                 }
             }
         }
         return null;
+    }
+    
+    /**
+     * Restituisce una rappresentazione testuale della 
+     * gerarchia (di tutti i suoi alberi).
+     * 
+     * @return Una stringa che rappresenta la gerarchia
+     */
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        
+        for (Nodo nodo : radici)  {
+            builder.append("\n\n");
+            try {
+                builder.append(new Albero((NotLeaf) nodo).toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return builder.toString();     
+    }
+    
+    /**
+     * Restituisce una rappresentazione testuale della 
+     * gerarchia (di tutti i suoi alberi).
+     * 
+     * @param alberi La lista degli alberi di nodi
+     * @return Una stringa che rappresenta la gerarchia
+     */
+    public String toStringRadici() {
+        StringBuffer bf = new StringBuffer();
+        
+        for (Nodo nodo : this.radici)  {
+            bf.append("\n* " + nodo.getNome());
+
+        }
+        return bf.toString();
+            
     }
 }

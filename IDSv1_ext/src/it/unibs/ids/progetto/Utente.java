@@ -1,5 +1,4 @@
 package it.unibs.ids.progetto;
-
 import java.io.Serializable;
 
 /**
@@ -7,26 +6,27 @@ import java.io.Serializable;
  * Ogni utente ha un tipo (definito da un carattere) e delle credenziali
  * (identificativo e password).
  * 
- * @author Daniele Martinelli
- * @author Federico Sabbadini
+ * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public abstract class Utente implements Serializable {
 
+	
     private static final long serialVersionUID = 1L;
     private char tipoUtente;
-    private Credenziali credenziali;
+    protected Credenziali credenziali;
     
     /**
      * Costruttore della classe Utente.
      * 
-     * @param tipoUtente   Il tipo di utente (carattere)
-     * @param credenziali  Le credenziali associate all'utente
+     * @param tipoUtente Il tipo di utente (carattere)
+     * @param credenziali Le credenziali associate all'utente
      */
     public Utente(char tipoUtente, Credenziali credenziali) {
         this.tipoUtente = tipoUtente;
         this.credenziali = credenziali;
     }
   
+
     /**
      * Restituisce le credenziali dell'utente.
      * 
@@ -64,8 +64,6 @@ public abstract class Utente implements Serializable {
         this.credenziali.setPassword(credenziali.getPassword());
     }
 
-
-
     /**
      * Restituisce il tipo di utente.
      * 
@@ -75,22 +73,14 @@ public abstract class Utente implements Serializable {
         return tipoUtente;
     }
 
-    /**
-     * Imposta la definitività delle credenziali.
-     * Per un utente appena creato è false.
-     * 
-     * @param x La definitività da impostare.
-     */
-    public void setIsDefinitivo(boolean x) {
-        this.credenziali.setDefinitive(x);
-    }
+	public abstract void setIsDefinitivo(boolean b);
 
     /**
      * Restituisce lo stato di definitività delle credenziali.
      * 
      * @return boolean True se le credenziali sono definitive, false altrimenti
      */
-    public boolean getIsDefinitivo() {
+    public boolean IsDefinitivo() {
         return this.credenziali.isDefinitive();
     }
 }

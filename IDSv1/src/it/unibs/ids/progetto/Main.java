@@ -195,7 +195,12 @@ public class Main {
      * @param geografia  L'oggetto Geografia utilizzato per aggiungere il comprensorio.
      */
     private static void creaComprensorio(Geografia geografia) {
-        Comprensorio comprensorio = new Comprensorio();
+		String nome;
+		do {
+			nome = InputDati.leggiStringaNonVuota("Nome: ");
+		} while (geografia.verificaEsistenzaComprensorio(nome));
+        Comprensorio comprensorio = new Comprensorio(nome);
+
         System.out.println("Inserisci comprensorio (Exit per uscire) ");
         String comune;
 

@@ -5,8 +5,7 @@ import java.io.*;
  * DataManager è una classe utilizzata per gestire il caricamento e il salvataggio dei dati da e verso file di testo.
  * Supporta il caricamento e il salvataggio di oggetti delle classi Gerarchia, Geografia e Utenza.
  * 
- * @author Daniele Martinelli
- * @author Federico Sabbadini
+ * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class FileManager {
     
