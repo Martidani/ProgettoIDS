@@ -3,6 +3,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.unibs.ids.progetto.news.Leaf;
+import it.unibs.ids.progetto.news.Nodo;
+import it.unibs.ids.progetto.news.NotLeaf;
+
 /**
  * La classe Gerarchia rappresenta l'insieme di tutti gli 
  * alberi nel sistema e gestisce le operazioni su di essi.
@@ -18,7 +22,7 @@ public class Gerarchia implements Serializable {
     private ArrayList<Albero> alberi;
     
     private ArrayList<Nodo> radici; 
-    private ArrayList<Nodo> foglie;
+    private ArrayList<Leaf> foglie;
     
     private static Gerarchia gerarchia;
     //singleton
@@ -65,7 +69,7 @@ public class Gerarchia implements Serializable {
      * 
      * @return Lista di foglie
      */
-    public ArrayList<Nodo> getFoglie() {
+    public ArrayList<Leaf> getFoglie() {
 		return foglie;
 	}
 
@@ -77,7 +81,7 @@ public class Gerarchia implements Serializable {
     public void addAlbero(Albero albero) {
     	alberi.add(albero);
         radici.add(albero.getRadice());
-        foglie.addAll(albero.getFoglie());
+        foglie.addAll( albero.getFoglie() );
     }
     
     /**
@@ -101,8 +105,9 @@ public class Gerarchia implements Serializable {
      * @param nomeNodo Il nome del nodo da cercare
      * @param root La radice della gerarchia
      * @return Il nodo corrispondente al nome specificato, null se non trovato
+     * @throws LeafHasChildrenException 
      */
-    public Nodo visualizzaFoglia(String nomeNodo, String root) {
+    public Leaf visualizzaFoglia(String nomeNodo, String root) throws LeafHasChildrenException {
         return visualizza(nomeNodo, root, this.radici);
     }
     
@@ -113,18 +118,19 @@ public class Gerarchia implements Serializable {
      * @param root La radice della gerarchia
      * @param list La lista di nodi in cui cercare
      * @return Il nodo corrispondente al nome specificato, null se non trovato
+     * @throws LeafHasChildrenException 
      */
-    private static Nodo visualizza(String nomeNodo, String root, List<Nodo> list) {
+    private static Leaf visualizza(String nomeNodo, String root, List<Nodo> list) throws LeafHasChildrenException {
         for (Nodo nodo : list) {
             if (nodo.getNome().equals(root)) {
-                for (Nodo nodoChild : nodo.getChildren()) {
+                for (Nodo nodoChild : ((NotLeaf)nodo).getChildren()) {
                     if (nodoChild.isLeaf()) {
                         if (nodoChild.getNome().equals(nomeNodo))
-                            return nodoChild;
+                            return (Leaf) nodoChild;
                     } else {
-                        Nodo foundNode = visualizza(nomeNodo, nodoChild.getNome(), nodo.getChildren());
+                        Nodo foundNode = visualizza(nomeNodo, nodoChild.getNome(), ((NotLeaf)nodo).getChildren());
                         if (foundNode != null) {
-                            return foundNode;
+                            return (Leaf) foundNode;
                         }
                     }
                 }

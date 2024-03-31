@@ -3,6 +3,7 @@ package it.unibs.ids.progetto.news;
 import it.unibs.fp.mylib.MyMenu;
 import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;
+import it.unibs.ids.progetto.LeafHasChildrenException;
 import it.unibs.ids.progetto.RootTreeException;
 import it.unibs.ids.progetto.Utenza;
 
@@ -28,8 +29,9 @@ public class MenuConfController {
      * @param geografia L'oggetto Geografia su cui effettuare le operazioni.
      * @return La scelta effettuata dall'utente.
      * @throws RootTreeException Eccezione sollevata in caso di errore nella manipolazione dell'albero.
+     * @throws LeafHasChildrenException 
      */
-    public static int menuConfiguratore(Gerarchia gerarchia, Geografia geografia) throws RootTreeException {
+    public static int menuConfiguratore(Gerarchia gerarchia, Geografia geografia) throws RootTreeException, LeafHasChildrenException {
         int scelta;
         scelta = menuConfiguratore.scegli();
         switch (scelta) {

@@ -1,26 +1,16 @@
-package it.unibs.ids.progetto;
+package it.unibs.ids.progetto.news;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import it.unibs.ids.progetto.FattoriDiConversione;
+import it.unibs.ids.progetto.LeafHasChildrenException;
 
-/**
- * La classe Nodo rappresenta un nodo all'interno di un albero.
- * Ogni nodo può essere una foglia o una non foglia.
- * Se un nodo è una foglia, contiene i fattori di conversione verso altri nodi.
- * Se un nodo è una non foglia, può avere figli e contiene informazioni sul campo e sul dominio.
- * 
- * @author Daniele Martinelli
- * @author Federico Sabbadini
- */
-public class Nodo implements Serializable {
-	
-	private static final long serialVersionUID = 1L;
-	private String nome;
-	private boolean isLeaf;
-	private boolean isRoot;
+
+public class NotLeaf extends Nodo implements Serializable {
+
+
 	private List<Nodo> children;
-	private FattoriDiConversione fattori;
 	private String campo;
 	private List<String[]> dominio;
 	
@@ -31,7 +21,7 @@ public class Nodo implements Serializable {
 	 * @param isRoot True se il nodo è la radice dell'albero, false altrimenti.
 	 * @param campo  Il campo associato al nodo (valido solo per i nodi non foglia).
 	 */
-	public Nodo(String nome, boolean isRoot, String campo) {
+	public NotLeaf(String nome, boolean isRoot, String campo) {
 		this.isRoot = isRoot;
 		this.campo = campo;
 		this.nome = nome;
@@ -40,46 +30,6 @@ public class Nodo implements Serializable {
 		this.dominio = new ArrayList<>();
 	}
 
-	/**
-	 * Costruttore foglia.
-	 * Una foglia non può essere radice, in quanto una radice 
-	 * deve avere necessariamente almeno un figlio.
-	 * 
-	 * @param nome Il nome del nodo.
-	 */
-	public Nodo(String nome) {
-		this.nome = nome;
-		this.isRoot = false;
-		this.isLeaf = true;
-		this.fattori = new FattoriDiConversione();
-	}
-
-	/**
-	 * Restituisce il nome del nodo.
-	 * 
-	 * @return Il nome del nodo.
-	 */
-	public String getNome() {
-		return nome;
-	}
-
-	/**
-	 * Verifica se il nodo è una foglia.
-	 * 
-	 * @return True se il nodo è una foglia, altrimenti False.
-	 */
-	public boolean isLeaf() {
-		return isLeaf;
-	}
-
-	/**
-	 * Verifica se il nodo è una radice.
-	 * 
-	 * @return True se il nodo è una radice, altrimenti False.
-	 */
-	public boolean isRoot() {
-		return isRoot;
-	}
 
 	/**
 	 * Restituisce la lista dei figli del nodo.
@@ -89,25 +39,6 @@ public class Nodo implements Serializable {
 	public List<Nodo> getChildren() {
 		return children;
 	}
-
-	/**
-	 * Restituisce il dominio associato al nodo.
-	 * 
-	 * @return Il dominio associato al nodo.
-	 */
-	public FattoriDiConversione getFattori() {
-		return fattori;
-	}
-
-	/**
-     * Aggiunge un fattore di conversione tra due nodi e l'inverso del fattore stesso nella relazione inversa.
-     * 
-     * @param nodo2 Il secondo nodo
-     * @param fattore Il fattore di conversione da nodo1 a nodo2
-     */
-    public void addFattoreConversione(Nodo nodo2, double fattore) {
-        fattori.addFattoreConversione(nodo2, fattore);
-    }
     
 	/**
 	 * Restituisce il campo associato al nodo.
@@ -186,15 +117,6 @@ public class Nodo implements Serializable {
 		return bf.toString();
 	}
 	
-	/**
-	 * Genera una stringa delle relazioni di una foglia con le altre foglie.
-	 * 
-	 * @return Una stringa rappresentante le relazioni con le foglie.
-	 */
-	public String toStringFactors() {
-		return fattori.toString(this.nome);
-	}
-	
 
 	/**
 	 * Genera una stringa del dominio associato al nodo.
@@ -234,30 +156,7 @@ public class Nodo implements Serializable {
 		return bf.toString();
 	}
 	
-    /**
-     * Verifica se esiste un nodo non radice con il dato nome sotto il nodo radice specificato.
-     * 
-     * @param nome Il nome del nodo da cercare
-     * @param radice Il nodo radice sotto il quale cercare
-     * @return true se esiste un nodo con il nome specificato sotto il nodo radice, false altrimenti
-     */
-    public boolean verificaEsistenzaNome(String nome) {
-    	return verifica(nome, this);
-    }
-    
-
-    private static boolean verifica(String nome, Nodo radice) {
-        if (radice.isLeaf()) {
-            return radice.getNome().equals(nome);
-        } else {
-            for (Nodo nodo : radice.getChildren()) {
-                if (nodo.getNome().equals(nome) || verifica(nome, nodo)) {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
-    
-
+ 
+	
+	
 }

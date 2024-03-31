@@ -8,7 +8,7 @@ import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.FattoriDiConversione;
 import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;
-import it.unibs.ids.progetto.Nodo;
+import it.unibs.ids.progetto.LeafHasChildrenException;
 import it.unibs.ids.progetto.RootTreeException;
 
 /**
@@ -45,10 +45,11 @@ public class WorkConfController {
      * 
      * @param gerarchia  L'oggetto Gerarchia su cui costruire la gerarchia.
      * @throws RootTreeException Eccezione sollevata in caso di errore nella creazione della radice dell'albero.
+     * @throws LeafHasChildrenException 
      */
-    public static void creaGerarchia(Gerarchia gerarchia) throws RootTreeException {
-        ArrayList<Nodo> foglieAttuali = new ArrayList<>();
-        Nodo root = creaRadice(gerarchia);
+    public static void creaGerarchia(Gerarchia gerarchia) throws RootTreeException, LeafHasChildrenException {
+        ArrayList<Leaf> foglieAttuali = new ArrayList<>();
+        NotLeaf root = creaRadice(gerarchia);
         creaNodiFiglio(root, gerarchia, root, foglieAttuali);
         gerarchia.addAlbero(new Albero(root));
         creaFattoriConversione(gerarchia, foglieAttuali);
@@ -80,14 +81,14 @@ public class WorkConfController {
      * @return           Il nodo radice creato.
      * @throws RootTreeException Eccezione sollevata se il nome radice esiste già nella gerarchia.
      */
-    private static Nodo creaRadice(Gerarchia gerarchia) throws RootTreeException {
+    private static NotLeaf creaRadice(Gerarchia gerarchia) throws RootTreeException {
         String radice;
         do {
             radice = InputDati.leggiStringaNonVuota("Nome radice -> ");
         } while (gerarchia.verificaEsistenzaNomeRadice(radice));
 
         String campo = InputDati.leggiStringaNonVuota("Campo -> ");
-        Nodo root = new Nodo(radice, true, campo);
+        NotLeaf root = new NotLeaf(radice, true, campo);
 
         creaValoriDominio(root);
 
@@ -99,7 +100,7 @@ public class WorkConfController {
      * 
      * @param nodo  Il nodo a cui aggiungere i valori del dominio.
      */
-    private static void creaValoriDominio(Nodo nodo) {
+    private static void creaValoriDominio(NotLeaf nodo) {
         int num = 0;
         do {
             num++;
@@ -120,8 +121,9 @@ public class WorkConfController {
      * @param gerarchia      L'oggetto Gerarchia su cui costruire la gerarchia.
      * @param radice         La radice dell'albero gerarchico.
      * @param foglieAttuali  La lista delle foglie attuali.
+     * @throws LeafHasChildrenException 
      */
-    private static void creaNodiFiglio(Nodo nodoParent, Gerarchia gerarchia, Nodo radice, ArrayList<Nodo> foglieAttuali) {
+    private static void creaNodiFiglio(NotLeaf nodoParent, Gerarchia gerarchia, NotLeaf radice, ArrayList<Leaf> foglieAttuali) throws LeafHasChildrenException {
         int numFigli = 0;
         do {
             numFigli++;
@@ -136,8 +138,8 @@ public class WorkConfController {
             boolean isFoglia = InputDati.yesOrNo("È foglia? ");
             Nodo nodoChild;
             if (isFoglia) {
-                nodoChild = new Nodo(nome);
-                foglieAttuali.add(nodoChild);
+                nodoChild = new Leaf(nome);
+                foglieAttuali.add((Leaf) nodoChild);
             } else {
                 nodoChild = creaNonFoglia(nome);
             }
@@ -151,7 +153,7 @@ public class WorkConfController {
 
         for (Nodo nodo : nodoParent.getChildren()) {
             if (!nodo.isLeaf()) {
-                creaNodiFiglio(nodo, gerarchia, radice, foglieAttuali);
+                creaNodiFiglio((NotLeaf) nodo, gerarchia, radice, foglieAttuali);
             }
         }
     }
@@ -164,7 +166,7 @@ public class WorkConfController {
      */
     private static Nodo creaNonFoglia(String nome) {
         String campo = InputDati.leggiStringaNonVuota("Campo -> ");
-        Nodo nodoChild = new Nodo(nome, false, campo);
+        NotLeaf nodoChild = new NotLeaf(nome, false, campo);
 
         creaValoriDominio(nodoChild);
 
@@ -176,13 +178,14 @@ public class WorkConfController {
      * 
      * @param gerarchia       L'oggetto Gerarchia su cui inserire i fattori di conversione.
      * @param foglieAttuali  La lista delle foglie attuali.
+     * @throws LeafHasChildrenException 
      * @throws Exception     Eccezione in caso di problemi durante l'inserimento.
      */
-    private static void creaFattoriConversione(Gerarchia gerarchia, ArrayList<Nodo> foglieAttuali) {
+    private static void creaFattoriConversione(Gerarchia gerarchia, ArrayList<Leaf> foglieAttuali) throws LeafHasChildrenException {
         System.out.println("\nInserimento fattori di conversione:");
         do {
-            Nodo nodo1 = chiediFoglia("Foglia 1:", gerarchia);
-            Nodo nodo2 = chiediFoglia("Foglia 2:", gerarchia);
+        	Leaf nodo1 = chiediFoglia("Foglia 1:", gerarchia);
+        	Leaf nodo2 = chiediFoglia("Foglia 2:", gerarchia);
 
             double fattoreDiConversione = chiediFattoreConversione(gerarchia);
 
@@ -203,9 +206,10 @@ public class WorkConfController {
      * @param messaggio   Il messaggio da visualizzare.
      * @param gerarchia   L'oggetto Gerarchia su cui cercare il nodo.
      * @return            Il nodo corrispondente alla foglia e alla radice specificate.
+     * @throws LeafHasChildrenException 
      */
-    private static Nodo chiediFoglia(String messaggio, Gerarchia gerarchia) {
-        Nodo nodo;
+    private static Leaf chiediFoglia(String messaggio, Gerarchia gerarchia) throws LeafHasChildrenException {
+    	Leaf nodo;
         do {
             System.out.println(messaggio);
             String foglia = InputDati.leggiStringaNonVuota("  Nome -> ");
@@ -234,11 +238,12 @@ public class WorkConfController {
      * Metodo per stampare i fattori di conversione di un nodo.
      * 
      * @param gerarchia  L'oggetto Gerarchia su cui visualizzare i fattori di conversione.
+     * @throws LeafHasChildrenException 
      */
-    public static void stampaFattori(Gerarchia gerarchia) {
+    public static void stampaFattori(Gerarchia gerarchia) throws LeafHasChildrenException {
         String foglia = InputDati.leggiStringaNonVuota("Inserisci nome foglia: ");
         String radice = InputDati.leggiStringaNonVuota("Inserisci radice della gerarchia della foglia: ");
-        Nodo nodo = gerarchia.visualizzaFoglia(foglia, radice);
+        Leaf nodo = gerarchia.visualizzaFoglia(foglia, radice);
         if (nodo == null)
             System.out.println("  Non è stata trovata nessuna corrispondenza");
         else
