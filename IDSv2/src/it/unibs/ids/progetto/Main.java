@@ -9,7 +9,7 @@ import it.unibs.ids.progetto.news.Fruitore;
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
-public class Main_old {
+public class Main {
 
 
     private static final int NUM_MAX_TENTATIVI = 3;
@@ -22,7 +22,7 @@ public class Main_old {
 		{"Registrazione","Login"};
     
     
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws RootTreeException {
 	    MyMenu menuAccesso = new MyMenu("Menu accesso", vociAccesso);
 	    MyMenu menuC = new MyMenu("Menu principale", vociC);
 	    MyMenu menuF = new MyMenu("Menu principale", vociF);

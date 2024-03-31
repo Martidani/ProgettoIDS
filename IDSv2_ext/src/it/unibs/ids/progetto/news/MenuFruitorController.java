@@ -19,7 +19,7 @@ public class MenuFruitorController implements MenuController {
 	public final static String[] vociF = 
 		{"Naviga nella gerarchia"};
 	
-    static MyMenu menuFruitore = new MyMenu("Menu principale", vociF);
+    static MyMenu menuFruitore = new MyMenu("Menu principale fruitore", vociF);
     
 	public int menu(Gerarchia gerarchia, Geografia geografia) {
 		int scelta;
@@ -41,7 +41,7 @@ public class MenuFruitorController implements MenuController {
     public final static String[] vociAccesso = 
         {"Registrazione","Login"};
     
-    static MyMenu menuAccesso = new MyMenu("Menu accesso", vociAccesso);
+    static MyMenu menuAccesso = new MyMenu("Menu accesso fruitore", vociAccesso);
     
     /**
      * Metodo che gestisce il menu di accesso.

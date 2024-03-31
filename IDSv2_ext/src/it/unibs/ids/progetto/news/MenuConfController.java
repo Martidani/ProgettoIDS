@@ -21,7 +21,7 @@ public class MenuConfController implements MenuController{
         {"Introdurre comprensorio geografico", "Introdurre albero", "Visualizza comprensorio", 
             "Visualizza gerarchia", "Visualizza fattori di conversione"};
     
-    static MyMenu menuConfiguratore = new MyMenu("Menu principale", voci);
+    static MyMenu menuConfiguratore = new MyMenu("Menu principale configuratore", voci);
 	
     /**
      * Metodo che gestisce il menu di configurazione.
@@ -67,7 +67,7 @@ public class MenuConfController implements MenuController{
     public final static String[] vociAccesso = 
         {"Registrazione","Login"};
     
-    static MyMenu menuAccesso = new MyMenu("Menu accesso", vociAccesso);
+    static MyMenu menuAccesso = new MyMenu("Menu accesso configuratore", vociAccesso);
     
     /**
      * Metodo che gestisce il menu di accesso.

@@ -8,13 +8,14 @@ import it.unibs.ids.progetto.news.FattoriDiConversione;
 import it.unibs.ids.progetto.news.FileManager;
 import it.unibs.ids.progetto.news.Geografia;
 import it.unibs.ids.progetto.news.ecccezioni.ConfLoginFailException;
+import it.unibs.ids.progetto.news.ecccezioni.RootTreeException;
 
 /**
  * Classe Main per l'esecuzione del programma.
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
-public class Main_old {
+public class Main {
 
 
     private static final int NUM_MAX_TENTATIVI = 3;
@@ -25,7 +26,7 @@ public class Main_old {
         {"Registrazione","Login"};
     
     
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws RootTreeException {
         MyMenu menuAccesso = new MyMenu("Menu accesso", vociAccesso);
         MyMenu menu = new MyMenu("Menu principale", voci);
 

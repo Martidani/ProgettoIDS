@@ -5,6 +5,7 @@ import it.unibs.ids.progetto.DefaultInitializer;
 import it.unibs.ids.progetto.FileManager;
 import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;
+import it.unibs.ids.progetto.RootTreeException;
 import it.unibs.ids.progetto.Utenza;
 
 
@@ -17,7 +18,7 @@ import it.unibs.ids.progetto.Utenza;
 public class Main {
 
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws RootTreeException  {
 
         // Caricamento da file
         Utenza utenza = FileManager.caricaUtenza();
@@ -35,8 +36,12 @@ public class Main {
             + ", " + FileManager.getGerarchiaFile() + ", " + FileManager.getGeografiaFile());
         }
 
-        ///////////////sistema menu inizio modalità
-        boolean tipoFunzionamento = InputDati.yesOrNo("Vuoi essere un fruitore? ");
+        boolean tipoFunzionamento;
+        int num = InputDati.leggiInteroRange(" \n Modalità di funzionamento:\n 1 - Configuratore\n 2- Fruitore\n --> ", 1, 2);
+        if (num==1)
+        	tipoFunzionamento = false;
+        else
+        	tipoFunzionamento = true;
        
         MenuController menuController;
         if (tipoFunzionamento)
@@ -64,6 +69,7 @@ public class Main {
 	        } while (scelta != 0);
 	    }
 
+	    //salva su file
         FileManager.salvaSuFile(gerarchia);
         FileManager.salvaSuFile(utenza);
         FileManager.salvaSuFile(geografia);
