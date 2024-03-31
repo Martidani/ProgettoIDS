@@ -8,7 +8,6 @@ import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.FattoriDiConversione;
 import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;
-import it.unibs.ids.progetto.LeafHasChildrenException;
 import it.unibs.ids.progetto.RootTreeException;
 
 /**
@@ -54,7 +53,7 @@ public class WorkConfController {
      * @throws RootTreeException Eccezione sollevata in caso di errore nella creazione della radice dell'albero.
      * @throws LeafHasChildrenException 
      */
-    public static void creaGerarchia(Gerarchia gerarchia) throws RootTreeException, LeafHasChildrenException {
+    public static void creaGerarchia(Gerarchia gerarchia) throws RootTreeException {
         ArrayList<Leaf> foglieAttuali = new ArrayList<>();
         NotLeaf root = creaRadice(gerarchia);
         creaNodiFiglio(root, gerarchia, root, foglieAttuali);
@@ -130,7 +129,7 @@ public class WorkConfController {
      * @param foglieAttuali  La lista delle foglie attuali.
      * @throws LeafHasChildrenException 
      */
-    private static void creaNodiFiglio(NotLeaf nodoParent, Gerarchia gerarchia, NotLeaf radice, ArrayList<Leaf> foglieAttuali) throws LeafHasChildrenException {
+    private static void creaNodiFiglio(NotLeaf nodoParent, Gerarchia gerarchia, NotLeaf radice, ArrayList<Leaf> foglieAttuali) {
         int numFigli = 0;
         do {
             numFigli++;
@@ -188,7 +187,7 @@ public class WorkConfController {
      * @throws LeafHasChildrenException 
      * @throws Exception     Eccezione in caso di problemi durante l'inserimento.
      */
-    private static void creaFattoriConversione(Gerarchia gerarchia, ArrayList<Leaf> foglieAttuali) throws LeafHasChildrenException {
+    private static void creaFattoriConversione(Gerarchia gerarchia, ArrayList<Leaf> foglieAttuali) {
         System.out.println("\nInserimento fattori di conversione:");
         do {
         	Leaf nodo1 = chiediFoglia("Foglia 1:", gerarchia);
@@ -215,7 +214,7 @@ public class WorkConfController {
      * @return            Il nodo corrispondente alla foglia e alla radice specificate.
      * @throws LeafHasChildrenException 
      */
-    private static Leaf chiediFoglia(String messaggio, Gerarchia gerarchia) throws LeafHasChildrenException {
+    private static Leaf chiediFoglia(String messaggio, Gerarchia gerarchia) {
     	Leaf nodo;
         do {
             System.out.println(messaggio);
@@ -247,7 +246,7 @@ public class WorkConfController {
      * @param gerarchia  L'oggetto Gerarchia su cui visualizzare i fattori di conversione.
      * @throws LeafHasChildrenException 
      */
-    public static void stampaFattori(Gerarchia gerarchia) throws LeafHasChildrenException {
+    public static void stampaFattori(Gerarchia gerarchia)  {
         String foglia = InputDati.leggiStringaNonVuota("Inserisci nome foglia: ");
         String radice = InputDati.leggiStringaNonVuota("Inserisci radice della gerarchia della foglia: ");
         Leaf nodo = gerarchia.visualizzaFoglia(foglia, radice);

@@ -4,7 +4,6 @@ import it.unibs.ids.progetto.DefaultInitializer;
 import it.unibs.ids.progetto.FileManager;
 import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;
-import it.unibs.ids.progetto.LeafHasChildrenException;
 import it.unibs.ids.progetto.RootTreeException;
 import it.unibs.ids.progetto.Utenza;
 
@@ -17,7 +16,7 @@ import it.unibs.ids.progetto.Utenza;
 public class Main {
 
 
-    public static void main(String[] args) throws RootTreeException, LeafHasChildrenException {
+    public static void main(String[] args) throws RootTreeException {
 
         // Caricamento da file
         Utenza utenza = FileManager.caricaUtenza();

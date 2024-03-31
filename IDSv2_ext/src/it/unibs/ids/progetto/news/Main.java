@@ -46,7 +46,8 @@ public class Main {
         MenuController menuController;
         if (tipoFunzionamento)
         	menuController = new MenuFruitorController();
-        menuController = new MenuConfController();
+        else
+        	menuController = new MenuConfController();
        
         int accesso, scelta;
         do {

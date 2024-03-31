@@ -11,6 +11,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 
+
 /**
  * Classe per la gestione dei fattori di conversione.
  * 
@@ -22,18 +23,18 @@ public class FattoriDiConversione implements Serializable{
 	private static final double MIN_FATTORECONVERSIONE = 0.5;
     private static final double MAX_FATTORECONVERSIONE = 2.0;
     
-	private HashMap<Nodo, Double> fattori;
+	private HashMap<Leaf, Double> fattori;
 
 	
 	
     public FattoriDiConversione() {
-		this.fattori = new HashMap<Nodo, Double>();
+		this.fattori = new HashMap<Leaf, Double>();
 	}
     
 
 
 	
-	public Set<Entry<Nodo,Double>> getFattori() {
+	public Set<Entry<Leaf,Double>> getFattori() {
 		return fattori.entrySet();
 	}
 
@@ -46,7 +47,7 @@ public class FattoriDiConversione implements Serializable{
 	 * @param foglia La foglia con cui verificare la relazione.
 	 * @return true se esiste una relazione di conversione con la foglia, false altrimenti.
 	 */
-	public double fattoreFoglia(Nodo foglia) {
+	public double fattoreFoglia(Leaf foglia) {
 		if (fattori.containsKey(foglia))
 			return fattori.get(foglia);
 		return 0;
@@ -59,7 +60,7 @@ public class FattoriDiConversione implements Serializable{
 	 * @param foglia  Il nodo foglia con cui associare il fattore.
 	 * @param fattore Il fattore di conversione da aggiungere.
 	 */
-	public void addFattoreConversione(Nodo foglia, Double fattore) {
+	public void addFattoreConversione(Leaf foglia, Double fattore) {
 		fattori.put(foglia, fattore);
 	}
 
@@ -82,8 +83,8 @@ public class FattoriDiConversione implements Serializable{
      */
     public static void addTransitivoFattoreConversione(Gerarchia gerarchia) {
         
-        for (Nodo nodo1 : gerarchia.getFoglie()) {
-            for (Nodo nodo2 : gerarchia.getFoglie()) {
+        for (Leaf nodo1 : gerarchia.getFoglie()) {
+            for (Leaf nodo2 : gerarchia.getFoglie()) {
                 if (!nodo1.equals(nodo2) && nodo1.getFattori().fattoreFoglia(nodo2) == 0) {
                     Double fattore = calcTransitivo(nodo1, nodo2, new ArrayList<>());
                     if (fattore != null) {
@@ -102,7 +103,7 @@ public class FattoriDiConversione implements Serializable{
      * @param visitati Lista dei nodi visitati durante il calcolo
      * @return Il fattore di conversione transitivo tra i due nodi, null se non è possibile calcolarlo
      */
-    private static Double calcTransitivo(Nodo nodo1, Nodo nodo2, List<Nodo> visitati) {
+    private static Double calcTransitivo(Leaf nodo1, Leaf nodo2, List<Leaf> visitati) {
     	FattoriDiConversione fact = nodo1.getFattori();
         if (nodo1.equals(nodo2)) {
             return 1.0;
@@ -111,8 +112,8 @@ public class FattoriDiConversione implements Serializable{
         } else {
             if (fact.isEmpty())
                 return null;
-            for (Map.Entry<Nodo, Double> entry : fact.getFattori()) {
-                Nodo key = entry.getKey();
+            for (Map.Entry<Leaf, Double> entry : fact.getFattori()) {
+            	Leaf key = entry.getKey();
                 if (!visitati.contains(key)) {
                     visitati.add(key);
                     Double val = calcTransitivo(key, nodo2, visitati);
@@ -141,8 +142,8 @@ public class FattoriDiConversione implements Serializable{
 	 */
 	public String toString(String nome) {
 		StringBuffer bf = new StringBuffer();
-		for (Entry<Nodo, Double> fatt : getFattori()) {
-			Nodo key = fatt.getKey();
+		for (Entry<Leaf, Double> fatt : getFattori()) {
+			Leaf key = fatt.getKey();
 			Double val = fatt.getValue();
 			if (!nome.equals(key.getNome())) {
 				// Formatta il double con un massimo di tre decimali

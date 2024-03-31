@@ -1,5 +1,6 @@
 package it.unibs.ids.progetto;
 
+
 /**
  * Classe per l'inizializzazione predefinita del sistema.
  * 
@@ -78,14 +79,14 @@ public class DefaultInitializer {
         Gerarchia gerarchia = Gerarchia.getGerarchia();
 
         // Creazione del nodo radice
-        Nodo nodo1 = new Nodo(ROOT_NAME, true, ROOT_FIELD);
+        NotLeaf nodo1 = new NotLeaf(ROOT_NAME, true, ROOT_FIELD);
         for (String domainValue : ROOT_DOMAIN) {
             nodo1.addElementiDominio(domainValue);
         }
 
         // Creazione dei nodi figli
-        Nodo nodo11 = new Nodo(CHILD1_NAME);
-        Nodo nodo12 = new Nodo(CHILD2_NAME);
+        Leaf nodo11 = new Leaf(CHILD1_NAME);
+        Leaf nodo12 = new Leaf(CHILD2_NAME);
         try {
             nodo1.addChild(nodo11);
             nodo1.addChild(nodo12);

@@ -3,11 +3,12 @@ package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
 public class Albero implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Nodo radice;
-    private ArrayList<Nodo> foglie;
+    private NotLeaf radice;
+    private ArrayList<Leaf> foglie;
     private Utente utente;
 
     /**
@@ -16,9 +17,9 @@ public class Albero implements Serializable {
      * @param radice Il nodo radice dell'albero
      * @throws RootTreeException Se il nodo specificato non è una radice
      */
-    public Albero(Nodo radice) throws RootTreeException {
+    public Albero(NotLeaf radice) throws RootTreeException {
         if (!radice.isRoot()) throw new RootTreeException();
-        this.foglie = new ArrayList<Nodo>();
+        this.foglie = new ArrayList<Leaf>();
         this.radice = radice;
         addFoglie(radice);
     }
@@ -48,9 +49,9 @@ public class Albero implements Serializable {
      */
     private void addFoglie(Nodo albero) {
         if (albero.isLeaf()) 
-            foglie.add(albero);
+            foglie.add((Leaf)albero);
         else {
-            for (Nodo child : albero.getChildren()) {
+            for (Nodo child : ((NotLeaf)albero).getChildren()) {
                 addFoglie(child);
             }
         }
@@ -81,7 +82,7 @@ public class Albero implements Serializable {
             bf.append(asterischi + " " + nodo.getNome());
         } else {
             bf.append(asterischi + nodo.toString(blank));
-            for (Nodo nodoChild : nodo.getChildren()) {
+            for (Nodo nodoChild : ((NotLeaf)nodo).getChildren()) {
                 bf.append("\n");
                 iterative(bf, nodoChild, depth + 1);
             }
@@ -93,7 +94,7 @@ public class Albero implements Serializable {
      * 
      * @return Nodo La radice dell'albero
      */
-    public Nodo getRadice() {
+    public NotLeaf getRadice() {
         return radice;
     }
 
@@ -102,7 +103,7 @@ public class Albero implements Serializable {
      * 
      * @return ArrayList<Nodo> L'elenco delle foglie dell'albero
      */
-    public ArrayList<Nodo> getFoglie() {
+    public ArrayList<Leaf> getFoglie() {
         return foglie;
     }
 

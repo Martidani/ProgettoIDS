@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -161,6 +161,24 @@ public class NotLeaf extends Nodo implements Serializable {
 	public boolean isLeaf() {
 		return false;
 	}
+	
+	 public String toNavigationString() {
+	    	StringBuilder b = new StringBuilder();
+	    	b.append(" nome: " + this.nome);
+	    	
+
+	        b.append("\n |campo: " + this.campo);
+	        b.append("\n |dominio: ");
+	        int var = 0;
+	        for (String[] valore : this.dominio) {
+	        	var++;
+	    		b.append("\n  " + var + " - " + valore[0]);
+	    		if (valore.length>1)
+	    			b.append(", " + valore [1]);
+	    	}
+
+	    	return b.toString();
+	    }
 	
 }
 	
