@@ -15,18 +15,11 @@ public class Geografia implements Serializable {
 	// Lista dei comprensori geografici nel sistema
 	private ArrayList<Comprensorio> comprensori;
 	
-    private static Geografia geografia;
-    //singleton
-    public static Geografia getGeografia() {
-    	if (geografia == null)
-    		geografia = new Geografia(); 
-    	return geografia;
-    }
     
 	/**
 	 * Costruttore della classe Geografia.
 	 */
-	private Geografia() {
+    public Geografia() {
 		this.comprensori = new ArrayList<>();
 	}
 	

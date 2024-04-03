@@ -17,18 +17,10 @@ public class Utenza implements Serializable {
 	private ArrayList<Utente> utenti;
 
 
-    private static Utenza utenza;
-    //singleton
-    public static Utenza getUtenza() {
-    	if (utenza == null)
-    		utenza= new Utenza(); 
-    	return utenza;
-    }
-
 	/**
 	 * Costruttore della classe Utenza.
 	 */
-	private Utenza() {
+    public Utenza() {
 		this.utenti = new ArrayList<>();
 	}
 	

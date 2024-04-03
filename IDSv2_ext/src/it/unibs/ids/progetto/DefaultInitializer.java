@@ -76,7 +76,7 @@ public class DefaultInitializer {
      * @return L'albero gerarchico di default
      */
     public Gerarchia defaultTree() {
-        Gerarchia gerarchia = Gerarchia.getGerarchia();
+        Gerarchia gerarchia = new Gerarchia();
 
         // Creazione del nodo radice
         NotLeaf nodo1 = new NotLeaf(ROOT_NAME, true, ROOT_FIELD);
@@ -113,7 +113,7 @@ public class DefaultInitializer {
      * @return L'utenza di default
      */
     public Utenza defaultAccess() {
-        Utenza utenza = Utenza.getUtenza();
+        Utenza utenza = new Utenza();
 
         // Creazione delle credenziali di default per l'utente admin
         Credenziali cred = new Credenziali(DEFAULT_USERNAME, DEFAULT_PASSWORD);
@@ -143,7 +143,7 @@ public class DefaultInitializer {
      * @return La geografia di default
      */
     public Geografia defaultWorld() {
-        Geografia geografia = Geografia.getGeografia();
+        Geografia geografia = new Geografia();
         geografia.addComprensorio(defaultComprensorio());
         return geografia;
     }
