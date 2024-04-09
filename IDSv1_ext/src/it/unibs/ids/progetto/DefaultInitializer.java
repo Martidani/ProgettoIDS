@@ -24,6 +24,8 @@ public class DefaultInitializer {
     private static final String DEFAULT_USERNAME = "admin";
     private static final String DEFAULT_PASSWORD = "admin";
     
+    public static final int FACTOR_VAL = 2;
+    
     private Gerarchia gerarchia;
     private Utenza utenza;
     private Geografia geografia;
@@ -94,8 +96,8 @@ public class DefaultInitializer {
             nodo1.addChild(nodo12);
 
             // Aggiunta dei nodi all'albero e definizione dei fattori di conversione
-            nodo11.addFattoreConversione(nodo12, 2);
-            nodo12.addFattoreConversione(nodo11, 0.5);
+            nodo11.addFattoreConversione(nodo12, FACTOR_VAL);
+            nodo12.addFattoreConversione(nodo11, 1/FACTOR_VAL);
             Albero albero = new Albero(nodo1);
             
             albero.setUtente(utenza.autenticazioneConfiguratore(DEFAULT_USERNAME, DEFAULT_PASSWORD));
