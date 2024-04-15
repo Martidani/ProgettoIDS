@@ -15,6 +15,10 @@ public class Utenza implements Serializable {
 	
 	// Lista degli utenti nel sistema
 	private ArrayList<Utente> utenti;
+	private Utente utenteDiSessione;
+
+
+
 
 
 	/**
@@ -43,6 +47,13 @@ public class Utenza implements Serializable {
 		this.utenti.add(utente);
 	}
 
+	public Utente getUtenteDiSessione() {
+		return utenteDiSessione;
+	}
+
+	public void setUtenteDiSessione(Utente utenteDiSessione) {
+		this.utenteDiSessione = utenteDiSessione;
+	}
 	
     /**
      * Verifica l'esistenza di un utente con le credenziali specificate.

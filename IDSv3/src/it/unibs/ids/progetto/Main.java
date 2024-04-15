@@ -11,13 +11,14 @@ import it.unibs.fp.mylib.MyMenu;
 public class Main {
 
 
+
     private static final int NUM_MAX_TENTATIVI = 3;
-    public static int scelta;
+    
 	public final static String[] vociC = 
 		{"Introdurre comprensorio geografico", "Introdurre albero", "Visualizza comprensorio", 
 			"Visualizza gerarchia", "Visualizza fattori di conversione"};
 	public final static String[] vociF = 
-		{"Naviga nella gerarchia","Formula una proposta"};
+		{"Naviga nella gerarchia", "Proponi uno scambio"};
 	public final static String[] vociAccesso = 
 		{"Registrazione","Login"};
     
@@ -45,10 +46,10 @@ public class Main {
 
 
 	    boolean tipoFunzionamento = false;
-	   
+	    int accesso;
 	    do {
-	        scelta = menuAccesso.scegli();
-	        switch (scelta) {
+	        accesso = menuAccesso.scegli();
+	        switch (accesso) {
 	            case 1:
 	            	if (InputDati.yesOrNo("Vuoi essere un fruitore? ")) {
 	                    System.out.print(geografia.toString());
@@ -62,10 +63,10 @@ public class Main {
 	            case 2:
 	            	if (InputDati.yesOrNo("Sei un fruitore?")) {
 	            		
-	            		Utente utente = login(utenza, Fruitore.TIPOUTENTE);
+	            		accesso = login(utenza, Fruitore.TIPOUTENTE);
 	            		tipoFunzionamento=false;
 	            	} else {
-	            	    Utente utente = login(utenza, Configuratore.TIPOUTENTE);
+	            		accesso = login(utenza, Configuratore.TIPOUTENTE);
 	            		tipoFunzionamento=true;
 	            	}
 	                break;
@@ -73,11 +74,11 @@ public class Main {
 	            default:
 	                break;
 	        }
-	    } while (scelta == 1);
+	    } while (accesso == 1);
 
 	    //modalità configuratre
-        
-	    if (scelta != 0 && tipoFunzionamento) {
+        int scelta;
+	    if (accesso != 0 && tipoFunzionamento) {
 	        do {
 	            scelta = menuC.scegli();
 	            switch (scelta) {
@@ -114,7 +115,7 @@ public class Main {
 	    }
 	    
 	    //modalità fruitore
-	    if (scelta != 0 && !tipoFunzionamento) {
+	    if (accesso != 0 && !tipoFunzionamento) {
 	        do {
 	            scelta = menuF.scegli();
 	            switch (scelta) {
@@ -158,10 +159,11 @@ public class Main {
 	                	
 	                	PrestazioneOpera offerta = new PrestazioneOpera(fogliaOfferta);
 	                	PrestazioneOpera richiesta = new PrestazioneOpera(fogliaRichiesta, durata);
-	                	
 	                	PropostaDiScambio proposta = new PropostaDiScambio(richiesta, offerta);
-	             //   	(Fruitore) utente.
 	                	
+	                	Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
+	                	fruitore.addProposte(proposta);
+	      
 	                	
 	                break;
 
@@ -229,6 +231,7 @@ public class Main {
 	    return new Credenziali(ID, PSSW);
 	}
 	
+	
 	/**
 	 * Metodo per il login.
 	 * 
@@ -236,19 +239,17 @@ public class Main {
 	 * @param accesso         L'accesso corrente.
 	 * @return                L'accesso aggiornato.
 	 */
-	private static Utente login(Utenza utenza, char type) {
-		Utente utente = null;
-		scelta = 2;
+	private static int login(Utenza utenza, char type) {
+		int accesso = 2;
 	    for (int i = 0; i < NUM_MAX_TENTATIVI; i++) {
 	        System.out.println("Inserisci dati di login: ");
 	        String ID = InputDati.leggiStringaNonVuota("  ID: ");
 	        String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
-	        utente = autenticazione(utenza, ID, PSSW, type);
-	        if (scelta != 1) {
-	            break;
-	        }
+	        accesso = autenticazione(utenza, ID, PSSW, type);
+	        if (accesso != 1) 
+	            break;	        
 	    }
-	    return utente;
+	    return accesso;
 	}
 	/**
 	 * Metodo per effettuare il login.
@@ -258,31 +259,31 @@ public class Main {
 	 * @param PSSW            La password inserita.
 	 * @return                Il risultato del login.
 	 */
-	private static Utente autenticazione(Utenza utenza, String ID, String PSSW, char type) {
-		Utente utente;
-		if (type == Configuratore.TIPOUTENTE)
-			utente = utenza.autenticazioneConfiguratore(ID, PSSW);
-		else
-			utente = utenza.autenticazioneFruitore(ID, PSSW);
+	private static int autenticazione(Utenza utenza, String ID, String PSSW, char type) {
 		
-	    if (utente == null) {
+		Utente utenteDiSessione;
+		if (type == Configuratore.TIPOUTENTE) {
+			utenteDiSessione = utenza.autenticazioneConfiguratore(ID, PSSW);
+		} else {
+			utenteDiSessione = utenza.autenticazioneFruitore(ID, PSSW);
+		}
+		
+		utenza.setUtenteDiSessione(utenteDiSessione);
+	    if (utenteDiSessione == null) {
 	    	if (type == Configuratore.TIPOUTENTE)
 	    		System.out.println(" ! Non esiste alcun configuratore con queste credenziali !");
 	    	else
 	    		System.out.println(" ! Non esiste alcun fruitore con queste credenziali !");
-	        scelta =  1;
-	        return utente;
-	    } else if (!utente.IsDefinitivo() && type == Configuratore.TIPOUTENTE) {
+	        return 1;
+	    } else if (!utenteDiSessione.IsDefinitivo() && type == Configuratore.TIPOUTENTE) {
 	    	System.out.println("Scegli nuove credenziali: ");
 	        Credenziali credenzialiRegistrazione = primoAccesso(utenza);
-	        utente.setCredenziali(credenzialiRegistrazione);
-	        utente.setIsDefinitivo(true);
-	        scelta =  2;
-	        return utente;
+	        utenteDiSessione.setCredenziali(credenzialiRegistrazione);
+	        utenteDiSessione.setIsDefinitivo(true);
+	        return 2;
 	    } else {
 	        System.out.println("-> Utente riconosciuto");
-	        scelta =  2;
-	        return utente;
+	        return 2;
 	    }
 	}
 

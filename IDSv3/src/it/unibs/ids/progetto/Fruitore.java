@@ -29,6 +29,7 @@ public class Fruitore extends Utente implements Serializable {
         super(TIPOUTENTE, credenziali);
         this.indirizzo = indirizzo;
         this.comprensorioAppartenenza = comprensorioAppartenenza;
+        this.proposte = new ArrayList<PropostaDiScambio>();
         setIsDefinitivo(true);
     }
 
