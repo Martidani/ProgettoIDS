@@ -40,14 +40,22 @@ public class WorkFruitorController implements WorkController {
     	Leaf fogliaRichiesta = inserimentoPrestazioneOpera(gerarchia);
     	int durata = InputDati.leggiInteroPositivo("Inserisci durata -> ");
     	
+    	
     	Leaf fogliaOfferta  = inserimentoPrestazioneOpera(gerarchia);
     	
     	Offerta offerta = new Offerta(fogliaOfferta);
     	Richiesta richiesta = new Richiesta(fogliaRichiesta, durata);
     	PropostaDiScambio proposta = new PropostaDiScambio(richiesta, offerta);
     	
-    	Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
-    	fruitore.addProposte(proposta);
+
+		System.out.println("\nOfferta: ");
+		System.out.println("[" + offerta.getNome() + ", "+ offerta.getDurata() + " ore]");
+	
+		
+		if (InputDati.yesOrNo("Confermi l'offerta?")) {
+			Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
+			fruitore.addProposte(proposta);
+		}
     	
 	}
 

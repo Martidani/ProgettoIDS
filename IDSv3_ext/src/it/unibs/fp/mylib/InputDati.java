@@ -135,6 +135,7 @@ public class InputDati
 	     catch (InputMismatchException e)
 	      {
 	       System.out.println(ERRORE_FORMATO);
+	       
 	      }
 	    } while (!finito);
 	   return valoreLetto;
@@ -177,6 +178,7 @@ public class InputDati
 	      finito = true;
 	     else
 	      System.out.println(ERRORE_MINIMO + minimo);
+	     
 	    } while (!finito);
 	     
 	   return valoreLetto;

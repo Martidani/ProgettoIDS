@@ -17,5 +17,8 @@ public abstract class PrestazioneOpera {
 		this.durata = durata;
 	}
 	
+	public String getNome() {
+		return foglia.getNome();
+	}
 	
 }

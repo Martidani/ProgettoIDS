@@ -31,8 +31,18 @@ public class Application {
 		PrestazioneOpera richiesta = new PrestazioneOpera(fogliaRichiesta, durata);
 		PropostaDiScambio proposta = new PropostaDiScambio(richiesta, offerta);
 		
-		Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
-		fruitore.addProposte(proposta);
+		System.out.println("\nOfferta: ");
+		System.out.println("[" + offerta.getNome() + ", "+ offerta.getDurata() + " ore]");
+	
+		
+		if (InputDati.yesOrNo("Confermi l'offerta?")) {
+			Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
+			fruitore.addProposte(proposta);
+		}
+		
+		
+		
+		
 	}
 
 
