@@ -36,25 +36,11 @@ public class WorkFruitorController implements WorkController {
 	}
 	
 	public void proponiScambio( Gerarchia gerarchia, Utenza utenza) {
-		
-    	String nomePrestazione;
-    	String nomeRadicePrestazione;
-    	Leaf fogliaRichiesta;
-    	do {
-    		nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci richiesta [foglia di appartenenza] -> ");
-        	nomeRadicePrestazione = InputDati.leggiStringaNonVuota("Inserisci radice -> ");	
-        	fogliaRichiesta = gerarchia.visualizzaFoglia(nomePrestazione, nomeRadicePrestazione);
-		} while (fogliaRichiesta == null);
     	
+    	Leaf fogliaRichiesta = inserimentoPrestazioneOpera(gerarchia);
     	int durata = InputDati.leggiInteroPositivo("Inserisci durata -> ");
     	
-    	Leaf fogliaOfferta;
-    	do {
-    		nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci offerta [foglia di appartenenza] -> ");
-        	nomeRadicePrestazione = InputDati.leggiStringaNonVuota("Inserisci radice -> ");	
-        	fogliaOfferta = gerarchia.visualizzaFoglia(nomePrestazione, nomeRadicePrestazione);
-		} while (fogliaOfferta == null);
-    	
+    	Leaf fogliaOfferta  = inserimentoPrestazioneOpera(gerarchia);
     	
     	Offerta offerta = new Offerta(fogliaOfferta);
     	Richiesta richiesta = new Richiesta(fogliaRichiesta, durata);
@@ -63,5 +49,17 @@ public class WorkFruitorController implements WorkController {
     	Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
     	fruitore.addProposte(proposta);
     	
+	}
+
+	private Leaf inserimentoPrestazioneOpera(Gerarchia gerarchia) {
+		String nomePrestazione;
+		String nomeRadicePrestazione;
+		Leaf foglia;
+    	do {
+    		nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci richiesta [foglia di appartenenza] -> ");
+        	nomeRadicePrestazione = InputDati.leggiStringaNonVuota("Inserisci radice -> ");	
+        	foglia = gerarchia.visualizzaFoglia(nomePrestazione, nomeRadicePrestazione);
+		} while (foglia == null);
+		return foglia;
 	}
 }
