@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto.main;
 
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.DefaultInitializer;
@@ -58,7 +58,7 @@ public class Main {
 	    //modalità fruitore/configuratore
 	    if (accesso != 0) {
 	        do {
-	            scelta = menuController.menu(gerarchia, geografia);
+	            scelta = menuController.menu(gerarchia, geografia, utenza);
 	        } while (scelta != 0);
 	    }
 
