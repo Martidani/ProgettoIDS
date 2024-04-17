@@ -6,7 +6,13 @@ import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.news.FattoriDiConversione;
 import it.unibs.ids.progetto.news.Geografia;
 import it.unibs.ids.progetto.news.ecccezioni.ConfLoginFailException;
-
+/**
+ * Questa classe contiene i metodi statici 
+ * necessari all'esecuzione del sistema
+ * 
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
+ */
 public class Application {
 
     private static final int NUM_MAX_TENTATIVI = 3;

@@ -1,4 +1,4 @@
-package it.unibd.ids.progetto.news;
+package it.unibs.ids.progetto.news;
 import it.unibs.ids.progetto.Leaf;
 
 public class Offerta extends PrestazioneOpera {

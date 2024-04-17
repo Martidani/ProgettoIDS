@@ -1,8 +1,5 @@
 package it.unibs.ids.progetto.main;
 
-import it.unibd.ids.progetto.news.Offerta;
-import it.unibd.ids.progetto.news.PropostaDiScambio;
-import it.unibd.ids.progetto.news.Richiesta;
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.Gerarchia;
@@ -10,6 +7,9 @@ import it.unibs.ids.progetto.Leaf;
 import it.unibs.ids.progetto.Nodo;
 import it.unibs.ids.progetto.NotLeaf;
 import it.unibs.ids.progetto.Utenza;
+import it.unibs.ids.progetto.news.Offerta;
+import it.unibs.ids.progetto.news.PropostaDiScambio;
+import it.unibs.ids.progetto.news.Richiesta;
 
 public class WorkFruitorController implements WorkController {
 

@@ -32,27 +32,49 @@ public class Fruitore extends Utente implements Serializable {
         setIsDefinitivo(true);
     }
 
-	public String getIndirizzo() {
-		return indirizzo;
-	}
+    /**
+     * Restituisce l'indirizzo del fruitore.
+     * 
+     * @return L'indirizzo del fruitore
+     */
+    public String getIndirizzo() {
+        return indirizzo;
+    }
 
-	public void setIndirizzo(String indirizzo) {
-		this.indirizzo = indirizzo;
-	}
+    /**
+     * Imposta l'indirizzo del fruitore.
+     * 
+     * @param indirizzo Il nuovo indirizzo del fruitore
+     */
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+    }
 
-	public Comprensorio getComprensorioAppartenenza() {
-		return comprensorioAppartenenza;
-	}
+    /**
+     * Restituisce il comprensorio a cui il fruitore appartiene.
+     * 
+     * @return Il comprensorio a cui il fruitore appartiene
+     */
+    public Comprensorio getComprensorioAppartenenza() {
+        return comprensorioAppartenenza;
+    }
 
-	public void setComprensorioAppartenenza(Comprensorio comprensorioAppartenenza) {
-		this.comprensorioAppartenenza = comprensorioAppartenenza;
-	}
+    /**
+     * Imposta il comprensorio a cui il fruitore appartiene.
+     * 
+     * @param comprensorioAppartenenza Il nuovo comprensorio a cui il fruitore appartiene
+     */
+    public void setComprensorioAppartenenza(Comprensorio comprensorioAppartenenza) {
+        this.comprensorioAppartenenza = comprensorioAppartenenza;
+    }
 
-	@Override
-	public void setIsDefinitivo(boolean x) {
-		this.credenziali.setDefinitive(x);
-	}
- 
-
-
+    /**
+     * Imposta lo stato di definitività delle credenziali del fruitore.
+     * 
+     * @param x Il nuovo stato di definitività delle credenziali del fruitore
+     */
+    @Override
+    public void setIsDefinitivo(boolean x) {
+        this.credenziali.setDefinitive(x);
+    }
 }

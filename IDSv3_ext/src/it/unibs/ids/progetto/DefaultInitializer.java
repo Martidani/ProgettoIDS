@@ -121,12 +121,13 @@ public class DefaultInitializer {
     public Utenza defaultAccess() {
         Utenza utenza = new Utenza();
 
-        // Creazione delle credenziali di default per l'utente admin
+        // Creazione delle credenziali di default per l'utente configuratore admin
         Credenziali credC= new Credenziali(DEFAULT_CUSERNAME, DEFAULT_CPASSWORD);
         credC.setDefinitive(true);
         Configuratore configuratore = new Configuratore(credC);
         utenza.addUtente(configuratore);
         
+        // Creazione delle credenziali di default per l'utente fruitore user
         Credenziali credF = new Credenziali(DEFAULT_FUSERNAME, DEFAULT_FPASSWORD);
         Fruitore fruitore = new Fruitore(this.defaultComprensorio(), credF, DEFAULT_FEMAIL);
         utenza.addUtente(fruitore);

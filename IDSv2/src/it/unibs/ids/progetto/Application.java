@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.news.Fruitore;
 
+/**
+ * Questa classe contiene i metodi statici 
+ * necessari all'esecuzione del sistema
+ * 
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
+ */
 public class Application {
 
 	

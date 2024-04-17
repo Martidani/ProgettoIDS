@@ -4,64 +4,78 @@ import java.util.ArrayList;
 
 import it.unibs.fp.mylib.InputDati;
 
+/**
+ * Questa classe contiene i metodi statici 
+ * necessari all'esecuzione del sistema
+ * 
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
+ */
 public class Application {
 
     private static final int NUM_MAX_TENTATIVI = 3;
 
-	public static void proponiScambio(Utenza utenza, Gerarchia gerarchia) throws NodeNotLeafException {
-		String nomePrestazione;
-		String nomeRadicePrestazione;
-		Nodo fogliaRichiesta;
-		do {
-			nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci richiesta [foglia di appartenenza] -> ");
-			nomeRadicePrestazione = InputDati.leggiStringaNonVuota("Inserisci radice -> ");	
-			fogliaRichiesta = gerarchia.visualizzaFoglia(nomePrestazione, nomeRadicePrestazione);
-		} while (fogliaRichiesta == null);
-		
-		int durata = InputDati.leggiInteroPositivo("Inserisci durata -> ");
-		
-		Nodo fogliaOfferta;
-		do {
-			nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci offerta [foglia di appartenenza] -> ");
-			nomeRadicePrestazione = InputDati.leggiStringaNonVuota("Inserisci radice -> ");	
-			fogliaOfferta = gerarchia.visualizzaFoglia(nomePrestazione, nomeRadicePrestazione);
-		} while (fogliaOfferta == null);
-		
-		PrestazioneOpera offerta = new PrestazioneOpera(fogliaOfferta);
-		PrestazioneOpera richiesta = new PrestazioneOpera(fogliaRichiesta, durata);
-		PropostaDiScambio proposta = new PropostaDiScambio(richiesta, offerta);
-		
-		System.out.println("\nOfferta: ");
-		System.out.println("[" + offerta.getNome() + ", "+ offerta.getDurata() + " ore]");
-	
-		
-		if (InputDati.yesOrNo("Confermi l'offerta?")) {
-			Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
-			fruitore.addProposte(proposta);
-		}
-		
-		
-		
-		
-	}
+    /**
+     * Consente all'utente di proporre uno scambio di prestazioni all'interno della gerarchia.
+     * Richiede all'utente di inserire una richiesta e un'offerta di prestazioni, quindi crea e propone uno scambio.
+     * @param utenza L'utente che propone lo scambio.
+     * @param gerarchia La gerarchia delle prestazioni all'interno del sistema.
+     * @throws NodeNotLeafException Se viene cercata una foglia e viene trovato un nodo non foglia.
+     */
+    public static void proponiScambio(Utenza utenza, Gerarchia gerarchia) throws NodeNotLeafException {
+        String nomePrestazione;
+        String nomeRadicePrestazione;
+        Nodo fogliaRichiesta;
+        do {
+            nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci richiesta [foglia di appartenenza] -> ");
+            nomeRadicePrestazione = InputDati.leggiStringaNonVuota("Inserisci radice -> ");    
+            fogliaRichiesta = gerarchia.visualizzaFoglia(nomePrestazione, nomeRadicePrestazione);
+        } while (fogliaRichiesta == null);
+        
+        int durata = InputDati.leggiInteroPositivo("Inserisci durata -> ");
+        
+        Nodo fogliaOfferta;
+        do {
+            nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci offerta [foglia di appartenenza] -> ");
+            nomeRadicePrestazione = InputDati.leggiStringaNonVuota("Inserisci radice -> ");    
+            fogliaOfferta = gerarchia.visualizzaFoglia(nomePrestazione, nomeRadicePrestazione);
+        } while (fogliaOfferta == null);
+        
+        PrestazioneOpera offerta = new PrestazioneOpera(fogliaOfferta);
+        PrestazioneOpera richiesta = new PrestazioneOpera(fogliaRichiesta, durata);
+        PropostaDiScambio proposta = new PropostaDiScambio(richiesta, offerta);
+        
+        System.out.println("\nOfferta: ");
+        System.out.println("[" + offerta.getNome() + ", "+ offerta.getDurata() + " ore]");
+        
+        if (InputDati.yesOrNo("Confermi l'offerta?")) {
+            Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
+            fruitore.addProposte(proposta);
+        }
+    }
 
 
-	public static void navigaGerarchia(Gerarchia gerarchia) {
-		String ger = gerarchia.toStringRadici();
-		System.out.println(ger + "\n");
-               
-		String nomeRadice = InputDati.leggiStringaNonVuota("Scegli radice -> ");
-		Nodo radice = gerarchia.visualizzaRadice(nomeRadice);
-		System.out.println(radice.toNavigationString() + "\n");
-		Nodo child;
-				
-		do {
-			int valoreDominio = InputDati.leggiIntero("Scegli l'opzione -> ");	
-			child = radice.getChildren().get(valoreDominio-1);
-			radice = child;
-			System.out.println(child.toNavigationString()+ "\n");
-		} while (!child.isLeaf());
-	}
+    /**
+     * Consente all'utente di navigare nella gerarchia delle prestazioni e visualizzare le opzioni disponibili.
+     * @param gerarchia La gerarchia delle prestazioni all'interno del sistema.
+     */
+    public static void navigaGerarchia(Gerarchia gerarchia) {
+        String ger = gerarchia.toStringRadici();
+        System.out.println(ger + "\n");
+        
+        String nomeRadice = InputDati.leggiStringaNonVuota("Scegli radice -> ");
+        Nodo radice = gerarchia.visualizzaRadice(nomeRadice);
+        System.out.println(radice.toNavigationString() + "\n");
+        Nodo child;
+                
+        do {
+            int valoreDominio = InputDati.leggiIntero("Scegli l'opzione -> ");    
+            child = radice.getChildren().get(valoreDominio-1);
+            radice = child;
+            System.out.println(child.toNavigationString()+ "\n");
+        } while (!child.isLeaf());
+    }
+
 
 
 	/**

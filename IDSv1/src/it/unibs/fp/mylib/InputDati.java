@@ -141,6 +141,7 @@ public class InputDati
 	     catch (InputMismatchException e)
 	      {
 	       System.out.println(ERRORE_FORMATO);
+           lettore.nextLine();
 	      }
 	    } while (!finito);
 	   return valoreLetto;
