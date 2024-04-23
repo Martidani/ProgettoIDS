@@ -1,10 +1,7 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto.news.main;
 
 import it.unibs.fp.mylib.MyMenu;
-import it.unibs.ids.progetto.Geografia;
-import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.RootTreeException;
-import it.unibs.ids.progetto.Utenza;
 
 /**
  * Questa classe gestisce i menu dell'applicazione e le relative azioni.
@@ -12,15 +9,27 @@ import it.unibs.ids.progetto.Utenza;
  * @author Daniele Martinelli
  * @author Federico Sabbadini
  */
-public class MenuConfController {
+public class MainConfView {
 
+	private AccessConfController accessConfController;
+	private WorkConfController workConfController;
 	
-    public final static String[] voci = 
+    public MainConfView(AccessConfController accessConfController, WorkConfController workConfController) {
+    	this.accessConfController = accessConfController;
+    	this.workConfController = workConfController;
+	}
+
+    private final static String[] vociAccesso = 
+        {"Registrazione","Login"};
+    private final static String[] voci = 
         {"Introdurre comprensorio geografico", "Introdurre albero", "Visualizza comprensorio", 
             "Visualizza gerarchia", "Visualizza fattori di conversione"};
     
-    static MyMenu menuConfiguratore = new MyMenu("Menu principale", voci);
+    
+    private static MyMenu menuConfiguratore = new MyMenu("Menu principale", voci);
+    private static MyMenu menuAccesso = new MyMenu("Menu accesso", vociAccesso);
 	
+    
     /**
      * Metodo che gestisce il menu di configurazione.
      * 
@@ -30,29 +39,29 @@ public class MenuConfController {
      * @throws RootTreeException Eccezione sollevata in caso di errore nella manipolazione dell'albero.
      * @throws LeafHasChildrenException 
      */
-    public static int menuConfiguratore(Gerarchia gerarchia, Geografia geografia) throws RootTreeException {
+    private int menuConfiguratore() throws RootTreeException {
         int scelta;
         scelta = menuConfiguratore.scegli();
         switch (scelta) {
 
             case 1:
-                WorkConfController.creaComprensorio(geografia);
+            	workConfController.creaComprensorio();
                 break;
 
             case 2:
-                WorkConfController.creaGerarchia(gerarchia);
+            	workConfController.creaGerarchia();
                 break;
 
             case 3:
-                WorkConfController.stampaGeografia(geografia);
+            	workConfController.stampaGeografia();
                 break;
 
             case 4:
-                WorkConfController.stampaGerarchia(gerarchia);
+            	workConfController.stampaGerarchia();
                 break;
 
             case 5:
-                WorkConfController.stampaFattori(gerarchia);
+            	workConfController.stampaFattori();
                 break;
 
             default:
@@ -61,28 +70,22 @@ public class MenuConfController {
         return scelta;
     }
 
-    
-    public final static String[] vociAccesso = 
-        {"Registrazione","Login"};
-    
-    static MyMenu menuAccesso = new MyMenu("Menu accesso", vociAccesso);
-    
     /**
      * Metodo che gestisce il menu di accesso.
      * 
      * @param utenza L'utente che sta effettuando l'accesso.
      * @return La scelta effettuata dall'utente.
      */
-    public static int menuAccesso(Utenza utenza) {
+    private int menuAccesso() {
         int accesso;
         accesso = menuAccesso.scegli();
         switch (accesso) {
             case 1:
-                AccessConfController.registrazione(utenza);
+            	accessConfController.registrazione();
                 break;
 
             case 2:
-                accesso = AccessConfController.login(utenza);
+                accesso = accessConfController.login();
                 break;
 
             default:
@@ -90,4 +93,22 @@ public class MenuConfController {
         }
         return accesso;
     }
+
+
+    public void run() throws RootTreeException {
+	    //accensione del sistema
+        int scelta;
+        do {
+        	scelta = menuAccesso();
+        } while (scelta == 1);
+
+        
+	    //modalità configuratore
+        if (scelta != 0) {
+            do {
+                scelta = menuConfiguratore();
+            } while (scelta != 0);
+        }
+    }
 }
+

@@ -9,6 +9,7 @@ import it.unibs.ids.progetto.RootTreeException;
 import it.unibs.ids.progetto.Utenza;
 
 
+
 /**
  * Classe che contiene il metodo main per l'esecuzione dell'applicazione.
  * 
@@ -35,28 +36,25 @@ public class Main {
             System.out.println("Lettura da file: " + FileManager.getUtenzaFile() 
             + ", " + FileManager.getGerarchiaFile() + ", " + FileManager.getGeografiaFile());
         }
-
-        boolean tipoFunzionamento;
+        
+        
+	    //accensione del sistema
+        MainView menuController;
         int num = InputDati.leggiInteroRange(" \n Modalità di funzionamento:\n 1 - Configuratore\n 2- Fruitore\n --> ", 1, 2);
         if (num==1)
-        	tipoFunzionamento = false;
+        	menuController = new MainConfView();
         else
-        	tipoFunzionamento = true;
-       
-        MenuController menuController;
-        if (tipoFunzionamento)
-        	menuController = new MenuFruitorController();
-        else
-        	menuController = new MenuConfController();
-       
-        int accesso, scelta;
-        do {
-            accesso = menuController.menuAccesso(utenza, geografia);
-        } while (accesso == 1);
-
+        	menuController = new MainFruitorView();
+        
         
 	    //modalità fruitore/configuratore
-	    if (accesso != 0) {
+        int scelta;
+        do {
+        	scelta = menuController.menuAccesso(utenza, geografia);
+        } while (scelta == 1);
+
+        
+	    if (scelta != 0) {
 	        do {
 	            scelta = menuController.menu(gerarchia, geografia, utenza);
 	        } while (scelta != 0);

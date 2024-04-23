@@ -5,12 +5,12 @@ import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.Utenza;
 
-public class MenuFruitorController implements MenuController {
+public class MainFruitorView implements MainView {
 
 	public AccessController accessFruitorController;
 	public WorkController workFruitorController;
 	
-    public MenuFruitorController() {
+    public MainFruitorView() {
 		super();
 		this.accessFruitorController = new AccessFruitorController();
 		this.workFruitorController = new WorkFruitorController();

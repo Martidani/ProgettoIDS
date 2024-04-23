@@ -41,6 +41,10 @@ public class Gerarchia implements Serializable {
     public ArrayList<Leaf> getFoglie() {
 		return foglie;
 	}
+    
+    public ArrayList<Nodo> getRadici() {
+		return radici;
+	}
 
 	/**
      * Aggiunge un albero alla gerarchia.
@@ -60,7 +64,7 @@ public class Gerarchia implements Serializable {
      * @return true se esiste un nodo radice con il nome specificato, false altrimenti
      */
     public boolean verificaEsistenzaNomeRadice(String nome) {
-        for (Nodo albero : radici) {
+        for (Nodo albero : this.radici) {
             if (albero.getNome().equals(nome)) {
                 return true;
             }

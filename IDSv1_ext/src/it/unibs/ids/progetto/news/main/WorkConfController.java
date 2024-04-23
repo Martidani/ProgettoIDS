@@ -1,14 +1,14 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto.news.main;
 
 import java.util.ArrayList;
-
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.Albero;
 import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.FattoriDiConversione;
-import it.unibs.ids.progetto.Geografia;
-import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.RootTreeException;
+import it.unibs.ids.progetto.news.Leaf;
+import it.unibs.ids.progetto.news.Nodo;
+import it.unibs.ids.progetto.news.NotLeaf;
 
 /**
  * Questa classe gestisce le operazioni relative alla configurazione dei dati.
@@ -16,19 +16,25 @@ import it.unibs.ids.progetto.RootTreeException;
  * @author Daniele Martinelli
  * @author Federico Sabbadini
  */
-public class WorkConfController {
+public class WorkConfController  {
 
+	private Model model;
+    public WorkConfController(Model model) {
+		super();
+		this.model = model;
+	}
+	
     /**
      * Metodo per aggiungere un comprensorio alla geografia.
      * 
      * @param geografia  L'oggetto Geografia utilizzato per aggiungere il comprensorio.
      */
-    public static void creaComprensorio(Geografia geografia) {
+    public void creaComprensorio() {
 		
 		String nome;
 		do {
 			nome = InputDati.leggiStringaNonVuota("Nome: ");
-		} while (geografia.verificaEsistenzaComprensorio(nome));
+		} while (model.verificaEsistenzaComprensorio(nome));
 		
 	    Comprensorio comprensorio = new Comprensorio(nome);
 
@@ -43,7 +49,7 @@ public class WorkConfController {
         int size = comprensorio.getComprensorio().size();
         comprensorio.getComprensorio().remove(size - 1);
 
-        geografia.addComprensorio(comprensorio);
+        model.addComprensorio(comprensorio);
     }
 
     /**
@@ -53,12 +59,12 @@ public class WorkConfController {
      * @throws RootTreeException Eccezione sollevata in caso di errore nella creazione della radice dell'albero.
      * @throws LeafHasChildrenException 
      */
-    public static void creaGerarchia(Gerarchia gerarchia) throws RootTreeException {
+    public  void creaGerarchia( ) throws RootTreeException {
         ArrayList<Leaf> foglieAttuali = new ArrayList<>();
-        NotLeaf root = creaRadice(gerarchia);
-        creaNodiFiglio(root, gerarchia, root, foglieAttuali);
-        gerarchia.addAlbero(new Albero(root));
-        creaFattoriConversione(gerarchia, foglieAttuali);
+        NotLeaf root = creaRadice();
+        creaNodiFiglio(root, root, foglieAttuali);
+        model.addAlbero(new Albero(root));
+        creaFattoriConversione( foglieAttuali);
     }
 
     /**
@@ -66,8 +72,8 @@ public class WorkConfController {
      * 
      * @param geografia  L'oggetto Geografia da stampare.
      */
-    public static void stampaGeografia(Geografia geografia) {
-        System.out.println(geografia.toString());
+    public  void stampaGeografia( ) {
+        System.out.println(model.toStringGeografia());
     }
 
     /**
@@ -75,8 +81,8 @@ public class WorkConfController {
      * 
      * @param gerarchia  L'oggetto Gerarchia da stampare.
      */
-    public static void stampaGerarchia(Gerarchia gerarchia) {
-        String ger = gerarchia.toString();
+    public  void stampaGerarchia( ) {
+        String ger = model.toStringGerarchia();
         System.out.println(ger);
     }
 
@@ -87,11 +93,11 @@ public class WorkConfController {
      * @return           Il nodo radice creato.
      * @throws RootTreeException Eccezione sollevata se il nome radice esiste già nella gerarchia.
      */
-    private static NotLeaf creaRadice(Gerarchia gerarchia) throws RootTreeException {
+    private  NotLeaf creaRadice( ) throws RootTreeException {
         String radice;
         do {
             radice = InputDati.leggiStringaNonVuota("Nome radice -> ");
-        } while (gerarchia.verificaEsistenzaNomeRadice(radice));
+        } while (model.verificaEsistenzaNomeRadice(radice));
 
         String campo = InputDati.leggiStringaNonVuota("Campo -> ");
         NotLeaf root = new NotLeaf(radice, true, campo);
@@ -106,7 +112,7 @@ public class WorkConfController {
      * 
      * @param nodo  Il nodo a cui aggiungere i valori del dominio.
      */
-    private static void creaValoriDominio(NotLeaf nodo) {
+    private  void creaValoriDominio(NotLeaf nodo) {
         int num = 0;
         do {
             num++;
@@ -129,7 +135,7 @@ public class WorkConfController {
      * @param foglieAttuali  La lista delle foglie attuali.
      * @throws LeafHasChildrenException 
      */
-    private static void creaNodiFiglio(NotLeaf nodoParent, Gerarchia gerarchia, NotLeaf radice, ArrayList<Leaf> foglieAttuali) {
+    private  void creaNodiFiglio(NotLeaf nodoParent , NotLeaf radice, ArrayList<Leaf> foglieAttuali) {
         int numFigli = 0;
         do {
             numFigli++;
@@ -159,7 +165,7 @@ public class WorkConfController {
 
         for (Nodo nodo : nodoParent.getChildren()) {
             if (!nodo.isLeaf()) {
-                creaNodiFiglio((NotLeaf) nodo, gerarchia, radice, foglieAttuali);
+                creaNodiFiglio((NotLeaf) nodo, radice, foglieAttuali);
             }
         }
     }
@@ -170,7 +176,7 @@ public class WorkConfController {
      * @param nome  Il nome del nodo.
      * @return      Il nodo non foglia creato.
      */
-    private static Nodo creaNonFoglia(String nome) {
+    private  Nodo creaNonFoglia(String nome) {
         String campo = InputDati.leggiStringaNonVuota("Campo -> ");
         NotLeaf nodoChild = new NotLeaf(nome, false, campo);
 
@@ -187,13 +193,13 @@ public class WorkConfController {
      * @throws LeafHasChildrenException 
      * @throws Exception     Eccezione in caso di problemi durante l'inserimento.
      */
-    private static void creaFattoriConversione(Gerarchia gerarchia, ArrayList<Leaf> foglieAttuali) {
+    private  void creaFattoriConversione(ArrayList<Leaf> foglieAttuali) {
         System.out.println("\nInserimento fattori di conversione:");
         do {
-        	Leaf nodo1 = chiediFoglia("Foglia 1:", gerarchia);
-        	Leaf nodo2 = chiediFoglia("Foglia 2:", gerarchia);
+        	Leaf nodo1 = chiediFoglia("Foglia 1:");
+        	Leaf nodo2 = chiediFoglia("Foglia 2:");
 
-            double fattoreDiConversione = chiediFattoreConversione(gerarchia);
+            double fattoreDiConversione = chiediFattoreConversione();
 
             boolean condizione = !foglieAttuali.contains(nodo1)
                     && !foglieAttuali.contains(nodo2);
@@ -203,7 +209,7 @@ public class WorkConfController {
             }
         } while (InputDati.yesOrNo("Vuoi continuare l'inserimento? "));
 
-        FattoriDiConversione.addTransitivoFattoreConversione(gerarchia);
+        model.addTransitivoFattoreConversione();
     }
 
     /**
@@ -214,13 +220,13 @@ public class WorkConfController {
      * @return            Il nodo corrispondente alla foglia e alla radice specificate.
      * @throws LeafHasChildrenException 
      */
-    private static Leaf chiediFoglia(String messaggio, Gerarchia gerarchia) {
+    private  Leaf chiediFoglia(String messaggio ) {
     	Leaf nodo;
         do {
             System.out.println(messaggio);
             String foglia = InputDati.leggiStringaNonVuota("  Nome -> ");
             String radice = InputDati.leggiStringaNonVuota("  Radice -> ");
-            nodo = gerarchia.visualizzaFoglia(foglia, radice);
+            nodo = model.visualizzaFoglia(foglia, radice);
             
         } while (nodo == null);
         return nodo;
@@ -232,7 +238,7 @@ public class WorkConfController {
      * @param gerarchia   L'oggetto Gerarchia su cui verificare il fattore di conversione.
      * @return            Il fattore di conversione inserito.
      */
-    private static double chiediFattoreConversione(Gerarchia gerarchia) {
+    private  double chiediFattoreConversione( ) {
         double fattoreDiConversione;
         do {
             fattoreDiConversione = InputDati.leggiDouble("Fattore di conversione -> ");
@@ -246,13 +252,26 @@ public class WorkConfController {
      * @param gerarchia  L'oggetto Gerarchia su cui visualizzare i fattori di conversione.
      * @throws LeafHasChildrenException 
      */
-    public static void stampaFattori(Gerarchia gerarchia)  {
+    public  void stampaFattori( )  {
         String foglia = InputDati.leggiStringaNonVuota("Inserisci nome foglia: ");
         String radice = InputDati.leggiStringaNonVuota("Inserisci radice della gerarchia della foglia: ");
-        Leaf nodo = gerarchia.visualizzaFoglia(foglia, radice);
+        Leaf nodo = model.visualizzaFoglia(foglia, radice);
         if (nodo == null)
             System.out.println("  Non è stata trovata nessuna corrispondenza");
         else
             System.out.println(nodo.toStringFactors());
     }
+
+
+    /**
+     * Metodo per stampare la gerarchia.
+     * 
+     * @param gerarchia  L'oggetto Gerarchia da stampare.
+     */
+    public void navigaGerarchia( ) {
+        String ger = model.toStringGerarchia();
+        System.out.println(ger);
+    }
+		
+	
 }

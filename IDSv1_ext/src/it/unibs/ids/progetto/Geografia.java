@@ -42,16 +42,16 @@ public class Geografia implements Serializable {
 	}
 	
 	
-	public Comprensorio cercaComprensorio (String nome) {
+	private Comprensorio cercaComprensorio (String nome ) {
 		
-		for (Comprensorio comprensorio : comprensori) {
+		for (Comprensorio comprensorio : this.comprensori) {
 			if (comprensorio.getNome().equals(nome))
 				return comprensorio;
 		}
 		return null;
 	}
 	
-	public boolean verificaEsistenzaComprensorio (String nome) {
+	public boolean verificaEsistenzaComprensorio (String nome ) {
 		if (cercaComprensorio(nome) == null)
 			return false;
 		return true;

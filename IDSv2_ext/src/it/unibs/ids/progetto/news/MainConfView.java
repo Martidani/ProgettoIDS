@@ -6,12 +6,12 @@ import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.RootTreeException;
 import it.unibs.ids.progetto.Utenza;
 
-public class MenuConfController implements MenuController{
+public class MainConfView implements MainView{
 
 	public AccessController accessConfController;
 	public WorkController workConfController;
 	
-    public MenuConfController() {
+    public MainConfView() {
 		super();
 		this.accessConfController = new AccessConfController();
 		this.workConfController = new WorkConfController();

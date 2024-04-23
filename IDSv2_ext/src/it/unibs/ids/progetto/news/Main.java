@@ -36,27 +36,23 @@ public class Main {
             + ", " + FileManager.getGerarchiaFile() + ", " + FileManager.getGeografiaFile());
         }
 
-        boolean tipoFunzionamento;
+	    //accensione del sistema
+        MainView menuController;
         int num = InputDati.leggiInteroRange(" \n Modalità di funzionamento:\n 1 - Configuratore\n 2- Fruitore\n --> ", 1, 2);
         if (num==1)
-        	tipoFunzionamento = false;
+        	menuController = new MainConfView();
         else
-        	tipoFunzionamento = true;
+        	menuController = new MainFruitorView();
        
-        MenuController menuController;
-        if (tipoFunzionamento)
-        	menuController = new MenuFruitorController();
-        else
-        	menuController = new MenuConfController();
-       
-        int accesso, scelta;
+
+	    //modalità fruitore/configuratore
+        int scelta;
         do {
-            accesso = menuController.menuAccesso(utenza, geografia);
-        } while (accesso == 1);
+        	scelta = menuController.menuAccesso(utenza, geografia);
+        } while (scelta == 1);
 
         
-	    //modalità fruitore/configuratore
-	    if (accesso != 0) {
+	    if (scelta != 0) {
 	        do {
 	            scelta = menuController.menu(gerarchia, geografia);
 	        } while (scelta != 0);

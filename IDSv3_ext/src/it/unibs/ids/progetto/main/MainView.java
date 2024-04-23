@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto.main;
 
 import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;
@@ -12,9 +12,9 @@ import it.unibs.ids.progetto.Utenza;
  * @author Daniele Martinelli
  * @author Federico Sabbadini
  */
-public interface MenuController {
+public interface MainView {
 
     public abstract int menuAccesso(Utenza utenza, Geografia geografia);
-	public abstract int menu(Gerarchia gerarchia, Geografia geografia) throws RootTreeException;
+	public abstract int menu(Gerarchia gerarchia, Geografia geografia, Utenza utenza) throws RootTreeException;
   
 }
