@@ -9,14 +9,13 @@ import it.unibs.ids.progetto.RootTreeException;
  * @author Daniele Martinelli
  * @author Federico Sabbadini
  */
-public class MainConfView {
+public class View {
 
-	private AccessConfController accessConfController;
-	private WorkConfController workConfController;
+	private Controller controller;
 	
-    public MainConfView(AccessConfController accessConfController, WorkConfController workConfController) {
-    	this.accessConfController = accessConfController;
-    	this.workConfController = workConfController;
+    public View(Controller controller) {
+    	this.controller = controller;
+
 	}
 
     private final static String[] vociAccesso = 
@@ -45,23 +44,23 @@ public class MainConfView {
         switch (scelta) {
 
             case 1:
-            	workConfController.creaComprensorio();
+            	controller.creaComprensorio();
                 break;
 
             case 2:
-            	workConfController.creaGerarchia();
+            	controller.creaGerarchia();
                 break;
 
             case 3:
-            	workConfController.stampaGeografia();
+            	System.out.println(controller.stampaGeografia().toString());;
                 break;
 
             case 4:
-            	workConfController.stampaGerarchia();
+            	System.out.println(controller.stampaGerarchia().toString());;
                 break;
 
             case 5:
-            	workConfController.stampaFattori();
+            	System.out.println(controller.stampaFattori().toString());;
                 break;
 
             default:
@@ -81,11 +80,11 @@ public class MainConfView {
         accesso = menuAccesso.scegli();
         switch (accesso) {
             case 1:
-            	accessConfController.registrazione();
+            	controller.registrazione();
                 break;
 
             case 2:
-                accesso = accessConfController.login();
+                accesso = controller.login();
                 break;
 
             default:

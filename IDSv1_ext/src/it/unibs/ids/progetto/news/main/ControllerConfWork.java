@@ -16,10 +16,10 @@ import it.unibs.ids.progetto.news.NotLeaf;
  * @author Daniele Martinelli
  * @author Federico Sabbadini
  */
-public class WorkConfController  {
+public class ControllerConfWork  {
 
 	private Model model;
-    public WorkConfController(Model model) {
+    public ControllerConfWork(Model model) {
 		super();
 		this.model = model;
 	}
@@ -72,8 +72,8 @@ public class WorkConfController  {
      * 
      * @param geografia  L'oggetto Geografia da stampare.
      */
-    public  void stampaGeografia( ) {
-        System.out.println(model.toStringGeografia());
+    public  String stampaGeografia( ) {
+        return model.toStringGeografia().toString();
     }
 
     /**
@@ -81,9 +81,8 @@ public class WorkConfController  {
      * 
      * @param gerarchia  L'oggetto Gerarchia da stampare.
      */
-    public  void stampaGerarchia( ) {
-        String ger = model.toStringGerarchia();
-        System.out.println(ger);
+    public  String stampaGerarchia( ) {
+        return model.toStringGerarchia().toString();
     }
 
     /**
@@ -252,14 +251,18 @@ public class WorkConfController  {
      * @param gerarchia  L'oggetto Gerarchia su cui visualizzare i fattori di conversione.
      * @throws LeafHasChildrenException 
      */
-    public  void stampaFattori( )  {
+    public  String stampaFattori( )  {
+    	StringBuffer str = new StringBuffer();
+    	
         String foglia = InputDati.leggiStringaNonVuota("Inserisci nome foglia: ");
         String radice = InputDati.leggiStringaNonVuota("Inserisci radice della gerarchia della foglia: ");
         Leaf nodo = model.visualizzaFoglia(foglia, radice);
         if (nodo == null)
-            System.out.println("  Non è stata trovata nessuna corrispondenza");
+            str.append("  Non è stata trovata nessuna corrispondenza");
         else
-            System.out.println(nodo.toStringFactors());
+            str.append(nodo.toStringFactors());
+        
+        return str.toString();
     }
 
 

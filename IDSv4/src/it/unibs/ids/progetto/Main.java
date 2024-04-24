@@ -2,6 +2,7 @@ package it.unibs.ids.progetto;
 import java.util.ArrayList;
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.fp.mylib.MyMenu;
+import it.unibs.ids.progetto.news.Commercio;
 
 /**
  * Classe Main per l'esecuzione del programma.
@@ -29,6 +30,7 @@ public class Main {
         Utenza utenza = FileManager.caricaUtenza();
         Gerarchia gerarchia = FileManager.caricaGerarchia();
         Geografia geografia = FileManager.caricaGeografia();
+        Commercio commercio = new Commercio();
 
         if (utenza == null || gerarchia == null || geografia == null) {
             // Inizializzazione predefinita degli oggetti solo se non sono stati caricati da file
@@ -123,7 +125,7 @@ public class Main {
 	                    break;
 	                    
 	                case 2:
-	                	Application.proponiScambio(utenza, gerarchia);
+	                	Application.proponiScambio(utenza, gerarchia, commercio.numProposte());
 	      
 	                	
 	                break;

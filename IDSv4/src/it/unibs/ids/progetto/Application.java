@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.news.Proposta;
+import it.unibs.ids.progetto.news.PropostaAperta;
 
 /**
  * Questa classe contiene i metodi statici 
@@ -23,7 +24,7 @@ public class Application {
      * @param gerarchia La gerarchia delle prestazioni all'interno del sistema.
      * @throws NodeNotLeafException Se viene cercata una foglia e viene trovato un nodo non foglia.
      */
-    public static void proponiScambio(Utenza utenza, Gerarchia gerarchia) throws NodeNotLeafException {
+    public static void proponiScambio(Utenza utenza, Gerarchia gerarchia, int numProposta) throws NodeNotLeafException {
         String nomePrestazione;
         String nomeRadicePrestazione;
         Nodo fogliaRichiesta;
@@ -44,7 +45,7 @@ public class Application {
         
         PrestazioneOpera offerta = new PrestazioneOpera(fogliaOfferta);
         PrestazioneOpera richiesta = new PrestazioneOpera(fogliaRichiesta, durata);
-        Proposta proposta = new Proposta(richiesta, offerta);
+        Proposta proposta = new PropostaAperta(richiesta, offerta, numProposta);
         
         System.out.println("\nOfferta: ");
         System.out.println("[" + offerta.getNome() + ", "+ offerta.getDurata() + " ore]");

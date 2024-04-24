@@ -12,10 +12,10 @@ import it.unibs.ids.progetto.Utente;
  * @author Daniele Martinelli
  * @author Federico Sabbadini
  */
-public class AccessConfController {
+public class ControllerConfAccess {
 	
 	private Model model;
-    public AccessConfController(Model model) {
+    public ControllerConfAccess(Model model) {
 		super();
 		this.model = model;
 	}
