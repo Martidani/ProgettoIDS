@@ -1,45 +1,47 @@
-package it.unibs.ids.progetto;
+package it.unibs.ids.progetto.news;
+
+import it.unibs.ids.progetto.Nodo;
+import it.unibs.ids.progetto.PrestazioneOpera;
 
 /**
  * La classe PropostaDiScambio rappresenta una proposta di scambio tra due prestazioni.
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
-public class PropostaDiScambio {
+public abstract class Proposta {
 
-    private boolean status; // false proposta aperta, true proposta chiusa
-    private PrestazioneOpera richiesta;
-    private PrestazioneOpera offerta;
-
-    /**
-     * Costruttore che inizializza una PropostaDiScambio con una prestazione richiesta e una offerta.
-     *
-     * @param richiesta La prestazione richiesta nella proposta di scambio.
-     * @param offerta   La prestazione offerta nella proposta di scambio.
-     */
-    public PropostaDiScambio(PrestazioneOpera richiesta, PrestazioneOpera offerta) {
-        this.status = false;
+    protected String status;
+    protected PrestazioneOpera richiesta;
+    protected PrestazioneOpera offerta;
+    protected int ID;
+    
+    
+    public Proposta(PrestazioneOpera richiesta, PrestazioneOpera offerta,int ID) {
+        
         this.richiesta = richiesta;
         this.offerta = offerta;
+        this.ID=ID;
 
         setOfferta();
+        setStatus();
     }
+    
+    public int getID() {
+		return ID;
+	}
 
-    /**
-     * Restituisce lo stato della proposta di scambio.
-     *
-     * @return True se la proposta è chiusa, False se è aperta.
-     */
-    public boolean getStatus() {
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	
+	
+	public String getStatus() {
         return status;
     }
-
-    /**
-     * Cambia lo stato della proposta di scambio da aperta a chiusa.
-     */
-    public void changeStatus() {
-        this.status = true;
-    }
+    
+    
+    public abstract void setStatus();
 
     /**
      * Restituisce la prestazione richiesta nella proposta di scambio.

@@ -3,6 +3,8 @@ package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import it.unibs.ids.progetto.news.Proposta;
+
 /**
  * La classe Fruitore rappresenta un utente con privilegi di configurazione.
  * Estende la classe astratta Utente.
@@ -16,7 +18,7 @@ public class Fruitore extends Utente implements Serializable {
     
     private String indirizzo;
     private Comprensorio comprensorioAppartenenza;
-    private ArrayList<PropostaDiScambio> proposte;
+    private ArrayList<Proposta> proposte;
     
     /**
      * Costruttore della classe Fruitore.
@@ -30,7 +32,7 @@ public class Fruitore extends Utente implements Serializable {
         super(TIPOUTENTE, credenziali);
         this.indirizzo = indirizzo;
         this.comprensorioAppartenenza = comprensorioAppartenenza;
-        this.proposte = new ArrayList<PropostaDiScambio>();
+        this.proposte = new ArrayList<Proposta>();
         setIsDefinitivo(true);
     }
 
@@ -75,7 +77,7 @@ public class Fruitore extends Utente implements Serializable {
      * 
      * @return Le proposte di scambio del fruitore.
      */
-    public ArrayList<PropostaDiScambio> getProposte() {
+    public ArrayList<Proposta> getProposte() {
         return proposte;
     }
 
@@ -84,7 +86,7 @@ public class Fruitore extends Utente implements Serializable {
      * 
      * @param proposta La proposta di scambio da aggiungere.
      */
-    public void addProposte(PropostaDiScambio proposta) {
+    public void addProposte(Proposta proposta) {
         this.proposte.add(proposta);
     }
 

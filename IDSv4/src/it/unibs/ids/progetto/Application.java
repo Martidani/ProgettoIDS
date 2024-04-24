@@ -3,6 +3,7 @@ package it.unibs.ids.progetto;
 import java.util.ArrayList;
 
 import it.unibs.fp.mylib.InputDati;
+import it.unibs.ids.progetto.news.Proposta;
 
 /**
  * Questa classe contiene i metodi statici 
@@ -43,7 +44,7 @@ public class Application {
         
         PrestazioneOpera offerta = new PrestazioneOpera(fogliaOfferta);
         PrestazioneOpera richiesta = new PrestazioneOpera(fogliaRichiesta, durata);
-        PropostaDiScambio proposta = new PropostaDiScambio(richiesta, offerta);
+        Proposta proposta = new Proposta(richiesta, offerta);
         
         System.out.println("\nOfferta: ");
         System.out.println("[" + offerta.getNome() + ", "+ offerta.getDurata() + " ore]");
