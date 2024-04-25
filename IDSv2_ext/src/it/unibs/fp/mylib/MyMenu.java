@@ -44,7 +44,7 @@ public class MyMenu {
      * Metodo per stampare il menu a schermo.
      */
     public void stampaMenu() {
-        System.out.println(CORNICE);
+        System.out.println("\n" + CORNICE);
         System.out.println(titolo);
         System.out.println(CORNICE);
         for (int i = 0; i < voci.length; i++) {

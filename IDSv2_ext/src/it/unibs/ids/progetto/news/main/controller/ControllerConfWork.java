@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.news.main;
+package it.unibs.ids.progetto.news.main.controller;
 
 import java.util.ArrayList;
 import it.unibs.fp.mylib.InputDati;
@@ -6,9 +6,10 @@ import it.unibs.ids.progetto.Albero;
 import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.FattoriDiConversione;
 import it.unibs.ids.progetto.RootTreeException;
-import it.unibs.ids.progetto.news.Leaf;
-import it.unibs.ids.progetto.news.Nodo;
-import it.unibs.ids.progetto.news.NotLeaf;
+import it.unibs.ids.progetto.news.main.model.Model;
+import it.unibs.ids.progetto.Leaf;
+import it.unibs.ids.progetto.Nodo;
+import it.unibs.ids.progetto.NotLeaf;
 
 /**
  * Questa classe gestisce le operazioni relative alla configurazione dei dati.
@@ -16,10 +17,11 @@ import it.unibs.ids.progetto.news.NotLeaf;
  * @author Daniele Martinelli
  * @author Federico Sabbadini
  */
-public class ControllerConfWork {
+public class ControllerConfWork  {
 
-	private Model model;
-    public ControllerConfWork(Model model) {
+	protected Model model;
+	
+	public ControllerConfWork (Model model) {
 		super();
 		this.model = model;
 	}

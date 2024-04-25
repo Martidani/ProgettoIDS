@@ -19,8 +19,12 @@ public class DefaultInitializer {
     private static final String DEFAULT_COMMUNITY_2 = "Comune2";
     private static final String DEFAULT_COMMUNITY_3 = "Comune3";
     
-    private static final String DEFAULT_USERNAME = "admin";
-    private static final String DEFAULT_PASSWORD = "admin";
+    private static final String DEFAULT_CUSERNAME = "admin";
+    private static final String DEFAULT_CPASSWORD = "admin";
+    
+    private static final String DEFAULT_FUSERNAME = "user";
+    private static final String DEFAULT_FPASSWORD = "user";
+    private static final String DEFAULT_FEMAIL = "user@unibs.it";
     
     public static final int FACTOR_VAL = 2;
     
@@ -98,7 +102,7 @@ public class DefaultInitializer {
             nodo12.addFattoreConversione(nodo11, 1/FACTOR_VAL);
             Albero albero = new Albero(nodo1);
             
-            albero.setUtente(utenza.autenticazioneConfiguratore(DEFAULT_USERNAME, DEFAULT_PASSWORD));
+            albero.setUtente(utenza.autenticazioneConfiguratore(DEFAULT_CUSERNAME, DEFAULT_CPASSWORD));
             gerarchia.addAlbero(albero);
             FattoriDiConversione.addTransitivoFattoreConversione(gerarchia);
         
@@ -117,11 +121,16 @@ public class DefaultInitializer {
     public Utenza defaultAccess() {
         Utenza utenza = new Utenza();
 
-        // Creazione delle credenziali di default per l'utente admin
-        Credenziali cred = new Credenziali(DEFAULT_USERNAME, DEFAULT_PASSWORD);
-        cred.setDefinitive(true);
-        Configuratore utente = new Configuratore(cred);
-        utenza.addUtente(utente);
+        // Creazione delle credenziali di default per l'utente configuratore admin
+        Credenziali credC= new Credenziali(DEFAULT_CUSERNAME, DEFAULT_CPASSWORD);
+        credC.setDefinitive(true);
+        Configuratore configuratore = new Configuratore(credC);
+        utenza.addUtente(configuratore);
+        
+        // Creazione delle credenziali di default per l'utente fruitore user
+        Credenziali credF = new Credenziali(DEFAULT_FUSERNAME, DEFAULT_FPASSWORD);
+        Fruitore fruitore = new Fruitore(this.defaultComprensorio(), credF, DEFAULT_FEMAIL);
+        utenza.addUtente(fruitore);
         
         return utenza;
     }

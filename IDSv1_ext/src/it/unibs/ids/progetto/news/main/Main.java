@@ -14,8 +14,8 @@ public class Main {
     public static void main(String[] args) throws RootTreeException {
 
     	Model model = new Model();
-    	Controller controller = new Controller(model);
-    	View view = new View(controller);
+    	ControllerConf controller = new ControllerConf(model);
+    	ViewConf view = new ViewConf(controller);
 
     	view.run();
 
