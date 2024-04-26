@@ -1,5 +1,7 @@
 package it.unibs.ids.progetto;
 
+import it.unibs.ids.progetto.news.Commercio;
+
 /**
  * Classe per l'inizializzazione predefinita del sistema.
  * 
@@ -30,6 +32,7 @@ public class DefaultInitializer {
     private Gerarchia gerarchia;
     private Utenza utenza;
     private Geografia geografia;
+    private Commercio commercio;
     
     /**
      * Costruttore che inizializza gli oggetti di default.
@@ -38,6 +41,7 @@ public class DefaultInitializer {
         this.utenza = defaultAccess();
         this.gerarchia = defaultTree();
         this.geografia = defaultWorld();
+        this.commercio = defaultCommercio();
     }
 
     /**
@@ -47,6 +51,15 @@ public class DefaultInitializer {
      */
     public Gerarchia getGerarchia() {
         return this.gerarchia;
+    }
+    
+    /**
+     * Restituisce il commercio predefinito.
+     * 
+     * @return Il commercio predefinito
+     */
+    public Commercio getCommercio() {
+        return this.commercio;
     }
 
     /**
@@ -137,6 +150,16 @@ public class DefaultInitializer {
         comprensorio.addComune(DEFAULT_COMMUNITY_2);
         comprensorio.addComune(DEFAULT_COMMUNITY_3);
         return comprensorio;
+    }
+    
+    private Commercio defaultCommercio() {
+    	Commercio commercio = new Commercio();
+    	
+    	//
+    	// 	IMPLEMENTAZIONE DI DEFAULT
+    	//
+    	
+    	return commercio;
     }
     
     /**

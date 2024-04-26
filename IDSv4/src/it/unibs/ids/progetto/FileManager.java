@@ -1,6 +1,8 @@
 package it.unibs.ids.progetto;
 import java.io.*;
 
+import it.unibs.ids.progetto.news.Commercio;
+
 /**
  * DataManager è una classe utilizzata per gestire il caricamento e il salvataggio dei dati da e verso file di testo.
  * Supporta il caricamento e il salvataggio di oggetti delle classi Gerarchia, Geografia e Utenza.
@@ -13,14 +15,17 @@ public class FileManager {
 	private static final String SAVE_G_ERR = "Errore durante il salvataggio della gerarchia su file: ";
 	private static final String SAVE_U_ERR = "Errore durante il salvataggio dell' utenza su file: ";
 	private static final String SAVE_GE_ERR = "Errore durante il salvataggio della geografia su file: ";
+	private static final String SAVE_C_ERR = "Errore durante il salvataggio del commercio su file: ";
 	
 	private static final String UPLOAD_U_ERR = "Errore durante il caricamento dell' utenza: ";
 	private static final String UPLOAD_G_ERR = "Errore durante il caricamento della gerarchia: ";
 	private static final String UPLOAD_GE_ERR = "Errore durante il caricamento della geografia: ";
+	private static final String UPLOAD_C_ERR = "Errore durante il caricamento del commercio: ";
 	
     private static final String UTENZA_FILE = "utenza.txt";
     private static final String GERARCHIA_FILE = "gerarchia.txt";
     private static final String GEOGRAFIA_FILE = "geografia.txt";
+    private static final String COMMERCIO_FILE = "commercio.txt";
 
     
     /**
@@ -32,6 +37,15 @@ public class FileManager {
         return GERARCHIA_FILE;
     }
 
+    /**
+     * Restituisce il percorso del file utilizzato per la memorizzazione del commercio.
+     * 
+     * @return Il percorso del file del commercio
+     */
+    public static String getCommercioFile() {
+        return COMMERCIO_FILE;
+    }
+    
     /**
      * Restituisce il percorso del file utilizzato per la memorizzazione dell' utenza.
      * 
@@ -128,6 +142,33 @@ public class FileManager {
             outputStream.writeObject(geografia);
         } catch (IOException e) {
             System.err.println(SAVE_GE_ERR + e.getMessage());
+        }
+    }
+    
+    /**
+     * Carica il commercio da un file di testo.
+     * 
+     * @return Il commercio caricato, null in caso di errore durante il caricamento.
+     */
+    public static Commercio caricaCommercio() {
+        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(getCommercioFile()))) {
+            return (Commercio) inputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println(UPLOAD_C_ERR + e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Salva il commercio su un file di testo.
+     * 
+     * @param Il commercio da salvare.
+     */
+    public static void salvaSuFile(Commercio commercio) {
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(getCommercioFile()))) {
+            outputStream.writeObject(commercio);
+        } catch (IOException e) {
+            System.err.println(SAVE_C_ERR + e.getMessage());
         }
     }
 

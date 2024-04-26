@@ -30,17 +30,21 @@ public class Main {
         Utenza utenza = FileManager.caricaUtenza();
         Gerarchia gerarchia = FileManager.caricaGerarchia();
         Geografia geografia = FileManager.caricaGeografia();
-        Commercio commercio = new Commercio();
+        Commercio commercio = FileManager.caricaCommercio();
 
-        if (utenza == null || gerarchia == null || geografia == null) {
+        if (utenza == null || gerarchia == null || geografia == null || commercio == null) {
             // Inizializzazione predefinita degli oggetti solo se non sono stati caricati da file
             DefaultInitializer defaultInitializer = new DefaultInitializer();
             gerarchia = defaultInitializer.getGerarchia();
             utenza = defaultInitializer.getUtenza();
             geografia = defaultInitializer.getGeografia();
+            commercio = defaultInitializer.getCommercio();
         } else {
-            System.out.println("Lettura da file: " + FileManager.getUtenzaFile() 
-            + ", " + FileManager.getGerarchiaFile() + ", " + FileManager.getGeografiaFile());
+            System.out.println("Lettura da file: " 
+                   + FileManager.getUtenzaFile() 
+            + ", " + FileManager.getGerarchiaFile() 
+            + ", " + FileManager.getGeografiaFile()
+            + ", " + FileManager.getCommercioFile());
         }
 
 
@@ -139,6 +143,7 @@ public class Main {
 	    FileManager.salvaSuFile(gerarchia);
 	    FileManager.salvaSuFile(utenza);
 	    FileManager.salvaSuFile(geografia);
+	    FileManager.salvaSuFile(commercio);
     }
 
 	
