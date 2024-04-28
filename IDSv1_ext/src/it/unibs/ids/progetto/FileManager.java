@@ -1,5 +1,8 @@
 package it.unibs.ids.progetto;
 import java.io.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 /**
  * DataManager è una classe utilizzata per gestire il caricamento e il salvataggio dei dati da e verso file di testo.
@@ -18,9 +21,9 @@ public class FileManager {
 	private static final String UPLOAD_G_ERR = "Errore durante il caricamento della gerarchia: ";
 	private static final String UPLOAD_GE_ERR = "Errore durante il caricamento della geografia: ";
 	
-    private static final String UTENZA_FILE = "utenza.txt";
+    private static final String UTENZA_FILE = "utenza.JSON";
     private static final String GERARCHIA_FILE = "gerarchia.txt";
-    private static final String GEOGRAFIA_FILE = "geografia.txt";
+    private static final String GEOGRAFIA_FILE = "geografia.JSON";
 
     
     /**
@@ -77,15 +80,46 @@ public class FileManager {
         }
     }
 
+
     /**
      * Carica l' utenza da un file di testo.
      * 
      * @return L' utenza caricata, null in caso di errore durante il caricamento.
      */
     public static Utenza caricaUtenza() {
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(getUtenzaFile()))) {
-            return (Utenza) inputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+        try (FileReader fileReader = new FileReader(getUtenzaFile())) {
+            JSONParser parser = new JSONParser();
+            JSONArray utenzaJSON = (JSONArray) parser.parse(fileReader);
+
+            Utenza utenza = new Utenza();
+
+            // Ciclo su ogni oggetto JSON che rappresenta un comprensorio
+            for (Object obj : utenzaJSON) {
+            	
+                JSONObject utenteJSON = (JSONObject) obj;
+                
+        		String tipoUtente =  (String) utenteJSON.keySet().iterator().next();
+        		JSONArray credenzialiJSON = (JSONArray) utenteJSON.get(tipoUtente);
+
+        		String id = (String) credenzialiJSON.get(0);
+        		String password =(String) credenzialiJSON.get(1);
+        		Credenziali credenziali = new Credenziali(id, password);
+                    
+        		boolean tipo =  (boolean) credenzialiJSON.get(2);
+        		credenziali.setDefinitive(tipo);
+
+        		Utente utente = null;
+        		if (tipoUtente.equals("c"))  {
+        			utente = new Configuratore();
+        			utente.setIsDefinitivo(tipo);
+        			utente.setCredenziali(credenziali);
+        			utenza.addUtente(utente);
+        		}
+
+            }
+
+            return utenza;
+        } catch (IOException | org.json.simple.parser.ParseException e) {
             System.err.println(UPLOAD_U_ERR + e.getMessage());
             return null;
         }
@@ -97,37 +131,88 @@ public class FileManager {
      * @param gestioneUtenza L' utenza da salvare.
      */
     public static void salvaSuFile(Utenza utenza) {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(getUtenzaFile()))) {
-            outputStream.writeObject(utenza);
+    	JSONArray utenzaJSON = new JSONArray();
+
+        // Ciclo su ogni comprensorio
+        for (Utente utente : utenza.getUtenti()) {
+        	JSONObject utenteJSON = new JSONObject();
+        	
+        	JSONArray credenzialiJSON = new JSONArray();
+        	Credenziali credenziali = utente.getCredenziali();
+        	credenzialiJSON.add(credenziali.getID());
+        	credenzialiJSON.add(credenziali.getPassword());
+        	credenzialiJSON.add(credenziali.isDefinitive());
+        	
+        	utenteJSON.put(utente.getTipoUtente(), credenzialiJSON);
+            
+            utenzaJSON.add(utenteJSON);
+        }
+    	
+    	
+        try (FileWriter fileWriter = new FileWriter(getUtenzaFile())) {
+            fileWriter.write(utenzaJSON.toJSONString());
         } catch (IOException e) {
             System.err.println(SAVE_U_ERR + e.getMessage());
         }
     }
     
-    /**
-     * Carica la geografia da un file di testo.
-     * 
-     * @return La geografia caricata, null in caso di errore durante il caricamento.
-     */
-    public static Geografia caricaGeografia() {
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(getGeografiaFile()))) {
-            return (Geografia) inputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println(UPLOAD_GE_ERR + e.getMessage());
-            return null;
-        }
-    }
 
-    /**
-     * Salva la geografia su un file di testo.
-     * 
-     * @param geografia La geografia da salvare.
-     */
+    
+    
+    
     public static void salvaSuFile(Geografia geografia) {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(getGeografiaFile()))) {
-            outputStream.writeObject(geografia);
+    	JSONArray geografiaJSON = new JSONArray();
+
+        // Ciclo su ogni comprensorio
+        for (Comprensorio comprensorio : geografia.getComprensori()) {
+        	JSONObject comprensorioJSON = new JSONObject();
+        	
+        	JSONArray comuniJSON = new JSONArray();
+        	for (String comune : comprensorio.getComprensorio()) {
+            	comuniJSON.add(comune);
+        	}
+            
+            comprensorioJSON.put(comprensorio.getNome(), comuniJSON);
+            
+            geografiaJSON.add(comprensorioJSON);
+        }
+
+        try (FileWriter fileWriter = new FileWriter(getGeografiaFile())) {
+            fileWriter.write(geografiaJSON.toJSONString());
         } catch (IOException e) {
             System.err.println(SAVE_GE_ERR + e.getMessage());
+        }
+        
+    }    
+
+    public static Geografia caricaGeografia() {
+        try (FileReader fileReader = new FileReader(getGeografiaFile())) {
+            JSONParser parser = new JSONParser();
+            JSONArray geografiaJSON = (JSONArray) parser.parse(fileReader);
+
+            Geografia geografia = new Geografia();
+
+            // Ciclo su ogni oggetto JSON che rappresenta un comprensorio
+            for (Object obj : geografiaJSON) {
+                JSONObject comprensorioJSON = (JSONObject) obj;
+                String nomeComprensorio = (String) comprensorioJSON.keySet().iterator().next();
+                JSONArray comuniJSON = (JSONArray) comprensorioJSON.get(nomeComprensorio);
+
+                Comprensorio comprensorio = new Comprensorio(nomeComprensorio);
+
+                // Ciclo su ogni comune all'interno del comprensorio
+                for (Object comuneObj : comuniJSON) {
+                    String comune = (String) comuneObj;
+                    comprensorio.addComune(comune);
+                }
+
+                geografia.addComprensorio(comprensorio);
+            }
+
+            return geografia;
+        } catch (IOException | org.json.simple.parser.ParseException e) {
+            System.err.println(UPLOAD_GE_ERR + e.getMessage());
+            return null;
         }
     }
 

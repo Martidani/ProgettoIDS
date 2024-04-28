@@ -26,7 +26,7 @@ public class DefaultInitializer {
     private static final String DEFAULT_FPASSWORD = "user";
     private static final String DEFAULT_FEMAIL = "user@unibs.it";
     
-    public static final int FACTOR_VAL = 2;
+    public static final double FACTOR_VAL = 2;
     
     private Gerarchia gerarchia;
     private Utenza utenza;

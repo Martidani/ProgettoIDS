@@ -24,7 +24,7 @@ public class DefaultInitializer {
     private static final String DEFAULT_USERNAME = "admin";
     private static final String DEFAULT_PASSWORD = "admin";
     
-    public static final int FACTOR_VAL = 2;
+    public static final double FACTOR_VAL = 2;
     
     private Gerarchia gerarchia;
     private Utenza utenza;
