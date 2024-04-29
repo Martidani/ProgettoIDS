@@ -3,6 +3,11 @@ package it.unibs.ids.progetto.news;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import it.unibs.ids.progetto.FattoriDiConversione;
+import it.unibs.ids.progetto.Gerarchia;
+import it.unibs.ids.progetto.Nodo;
 
 public class Commercio implements Serializable {
 	
@@ -52,11 +57,11 @@ public class Commercio implements Serializable {
 		return null;
 	}
 	
-	public InsiemeChiuso chiudi(InsiemeAperto insiemeAperto) {
+	public InsiemeChiuso chiudi(InsiemeAperto insiemeAperto,ArrayList<PropostaAperta> proposteAperte) {
 		
 		InsiemeChiuso insiemeChiuso = new InsiemeChiuso();
 		
-		for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
+		for (PropostaAperta propostaAperta : proposteAperte) {
 			PropostaChiusa propostaChiusa = new PropostaChiusa(propostaAperta.getRichiesta(), propostaAperta.getOfferta(), propostaAperta.getID());
 			insiemeChiuso.addProposteChiuse(propostaChiusa);
 			insiemeAperto.eliminaPropostaAperta(propostaAperta);
@@ -72,5 +77,80 @@ public class Commercio implements Serializable {
 		
 	}
 	
+	public void metodo() {
+		for (InsiemeAperto insiemeAperto : insiemiAperti) {
+			ArrayList<PropostaAperta> listaChiudibili =  algoritmo(insiemeAperto);
+			chiudi(insiemeAperto, listaChiudibili);
+		}
+	}
+	
+	
+	
+	public ArrayList<PropostaAperta> algoritmo(InsiemeAperto insiemeAperto){
+		
+		
+		
+		return null;
+		
+	}
 
+	
+	
+	  public ArrayList<PropostaAperta> addTransitivoFattoreConversione(InsiemeAperto insiemeAperto) {
+	        
+		  
+	        for (PropostaAperta propostaAperta1 : insiemeAperto.getProposteAperte()) {
+	            for (PropostaAperta propostaAperta2 : insiemeAperto.getProposteAperte()) {
+	            	   
+	      		  ArrayList<PropostaAperta> cammino = new ArrayList<>();
+	      		  ArrayList<PropostaAperta> visitati = new ArrayList<>();
+	      		  
+	                if (!propostaAperta1.equals(propostaAperta2)) {
+	                	visitati.add(propostaAperta1);
+	                	visitati.add(propostaAperta2);
+	                	cammino = calcTransitivo(insiemeAperto,propostaAperta1,propostaAperta2, visitati,cammino);
+	                    if (cammino != null) {
+	                    	cammino.add(propostaAperta1);
+	                    	return cammino;
+	                    }
+	                }
+	            }
+	        }
+	    }
+
+	    /**
+	     * Metodo per calcolare il fattore di conversione transitivo tra due nodi.
+	     * 
+	     * @param nodo1 Il primo nodo
+	     * @param nodo2 Il secondo nodo
+	     * @param visitati Lista dei nodi visitati durante il calcolo
+	     * @return Il fattore di conversione transitivo tra i due nodi, null se non è possibile calcolarlo
+	     */
+	    private ArrayList<PropostaAperta> calcTransitivo(InsiemeAperto insiemeAperto, PropostaAperta propostaAperta1, PropostaAperta propostaAperta2, 
+	    		ArrayList<PropostaAperta> visitati,ArrayList<PropostaAperta> cammino) {
+	    	
+	    	
+	    	
+	        if (propostaAperta1.getRichiesta().equals(propostaAperta2.getOfferta())) {
+	        	   if (propostaAperta2.getRichiesta().equals(propostaAperta1.getOfferta())) {
+	        		   if (propostaAperta1.getRichiesta().getDurata() == propostaAperta2.getRichiesta().getDurata()) {
+	        			   cammino.add(propostaAperta2);
+	        			   return cammino;
+	        		   }
+	        	   }
+	           
+	        } else {
+	            for (PropostaAperta propostaAperta3 : insiemeAperto.getProposteAperte() ) {
+	 
+	                if (!visitati.contains(propostaAperta3)) {
+	                    visitati.add(propostaAperta3);
+	                    cammino.add(propostaAperta3);
+	                    if (calcTransitivo(insiemeAperto,propostaAperta2, propostaAperta3, visitati,cammino) == null) {
+	                        return null;
+	                    }
+	                }
+	            }
+	        }
+	       
+	    }
 }
