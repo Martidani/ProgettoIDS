@@ -1,5 +1,7 @@
 package it.unibs.ids.progetto.news;
 
+import java.io.Serializable;
+
 import it.unibs.ids.progetto.Nodo;
 import it.unibs.ids.progetto.PrestazioneOpera;
 
@@ -8,7 +10,7 @@ import it.unibs.ids.progetto.PrestazioneOpera;
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
-public abstract class Proposta {
+public abstract class Proposta implements Serializable {
 
     protected String status;
     protected PrestazioneOpera richiesta;

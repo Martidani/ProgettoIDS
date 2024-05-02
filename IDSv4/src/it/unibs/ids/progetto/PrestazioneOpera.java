@@ -1,13 +1,16 @@
 package it.unibs.ids.progetto;
 
+import java.io.Serializable;
+
 /**
  * La classe PrestazioneOpera rappresenta una singola prestazione 
  * d'opera, che puo essere sia offerta che richiesta.
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
-public class PrestazioneOpera {
+public class PrestazioneOpera implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Nodo foglia;
 	private int durata;
 	

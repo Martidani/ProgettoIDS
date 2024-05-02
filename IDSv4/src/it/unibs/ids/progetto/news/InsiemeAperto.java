@@ -42,12 +42,8 @@ public class InsiemeAperto implements Serializable{
 //	}
 	
 	public void eliminaPropostaAperta(PropostaAperta propostaDaEliminare) {
-		
-		for (PropostaAperta propostaAperta : proposteAperte) {
-			if (propostaAperta.getID() == propostaDaEliminare.getID()) {
-				this.proposteAperte.remove(propostaAperta);
-			}
-		}
+		if (proposteAperte != null) 
+			this.proposteAperte.remove(propostaDaEliminare);
 		
 	}
 	

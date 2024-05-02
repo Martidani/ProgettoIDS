@@ -1,6 +1,9 @@
 package it.unibs.ids.progetto;
 
 import it.unibs.ids.progetto.news.Commercio;
+import it.unibs.ids.progetto.news.InsiemeAperto;
+import it.unibs.ids.progetto.news.InsiemeChiuso;
+import it.unibs.ids.progetto.news.PropostaAperta;
 
 /**
  * Classe per l'inizializzazione predefinita del sistema.
@@ -11,7 +14,9 @@ public class DefaultInitializer {
     
     private static final String ROOT_NAME = "system";
     private static final String ROOT_FIELD = "field";
-    private static final String[] ROOT_DOMAIN = {"rootchildM", "rootchildF"};
+    private static final String[] ROOT_DOMAIN = {"rootchildM1", "rootchildM2", "rootchildF1", "rootchildF2"};
+    private static final String CHILD4_NAME = "rootchild4";
+    private static final String CHILD3_NAME = "rootchild3";
     private static final String CHILD2_NAME = "rootchild2";
     private static final String CHILD1_NAME = "rootchild1";
     
@@ -27,7 +32,7 @@ public class DefaultInitializer {
     private static final String DEFAULT_FPASSWORD = "user";
     private static final String DEFAULT_FEMAIL = "user@unibs.it";
     
-    public static final int FACTOR_VAL = 2;
+    public static final double FACTOR_VAL = 2;
     
     private Gerarchia gerarchia;
     private Utenza utenza;
@@ -97,13 +102,18 @@ public class DefaultInitializer {
         // Creazione dei nodi figli
         Nodo nodo11 = new Nodo(CHILD1_NAME);
         Nodo nodo12 = new Nodo(CHILD2_NAME);
+        Nodo nodo13 = new Nodo(CHILD3_NAME);
+        Nodo nodo14 = new Nodo(CHILD4_NAME);
         try {
             nodo1.addChild(nodo11);
             nodo1.addChild(nodo12);
+            nodo1.addChild(nodo13);
+            nodo1.addChild(nodo14);
 
             // Aggiunta dei nodi all'albero e definizione dei fattori di conversione
             nodo11.addFattoreConversione(nodo12, FACTOR_VAL);
-            nodo12.addFattoreConversione(nodo11, 1/FACTOR_VAL);
+            nodo11.addFattoreConversione(nodo13, FACTOR_VAL);
+            nodo11.addFattoreConversione(nodo14, FACTOR_VAL);
             Albero albero = new Albero(nodo1);
             
             albero.setUtente(utenza.autenticazioneConfiguratore(DEFAULT_CUSERNAME, DEFAULT_CUSERNAME));
@@ -152,12 +162,34 @@ public class DefaultInitializer {
         return comprensorio;
     }
     
-    private Commercio defaultCommercio() {
+    private Commercio defaultCommercio()  {
+    
+    	Nodo nodo1 = gerarchia.getFoglie().get(0);
+    	Nodo nodo2 = gerarchia.getFoglie().get(1);
+    	Nodo nodo3 = gerarchia.getFoglie().get(2);
+    	Nodo nodo4 = gerarchia.getFoglie().get(3);
     	Commercio commercio = new Commercio();
     	
-    	//
-    	// 	IMPLEMENTAZIONE DI DEFAULT
-    	//
+    	InsiemeAperto insiemeAperto = new InsiemeAperto(this.defaultComprensorio());
+    	try {
+			
+			PrestazioneOpera r1 = new PrestazioneOpera(nodo1, (int) FACTOR_VAL);
+			PrestazioneOpera o1 = new PrestazioneOpera(nodo2);
+    		PropostaAperta proposta1 = new PropostaAperta(r1, o1, commercio.numProposte());
+		
+			PrestazioneOpera r2 = new PrestazioneOpera(nodo2, (int) FACTOR_VAL);
+			PrestazioneOpera o2 = new PrestazioneOpera(nodo1);
+    		PropostaAperta proposta2 = new PropostaAperta(r2, o2, commercio.numProposte());
+    		
+    		insiemeAperto.addProposteAperte(proposta1);
+    		insiemeAperto.addProposteAperte(proposta2);
+    		
+    		commercio.addInsiemiAperti(insiemeAperto);
+    		commercio.metodo();
+    	
+    	} catch (NodeNotLeafException e) {
+			e.printStackTrace();
+		}
     	
     	return commercio;
     }

@@ -11,6 +11,7 @@ import it.unibs.ids.progetto.Nodo;
 
 public class Commercio implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private int numeroProposte;
 	private List<InsiemeAperto> insiemiAperti;
 	private List<InsiemeChiuso> insiemiChiusi;
@@ -30,7 +31,7 @@ public class Commercio implements Serializable {
 	}
 	
 	public void setNumProposte() {
-		this.numeroProposte=this.numeroProposte + 1;
+		this.numeroProposte++;
 	}
 	
 	public List<InsiemeAperto> getInsiemiAperti() {
@@ -57,7 +58,7 @@ public class Commercio implements Serializable {
 		return null;
 	}
 	
-	public InsiemeChiuso chiudi(InsiemeAperto insiemeAperto,List<PropostaAperta> proposteAperte) {
+	private InsiemeChiuso chiudi(InsiemeAperto insiemeAperto,List<PropostaAperta> proposteAperte) {
 		
 		InsiemeChiuso insiemeChiuso = new InsiemeChiuso();
 		
@@ -80,7 +81,8 @@ public class Commercio implements Serializable {
 	public void metodo() {
 		for (InsiemeAperto insiemeAperto : insiemiAperti) {
 			List<PropostaAperta> listaChiudibili =  algoritmo(insiemeAperto);
-			chiudi(insiemeAperto, listaChiudibili);
+			if (listaChiudibili!= null)
+				chiudi(insiemeAperto, listaChiudibili);
 		}
 	}
 	
