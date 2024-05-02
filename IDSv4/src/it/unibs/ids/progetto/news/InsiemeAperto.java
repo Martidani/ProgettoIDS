@@ -51,6 +51,10 @@ public class InsiemeAperto implements Serializable{
 		
 	}
 	
+	public boolean contains(PropostaAperta proposta) {
+		return proposteAperte.contains(proposta);
+	}
+	
 	public boolean esistePropostaAperta(PropostaAperta propostaApertaInput) {
 		
 		for (PropostaAperta propostaAperta : proposteAperte) {

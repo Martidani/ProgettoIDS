@@ -57,7 +57,7 @@ public class Commercio implements Serializable {
 		return null;
 	}
 	
-	public InsiemeChiuso chiudi(InsiemeAperto insiemeAperto,ArrayList<PropostaAperta> proposteAperte) {
+	public InsiemeChiuso chiudi(InsiemeAperto insiemeAperto,List<PropostaAperta> proposteAperte) {
 		
 		InsiemeChiuso insiemeChiuso = new InsiemeChiuso();
 		
@@ -79,78 +79,145 @@ public class Commercio implements Serializable {
 	
 	public void metodo() {
 		for (InsiemeAperto insiemeAperto : insiemiAperti) {
-			ArrayList<PropostaAperta> listaChiudibili =  algoritmo(insiemeAperto);
+			List<PropostaAperta> listaChiudibili =  algoritmo(insiemeAperto);
 			chiudi(insiemeAperto, listaChiudibili);
 		}
 	}
 	
 	
 	
-	public ArrayList<PropostaAperta> algoritmo(InsiemeAperto insiemeAperto){
+	public List<PropostaAperta> algoritmo(InsiemeAperto insiemeAperto){
 		
+		InsiemeAperto insiemeApertoN = insiemeAperto;
+		List<PropostaAperta> lista;
 		
+		for (PropostaAperta propostaAperta : insiemeApertoN.getProposteAperte()) {
+			lista = proposteChiudibili(insiemeAperto.getProposteAperte(), propostaAperta);
+			
+			if (lista != null) {
+				return lista;
+			}
+			for (PropostaAperta proposta : lista) {
+				if (insiemeApertoN.contains(proposta))
+					insiemeApertoN.eliminaPropostaAperta(proposta);
+			}
+			
+		}
 		
 		return null;
 		
 	}
 
 	
-	
-	  public ArrayList<PropostaAperta> addTransitivoFattoreConversione(InsiemeAperto insiemeAperto) {
-	        
-		  
-	        for (PropostaAperta propostaAperta1 : insiemeAperto.getProposteAperte()) {
-	            for (PropostaAperta propostaAperta2 : insiemeAperto.getProposteAperte()) {
-	            	   
-	      		  ArrayList<PropostaAperta> cammino = new ArrayList<>();
-	      		  ArrayList<PropostaAperta> visitati = new ArrayList<>();
-	      		  
-	                if (!propostaAperta1.equals(propostaAperta2)) {
-	                	visitati.add(propostaAperta1);
-	                	visitati.add(propostaAperta2);
-	                	cammino = calcTransitivo(insiemeAperto,propostaAperta1,propostaAperta2, visitati,cammino);
-	                    if (cammino != null) {
-	                    	cammino.add(propostaAperta1);
-	                    	return cammino;
-	                    }
-	                }
-	            }
-	        }
-	    }
+	// Metodo per verificare se una proposta può soddisfare un'altra
+    private static boolean soddisfacimento1(Proposta propostaA, Proposta propostaB) {
+        return ((propostaA.getOfferta().equals(propostaB.getRichiesta())
+        		&& (propostaA.getOfferta().getDurata()) == (propostaB.getRichiesta().getDurata())))
+        		;
+    }
+    
+	// Metodo per verificare se una proposta può soddisfare un'altra
+    private static boolean soddisfacimento2(Proposta propostaA, Proposta propostaB) {
+        return ( ((propostaA.getRichiesta().equals(propostaB.getOfferta())))
+        		&& (propostaA.getRichiesta().getDurata()) == (propostaB.getOfferta().getDurata()))
+        		;
+    }
+    
+	// Metodo per verificare se una proposta può soddisfare un'altra
+    private static boolean soddisfacimentoTotale(Proposta propostaA, Proposta propostaB) {
+        return (propostaA.getOfferta().equals(propostaB.getRichiesta())
+        		&& (propostaA.getRichiesta().equals(propostaB.getOfferta()))
+        		&& (propostaA.getRichiesta().getDurata()) == (propostaB.getOfferta().getDurata()));
+    }
 
-	    /**
-	     * Metodo per calcolare il fattore di conversione transitivo tra due nodi.
-	     * 
-	     * @param nodo1 Il primo nodo
-	     * @param nodo2 Il secondo nodo
-	     * @param visitati Lista dei nodi visitati durante il calcolo
-	     * @return Il fattore di conversione transitivo tra i due nodi, null se non è possibile calcolarlo
-	     */
-	    private ArrayList<PropostaAperta> calcTransitivo(InsiemeAperto insiemeAperto, PropostaAperta propostaAperta1, PropostaAperta propostaAperta2, 
-	    		ArrayList<PropostaAperta> visitati,ArrayList<PropostaAperta> cammino) {
-	    	
-	    	
-	    	
-	        if (propostaAperta1.getRichiesta().equals(propostaAperta2.getOfferta())) {
-	        	   if (propostaAperta2.getRichiesta().equals(propostaAperta1.getOfferta())) {
-	        		   if (propostaAperta1.getRichiesta().getDurata() == propostaAperta2.getRichiesta().getDurata()) {
-	        			   cammino.add(propostaAperta2);
-	        			   return cammino;
-	        		   }
-	        	   }
-	           
-	        } else {
-	            for (PropostaAperta propostaAperta3 : insiemeAperto.getProposteAperte() ) {
-	 
-	                if (!visitati.contains(propostaAperta3)) {
-	                    visitati.add(propostaAperta3);
-	                    cammino.add(propostaAperta3);
-	                    if (calcTransitivo(insiemeAperto,propostaAperta2, propostaAperta3, visitati,cammino) == null) {
-	                        return null;
-	                    }
-	                }
-	            }
-	        }
-	       
-	    }
+    
+    // Metodo per generare le proposte chiudibili dato un insieme di proposte aperte
+    public static List<PropostaAperta> proposteChiudibili(List<PropostaAperta> proposteAperte, PropostaAperta propostaAperta1) {
+       
+    	List<PropostaAperta> proposteChiudibili = new ArrayList<>(); 
+
+       
+    	for (PropostaAperta propostaAperta2 : proposteAperte) {
+    		if (!propostaAperta2.equals(propostaAperta1)) {
+    			
+        		if (soddisfacimentoTotale(propostaAperta1, propostaAperta1)) {
+        			proposteChiudibili.add(propostaAperta2);
+        			proposteChiudibili.add(propostaAperta1);
+        			return proposteChiudibili;
+        		} else if (soddisfacimento1(propostaAperta1, propostaAperta2)) {
+        			 proposteAperte.remove(propostaAperta2);
+        			 proposteChiudibili = proposteSoddisfacimento1(proposteAperte,propostaAperta1,  propostaAperta2, new ArrayList<PropostaAperta>());
+        		} else if (soddisfacimento2(propostaAperta1, propostaAperta2)) {
+        			 proposteAperte.remove(propostaAperta2);
+        			 proposteChiudibili = proposteSoddisfacimento2(proposteAperte, propostaAperta1, propostaAperta2, new ArrayList<PropostaAperta>());
+        		}
+        		
+        		if (proposteChiudibili != null) {
+        			proposteChiudibili.add(propostaAperta2);
+        			return proposteChiudibili;
+        		}
+    		}
+
+        	
+
+		}
+    	
+    	
+        return null;
+        
+}
+
+    
+    // Metodo per generare le proposte chiudibili dato un insieme di proposte aperte
+    public static List<PropostaAperta> proposteSoddisfacimento1(List<PropostaAperta> proposteAperte, 
+    		PropostaAperta propostaOriginale, PropostaAperta propostaAperta1, List<PropostaAperta> proposteChiudibili) {
+       
+    	for (PropostaAperta propostaAperta2 : proposteAperte) {
+        	if (!propostaAperta2.equals(propostaAperta1)) {
+        		
+        		if (soddisfacimento1(propostaAperta1, propostaAperta2)) {
+        			proposteChiudibili.add(propostaAperta2);
+        			proposteAperte.remove(propostaAperta2);
+        			
+        			if (propostaAperta2.equals(propostaOriginale)) 
+        				return proposteChiudibili;
+        			else
+        				proposteChiudibili = proposteSoddisfacimento1(proposteAperte, propostaOriginale,  propostaAperta2, proposteChiudibili);
+        		}
+	
+        	}	
+		}
+		return null;
+      
+}
+	
+    // Metodo per generare le proposte chiudibili dato un insieme di proposte aperte
+    public static List<PropostaAperta> proposteSoddisfacimento2(List<PropostaAperta> proposteAperte, 
+    		PropostaAperta propostaOriginale, PropostaAperta propostaAperta1, List<PropostaAperta> proposteChiudibili) {
+       
+    	for (PropostaAperta propostaAperta2 : proposteAperte) {
+        	if (!propostaAperta2.equals(propostaAperta1)) {
+        		
+        		if (soddisfacimento2(propostaAperta1, propostaAperta2)) {
+        			proposteChiudibili.add(propostaAperta2);
+        			proposteAperte.remove(propostaAperta2);
+        			
+        			if (propostaAperta2.equals(propostaOriginale)) 
+        				return proposteChiudibili;
+        			else
+        				proposteChiudibili = proposteSoddisfacimento1(proposteAperte, propostaOriginale,  propostaAperta2, proposteChiudibili);
+        		}
+	
+        	}	
+		}
+		return null;
+      
+}
+	
+	
+	
+	
+    
+	    
+	    
 }
