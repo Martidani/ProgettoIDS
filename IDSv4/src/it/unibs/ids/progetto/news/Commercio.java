@@ -68,8 +68,8 @@ public class Commercio implements Serializable {
 			insiemeAperto.eliminaPropostaAperta(propostaAperta);
 		}
 		
-		if (insiemeAperto == null) 
-			insiemiAperti.remove(insiemeAperto);
+		if (insiemeAperto.getProposteAperte().isEmpty()) 
+				insiemiAperti.remove(insiemeAperto);
 		
 		
 		insiemiChiusi.add(insiemeChiuso);
@@ -79,142 +79,61 @@ public class Commercio implements Serializable {
 	}
 	
 	public void metodo() {
-		for (InsiemeAperto insiemeAperto : insiemiAperti) {
-			List<PropostaAperta> listaChiudibili =  algoritmo(insiemeAperto);
-			if (listaChiudibili!= null)
-				chiudi(insiemeAperto, listaChiudibili);
-		}
-	}
-	
-	
-	
-	public List<PropostaAperta> algoritmo(InsiemeAperto insiemeAperto){
-		
-		InsiemeAperto insiemeApertoN = insiemeAperto;
-		List<PropostaAperta> lista;
-		
-		for (PropostaAperta propostaAperta : insiemeApertoN.getProposteAperte()) {
-			lista = proposteChiudibili(insiemeAperto.getProposteAperte(), propostaAperta);
-			
-			if (lista != null) {
-				return lista;
-			}
-			for (PropostaAperta proposta : lista) {
-				if (insiemeApertoN.contains(proposta))
-					insiemeApertoN.eliminaPropostaAperta(proposta);
-			}
-			
-		}
-		
-		return null;
-		
+	    for (InsiemeAperto insiemeAperto : insiemiAperti) {
+	        List<PropostaAperta> listaChiudibili = algoritmo(insiemeAperto);
+	        if (listaChiudibili != null)
+	            chiudi(insiemeAperto, listaChiudibili);
+	    }
 	}
 
-	
-	// Metodo per verificare se una proposta può soddisfare un'altra
-    private static boolean soddisfacimento1(Proposta propostaA, Proposta propostaB) {
-        return ((propostaA.getOfferta().equals(propostaB.getRichiesta())
-        		&& (propostaA.getOfferta().getDurata()) == (propostaB.getRichiesta().getDurata())))
-        		;
-    }
-    
-	// Metodo per verificare se una proposta può soddisfare un'altra
-    private static boolean soddisfacimento2(Proposta propostaA, Proposta propostaB) {
-        return ( ((propostaA.getRichiesta().equals(propostaB.getOfferta())))
-        		&& (propostaA.getRichiesta().getDurata()) == (propostaB.getOfferta().getDurata()))
-        		;
-    }
-    
-	// Metodo per verificare se una proposta può soddisfare un'altra
-    private static boolean soddisfacimentoTotale(Proposta propostaA, Proposta propostaB) {
-        return (propostaA.getOfferta().equals(propostaB.getRichiesta())
-        		&& (propostaA.getRichiesta().equals(propostaB.getOfferta()))
-        		&& (propostaA.getRichiesta().getDurata()) == (propostaB.getOfferta().getDurata()));
-    }
+	public List<PropostaAperta> algoritmo(InsiemeAperto insiemeAperto) {
+	    List<PropostaAperta> lista;
+	    for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
+	        lista = proposteChiudibili(insiemeAperto.getProposteAperte(), propostaAperta);
+	        if (lista != null && !lista.isEmpty()) {
+	            return lista;
+	        }
+	    }
+	    return null;
+	}
 
-    
-    // Metodo per generare le proposte chiudibili dato un insieme di proposte aperte
-    public static List<PropostaAperta> proposteChiudibili(List<PropostaAperta> proposteAperte, PropostaAperta propostaAperta1) {
-       
-    	List<PropostaAperta> proposteChiudibili = new ArrayList<>(); 
+	public List<PropostaAperta> proposteChiudibili(List<PropostaAperta> proposteAperte, PropostaAperta propostaAperta1) {
+	    List<PropostaAperta> proposteChiudibili = new ArrayList<>();
+	    for (PropostaAperta propostaAperta2 : proposteAperte) {
+	        if (!propostaAperta2.equals(propostaAperta1)) {
+	            if (soddisfacimentoTotale(propostaAperta1, propostaAperta2)) {
+	                proposteChiudibili.add(propostaAperta2);
+	                proposteChiudibili.add(propostaAperta1);
+	            } else if (soddisfacimento1(propostaAperta1, propostaAperta2)) {
+	                proposteChiudibili.add(propostaAperta2);
+	            } else if (soddisfacimento2(propostaAperta1, propostaAperta2)) {
+	                proposteChiudibili.add(propostaAperta2);
+	            }
+	        }
+	    }
+	    if (!proposteChiudibili.isEmpty()) {
+	        return proposteChiudibili;
+	    }
+	    return null;
+	}
 
-       
-    	for (PropostaAperta propostaAperta2 : proposteAperte) {
-    		if (!propostaAperta2.equals(propostaAperta1)) {
-    			
-        		if (soddisfacimentoTotale(propostaAperta1, propostaAperta1)) {
-        			proposteChiudibili.add(propostaAperta2);
-        			proposteChiudibili.add(propostaAperta1);
-        			return proposteChiudibili;
-        		} else if (soddisfacimento1(propostaAperta1, propostaAperta2)) {
-        			 proposteAperte.remove(propostaAperta2);
-        			 proposteChiudibili = proposteSoddisfacimento1(proposteAperte,propostaAperta1,  propostaAperta2, new ArrayList<PropostaAperta>());
-        		} else if (soddisfacimento2(propostaAperta1, propostaAperta2)) {
-        			 proposteAperte.remove(propostaAperta2);
-        			 proposteChiudibili = proposteSoddisfacimento2(proposteAperte, propostaAperta1, propostaAperta2, new ArrayList<PropostaAperta>());
-        		}
-        		
-        		if (proposteChiudibili != null) {
-        			proposteChiudibili.add(propostaAperta2);
-        			return proposteChiudibili;
-        		}
-    		}
 
-        	
+	private static boolean soddisfacimento1(Proposta propostaA, Proposta propostaB) {
+	    return propostaA.getOfferta().getFoglia().equals(propostaB.getRichiesta().getFoglia()) 
+	    		&& propostaA.getOfferta().getDurata() == (propostaB.getRichiesta()).getDurata() ;
+	}
 
-		}
-    	
-    	
-        return null;
-        
-}
+	private static boolean soddisfacimento2(Proposta propostaA, Proposta propostaB) {
+	    return propostaA.getRichiesta().getFoglia().equals(propostaB.getOfferta().getFoglia()) 
+	    		&& propostaA.getRichiesta().getDurata() == (propostaB.getOfferta()).getDurata() ;
+	}
 
-    
-    // Metodo per generare le proposte chiudibili dato un insieme di proposte aperte
-    public static List<PropostaAperta> proposteSoddisfacimento1(List<PropostaAperta> proposteAperte, 
-    		PropostaAperta propostaOriginale, PropostaAperta propostaAperta1, List<PropostaAperta> proposteChiudibili) {
-       
-    	for (PropostaAperta propostaAperta2 : proposteAperte) {
-        	if (!propostaAperta2.equals(propostaAperta1)) {
-        		
-        		if (soddisfacimento1(propostaAperta1, propostaAperta2)) {
-        			proposteChiudibili.add(propostaAperta2);
-        			proposteAperte.remove(propostaAperta2);
-        			
-        			if (propostaAperta2.equals(propostaOriginale)) 
-        				return proposteChiudibili;
-        			else
-        				proposteChiudibili = proposteSoddisfacimento1(proposteAperte, propostaOriginale,  propostaAperta2, proposteChiudibili);
-        		}
-	
-        	}	
-		}
-		return null;
-      
-}
-	
-    // Metodo per generare le proposte chiudibili dato un insieme di proposte aperte
-    public static List<PropostaAperta> proposteSoddisfacimento2(List<PropostaAperta> proposteAperte, 
-    		PropostaAperta propostaOriginale, PropostaAperta propostaAperta1, List<PropostaAperta> proposteChiudibili) {
-       
-    	for (PropostaAperta propostaAperta2 : proposteAperte) {
-        	if (!propostaAperta2.equals(propostaAperta1)) {
-        		
-        		if (soddisfacimento2(propostaAperta1, propostaAperta2)) {
-        			proposteChiudibili.add(propostaAperta2);
-        			proposteAperte.remove(propostaAperta2);
-        			
-        			if (propostaAperta2.equals(propostaOriginale)) 
-        				return proposteChiudibili;
-        			else
-        				proposteChiudibili = proposteSoddisfacimento1(proposteAperte, propostaOriginale,  propostaAperta2, proposteChiudibili);
-        		}
-	
-        	}	
-		}
-		return null;
-      
-}
+	private static boolean soddisfacimentoTotale(Proposta propostaA, Proposta propostaB) {
+	    return soddisfacimento1(propostaA, propostaB) && soddisfacimento2(propostaA, propostaB);
+	}
+
+
+
 	
 	
 	

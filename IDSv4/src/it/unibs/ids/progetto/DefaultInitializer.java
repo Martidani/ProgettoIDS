@@ -102,24 +102,21 @@ public class DefaultInitializer {
         // Creazione dei nodi figli
         Nodo nodo11 = new Nodo(CHILD1_NAME);
         Nodo nodo12 = new Nodo(CHILD2_NAME);
-        Nodo nodo13 = new Nodo(CHILD3_NAME);
-        Nodo nodo14 = new Nodo(CHILD4_NAME);
         try {
             nodo1.addChild(nodo11);
             nodo1.addChild(nodo12);
-            nodo1.addChild(nodo13);
-            nodo1.addChild(nodo14);
+
 
             // Aggiunta dei nodi all'albero e definizione dei fattori di conversione
             nodo11.addFattoreConversione(nodo12, FACTOR_VAL);
-            nodo11.addFattoreConversione(nodo13, FACTOR_VAL);
-            nodo11.addFattoreConversione(nodo14, FACTOR_VAL);
+            nodo12.addFattoreConversione(nodo11, 1/FACTOR_VAL);
             Albero albero = new Albero(nodo1);
             
             albero.setUtente(utenza.autenticazioneConfiguratore(DEFAULT_CUSERNAME, DEFAULT_CUSERNAME));
             gerarchia.addAlbero(albero);
-            FattoriDiConversione.addTransitivoFattoreConversione(gerarchia);
         
+
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -166,8 +163,7 @@ public class DefaultInitializer {
     
     	Nodo nodo1 = gerarchia.getFoglie().get(0);
     	Nodo nodo2 = gerarchia.getFoglie().get(1);
-    	Nodo nodo3 = gerarchia.getFoglie().get(2);
-    	Nodo nodo4 = gerarchia.getFoglie().get(3);
+
     	Commercio commercio = new Commercio();
     	
     	InsiemeAperto insiemeAperto = new InsiemeAperto(this.defaultComprensorio());
@@ -177,7 +173,7 @@ public class DefaultInitializer {
 			PrestazioneOpera o1 = new PrestazioneOpera(nodo2);
     		PropostaAperta proposta1 = new PropostaAperta(r1, o1, commercio.numProposte());
 		
-			PrestazioneOpera r2 = new PrestazioneOpera(nodo2, (int) FACTOR_VAL);
+			PrestazioneOpera r2 = new PrestazioneOpera(nodo2, (int) FACTOR_VAL*2);
 			PrestazioneOpera o2 = new PrestazioneOpera(nodo1);
     		PropostaAperta proposta2 = new PropostaAperta(r2, o2, commercio.numProposte());
     		

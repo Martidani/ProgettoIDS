@@ -46,7 +46,9 @@ public class Main {
             + ", " + FileManager.getGeografiaFile()
             + ", " + FileManager.getCommercioFile());
         }
+        FattoriDiConversione.addTransitivoFattoreConversione(gerarchia);
 
+		commercio.metodo();
 
 	    boolean tipoFunzionamento = false;
 	    int accesso;
