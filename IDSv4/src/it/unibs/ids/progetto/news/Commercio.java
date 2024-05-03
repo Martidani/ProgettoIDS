@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.FattoriDiConversione;
 import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.Nodo;
@@ -33,9 +34,21 @@ public class Commercio implements Serializable {
 	public void setNumProposte() {
 		this.numeroProposte++;
 	}
+	public void decrementaNumProposte() {
+		this.numeroProposte--;
+	}
 	
 	public List<InsiemeAperto> getInsiemiAperti() {
 		return insiemiAperti;
+	}
+	public InsiemeAperto getInsiemeAperto(Comprensorio comprensorio) {
+		for (InsiemeAperto insiemeAperto : insiemiAperti) {
+			if (insiemeAperto.getComprensorio().equals(comprensorio)) 
+				return insiemeAperto;
+		}
+
+		return null;
+		
 	}
 	public void addInsiemiAperti(InsiemeAperto insiemeAperto) {
 		this.insiemiAperti.add(insiemeAperto);
@@ -58,7 +71,7 @@ public class Commercio implements Serializable {
 		return null;
 	}
 	
-	private InsiemeChiuso chiudi(InsiemeAperto insiemeAperto,List<PropostaAperta> proposteAperte) {
+	private void chiudi(InsiemeAperto insiemeAperto,List<PropostaAperta> proposteAperte) {
 		
 		InsiemeChiuso insiemeChiuso = new InsiemeChiuso();
 		
@@ -73,17 +86,17 @@ public class Commercio implements Serializable {
 		
 		
 		insiemiChiusi.add(insiemeChiuso);
-		return insiemeChiuso;
+
 		
 		
 	}
 	
-	public void metodo() {
-	    for (InsiemeAperto insiemeAperto : insiemiAperti) {
-	        List<PropostaAperta> listaChiudibili = algoritmo(insiemeAperto);
-	        if (listaChiudibili != null)
-	            chiudi(insiemeAperto, listaChiudibili);
-	    }
+	public void metodo(InsiemeAperto insiemeAperto) {
+		
+	     List<PropostaAperta> listaChiudibili = algoritmo(insiemeAperto);
+	     if (listaChiudibili != null)
+	         chiudi(insiemeAperto, listaChiudibili);
+	    
 	}
 
 	public List<PropostaAperta> algoritmo(InsiemeAperto insiemeAperto) {

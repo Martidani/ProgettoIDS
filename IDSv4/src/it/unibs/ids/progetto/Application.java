@@ -3,6 +3,8 @@ package it.unibs.ids.progetto;
 import java.util.ArrayList;
 
 import it.unibs.fp.mylib.InputDati;
+import it.unibs.ids.progetto.news.Commercio;
+import it.unibs.ids.progetto.news.InsiemeAperto;
 import it.unibs.ids.progetto.news.Proposta;
 import it.unibs.ids.progetto.news.PropostaAperta;
 
@@ -24,7 +26,8 @@ public class Application {
      * @param gerarchia La gerarchia delle prestazioni all'interno del sistema.
      * @throws NodeNotLeafException Se viene cercata una foglia e viene trovato un nodo non foglia.
      */
-    public static void proponiScambio(Utenza utenza, Gerarchia gerarchia, int numProposta) throws NodeNotLeafException {
+    public static void proponiScambio(Utenza utenza, Gerarchia gerarchia, 
+    		Commercio commercio, InsiemeAperto insiemeAperto) throws NodeNotLeafException {
         String nomePrestazione;
         String nomeRadicePrestazione;
         Nodo fogliaRichiesta;
@@ -45,15 +48,19 @@ public class Application {
         
         PrestazioneOpera offerta = new PrestazioneOpera(fogliaOfferta);
         PrestazioneOpera richiesta = new PrestazioneOpera(fogliaRichiesta, durata);
-        Proposta proposta = new PropostaAperta(richiesta, offerta, numProposta);
-        
+        PropostaAperta proposta = new PropostaAperta(richiesta, offerta, commercio.numProposte());
+       
         System.out.println("\nOfferta: ");
         System.out.println("[" + offerta.getNome() + ", "+ offerta.getDurata() + " ore]");
         
         if (InputDati.yesOrNo("Confermi l'offerta?")) {
             Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
             fruitore.addProposte(proposta);
-        }
+            insiemeAperto.addProposteAperte(proposta);
+            
+        } else {
+			commercio.decrementaNumProposte();
+		}
     }
 
 

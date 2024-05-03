@@ -14,9 +14,7 @@ public class DefaultInitializer {
     
     private static final String ROOT_NAME = "system";
     private static final String ROOT_FIELD = "field";
-    private static final String[] ROOT_DOMAIN = {"rootchildM1", "rootchildM2", "rootchildF1", "rootchildF2"};
-    private static final String CHILD4_NAME = "rootchild4";
-    private static final String CHILD3_NAME = "rootchild3";
+    private static final String[] ROOT_DOMAIN = {"rootchildM", "rootchildF",};
     private static final String CHILD2_NAME = "rootchild2";
     private static final String CHILD1_NAME = "rootchild1";
     
@@ -181,7 +179,7 @@ public class DefaultInitializer {
     		insiemeAperto.addProposteAperte(proposta2);
     		
     		commercio.addInsiemiAperti(insiemeAperto);
-    		commercio.metodo();
+    		commercio.metodo(insiemeAperto);
     	
     	} catch (NodeNotLeafException e) {
 			e.printStackTrace();

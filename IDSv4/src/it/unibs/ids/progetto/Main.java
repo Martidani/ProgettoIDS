@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.fp.mylib.MyMenu;
 import it.unibs.ids.progetto.news.Commercio;
+import it.unibs.ids.progetto.news.InsiemeAperto;
 
 /**
  * Classe Main per l'esecuzione del programma.
@@ -46,9 +47,7 @@ public class Main {
             + ", " + FileManager.getGeografiaFile()
             + ", " + FileManager.getCommercioFile());
         }
-        FattoriDiConversione.addTransitivoFattoreConversione(gerarchia);
 
-		commercio.metodo();
 
 	    boolean tipoFunzionamento = false;
 	    int accesso;
@@ -119,8 +118,11 @@ public class Main {
 	        } while (scelta != 0);
 	    }
 	    
+	    
 	    //modalità fruitore
 	    if (accesso != 0 && !tipoFunzionamento) {
+	    	Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
+		    InsiemeAperto insiemeUtente = commercio.getInsiemeAperto(fruitore.getComprensorioAppartenenza());
 	        do {
 	            scelta = menuF.scegli();
 	            switch (scelta) {
@@ -131,7 +133,7 @@ public class Main {
 	                    break;
 	                    
 	                case 2:
-	                	Application.proponiScambio(utenza, gerarchia, commercio.numProposte());
+	                	Application.proponiScambio(utenza, gerarchia, commercio, insiemeUtente);
 	      
 	                	
 	                break;
