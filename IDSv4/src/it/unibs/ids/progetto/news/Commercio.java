@@ -41,13 +41,15 @@ public class Commercio implements Serializable {
 	public List<InsiemeAperto> getInsiemiAperti() {
 		return insiemiAperti;
 	}
+	// Dato il comprensorio mi ritorna l'insieme aperto di appertenenza
 	public InsiemeAperto getInsiemeAperto(Comprensorio comprensorio) {
 		for (InsiemeAperto insiemeAperto : insiemiAperti) {
 			if (insiemeAperto.getComprensorio().equals(comprensorio)) 
 				return insiemeAperto;
 		}
-
-		return null;
+		InsiemeAperto insiemeAperto = new InsiemeAperto(comprensorio);
+		insiemiAperti.add(insiemeAperto);
+		return insiemeAperto;
 		
 	}
 	public void addInsiemiAperti(InsiemeAperto insiemeAperto) {
@@ -60,6 +62,7 @@ public class Commercio implements Serializable {
 		this.insiemiChiusi.add(insiemeChiuso);
 	}
 	
+	// Data una proposta mi ritorna l'insieme aperto di appartenenza
 	public InsiemeAperto esistePropostaAperta(PropostaAperta propostaApertaInput) {
 		
 		for (InsiemeAperto insiemeAperto : insiemiAperti) {
@@ -71,6 +74,7 @@ public class Commercio implements Serializable {
 		return null;
 	}
 	
+	// Chiude una lista di proposte aperte
 	private void chiudi(InsiemeAperto insiemeAperto,List<PropostaAperta> proposteAperte) {
 		
 		InsiemeChiuso insiemeChiuso = new InsiemeChiuso();
@@ -91,6 +95,7 @@ public class Commercio implements Serializable {
 		
 	}
 	
+	// L'algoritmo ritorna la lista di proposte chiudibili
 	public void metodo(InsiemeAperto insiemeAperto) {
 		
 	     List<PropostaAperta> listaChiudibili = algoritmo(insiemeAperto);
@@ -99,6 +104,7 @@ public class Commercio implements Serializable {
 	    
 	}
 
+	// Chiama proposte chiudibili per ogni proposta aperta appartenente all'insieme aperto
 	public List<PropostaAperta> algoritmo(InsiemeAperto insiemeAperto) {
 	    List<PropostaAperta> lista;
 	    for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
@@ -110,26 +116,69 @@ public class Commercio implements Serializable {
 	    return null;
 	}
 
-	public List<PropostaAperta> proposteChiudibili(List<PropostaAperta> proposteAperte, PropostaAperta propostaAperta1) {
-	    List<PropostaAperta> proposteChiudibili = new ArrayList<>();
-	    for (PropostaAperta propostaAperta2 : proposteAperte) {
-	        if (!propostaAperta2.equals(propostaAperta1)) {
-	            if (soddisfacimentoTotale(propostaAperta1, propostaAperta2)) {
-	                proposteChiudibili.add(propostaAperta2);
-	                proposteChiudibili.add(propostaAperta1);
-	            } else if (soddisfacimento1(propostaAperta1, propostaAperta2)) {
-	                proposteChiudibili.add(propostaAperta2);
-	            } else if (soddisfacimento2(propostaAperta1, propostaAperta2)) {
-	                proposteChiudibili.add(propostaAperta2);
-	            }
-	        }
-	    }
-	    if (!proposteChiudibili.isEmpty()) {
-	        return proposteChiudibili;
-	    }
-	    return null;
-	}
+	/**
+	 * 
+	 * @param proposteAperte Lista proposte aperte appartenenti allo stesso comprensorio
+	 * @param propostaAperta1 i-esima proposta aperta della lista
+	 * @return
+	 */
+//	public List<PropostaAperta> proposteChiudibili(List<PropostaAperta> proposteAperte, PropostaAperta propostaAperta1) {
+//	    List<PropostaAperta> proposteChiudibili = new ArrayList<>();
+//	    for (PropostaAperta propostaAperta2 : proposteAperte) {
+//	        if (!propostaAperta2.equals(propostaAperta1)) {
+//	            if (soddisfacimentoTotale(propostaAperta1, propostaAperta2)) {
+//	                proposteChiudibili.add(propostaAperta2);
+//	                proposteChiudibili.add(propostaAperta1);
+//	            } else if (soddisfacimento1(propostaAperta1, propostaAperta2)) {
+//	                proposteChiudibili.add(propostaAperta2);
+//	            } else if (soddisfacimento2(propostaAperta1, propostaAperta2)) {
+//	                proposteChiudibili.add(propostaAperta2);
+//	            }
+//	        }
+//	    }
+//	    if (!proposteChiudibili.isEmpty()) {
+//	        return proposteChiudibili;
+//	    }
+//	    return null;
+//	}
+   
+    // Metodo per generare le proposte chiudibili dato un insieme di proposte aperte
+    public static List<PropostaAperta> proposteChiudibili(List<PropostaAperta> proposteAperte, PropostaAperta propostaAperta1) {
+       
+    	List<PropostaAperta> proposteChiudibili = new ArrayList<>(); 
 
+       
+    	for (PropostaAperta propostaAperta2 : proposteAperte) {
+    		List<PropostaAperta> copia = new ArrayList<>();
+    		copia.addAll(proposteAperte);
+    		if (!propostaAperta2.equals(propostaAperta1)) {
+    			
+        		if (soddisfacimentoTotale(propostaAperta1, propostaAperta2)) {
+        			proposteChiudibili.add(propostaAperta2);
+        			proposteChiudibili.add(propostaAperta1);
+        			return proposteChiudibili;
+        		} else if (soddisfacimento1(propostaAperta1, propostaAperta2)) {
+        			 
+        			 proposteChiudibili = proposteSoddisfacimento1(copia,propostaAperta1,
+        					 propostaAperta2, new ArrayList<PropostaAperta>());
+        			 
+        		} else if (soddisfacimento2(propostaAperta1, propostaAperta2)) {
+        			 
+        			 proposteChiudibili = proposteSoddisfacimento2(copia, propostaAperta1,
+        					 propostaAperta2, new ArrayList<PropostaAperta>());
+        		}
+        		
+        		if(proposteChiudibili != null) {
+            		if (!proposteChiudibili.isEmpty()) {
+            			proposteChiudibili.add(propostaAperta1);
+            			proposteChiudibili.add(propostaAperta2);
+            			return proposteChiudibili;
+            		}
+        		}
+    		}
+    	}
+		return null;
+    }
 
 	private static boolean soddisfacimento1(Proposta propostaA, Proposta propostaB) {
 	    return propostaA.getOfferta().getFoglia().equals(propostaB.getRichiesta().getFoglia()) 
@@ -144,14 +193,65 @@ public class Commercio implements Serializable {
 	private static boolean soddisfacimentoTotale(Proposta propostaA, Proposta propostaB) {
 	    return soddisfacimento1(propostaA, propostaB) && soddisfacimento2(propostaA, propostaB);
 	}
+  
+    // Metodo per generare le proposte chiudibili dato un insieme di proposte aperte
+    public static List<PropostaAperta> proposteSoddisfacimento1(List<PropostaAperta> proposteAperteRimaste, 
+    		PropostaAperta propostaOriginale, PropostaAperta propostaAperta1, List<PropostaAperta> proposteChiudibili) {
+       
+    	proposteAperteRimaste.remove(propostaAperta1);
+    	
+    	
+    	if(proposteAperteRimaste != null) {
+    		if (!proposteAperteRimaste.isEmpty()) {
+		    	for (PropostaAperta propostaAperta2 : proposteAperteRimaste) {
+		        	if (!propostaAperta2.equals(propostaAperta1)) {
+		        		
+		        		if (soddisfacimento1(propostaAperta1, propostaAperta2)) {
+		        			proposteChiudibili.add(propostaAperta2);
+		        			
+		        			if (propostaAperta2.equals(propostaOriginale)) 
+		        				return proposteChiudibili;
+		        			else
+		        				proposteChiudibili = proposteSoddisfacimento1(proposteAperteRimaste, propostaOriginale,  propostaAperta2, proposteChiudibili);
+		        		}
+			
+		        	}	
+				}
+    		}
+    	}
+		return null;
+      
+}
+	
+    // Metodo per generare le proposte chiudibili dato un insieme di proposte aperte
+    public static List<PropostaAperta> proposteSoddisfacimento2(List<PropostaAperta> proposteAperteRimaste, 
+    		PropostaAperta propostaOriginale, PropostaAperta propostaAperta1, List<PropostaAperta> proposteChiudibili) {
+       
+    	proposteAperteRimaste.remove(propostaAperta1);
+    	
+    	
+    	if(proposteAperteRimaste != null) {
+    		if (!proposteAperteRimaste.isEmpty()) {
+		    	for (PropostaAperta propostaAperta2 : proposteAperteRimaste) {
+		        	if (!propostaAperta2.equals(propostaAperta1)) {
+		        		
+		        		if (soddisfacimento2(propostaAperta1, propostaAperta2)) {
+		        			proposteChiudibili.add(propostaAperta2);
+		        			
+		        			if (propostaAperta2.equals(propostaOriginale)) 
+		        				return proposteChiudibili;
+		        			else
+		        				proposteChiudibili = proposteSoddisfacimento2(proposteAperteRimaste, propostaOriginale,  propostaAperta2, proposteChiudibili);
+		        		}
+			
+		        	}	
+				}
+    		}
+    	}
+		return null;
+      
+}
 
-
-
-	
-	
-	
-	
-    
-	    
+  
 	    
 }
