@@ -36,10 +36,15 @@ public class Main {
         if (utenza == null || gerarchia == null || geografia == null || commercio == null) {
             // Inizializzazione predefinita degli oggetti solo se non sono stati caricati da file
             DefaultInitializer defaultInitializer = new DefaultInitializer();
-            gerarchia = defaultInitializer.getGerarchia();
-            utenza = defaultInitializer.getUtenza();
-            geografia = defaultInitializer.getGeografia();
-            commercio = defaultInitializer.getCommercio();
+            if (gerarchia == null)
+            	gerarchia = defaultInitializer.getGerarchia();
+            if (utenza == null)
+            	utenza = defaultInitializer.getUtenza();
+            if (geografia == null)
+            	geografia = defaultInitializer.getGeografia();
+            if (commercio == null)
+            	commercio = defaultInitializer.getCommercio();
+
         } else {
             System.out.println("Lettura da file: " 
                    + FileManager.getUtenzaFile() 
@@ -47,7 +52,6 @@ public class Main {
             + ", " + FileManager.getGeografiaFile()
             + ", " + FileManager.getCommercioFile());
         }
-
 
 	    boolean tipoFunzionamento = false;
 	    int accesso;
@@ -123,7 +127,7 @@ public class Main {
 	    if (accesso != 0 && !tipoFunzionamento) {
 	    	Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
 		    InsiemeAperto insiemeUtente = commercio.getInsiemeAperto(fruitore.getComprensorioAppartenenza());
-	        do {
+		    do {
 	            scelta = menuF.scegli();
 	            switch (scelta) {
 

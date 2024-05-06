@@ -2,6 +2,7 @@ package it.unibs.ids.progetto.news;
 
 import java.io.Serializable;
 
+import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.Nodo;
 import it.unibs.ids.progetto.PrestazioneOpera;
 
@@ -77,4 +78,18 @@ public abstract class Proposta implements Serializable {
 
         this.offerta.setDurata(durata);
     }
+    
+    public String toString() {
+    	StringBuffer str = new StringBuffer();
+    	
+    	str.append(richiesta.toString());
+    	str.append("\n"+offerta.toString());
+    
+    	str.append("  status:" + status);
+    	
+		return str.toString();    	
+    }
+    
+    
+    
 }

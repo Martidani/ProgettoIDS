@@ -57,11 +57,11 @@ public class Application {
             Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
             fruitore.addProposte(proposta);
             insiemeAperto.addProposteAperte(proposta);
-			commercio.metodo(insiemeAperto);
-            
+			commercio.metodo(insiemeAperto);            
         } else {
 			commercio.decrementaNumProposte();
 		}
+
     }
 
 

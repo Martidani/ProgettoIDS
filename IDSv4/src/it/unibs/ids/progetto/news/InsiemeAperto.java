@@ -34,13 +34,6 @@ public class InsiemeAperto implements Serializable{
 	}
 	
 	
-//	public void eliminaProposteAperte(ArrayList<PropostaAperta> proposteDaEliminare ) {
-//		for (PropostaAperta propostaDaEliminare : proposteDaEliminare) {
-//			eliminaPropostaAperta(propostaDaEliminare);
-//			
-//		}
-//	}
-	
 	public void eliminaPropostaAperta(PropostaAperta propostaDaEliminare) {
 		if (proposteAperte != null) 
 			this.proposteAperte.remove(propostaDaEliminare);
@@ -62,5 +55,14 @@ public class InsiemeAperto implements Serializable{
 		return false;
 	}
 
+    public String toString() {
+    	StringBuffer str = new StringBuffer();
+    	
+    	for (PropostaAperta propostaAperta : proposteAperte) {
+			str.append(propostaAperta.toString()+"\n");
+		}
+    	
+		return str.toString();    	
+    }
 
 }
