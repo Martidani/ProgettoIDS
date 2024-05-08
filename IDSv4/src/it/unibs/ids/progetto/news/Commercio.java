@@ -8,6 +8,7 @@ import java.util.Map;
 
 import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.FattoriDiConversione;
+import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.Nodo;
 
@@ -17,6 +18,7 @@ public class Commercio implements Serializable {
 	private int numeroProposte;
 	private List<InsiemeAperto> insiemiAperti;
 	private List<InsiemeChiuso> insiemiChiusi;
+	private InsiemeRitirato insiemeRitirato;
 	
 	
 	public Commercio() {
@@ -24,6 +26,7 @@ public class Commercio implements Serializable {
 		this.numeroProposte = 0;
 		this.insiemiAperti = new ArrayList<>();
 		this.insiemiChiusi = new ArrayList<>();
+		this.insiemeRitirato = new InsiemeRitirato();
 	}
 	
 	
@@ -76,19 +79,35 @@ public class Commercio implements Serializable {
 		return null;
 	}
 	
+	public void ritira(PropostaAperta propostaAperta, Fruitore fruitore) {
+		InsiemeAperto insiemeAperto = this.getInsiemeAperto(fruitore.getComprensorioAppartenenza());
+		for (PropostaAperta propostaAperta2: insiemeAperto.getProposteAperte()) {
+			if (propostaAperta2.getFruitore().equals(fruitore)) {
+				if (propostaAperta.getID() == propostaAperta2.getID()) {
+					PropostaRitirata propostaRitirata = new PropostaRitirata(propostaAperta.getRichiesta(), propostaAperta.getOfferta(),
+							propostaAperta.getID(), propostaAperta.getFruitore());
+							insiemeAperto.eliminaPropostaAperta(propostaAperta);
+							this.insiemeRitirato.addProposteRitirate(propostaRitirata);
+				}
+				
+			}
+			
+			
+		}
+	}
+	
 	// Chiude una lista di proposte aperte
 	private void chiudi(InsiemeAperto insiemeAperto,List<PropostaAperta> proposteAperte) {
 		
 		InsiemeChiuso insiemeChiuso = new InsiemeChiuso();
 		
 		for (PropostaAperta propostaAperta : proposteAperte) {
-			PropostaChiusa propostaChiusa = new PropostaChiusa(propostaAperta.getRichiesta(), propostaAperta.getOfferta(), propostaAperta.getID());
+			PropostaChiusa propostaChiusa = new PropostaChiusa(propostaAperta.getRichiesta(), propostaAperta.getOfferta(), 
+					propostaAperta.getID(),propostaAperta.getFruitore());
+			
 			insiemeChiuso.addProposteChiuse(propostaChiusa);
 			insiemeAperto.eliminaPropostaAperta(propostaAperta);
 		}
-		
-		if (insiemeAperto.getProposteAperte().isEmpty()) 
-				insiemiAperti.remove(insiemeAperto);
 		
 		
 		insiemiChiusi.add(insiemeChiuso);
@@ -235,7 +254,8 @@ public class Commercio implements Serializable {
     	}
 		return null;   
 }
-    
+
+  
     // Metodo per generare le proposte chiudibili dato un insieme di proposte aperte
     public static List<PropostaAperta> proposteSoddisfacimento2(
     		List<PropostaAperta> proposteAperte, PropostaAperta propostaOriginale, 
@@ -256,7 +276,7 @@ public class Commercio implements Serializable {
 		        			else {
 		        		    	List<PropostaAperta> proposteAperteCopia = new ArrayList<PropostaAperta>();
 		        		    	proposteAperteCopia.addAll(proposteAperte);
-		        		    	proposteChiudibili = proposteSoddisfacimento2(proposteAperteCopia, propostaOriginale,  
+		        		    	return proposteChiudibili = proposteSoddisfacimento2(proposteAperteCopia, propostaOriginale,  
 		        						propostaAperta2, proposteChiudibili);
 		        			}		
 		        		}
@@ -265,7 +285,116 @@ public class Commercio implements Serializable {
     		}
     	}
 		return null;   
+}
+    
+    
+    public String visualizzaProposteChiuse(Fruitore fruitore){
+    	
+    	StringBuffer str = new StringBuffer();
+    	
+    	for (InsiemeChiuso insiemeChiuso : insiemiChiusi) {
+			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
+				if (propostaChiusa.getFruitore().equals(fruitore)) {
+					str.append(propostaChiusa.toString());
+				}
+			}
 		}
-     
+    	
+    	return str.toString();
+  
+    }
+    
+    public String visualizzaProposteRitirate(Fruitore fruitore){
+    	
+    	StringBuffer str = new StringBuffer();
+    	
+    	
+    	for (PropostaRitirata propostaRitirata : insiemeRitirato.getProposteRitirate()) {
+    		if (propostaRitirata.getFruitore().equals(fruitore)) {
+				str.append(propostaRitirata.toString());
+			}
+		}
+    	
+    	
+    	return str.toString();
+  
+    }
+    
+    
+    public String visualizzaProposteAperte(Fruitore fruitore){
+    	
+    	StringBuffer str = new StringBuffer();
+    	
+    	InsiemeAperto insiemeAperto = this.getInsiemeAperto(fruitore.getComprensorioAppartenenza());
+    	
+    	for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
+			if (propostaAperta.getFruitore().equals(fruitore)) {
+				str.append(propostaAperta.toString());
+			}
+		}
+    	
+    	
+    	return str.toString();
+  
+    	
+    }
+    
+
+    public String visualizzaProposteChiuse(Nodo nodo){
+    	
+    	StringBuffer str = new StringBuffer();
+    	
+    	for (InsiemeChiuso insiemeChiuso : insiemiChiusi) {
+			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
+				if (propostaChiusa.getOfferta().getFoglia().equals(nodo) ||
+	    				propostaChiusa.getRichiesta().getFoglia().equals(nodo)) {
+	    			str.append(propostaChiusa.toString());
+	    			
+	    		}
+			}
+		}
+    	
+    	return str.toString();
+  
+    }
+    
+    public String visualizzaProposteRitirate(Nodo nodo){
+    	
+    	StringBuffer str = new StringBuffer();
+    	
+    	
+    	for (PropostaRitirata propostaRitirata : insiemeRitirato.getProposteRitirate()) {
+    		if (propostaRitirata.getOfferta().getFoglia().equals(nodo) ||
+    				propostaRitirata.getRichiesta().getFoglia().equals(nodo)) {
+    			str.append(propostaRitirata.toString());
+    			
+    		}
+		}
+    	
+    	
+    	
+    	
+    	return str.toString();
+  
+    }
+    
+    public String visualizzaProposteAperte(Nodo nodo){
+    	
+    	StringBuffer str = new StringBuffer();
+    	
+    	for (InsiemeAperto insiemeAperto : insiemiAperti) {
+			for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
+				if (propostaAperta.getOfferta().getFoglia().equals(nodo) ||
+						propostaAperta.getRichiesta().getFoglia().equals(nodo)) {
+					str.append(propostaAperta.toString());
+					
+				}
+			}
+		}
+    	
+    	return str.toString();
+  
+    	
+    }
 	    
 }

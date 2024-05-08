@@ -169,11 +169,11 @@ public class DefaultInitializer {
 			
 			PrestazioneOpera r1 = new PrestazioneOpera(nodo1, (int) FACTOR_VAL);
 			PrestazioneOpera o1 = new PrestazioneOpera(nodo2);
-    		PropostaAperta proposta1 = new PropostaAperta(r1, o1, commercio.numProposte());
+    		PropostaAperta proposta1 = new PropostaAperta(r1, o1, commercio.numProposte(),(Fruitore)utenza.getUtenti().get(1));
 		
 			PrestazioneOpera r2 = new PrestazioneOpera(nodo2, (int) FACTOR_VAL*2);
 			PrestazioneOpera o2 = new PrestazioneOpera(nodo1);
-    		PropostaAperta proposta2 = new PropostaAperta(r2, o2, commercio.numProposte());
+    		PropostaAperta proposta2 = new PropostaAperta(r2, o2, commercio.numProposte(),(Fruitore)utenza.getUtenti().get(1));
     		
     		insiemeAperto.addProposteAperte(proposta1);
     		insiemeAperto.addProposteAperte(proposta2);

@@ -17,13 +17,15 @@ public abstract class Proposta implements Serializable {
     protected PrestazioneOpera richiesta;
     protected PrestazioneOpera offerta;
     protected int ID;
+    protected Fruitore fruitore;
     
     
-    public Proposta(PrestazioneOpera richiesta, PrestazioneOpera offerta,int ID) {
+    public Proposta(PrestazioneOpera richiesta, PrestazioneOpera offerta,int ID,Fruitore fruitore) {
         
         this.richiesta = richiesta;
         this.offerta = offerta;
         this.ID=ID;
+        this.fruitore=fruitore;
 
         setOfferta();
         setStatus();
@@ -43,7 +45,9 @@ public abstract class Proposta implements Serializable {
         return status;
     }
     
-    
+    public Fruitore getFruitore() {
+    	return fruitore;
+    }
     public abstract void setStatus();
 
     /**

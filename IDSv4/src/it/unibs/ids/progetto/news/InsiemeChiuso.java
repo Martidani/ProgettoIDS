@@ -18,7 +18,7 @@ public class InsiemeChiuso implements Serializable{
 	}
 
 
-	public List<PropostaChiusa> getPropostaChiusa() {
+	public List<PropostaChiusa> getProposteChiuse() {
 		return proposteChiuse;
 	}
 

@@ -48,13 +48,13 @@ public class Application {
         
         PrestazioneOpera offerta = new PrestazioneOpera(fogliaOfferta);
         PrestazioneOpera richiesta = new PrestazioneOpera(fogliaRichiesta, durata);
-        PropostaAperta proposta = new PropostaAperta(richiesta, offerta, commercio.numProposte());
+        Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
+        PropostaAperta proposta = new PropostaAperta(richiesta, offerta, commercio.numProposte(),fruitore);
        
         System.out.println("\nOfferta: ");
         System.out.println("[" + offerta.getNome() + ", "+ offerta.getDurata() + " ore]");
         
         if (InputDati.yesOrNo("Confermi l'offerta?")) {
-            Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
             fruitore.addProposte(proposta);
             insiemeAperto.addProposteAperte(proposta);
 			commercio.metodo(insiemeAperto);            
