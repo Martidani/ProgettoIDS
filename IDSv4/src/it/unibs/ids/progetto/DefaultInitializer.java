@@ -92,14 +92,14 @@ public class DefaultInitializer {
         Gerarchia gerarchia = new Gerarchia();
 
         // Creazione del nodo radice
-        Nodo nodo1 = new Nodo(ROOT_NAME, true, ROOT_FIELD);
+        Nodo nodo1 = new Nodo(ROOT_NAME, null, ROOT_FIELD);
         for (String domainValue : ROOT_DOMAIN) {
             nodo1.addElementiDominio(domainValue);
         }
 
         // Creazione dei nodi figli
-        Nodo nodo11 = new Nodo(CHILD1_NAME);
-        Nodo nodo12 = new Nodo(CHILD2_NAME);
+        Nodo nodo11 = new Nodo(CHILD1_NAME, nodo1.getNome());
+        Nodo nodo12 = new Nodo(CHILD2_NAME, nodo1.getNome());
         try {
             nodo1.addChild(nodo11);
             nodo1.addChild(nodo12);
@@ -159,20 +159,18 @@ public class DefaultInitializer {
     
     private Commercio defaultCommercio()  {
     
-    	Nodo nodo1 = gerarchia.getFoglie().get(0);
-    	Nodo nodo2 = gerarchia.getFoglie().get(1);
 
     	Commercio commercio = new Commercio();
     	
     	InsiemeAperto insiemeAperto = new InsiemeAperto(this.defaultComprensorio());
     	try {
 			
-			PrestazioneOpera r1 = new PrestazioneOpera(nodo1, (int) FACTOR_VAL);
-			PrestazioneOpera o1 = new PrestazioneOpera(nodo2);
+			PrestazioneOpera r1 = new PrestazioneOpera(gerarchia.getFoglie().get(0), (int) FACTOR_VAL);
+			PrestazioneOpera o1 = new PrestazioneOpera(gerarchia.getFoglie().get(1));
     		PropostaAperta proposta1 = new PropostaAperta(r1, o1, commercio.numProposte(),(Fruitore)utenza.getUtenti().get(1));
 		
-			PrestazioneOpera r2 = new PrestazioneOpera(nodo2, (int) FACTOR_VAL*2);
-			PrestazioneOpera o2 = new PrestazioneOpera(nodo1);
+			PrestazioneOpera r2 = new PrestazioneOpera(gerarchia.getFoglie().get(1), (int) FACTOR_VAL*2);
+			PrestazioneOpera o2 = new PrestazioneOpera(gerarchia.getFoglie().get(0));
     		PropostaAperta proposta2 = new PropostaAperta(r2, o2, commercio.numProposte(),(Fruitore)utenza.getUtenti().get(1));
     		
     		insiemeAperto.addProposteAperte(proposta1);

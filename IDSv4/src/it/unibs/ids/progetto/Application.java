@@ -26,11 +26,11 @@ public class Application {
      * @param gerarchia La gerarchia delle prestazioni all'interno del sistema.
      * @throws NodeNotLeafException Se viene cercata una foglia e viene trovato un nodo non foglia.
      */
-    public static void proponiScambio(Utenza utenza, Gerarchia gerarchia, 
-    		Commercio commercio, InsiemeAperto insiemeAperto) throws NodeNotLeafException {
+    public static void proponiScambio(Utenza utenza, Gerarchia gerarchia, Commercio commercio) throws NodeNotLeafException {
         String nomePrestazione;
         String nomeRadicePrestazione;
         Nodo fogliaRichiesta;
+        InsiemeAperto insiemeAperto = commercio.getInsiemeApertoDiSessione();
         do {
             nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci richiesta [foglia di appartenenza] -> ");
             nomeRadicePrestazione = InputDati.leggiStringaNonVuota("Inserisci radice -> ");    
@@ -238,7 +238,7 @@ public class Application {
 	    } while (gerarchia.verificaEsistenzaNomeRadice(radice));
 
 	    String campo = InputDati.leggiStringaNonVuota("Campo -> ");
-	    Nodo root = new Nodo(radice, true, campo);
+	    Nodo root = new Nodo(radice, null, campo);
 
 	    creaValoriDominio(root);
 
@@ -285,10 +285,10 @@ public class Application {
 	        boolean isFoglia = InputDati.yesOrNo("È foglia? ");
 	        Nodo nodoChild;
 	        if (isFoglia) {
-	            nodoChild = new Nodo(nome);
+	            nodoChild = new Nodo(nome, radice.getNome());
 	            foglieAttuali.add(nodoChild);
 	        } else {
-	            nodoChild = creaNonFoglia(nome);
+	            nodoChild = creaNonFoglia(nome, radice);
 	        }
 
 	        try {
@@ -310,9 +310,9 @@ public class Application {
 	 * @param nome  Il nome del nodo.
 	 * @return      Il nodo non foglia creato.
 	 */
-	private static Nodo creaNonFoglia(String nome) {
+	private static Nodo creaNonFoglia(String nome, Nodo radice) {
 	    String campo = InputDati.leggiStringaNonVuota("Campo -> ");
-	    Nodo nodoChild = new Nodo(nome, false, campo);
+	    Nodo nodoChild = new Nodo(nome, radice.getNome(), campo);
 
 	    creaValoriDominio(nodoChild);
 
@@ -390,6 +390,43 @@ public class Application {
 	    else
 	        System.out.println(nodo.toStringFactors());
 	}
+
+
+	public static void visualizzaProposte(Commercio commercio) {
+
+		System.out.println("Proposte Aperte: \n" + commercio.visualizzaProposteAperte());
+		System.out.println("Proposte Chiuse: \n" + commercio.visualizzaProposteChiuse());
+		System.out.println("Proposte Ritirate: \n" + commercio.visualizzaProposteRitirate());
+	}
+
+
+	public static void visualizzaProposteFoglia(Commercio commercio,Gerarchia gerarchia) {
+		Nodo foglia = chiediFoglia("Foglia: ", gerarchia);
+		System.out.println("Proposte Aperte: \n" + commercio.visualizzaProposteAperte(foglia));
+		System.out.println("Proposte Chiuse: \n" + commercio.visualizzaProposteChiuse(foglia));
+		System.out.println("Proposte Ritirate: \n" + commercio.visualizzaProposteRitirate(foglia));
+	}
+
+
+	public static void ritiraProposte(Commercio commercio) {
+		
+		System.out.println("Proposte Ritirate: \n" + commercio.visualizzaProposteAperte());
+
+		String s1, s2, s4, s5;
+		int s3, s6;
+		PropostaAperta proposta;
+		do {
+			 s1 = InputDati.leggiStringaNonVuota("\nRichiesta:\n foglia: ");
+			 s2 = InputDati.leggiStringaNonVuota(" radice: ");
+			 s3 = InputDati.leggiInteroNonNegativo((" durata: "));
+			 s4 = InputDati.leggiStringaNonVuota("Offerta:\n foglia: ");
+			 s5 = InputDati.leggiStringaNonVuota(" radice: ");
+			 s6 =  InputDati.leggiInteroNonNegativo((" durata: "));
+		} while ((proposta = commercio.cercaProposta(s1, s2, s3, s4, s5, s6)) != null);
+		
+		commercio.ritira(proposta);
+	}
+
 
 	
 }

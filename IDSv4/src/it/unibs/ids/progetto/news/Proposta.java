@@ -86,10 +86,10 @@ public abstract class Proposta implements Serializable {
     public String toString() {
     	StringBuffer str = new StringBuffer();
     	
-    	str.append(richiesta.toString());
-    	str.append("\n"+offerta.toString());
+    	str.append("Richiesta " + richiesta.toString());
+    	str.append("Offerta " + offerta.toString());
     
-    	str.append("  status:" + status);
+    	str.append("  status:" + status + "\n");
     	
 		return str.toString();    	
     }

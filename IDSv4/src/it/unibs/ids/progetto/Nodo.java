@@ -16,7 +16,7 @@ public class Nodo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String nome;
 	private boolean isLeaf;
-	private boolean isRoot;
+	private String root;
 	private List<Nodo> children;
 	private FattoriDiConversione fattori;
 	private String campo;
@@ -29,8 +29,8 @@ public class Nodo implements Serializable {
 	 * @param isRoot True se il nodo è la radice dell'albero, false altrimenti.
 	 * @param campo  Il campo associato al nodo (valido solo per i nodi non foglia).
 	 */
-	public Nodo(String nome, boolean isRoot, String campo) {
-		this.isRoot = isRoot;
+	public Nodo(String nome, String root, String campo) {
+		this.root = root;
 		this.campo = campo;
 		this.nome = nome;
 		this.isLeaf = false;
@@ -45,9 +45,9 @@ public class Nodo implements Serializable {
 	 * 
 	 * @param nome Il nome del nodo.
 	 */
-	public Nodo(String nome) {
+	public Nodo(String nome, String root) {
 		this.nome = nome;
-		this.isRoot = false;
+		this.root = root;
 		this.isLeaf = true;
 		this.fattori = new FattoriDiConversione();
 	}
@@ -75,8 +75,8 @@ public class Nodo implements Serializable {
 	 * 
 	 * @return True se il nodo è una radice, altrimenti False.
 	 */
-	public boolean isRoot() {
-		return isRoot;
+	public String root() {
+		return root;
 	}
 
 	/**

@@ -2,21 +2,20 @@ package it.unibs.ids.progetto.news;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
 import it.unibs.ids.progetto.Comprensorio;
-import it.unibs.ids.progetto.FattoriDiConversione;
 import it.unibs.ids.progetto.Fruitore;
-import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.Nodo;
+import it.unibs.ids.progetto.PrestazioneOpera;
+import it.unibs.ids.progetto.Utente;
 
 public class Commercio implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private int numeroProposte;
 	private List<InsiemeAperto> insiemiAperti;
+	private Fruitore utenteDiSessione;
+	
 	private List<InsiemeChiuso> insiemiChiusi;
 	private InsiemeRitirato insiemeRitirato;
 	
@@ -30,6 +29,13 @@ public class Commercio implements Serializable {
 	}
 	
 	
+	public void setUtenteDiSessione(Fruitore utenteDiSessione) {
+		this.utenteDiSessione = utenteDiSessione;
+	}
+	public InsiemeAperto getInsiemeApertoDiSessione() {
+		return getInsiemeAperto(utenteDiSessione.getComprensorioAppartenenza());
+	}
+
 	public int numProposte() {
 		setNumProposte();
 		return numeroProposte;
@@ -79,12 +85,13 @@ public class Commercio implements Serializable {
 		return null;
 	}
 	
-	public void ritira(PropostaAperta propostaAperta, Fruitore fruitore) {
-		InsiemeAperto insiemeAperto = this.getInsiemeAperto(fruitore.getComprensorioAppartenenza());
+	public void ritira(PropostaAperta propostaAperta) {
+		InsiemeAperto insiemeAperto = this.getInsiemeAperto(utenteDiSessione.getComprensorioAppartenenza());
 		for (PropostaAperta propostaAperta2: insiemeAperto.getProposteAperte()) {
-			if (propostaAperta2.getFruitore().equals(fruitore)) {
+			if (propostaAperta2.getFruitore().getID().equals(utenteDiSessione.getID())) {
 				if (propostaAperta.getID() == propostaAperta2.getID()) {
-					PropostaRitirata propostaRitirata = new PropostaRitirata(propostaAperta.getRichiesta(), propostaAperta.getOfferta(),
+					PropostaRitirata propostaRitirata = 
+							new PropostaRitirata(propostaAperta.getRichiesta(), propostaAperta.getOfferta(),
 							propostaAperta.getID(), propostaAperta.getFruitore());
 							insiemeAperto.eliminaPropostaAperta(propostaAperta);
 							this.insiemeRitirato.addProposteRitirate(propostaRitirata);
@@ -94,6 +101,25 @@ public class Commercio implements Serializable {
 			
 			
 		}
+	}
+	
+	public PropostaAperta cercaProposta (String nomeO, String nomeOR, int dO,
+			String nomeR, String nomeRR, int dR) {
+		for (PropostaAperta propostaAperta : getInsiemeApertoDiSessione().getProposteAperte()) {
+			if (
+					(propostaAperta.getOfferta().getFoglia().getNome()).equals(nomeO) &&
+					(propostaAperta.getOfferta().getFoglia().root()).equals(nomeOR) &&
+					propostaAperta.getOfferta().getDurata()==dO &&
+					(propostaAperta.getRichiesta().getFoglia().getNome()).equals(nomeR) &&
+					(propostaAperta.getRichiesta().getFoglia().root()).equals(nomeRR)&&
+					propostaAperta.getRichiesta().getDurata()==dR
+					)
+				return propostaAperta;
+				
+				
+				
+		}
+		return null;
 	}
 	
 	// Chiude una lista di proposte aperte
@@ -137,31 +163,6 @@ public class Commercio implements Serializable {
 	    return null;
 	}
 
-	/**
-	 * 
-	 * @param proposteAperte Lista proposte aperte appartenenti allo stesso comprensorio
-	 * @param propostaAperta1 i-esima proposta aperta della lista
-	 * @return
-	 */
-//	public List<PropostaAperta> proposteChiudibili(List<PropostaAperta> proposteAperte, PropostaAperta propostaAperta1) {
-//	    List<PropostaAperta> proposteChiudibili = new ArrayList<>();
-//	    for (PropostaAperta propostaAperta2 : proposteAperte) {
-//	        if (!propostaAperta2.equals(propostaAperta1)) {
-//	            if (soddisfacimentoTotale(propostaAperta1, propostaAperta2)) {
-//	                proposteChiudibili.add(propostaAperta2);
-//	                proposteChiudibili.add(propostaAperta1);
-//	            } else if (soddisfacimento1(propostaAperta1, propostaAperta2)) {
-//	                proposteChiudibili.add(propostaAperta2);
-//	            } else if (soddisfacimento2(propostaAperta1, propostaAperta2)) {
-//	                proposteChiudibili.add(propostaAperta2);
-//	            }
-//	        }
-//	    }
-//	    if (!proposteChiudibili.isEmpty()) {
-//	        return proposteChiudibili;
-//	    }
-//	    return null;
-//	}
    
     // Metodo per generare le proposte chiudibili dato un insieme di proposte aperte
     public static List<PropostaAperta> proposteChiudibili(List<PropostaAperta> proposteAperte, PropostaAperta propostaAperta1) {
@@ -288,14 +289,14 @@ public class Commercio implements Serializable {
 }
     
     
-    public String visualizzaProposteChiuse(Fruitore fruitore){
+    public String visualizzaProposteChiuse(){
     	
     	StringBuffer str = new StringBuffer();
     	
     	for (InsiemeChiuso insiemeChiuso : insiemiChiusi) {
 			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
-				if (propostaChiusa.getFruitore().equals(fruitore)) {
-					str.append(propostaChiusa.toString());
+				if (propostaChiusa.getFruitore().getID().equals(utenteDiSessione.getID())) {
+					str.append(propostaChiusa.toString()+ "\n");
 				}
 			}
 		}
@@ -304,14 +305,14 @@ public class Commercio implements Serializable {
   
     }
     
-    public String visualizzaProposteRitirate(Fruitore fruitore){
+    public String visualizzaProposteRitirate(){
     	
     	StringBuffer str = new StringBuffer();
     	
     	
     	for (PropostaRitirata propostaRitirata : insiemeRitirato.getProposteRitirate()) {
-    		if (propostaRitirata.getFruitore().equals(fruitore)) {
-				str.append(propostaRitirata.toString());
+    		if (propostaRitirata.getFruitore().getID().equals(utenteDiSessione.getID())) {
+				str.append(propostaRitirata.toString()+ "\n");
 			}
 		}
     	
@@ -321,15 +322,14 @@ public class Commercio implements Serializable {
     }
     
     
-    public String visualizzaProposteAperte(Fruitore fruitore){
+    public String visualizzaProposteAperte(){
     	
     	StringBuffer str = new StringBuffer();
     	
-    	InsiemeAperto insiemeAperto = this.getInsiemeAperto(fruitore.getComprensorioAppartenenza());
     	
-    	for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
-			if (propostaAperta.getFruitore().equals(fruitore)) {
-				str.append(propostaAperta.toString());
+    	for (PropostaAperta propostaAperta : getInsiemeApertoDiSessione().getProposteAperte()) {
+			if (propostaAperta.getFruitore().getID().equals(utenteDiSessione.getID())) {
+				str.append(propostaAperta.toString()+ "\n");
 			}
 		}
     	
@@ -346,9 +346,12 @@ public class Commercio implements Serializable {
     	
     	for (InsiemeChiuso insiemeChiuso : insiemiChiusi) {
 			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
-				if (propostaChiusa.getOfferta().getFoglia().equals(nodo) ||
-	    				propostaChiusa.getRichiesta().getFoglia().equals(nodo)) {
-	    			str.append(propostaChiusa.toString());
+				if 		(propostaChiusa.getOfferta().getFoglia().root().equals(nodo.root()) 
+						&& propostaChiusa.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
+						||
+						propostaChiusa.getOfferta().getFoglia().root().equals(nodo.root()) 
+						&& propostaChiusa.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
+	    			str.append(propostaChiusa.toString()+ "\n");
 	    			
 	    		}
 			}
@@ -364,9 +367,12 @@ public class Commercio implements Serializable {
     	
     	
     	for (PropostaRitirata propostaRitirata : insiemeRitirato.getProposteRitirate()) {
-    		if (propostaRitirata.getOfferta().getFoglia().equals(nodo) ||
-    				propostaRitirata.getRichiesta().getFoglia().equals(nodo)) {
-    			str.append(propostaRitirata.toString());
+    		if (propostaRitirata.getOfferta().getFoglia().root().equals(nodo.root()) 
+					&& propostaRitirata.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
+					||
+					propostaRitirata.getOfferta().getFoglia().root().equals(nodo.root()) 
+					&& propostaRitirata.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
+    			str.append(propostaRitirata.toString()+ "\n");
     			
     		}
 		}
@@ -384,9 +390,12 @@ public class Commercio implements Serializable {
     	
     	for (InsiemeAperto insiemeAperto : insiemiAperti) {
 			for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
-				if (propostaAperta.getOfferta().getFoglia().equals(nodo) ||
-						propostaAperta.getRichiesta().getFoglia().equals(nodo)) {
-					str.append(propostaAperta.toString());
+				if (propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
+						&& propostaAperta.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
+						||
+						propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
+						&& propostaAperta.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
+					str.append(propostaAperta.toString()+ "\n");
 					
 				}
 			}

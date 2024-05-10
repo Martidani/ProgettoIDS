@@ -83,8 +83,8 @@ public class PrestazioneOpera implements Serializable {
     public String toString() {
     	StringBuffer str = new StringBuffer();
     	
-    	str.append("nome foglia:" + foglia.getNome());
-    	str.append("durata:" + durata);
+    	str.append("(foglia: " + foglia.getNome() + ")");
+    	str.append(", (durata: " + durata + ")\n");
     	
 		return str.toString();    	
     }

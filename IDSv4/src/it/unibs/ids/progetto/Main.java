@@ -15,9 +15,9 @@ public class Main {
     
 	public final static String[] vociC = 
 		{"Introdurre comprensorio geografico", "Introdurre albero", "Visualizza comprensorio", 
-			"Visualizza gerarchia", "Visualizza fattori di conversione"};
+			"Visualizza gerarchia", "Visualizza fattori di conversione", "Visualizza proposte"};
 	public final static String[] vociF = 
-		{"Naviga nella gerarchia", "Proponi uno scambio"};
+		{"Naviga nella gerarchia", "Proponi uno scambio", "Visualizza proposte", "Ritira Proposte"};
 	public final static String[] vociAccesso = 
 		{"Registrazione","Login"};
     
@@ -115,6 +115,10 @@ public class Main {
 	                case 5:
 	                	Application.stampaFattori(gerarchia);
 	                    break;
+	                    
+	                case 6:
+	                	Application.visualizzaProposteFoglia(commercio, gerarchia);
+	                    break;
 
 	                default:
 	                    break;
@@ -125,8 +129,8 @@ public class Main {
 	    
 	    //modalità fruitore
 	    if (accesso != 0 && !tipoFunzionamento) {
-	    	Fruitore fruitore = (Fruitore) utenza.getUtenteDiSessione();
-		    InsiemeAperto insiemeUtente = commercio.getInsiemeAperto(fruitore.getComprensorioAppartenenza());
+	    	commercio.setUtenteDiSessione((Fruitore)utenza.getUtenteDiSessione());
+	    	
 		    do {
 	            scelta = menuF.scegli();
 	            switch (scelta) {
@@ -137,9 +141,15 @@ public class Main {
 	                    break;
 	                    
 	                case 2:
-	                	Application.proponiScambio(utenza, gerarchia, commercio, insiemeUtente);
-	      
-	                	
+	                	Application.proponiScambio(utenza, gerarchia, commercio);
+		                break;
+		                
+	                case 3:
+	                	Application.visualizzaProposte(commercio);
+	                break;
+	                
+	                case 4:
+	                	Application.ritiraProposte(commercio);
 	                break;
 
 	                default:
