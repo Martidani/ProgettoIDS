@@ -3,6 +3,7 @@ package it.unibs.ids.progetto;
 import java.util.ArrayList;
 
 import it.unibs.fp.mylib.InputDati;
+import it.unibs.fp.mylib.MyMenu;
 import it.unibs.ids.progetto.news.Commercio;
 import it.unibs.ids.progetto.news.InsiemeAperto;
 import it.unibs.ids.progetto.news.Proposta;
@@ -393,38 +394,66 @@ public class Application {
 
 
 	public static void visualizzaProposte(Commercio commercio) {
+		System.out.println();
+		String proposteA =commercio.visualizzaProposteAperte();
+		String proposteC =commercio.visualizzaProposteChiuse();
+		String proposteR =commercio.visualizzaProposteRitirate();
+		if (!proposteA.isBlank()) {
+			System.out.println(" Proposte Aperte: \n" + proposteA);
+		}
+		if (!proposteC.isBlank()) {
+			System.out.println(" Proposte Chiuse: \n" + proposteC);
+		}
+		if (!proposteR.isBlank()) {
+			System.out.println(" Proposte Ritirate: \n" + proposteR);
+		}
 
-		System.out.println("Proposte Aperte: \n" + commercio.visualizzaProposteAperte());
-		System.out.println("Proposte Chiuse: \n" + commercio.visualizzaProposteChiuse());
-		System.out.println("Proposte Ritirate: \n" + commercio.visualizzaProposteRitirate());
 	}
 
 
 	public static void visualizzaProposteFoglia(Commercio commercio,Gerarchia gerarchia) {
 		Nodo foglia = chiediFoglia("Foglia: ", gerarchia);
-		System.out.println("Proposte Aperte: \n" + commercio.visualizzaProposteAperte(foglia));
-		System.out.println("Proposte Chiuse: \n" + commercio.visualizzaProposteChiuse(foglia));
-		System.out.println("Proposte Ritirate: \n" + commercio.visualizzaProposteRitirate(foglia));
+		String proposteA =commercio.visualizzaProposteAperte(foglia);
+		String proposteC =commercio.visualizzaProposteChiuse(foglia);
+		String proposteR =commercio.visualizzaProposteRitirate(foglia);
+		
+		System.out.println();
+		if (!proposteA.isBlank()) {
+			System.out.println(" Proposte Aperte: \n" + proposteA);
+		}
+		if (!proposteC.isBlank()) {
+			System.out.println(" Proposte Chiuse: \n" + proposteC);
+		}
+		if (!proposteR.isBlank()) {
+			System.out.println(" Proposte Ritirate: \n" + proposteR);
+		}
 	}
 
 
 	public static void ritiraProposte(Commercio commercio) {
 		
-		System.out.println("Proposte Ritirate: \n" + commercio.visualizzaProposteAperte());
+		String proposte = commercio.visualizzaProposteAperte();
+		
 
 		String s1, s2, s4, s5;
 		int s3, s6;
 		PropostaAperta proposta;
-		do {
-			 s1 = InputDati.leggiStringaNonVuota("\nRichiesta:\n foglia: ");
-			 s2 = InputDati.leggiStringaNonVuota(" radice: ");
-			 s3 = InputDati.leggiInteroNonNegativo((" durata: "));
-			 s4 = InputDati.leggiStringaNonVuota("Offerta:\n foglia: ");
-			 s5 = InputDati.leggiStringaNonVuota(" radice: ");
-			 s6 =  InputDati.leggiInteroNonNegativo((" durata: "));
-		} while ((proposta = commercio.cercaProposta(s1, s2, s3, s4, s5, s6)) != null);
-		
-		commercio.ritira(proposta);
+		if (!proposte.isBlank() && InputDati.yesOrNo("\nVuoi ritirare una proposta? ") ) {
+			System.out.println("Proposte Ritirate: \n" + proposte);
+			do {
+				 s1 = InputDati.leggiStringaNonVuota("\nRichiesta:\n foglia: ");
+				 s2 = InputDati.leggiStringaNonVuota(" radice: ");
+				 s3 = InputDati.leggiInteroNonNegativo((" durata: "));
+				 s4 = InputDati.leggiStringaNonVuota("Offerta:\n foglia: ");
+				 s5 = InputDati.leggiStringaNonVuota(" radice: ");
+				 s6 =  InputDati.leggiInteroNonNegativo((" durata: "));
+			} while ((proposta = commercio.cercaProposta(s1, s2, s3, s4, s5, s6)) != null);
+			
+			commercio.ritira(proposta);
+		}
+		else
+			System.out.println("Non ci sono proposte (aperte) ritirabili");
+
 	}
 
 

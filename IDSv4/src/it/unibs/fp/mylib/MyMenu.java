@@ -11,7 +11,7 @@ public class MyMenu {
 	
 	
     // Costanti per la formattazione del menu
-    final private static String CORNICE = "-------------------------------------------------------------------";
+    final public static String CORNICE = "-------------------------------------------------------------------";
     final private static String VOCE_USCITA = "0\tEsci";
     final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata > ";
 

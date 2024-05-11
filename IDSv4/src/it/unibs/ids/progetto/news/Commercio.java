@@ -295,8 +295,19 @@ public class Commercio implements Serializable {
     	
     	for (InsiemeChiuso insiemeChiuso : insiemiChiusi) {
 			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
+				
 				if (propostaChiusa.getFruitore().getID().equals(utenteDiSessione.getID())) {
-					str.append(propostaChiusa.toString()+ "\n");
+					
+					if (insiemeChiuso.getProposteChiuse().get(0)
+							.equals(propostaChiusa)) 
+						str.append("{");
+					
+					str.append("\n" + propostaChiusa.toString());
+					
+					if (insiemeChiuso.getProposteChiuse().get(insiemeChiuso.getProposteChiuse().size()-1)
+							.equals(propostaChiusa)) 
+						str.append("}\n\n");
+					
 				}
 			}
 		}
