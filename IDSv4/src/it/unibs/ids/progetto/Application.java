@@ -57,7 +57,7 @@ public class Application {
         
         if (InputDati.yesOrNo("Confermi l'offerta?")) {
             fruitore.addProposte(proposta);
-            insiemeAperto.addProposteAperte(proposta);
+            insiemeAperto.addPropostaAperta(proposta);
 			commercio.metodo(insiemeAperto);            
         } else {
 			commercio.decrementaNumProposte();
@@ -344,7 +344,7 @@ public class Application {
             }
         } while (InputDati.yesOrNo("Vuoi continuare l'inserimento? "));
 
-        FattoriDiConversione.addTransitivoFattoreConversione(gerarchia);
+        Nodo.addTransitivoFattoreConversione(gerarchia);
 	}
 	/**
 	 * Metodo per chiedere la foglia e la radice e ottenere il nodo corrispondente.
@@ -372,7 +372,7 @@ public class Application {
 	    double fattoreDiConversione;
 	    do {
 	        fattoreDiConversione = InputDati.leggiDouble("Fattore di conversione -> ");
-	    } while (!FattoriDiConversione.verificaFattoreConversione(fattoreDiConversione));
+	    } while (!Nodo.verificaFattoreConversione(fattoreDiConversione));
 	    return fattoreDiConversione;
 	}
 
@@ -435,19 +435,15 @@ public class Application {
 		String proposte = commercio.visualizzaProposteAperte();
 		
 
-		String s1, s2, s4, s5;
-		int s3, s6;
+		int s1;
 		PropostaAperta proposta;
-		if (!proposte.isBlank() && InputDati.yesOrNo("\nVuoi ritirare una proposta? ") ) {
-			System.out.println("Proposte Ritirate: \n" + proposte);
+		System.out.println("Proposte da ritirare: \n\n" + proposte);
+		
+		if (!proposte.isBlank() && InputDati.yesOrNo("\nVuoi ritirare una proposta? \n") ) {
 			do {
-				 s1 = InputDati.leggiStringaNonVuota("\nRichiesta:\n foglia: ");
-				 s2 = InputDati.leggiStringaNonVuota(" radice: ");
-				 s3 = InputDati.leggiInteroNonNegativo((" durata: "));
-				 s4 = InputDati.leggiStringaNonVuota("Offerta:\n foglia: ");
-				 s5 = InputDati.leggiStringaNonVuota(" radice: ");
-				 s6 =  InputDati.leggiInteroNonNegativo((" durata: "));
-			} while ((proposta = commercio.cercaProposta(s1, s2, s3, s4, s5, s6)) != null);
+				 s1 = InputDati.leggiInteroNonNegativo("\nInserisci ID proposta: ");
+				 
+			} while ((proposta = commercio.cercaProposta(s1)) == null);
 			
 			commercio.ritira(proposta);
 		}

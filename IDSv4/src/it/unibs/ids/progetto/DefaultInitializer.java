@@ -173,8 +173,8 @@ public class DefaultInitializer {
 			PrestazioneOpera o2 = new PrestazioneOpera(gerarchia.getFoglie().get(0));
     		PropostaAperta proposta2 = new PropostaAperta(r2, o2, commercio.numProposte(),(Fruitore)utenza.getUtenti().get(1));
     		
-    		insiemeAperto.addProposteAperte(proposta1);
-    		insiemeAperto.addProposteAperte(proposta2);
+    		insiemeAperto.addPropostaAperta(proposta1);
+    		insiemeAperto.addPropostaAperta(proposta2);
     		
     		commercio.addInsiemiAperti(insiemeAperto);
     		commercio.metodo(insiemeAperto);

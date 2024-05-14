@@ -29,9 +29,16 @@ public class InsiemeAperto implements Serializable{
 		return proposteAperte;
 	}
 
-	public void addProposteAperte(PropostaAperta proposta) {
+	public void addPropostaAperta(PropostaAperta proposta) {
 		this.proposteAperte.add(proposta);
 	}
+	
+	public void addProposteAperte(List<PropostaAperta> proposteAperte) {
+		for (PropostaAperta propostaAperta : proposteAperte) {
+			this.addPropostaAperta(propostaAperta);
+		}
+	}
+	
 	
 	
 	public void eliminaPropostaAperta(PropostaAperta propostaDaEliminare) {

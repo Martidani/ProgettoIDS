@@ -88,6 +88,7 @@ public abstract class Proposta implements Serializable {
     	
     	str.append("Richiesta " + richiesta.toString());
     	str.append("Offerta " + offerta.toString());
+    	str.append("ID: " + this.getID() + "\n");
     	
 		return str.toString();    	
     }

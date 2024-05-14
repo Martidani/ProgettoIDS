@@ -11,7 +11,7 @@ import it.unibs.ids.progetto.Utente;
 
 public class Commercio implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
+	
 	private int numeroProposte;
 	private List<InsiemeAperto> insiemiAperti;
 	private Fruitore utenteDiSessione;
@@ -87,7 +87,10 @@ public class Commercio implements Serializable {
 	
 	public void ritira(PropostaAperta propostaAperta) {
 		InsiemeAperto insiemeAperto = this.getInsiemeAperto(utenteDiSessione.getComprensorioAppartenenza());
-		for (PropostaAperta propostaAperta2: insiemeAperto.getProposteAperte()) {
+		InsiemeAperto insiemeApertoCopia = new InsiemeAperto(utenteDiSessione.getComprensorioAppartenenza());
+		insiemeApertoCopia.addProposteAperte(insiemeAperto.getProposteAperte());
+		
+		for (PropostaAperta propostaAperta2: insiemeApertoCopia.getProposteAperte()) {
 			if (propostaAperta2.getFruitore().getID().equals(utenteDiSessione.getID())) {
 				if (propostaAperta.getID() == propostaAperta2.getID()) {
 					PropostaRitirata propostaRitirata = 
@@ -103,21 +106,10 @@ public class Commercio implements Serializable {
 		}
 	}
 	
-	public PropostaAperta cercaProposta (String nomeO, String nomeOR, int dO,
-			String nomeR, String nomeRR, int dR) {
+	public PropostaAperta cercaProposta (int ID) {
 		for (PropostaAperta propostaAperta : getInsiemeApertoDiSessione().getProposteAperte()) {
-			if (
-					(propostaAperta.getOfferta().getFoglia().getNome()).equals(nomeO) &&
-					(propostaAperta.getOfferta().getFoglia().root()).equals(nomeOR) &&
-					propostaAperta.getOfferta().getDurata()==dO &&
-					(propostaAperta.getRichiesta().getFoglia().getNome()).equals(nomeR) &&
-					(propostaAperta.getRichiesta().getFoglia().root()).equals(nomeRR)&&
-					propostaAperta.getRichiesta().getDurata()==dR
-					)
-				return propostaAperta;
-				
-				
-				
+			if (propostaAperta.getID() == ID)
+				return propostaAperta;		
 		}
 		return null;
 	}
