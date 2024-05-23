@@ -18,7 +18,7 @@ public class Albero implements Serializable {
      * @throws RootTreeException Se il nodo specificato non è una radice
      */
     public Albero(NotLeaf radice) throws RootTreeException {
-        if (!radice.isRoot()) throw new RootTreeException();
+    	 if (radice.root()!=null) throw new RootTreeException();
         this.foglie = new ArrayList<Leaf>();
         this.radice = radice;
         addFoglie(radice);

@@ -1,6 +1,11 @@
 package it.unibs.ids.progetto;
 
+import it.unibs.ids.progetto.news.Commercio;
+import it.unibs.ids.progetto.news.InsiemeAperto;
 import it.unibs.ids.progetto.news.MailAddress;
+import it.unibs.ids.progetto.news.Offerta;
+import it.unibs.ids.progetto.news.PropostaAperta;
+import it.unibs.ids.progetto.news.Richiesta;
 
 /**
  * Classe per l'inizializzazione predefinita del sistema.
@@ -11,7 +16,7 @@ public class DefaultInitializer {
     
     private static final String ROOT_NAME = "system";
     private static final String ROOT_FIELD = "field";
-    private static final String[] ROOT_DOMAIN = {"rootchildM", "rootchildF"};
+    private static final String[] ROOT_DOMAIN = {"rootchildM", "rootchildF",};
     private static final String CHILD2_NAME = "rootchild2";
     private static final String CHILD1_NAME = "rootchild1";
     
@@ -32,14 +37,7 @@ public class DefaultInitializer {
     private Gerarchia gerarchia;
     private Utenza utenza;
     private Geografia geografia;
-    
-    private static DefaultInitializer defaultInitializer;
-    //singleton
-    public static DefaultInitializer getDefaultInitializer() {
-    	if (defaultInitializer == null)
-    		defaultInitializer= new DefaultInitializer(); 
-    	return defaultInitializer;
-    }
+    private Commercio commercio;
     
     /**
      * Costruttore che inizializza gli oggetti di default.
@@ -48,8 +46,16 @@ public class DefaultInitializer {
         this.utenza = defaultAccess();
         this.gerarchia = defaultTree();
         this.geografia = defaultWorld();
+        this.commercio = defaultCommercio();
     }
 
+    private static DefaultInitializer defaultInitializer;
+    //singleton
+    public static DefaultInitializer getDefaultInitializer() {
+    	if (defaultInitializer == null)
+    		defaultInitializer= new DefaultInitializer(); 
+    	return defaultInitializer;
+    }
     /**
      * Restituisce l'albero gerarchico predefinito.
      * 
@@ -57,6 +63,15 @@ public class DefaultInitializer {
      */
     public Gerarchia getGerarchia() {
         return this.gerarchia;
+    }
+    
+    /**
+     * Restituisce il commercio predefinito.
+     * 
+     * @return Il commercio predefinito
+     */
+    public Commercio getCommercio() {
+        return this.commercio;
     }
 
     /**
@@ -86,14 +101,14 @@ public class DefaultInitializer {
         Gerarchia gerarchia = new Gerarchia();
 
         // Creazione del nodo radice
-        NotLeaf nodo1 = new NotLeaf(ROOT_NAME, true, ROOT_FIELD);
+        NotLeaf nodo1 = new NotLeaf(ROOT_NAME, null, ROOT_FIELD);
         for (String domainValue : ROOT_DOMAIN) {
             nodo1.addElementiDominio(domainValue);
         }
 
         // Creazione dei nodi figli
-        Leaf nodo11 = new Leaf(CHILD1_NAME);
-        Leaf nodo12 = new Leaf(CHILD2_NAME);
+        Leaf nodo11 = new Leaf(CHILD1_NAME, ROOT_NAME);
+        Leaf nodo12 = new Leaf(CHILD2_NAME, ROOT_NAME);
         try {
             nodo1.addChild(nodo11);
             nodo1.addChild(nodo12);
@@ -158,5 +173,32 @@ public class DefaultInitializer {
         Geografia geografia = new Geografia();
         geografia.addComprensorio(defaultComprensorio());
         return geografia;
+    }
+    
+    private Commercio defaultCommercio()  {
+        
+
+    	Commercio commercio = new Commercio();
+    	
+    	InsiemeAperto insiemeAperto = new InsiemeAperto(this.defaultComprensorio());
+    	
+			
+    	Richiesta r1 = new Richiesta(gerarchia.getFoglie().get(0), (int) FACTOR_VAL);
+    	Offerta o1 = new Offerta(gerarchia.getFoglie().get(1));
+		PropostaAperta proposta1 = new PropostaAperta(r1, o1, commercio.numProposte(),(Fruitore)utenza.getUtenti().get(1));
+	
+		Richiesta r2 = new Richiesta(gerarchia.getFoglie().get(1), (int) FACTOR_VAL*2);
+		Offerta o2 = new Offerta(gerarchia.getFoglie().get(0));
+		PropostaAperta proposta2 = new PropostaAperta(r2, o2, commercio.numProposte(),(Fruitore)utenza.getUtenti().get(1));
+		
+		insiemeAperto.addPropostaAperta(proposta1);
+		insiemeAperto.addPropostaAperta(proposta2);
+		
+		commercio.addInsiemiAperti(insiemeAperto);
+		commercio.metodo(insiemeAperto);
+    	
+    	
+    	
+    	return commercio;
     }
 }

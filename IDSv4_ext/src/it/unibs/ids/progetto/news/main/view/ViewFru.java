@@ -11,7 +11,8 @@ public class ViewFru implements View {
 	private ControllerFru controllerFru;
 	private int scelta;
     
-	private final static String[] vociF = {"Naviga nella gerarchia", "Proponi uno scambio"};
+	private final static String[] vociF = {"Naviga nella gerarchia", "Proponi uno scambio", 
+			"Visualizza proposte", "Ritira Proposte"};
 	private final static String[] vociAccesso = {"Registrazione","Login"};
 	private static MyMenu menuFruitore = new MyMenu("Menu principale fruitore", vociF);
 	private static MyMenu menuAccesso = new MyMenu("Menu accesso fruitore", vociAccesso);
@@ -31,6 +32,15 @@ public class ViewFru implements View {
 		        
 		    case 2:
 		    	controllerFru.proponiScambio();
+		    	break;
+		    	
+		    case 3:
+		    	controllerFru.visualizzaProposte();
+		    	break;
+		    	
+		    case 4:
+		    	controllerFru.ritiraProposte();
+		    	break;
 		    	
 		    default:
 		        break;

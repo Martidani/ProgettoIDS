@@ -18,7 +18,8 @@ public class ViewConf implements View {
  
     private final static String[] vociAccesso =  {"Registrazione","Login"};
     private final static String[] voci =  {"Introdurre comprensorio geografico", "Introdurre albero", 
-    		"Visualizza comprensorio",  "Visualizza gerarchia", "Visualizza fattori di conversione"};
+    		"Visualizza comprensorio",  "Visualizza gerarchia", "Visualizza fattori di conversione", 
+    		"Visualizza proposte"};
     private static MyMenu menuConfiguratore = new MyMenu("Menu principale", voci);
     private static MyMenu menuAccesso = new MyMenu("Menu accesso", vociAccesso);
 	
@@ -49,15 +50,19 @@ public class ViewConf implements View {
                 break;
 
             case 3:
-            	System.out.println(controllerConf.stampaGeografia().toString());;
+            	System.out.println(controllerConf.stampaGeografia());;
                 break;
 
             case 4:
-            	System.out.println(controllerConf.stampaGerarchia().toString());;
+            	System.out.println(controllerConf.stampaGerarchia());;
                 break;
 
             case 5:
-            	System.out.println(controllerConf.stampaFattori().toString());;
+            	System.out.println(controllerConf.stampaFattori());;
+                break;
+                
+            case 6:
+            	System.out.println(controllerConf.visualizzaProposteFoglia());
                 break;
 
             default:

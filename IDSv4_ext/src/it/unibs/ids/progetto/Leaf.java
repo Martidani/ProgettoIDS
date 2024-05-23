@@ -15,8 +15,9 @@ public class Leaf extends Nodo implements Serializable {
 	 * 
 	 * @param nome Il nome del nodo.
 	 */
-	public Leaf(String nome) {
+	public Leaf(String nome, String root) {
 		this.nome = nome;
+		this.root = root;
 		this.fattori = new FattoriDiConversione();
 	}
 
@@ -52,8 +53,8 @@ public class Leaf extends Nodo implements Serializable {
 	 * 
 	 * @return True se il nodo è una radice, altrimenti False.
 	 */
-	public boolean isRoot() {
-		return false;
+	public String root() {
+		return root;
 	}
 
 	/**

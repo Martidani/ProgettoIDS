@@ -10,6 +10,7 @@ import it.unibs.ids.progetto.FileManager;
 import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.Leaf;
 import it.unibs.ids.progetto.NotLeaf;
+import it.unibs.ids.progetto.news.PrintManager;
 
 public class ModelGerarchia implements Serializable {
 
@@ -60,7 +61,7 @@ public class ModelGerarchia implements Serializable {
 	}
 
 	public String toStringRadici() {
-		return gerarchia.toStringRadici();
+		return PrintManager.toStringRadici(gerarchia);
 	}
 
 	public NotLeaf visualizzaRadice(String nomeRadice) {

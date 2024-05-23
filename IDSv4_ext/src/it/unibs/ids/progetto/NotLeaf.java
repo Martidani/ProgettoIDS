@@ -8,7 +8,6 @@ import java.util.List;
 public class NotLeaf extends Nodo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private boolean isRoot;
 	private List<Nodo> children;
 	private String campo;
 	private List<String[]> dominio;
@@ -20,8 +19,8 @@ public class NotLeaf extends Nodo implements Serializable {
 	 * @param isRoot True se il nodo è la radice dell'albero, false altrimenti.
 	 * @param campo  Il campo associato al nodo (valido solo per i nodi non foglia).
 	 */
-	public NotLeaf(String nome, boolean isRoot, String campo) {
-		this.isRoot = isRoot;
+	public NotLeaf(String nome, String root, String campo) {
+		this.root = root;
 		this.campo = campo;
 		this.nome = nome;
 		this.children = new ArrayList<>();
@@ -47,8 +46,8 @@ public class NotLeaf extends Nodo implements Serializable {
 		return campo;
 	}
 	
-	public boolean isRoot() {
-		return isRoot;
+	public String root() {
+		return root;
 	}
 
 	/**

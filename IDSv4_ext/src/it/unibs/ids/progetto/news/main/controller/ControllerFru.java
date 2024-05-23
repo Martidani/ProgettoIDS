@@ -35,4 +35,14 @@ public class ControllerFru implements Controller {
 	public void proponiScambio() {
 		controllerFruWork.proponiScambio();
 	}
+
+	public void visualizzaProposte() {
+		controllerFruWork.visualizzaProposte();
+		
+	}
+
+	public void ritiraProposte() {
+		controllerFruWork.ritiraProposte();
+		
+	}
 }

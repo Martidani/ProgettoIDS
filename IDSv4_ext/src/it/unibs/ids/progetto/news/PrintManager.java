@@ -130,7 +130,7 @@ public class PrintManager {
      * @param alberi La lista degli alberi di nodi
      * @return Una stringa che rappresenta la gerarchia
      */
-    public String toStringRadici(Gerarchia gerarchia) {
+    public static String toStringRadici(Gerarchia gerarchia) {
         StringBuffer bf = new StringBuffer();
         
         for (Nodo nodo : gerarchia.getRadici())  {

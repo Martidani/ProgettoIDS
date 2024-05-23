@@ -5,7 +5,9 @@ import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.Albero;
 import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.FattoriDiConversione;
+import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.RootTreeException;
+import it.unibs.ids.progetto.news.LeafPrintManager;
 import it.unibs.ids.progetto.news.main.model.Model;
 import it.unibs.ids.progetto.Leaf;
 import it.unibs.ids.progetto.Nodo;
@@ -101,7 +103,7 @@ public class ControllerConfWork  {
         } while (model.verificaEsistenzaNomeRadice(radice));
 
         String campo = InputDati.leggiStringaNonVuota("Campo -> ");
-        NotLeaf root = new NotLeaf(radice, true, campo);
+        NotLeaf root = new NotLeaf(radice, null, campo);
 
         creaValoriDominio(root);
 
@@ -113,7 +115,7 @@ public class ControllerConfWork  {
      * 
      * @param nodo  Il nodo a cui aggiungere i valori del dominio.
      */
-    private  void creaValoriDominio(NotLeaf nodo) {
+    private static  void creaValoriDominio(NotLeaf nodo) {
         int num = 0;
         do {
             num++;
@@ -151,10 +153,10 @@ public class ControllerConfWork  {
             boolean isFoglia = InputDati.yesOrNo("È foglia? ");
             Nodo nodoChild;
             if (isFoglia) {
-                nodoChild = new Leaf(nome);
+                nodoChild = new Leaf(nome, radice.getNome());
                 foglieAttuali.add((Leaf) nodoChild);
             } else {
-                nodoChild = creaNonFoglia(nome);
+                nodoChild = creaNonFoglia(nome, radice);
             }
 
             try {
@@ -177,14 +179,14 @@ public class ControllerConfWork  {
      * @param nome  Il nome del nodo.
      * @return      Il nodo non foglia creato.
      */
-    private  Nodo creaNonFoglia(String nome) {
-        String campo = InputDati.leggiStringaNonVuota("Campo -> ");
-        NotLeaf nodoChild = new NotLeaf(nome, false, campo);
+	private static Nodo creaNonFoglia(String nome, Nodo radice) {
+	    String campo = InputDati.leggiStringaNonVuota("Campo -> ");
+	    NotLeaf nodoChild = new NotLeaf(nome, radice.getNome(), campo);
 
-        creaValoriDominio(nodoChild);
+	    creaValoriDominio(nodoChild);
 
-        return nodoChild;
-    }
+	    return nodoChild;
+	}
 
     /**
      * Metodo per inserire i fattori di conversione tra nodi.
@@ -262,7 +264,7 @@ public class ControllerConfWork  {
         if (nodo == null)
             str.append("  Non è stata trovata nessuna corrispondenza");
         else
-            str.append(nodo.toStringFactors());
+            str.append(LeafPrintManager.toStringFactors(nodo));
         
         return str.toString();
     }
@@ -276,6 +278,29 @@ public class ControllerConfWork  {
     public String navigaGerarchia( ) {
         return model.toStringGerarchia().toString();
     }
+
+	public String visualizzaProposteFoglia() {
+		StringBuffer str = new StringBuffer();
+		
+		Nodo foglia = chiediFoglia("Foglia: ");
+		String proposteA =model.visualizzaProposteAperte(foglia);
+		String proposteC =model.visualizzaProposteChiuse(foglia);
+		String proposteR =model.visualizzaProposteRitirate(foglia);
+		
+		System.out.println();
+		if (!proposteA.isBlank()) {
+			str.append(" Proposte Aperte: \n" + proposteA);
+		}
+		if (!proposteC.isBlank()) {
+			str.append(" Proposte Chiuse: \n" + proposteC);
+		}
+		if (!proposteR.isBlank()) {
+			str.append(" Proposte Ritirate: \n" + proposteR);
+		}
+		return str.toString();
+	}
+	
+
 		
 	
 }

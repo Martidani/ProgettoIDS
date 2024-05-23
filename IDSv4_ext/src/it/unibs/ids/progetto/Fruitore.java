@@ -3,7 +3,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.unibs.ids.progetto.news.MailAddress;
-import it.unibs.ids.progetto.news.PropostaDiScambio;
+import it.unibs.ids.progetto.news.Proposta;
+
 
 /**
  * La classe Configuratore rappresenta un utente con privilegi di configurazione.
@@ -19,7 +20,7 @@ public class Fruitore extends Utente implements Serializable {
     
     private MailAddress indirizzo;
     private Comprensorio comprensorioAppartenenza;
-    private ArrayList<PropostaDiScambio> proposte;
+    private ArrayList<Proposta> proposte;
     
     /**
      * Costruttore della classe Fruitore.
@@ -31,7 +32,7 @@ public class Fruitore extends Utente implements Serializable {
         super(TIPOUTENTE, credenziali);
         this.indirizzo = indirizzo;
         this.comprensorioAppartenenza = comprensorioAppartenenza;
-        this.proposte = new ArrayList<PropostaDiScambio>();
+        this.proposte = new ArrayList<Proposta>();
         setIsDefinitivo(true);
     }
 
@@ -57,11 +58,11 @@ public class Fruitore extends Utente implements Serializable {
 	}
  
 	
-	public ArrayList<PropostaDiScambio> getProposte() {
+	public ArrayList<Proposta> getProposte() {
 		return proposte;
 	}
 
-	public void addProposte(PropostaDiScambio proposta) {
+	public void addProposte(Proposta proposta) {
 		this.proposte.add(proposta);
 	}
 

@@ -74,12 +74,15 @@ public class Utenza implements Serializable {
      * @return L'utente corrispondente alle credenziali, null se non trovato
      */
     private Utente autenticazione(String ID, String Password, Predicate<Utente> predicate) {
-        return utenti.stream()
+    	Utente utenteDiSessione = utenti.stream()
                 .filter(utente -> utente.getID().equals(ID))
                 .filter(utente -> utente.getPassword().equals(Password))
                 .filter(predicate)
                 .findFirst()
                 .orElse(null);
+    	
+    	setUtenteDiSessione(utenteDiSessione);
+        return utenteDiSessione;
     }
     
     public Utente autenticazioneConfiguratore(String ID, String Password) {

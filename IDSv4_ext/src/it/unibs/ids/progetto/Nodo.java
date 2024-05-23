@@ -14,6 +14,7 @@ public abstract class Nodo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	protected String nome;
+	protected String root;
 
 	/**
 	 * Restituisce il nome del nodo.
@@ -36,7 +37,7 @@ public abstract class Nodo implements Serializable {
 	 * 
 	 * @return True se il nodo è una radice, altrimenti False.
 	 */
-	public abstract boolean isRoot();
+	public abstract String root();
 
 	
 

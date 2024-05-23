@@ -8,7 +8,11 @@ import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.Utente;
 import it.unibs.ids.progetto.Utenza;
+import it.unibs.ids.progetto.news.Commercio;
+import it.unibs.ids.progetto.news.InsiemeAperto;
+import it.unibs.ids.progetto.news.PropostaAperta;
 import it.unibs.ids.progetto.Leaf;
+import it.unibs.ids.progetto.Nodo;
 import it.unibs.ids.progetto.NotLeaf;
 
 public class Model implements Serializable {
@@ -17,13 +21,14 @@ public class Model implements Serializable {
 	private ModelUtenza modelUtenza;
     private ModelGerarchia modelGerarchia;
     private ModelGeografia modelGeografia ;
+    private ModelCommercio modelCommercio ;
     
 	public Model() {
 		super();
         this.modelUtenza = new ModelUtenza();
         this.modelGerarchia = new ModelGerarchia();
         this.modelGeografia = new ModelGeografia();
-        
+        this.modelCommercio = new ModelCommercio();
 	}
 
 	
@@ -35,6 +40,9 @@ public class Model implements Serializable {
 	}
 	public Geografia getGeografia() {
 		return modelGeografia.getGeografia();
+	}
+	public Commercio getCommercio() {
+		return modelCommercio.getCommercio();
 	}
 
 	public void addUtente(Configuratore configuratore) {
@@ -94,13 +102,67 @@ public class Model implements Serializable {
 	}  
 	
 	public Utente getUtenteDiSessione() {
-		return modelUtenza.getUtenteDiSessione();
+		Utente utenteDiSessione = modelUtenza.getUtenteDiSessione();
+		modelCommercio.setUtenteDiSessione(utenteDiSessione);
+		return utenteDiSessione;
 	}
 	
 	public void save() {
 		modelGerarchia.save();
         modelUtenza.save();
         modelGeografia.save();
+        modelCommercio.save();
+	}
+
+
+	public String visualizzaProposteAperte(Nodo foglia) {
+		return modelCommercio.visualizzaProposteAperte(foglia);
+	}
+
+	public String visualizzaProposteChiuse(Nodo foglia) {
+		return modelCommercio.visualizzaProposteChiuse(foglia);
+	}
+	public String visualizzaProposteRitirate(Nodo foglia) {
+		return modelCommercio.visualizzaProposteRitirate(foglia);
+	}
+
+
+	public PropostaAperta cercaProposta(int s1) {
+		return modelCommercio.cercaProposta(s1);
+	}
+
+
+	public void ritira(PropostaAperta proposta) {
+		modelCommercio.ritira( proposta);
+	}
+
+
+	public void decrementaNumProposte() {
+		modelCommercio.decrementaNumProposte();
+	}
+
+
+	public void metodo(InsiemeAperto insiemeAperto) {
+		modelCommercio.metodo( insiemeAperto);
+	}
+
+
+	public int numProposte() {
+		return modelCommercio.numProposte();
+	}
+
+
+	public InsiemeAperto getInsiemeApertoDiSessione() {
+		return modelCommercio.getInsiemeApertoDiSessione();
+	}
+
+
+
+
+
+	public void addProposte(PropostaAperta proposta) {
+		modelUtenza.addProposte(proposta);
+		
 	}
 
 

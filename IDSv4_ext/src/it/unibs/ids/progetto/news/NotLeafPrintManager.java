@@ -5,15 +5,15 @@ import it.unibs.ids.progetto.NotLeaf;
 
 public class NotLeafPrintManager{
 
-	 public static String toNavigationString(NotLeaf nodo) {
+	 public static String toNavigationString(Nodo nodo) {
 	    	StringBuilder b = new StringBuilder();
 	    	b.append(" nome: " + nodo.getNome());
 	    	
 
-	        b.append("\n |campo: " + nodo.getCampo());
+	        b.append("\n |campo: " + ((NotLeaf) nodo).getCampo());
 	        b.append("\n |dominio: ");
 	        int var = 0;
-	        for (String[] valore : nodo.getDominio()) {
+	        for (String[] valore : ((NotLeaf) nodo).getDominio()) {
 	        	var++;
 	    		b.append("\n  " + var + " - " + valore[0]);
 	    		if (valore.length>1)

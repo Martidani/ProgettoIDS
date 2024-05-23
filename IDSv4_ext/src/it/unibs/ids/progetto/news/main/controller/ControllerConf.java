@@ -41,5 +41,9 @@ public class ControllerConf implements Controller {
 	public int login() {
 		return controllerConfAccess.login();
 	}
+
+	public String visualizzaProposteFoglia() {
+		return controllerConfWork.visualizzaProposteFoglia();
+	}
 	
 }

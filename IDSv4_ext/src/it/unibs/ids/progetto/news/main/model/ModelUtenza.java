@@ -10,6 +10,7 @@ import it.unibs.ids.progetto.FileManager;
 import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.Utente;
 import it.unibs.ids.progetto.Utenza;
+import it.unibs.ids.progetto.news.PropostaAperta;
 
 
 public class ModelUtenza implements Serializable {
@@ -59,11 +60,17 @@ public class ModelUtenza implements Serializable {
 	}
 
 	public Utente autenticazioneFruitore(String iD, String pSSW) {
+		
 		return utenza.autenticazioneFruitore(iD, pSSW);
 	}
 
 	public Utente getUtenteDiSessione() {
 		return utenza.getUtenteDiSessione();
+	}
+
+	public void addProposte(PropostaAperta proposta) {
+		((Fruitore)utenza.getUtenteDiSessione()).addProposte(proposta);
+		
 	}  
 	
 }

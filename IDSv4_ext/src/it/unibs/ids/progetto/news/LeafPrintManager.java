@@ -11,8 +11,8 @@ public class LeafPrintManager{
   	 * 
   	 * @return Una stringa rappresentante le relazioni con le foglie.
   	 */
-  	public static String toStringFactors(Leaf nodo) {
-  		return PrintManager.toString((nodo.getNome()),(nodo).getFattori());
+  	public static String toStringFactors(Nodo nodo) {
+  		return PrintManager.toString((nodo.getNome()),((Leaf) nodo).getFattori());
   			
   	}
 
@@ -22,7 +22,7 @@ public class LeafPrintManager{
   	 * 
   	 * @return Una stringa rappresentante il dominio associato al nodo.
   	 */
-  	public static String toString(String blank,Leaf nodo) {
+  	public static String toString(String blank,Nodo nodo) {
   		StringBuffer bf = new StringBuffer();
   		bf.append(" " + nodo.getNome() + "\n" );
   		
@@ -30,7 +30,7 @@ public class LeafPrintManager{
   	}
   	
 
-  	 public static String toNavigationString(Leaf nodo) {
+  	 public static String toNavigationString(Nodo nodo) {
   	    	StringBuilder b = new StringBuilder();
   	    	b.append(" nome: " + nodo.getNome());
 
