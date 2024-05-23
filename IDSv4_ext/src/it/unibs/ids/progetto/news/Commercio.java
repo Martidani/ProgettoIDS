@@ -7,11 +7,10 @@ import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.Nodo;
 
-import it.unibs.ids.progetto.Utente;
-
 public class Commercio implements Serializable {
 	
 	
+	private static final long serialVersionUID = 1L;
 	private int numeroProposte;
 	private List<InsiemeAperto> insiemiAperti;
 	private Fruitore fruitoreDiSessione;

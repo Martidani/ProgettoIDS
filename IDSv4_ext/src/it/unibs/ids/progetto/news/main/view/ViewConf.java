@@ -20,8 +20,8 @@ public class ViewConf implements View {
     private final static String[] voci =  {"Introdurre comprensorio geografico", "Introdurre albero", 
     		"Visualizza comprensorio",  "Visualizza gerarchia", "Visualizza fattori di conversione", 
     		"Visualizza proposte"};
-    private static MyMenu menuConfiguratore = new MyMenu("Menu principale", voci);
-    private static MyMenu menuAccesso = new MyMenu("Menu accesso", vociAccesso);
+    private static MyMenu menuConfiguratore = new MyMenu("Menu principale configuratore", voci);
+    private static MyMenu menuAccesso = new MyMenu("Menu accesso configuratore", vociAccesso);
 	
     public ViewConf(Controller controller) {
         this.controllerConf = (ControllerConf) controller;

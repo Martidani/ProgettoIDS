@@ -98,6 +98,8 @@ public class ModelCommercio implements Serializable{
 	public void setUtenteDiSessione(Utente utenteDiSessione) {
 		if (utenteDiSessione.getTipoUtente() == Fruitore.TIPOUTENTE)
 			commercio.setFruitoreDiSessione((Fruitore) utenteDiSessione);
+		else
+			commercio.setFruitoreDiSessione(null);
 		
 	}
 

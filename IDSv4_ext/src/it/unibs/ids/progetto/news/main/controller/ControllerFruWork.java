@@ -6,6 +6,7 @@ import it.unibs.ids.progetto.Leaf;
 import it.unibs.ids.progetto.Nodo;
 import it.unibs.ids.progetto.NotLeaf;
 import it.unibs.ids.progetto.news.InsiemeAperto;
+import it.unibs.ids.progetto.news.LeafPrintManager;
 import it.unibs.ids.progetto.news.NotLeafPrintManager;
 import it.unibs.ids.progetto.news.Offerta;
 import it.unibs.ids.progetto.news.PropostaAperta;
@@ -34,7 +35,12 @@ public class ControllerFruWork  {
 			int valoreDominio = InputDati.leggiIntero("Scegli l'opzione -> ");	
 			child = radice.getChildren().get(valoreDominio-1);
 
-			System.out.println(NotLeafPrintManager.toNavigationString(child)+ "\n");
+			if (child.isLeaf() )
+					System.out.println(LeafPrintManager.toNavigationString(child)+ "\n");
+			else
+				System.out.println(NotLeafPrintManager.toNavigationString(child)+ "\n");
+
+				
 		} while (!child.isLeaf());
 	}
 
@@ -81,7 +87,6 @@ public class ControllerFruWork  {
 	}
 
 	public void visualizzaProposte() {
-		model.getUtenteDiSessione();
 		System.out.println();
 		String proposteA =model.visualizzaProposteAperte(null);
 		String proposteC =model.visualizzaProposteChiuse(null);
@@ -99,7 +104,6 @@ public class ControllerFruWork  {
 	}
 
 	public void ritiraProposte() {
-		model.getUtenteDiSessione();
 		String proposte = model.visualizzaProposteAperte(null);
 		
 

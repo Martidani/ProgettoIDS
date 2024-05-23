@@ -23,6 +23,7 @@ public class Model implements Serializable {
     private ModelGeografia modelGeografia ;
     private ModelCommercio modelCommercio ;
     
+    
 	public Model() {
 		super();
         this.modelUtenza = new ModelUtenza();
@@ -30,6 +31,8 @@ public class Model implements Serializable {
         this.modelGeografia = new ModelGeografia();
         this.modelCommercio = new ModelCommercio();
 	}
+
+
 
 	
 	public Utenza getUtenza() {
@@ -101,11 +104,7 @@ public class Model implements Serializable {
 		return modelUtenza.autenticazioneFruitore(iD, pSSW);
 	}  
 	
-	public Utente getUtenteDiSessione() {
-		Utente utenteDiSessione = modelUtenza.getUtenteDiSessione();
-		modelCommercio.setUtenteDiSessione(utenteDiSessione);
-		return utenteDiSessione;
-	}
+
 	
 	public void save() {
 		modelGerarchia.save();
@@ -156,8 +155,16 @@ public class Model implements Serializable {
 		return modelCommercio.getInsiemeApertoDiSessione();
 	}
 
+	public Utente getUtenteDiSessione() {
+		return modelUtenza.getUtenteDiSessione();
 
+	}
+	
+	public void setUtenteDiSessione(Utente utente) {
+		modelUtenza.setUtenteDiSessione(utente);
+		modelCommercio.setUtenteDiSessione(utente);
 
+	}
 
 
 	public void addProposte(PropostaAperta proposta) {

@@ -81,7 +81,6 @@ public class Utenza implements Serializable {
                 .findFirst()
                 .orElse(null);
     	
-    	setUtenteDiSessione(utenteDiSessione);
         return utenteDiSessione;
     }
     

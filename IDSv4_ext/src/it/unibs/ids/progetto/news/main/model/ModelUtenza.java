@@ -67,6 +67,9 @@ public class ModelUtenza implements Serializable {
 	public Utente getUtenteDiSessione() {
 		return utenza.getUtenteDiSessione();
 	}
+	public void setUtenteDiSessione(Utente utente) {
+		utenza.setUtenteDiSessione(utente);
+	}
 
 	public void addProposte(PropostaAperta proposta) {
 		((Fruitore)utenza.getUtenteDiSessione()).addProposte(proposta);

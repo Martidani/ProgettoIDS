@@ -62,6 +62,7 @@ public class ControllerFruAccess  {
 	        return 1;
 	    }  else {
 	        System.out.println("-> Utente riconosciuto");
+			model.setUtenteDiSessione(utente);
 	        return 2;
 	    }
 	}

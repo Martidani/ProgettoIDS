@@ -65,6 +65,7 @@ public class ControllerConfAccess {
 	        return 2;
 	    } else {
 	        System.out.println("-> Utente riconosciuto");
+			model.setUtenteDiSessione(utente);
 	        return 2;
 	    }
 	}
