@@ -118,7 +118,11 @@ public class Application {
 		} while (!geografia.verificaEsistenzaComprensorio(c));
 		
 	    Credenziali credenziali = primoAccesso(utenza);
-	    String indirizzo = InputDati.leggiStringaNonVuota("  Indirizzo e-mail: ");
+	    String indirizzo;
+	    do {
+	    	indirizzo = InputDati.leggiStringaNonVuota("  Indirizzo e-mail: ");
+		} while (!Fruitore.isValidEmail(indirizzo));
+	    
 	    Comprensorio comprensorio = geografia.cercaComprensorio(c);
 
 	    Fruitore fruitore = new Fruitore(comprensorio, credenziali, indirizzo);

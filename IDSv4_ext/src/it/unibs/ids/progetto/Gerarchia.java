@@ -34,6 +34,10 @@ public class Gerarchia implements Serializable {
     public ArrayList<Leaf> getFoglie() {
 		return foglie;
 	}
+    
+    public ArrayList<Nodo> getRadici() {
+		return radici;
+	}
 
 	/**
      * Aggiunge un albero alla gerarchia.
@@ -104,44 +108,5 @@ public class Gerarchia implements Serializable {
         }
         return null;
     }
-    
-    /**
-     * Restituisce una rappresentazione testuale della 
-     * gerarchia (di tutti i suoi alberi).
-     * 
-     * @return Una stringa che rappresenta la gerarchia
-     */
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        
-        for (Nodo nodo : radici)  {
-            builder.append("\n\n");
-            try {
-                builder.append(new Albero((NotLeaf) nodo).toString());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
-        return builder.toString();     
-    }
-    
-    /**
-     * Restituisce una rappresentazione testuale della 
-     * gerarchia (di tutti i suoi alberi).
-     * 
-     * @param alberi La lista degli alberi di nodi
-     * @return Una stringa che rappresenta la gerarchia
-     */
-    public String toStringRadici() {
-        StringBuffer bf = new StringBuffer();
-        
-        for (Nodo nodo : this.radici)  {
-            bf.append("\n* " + nodo.getNome());
-
-        }
-        return bf.toString();
-            
-    }
+  
 }

@@ -2,6 +2,8 @@ package it.unibs.ids.progetto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import it.unibs.ids.progetto.news.Proposta;
 
@@ -15,6 +17,10 @@ public class Fruitore extends Utente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     public static final char TIPOUTENTE = 'f';
+    
+    private static final String EMAIL_PATTERN =
+            "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+    private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
     
     private String indirizzo;
     private Comprensorio comprensorioAppartenenza;
@@ -99,4 +105,10 @@ public class Fruitore extends Utente implements Serializable {
     public void setIsDefinitivo(boolean x) {
         this.credenziali.setDefinitive(x);
     }
+    
+
+        public static boolean isValidEmail(String email) {
+            Matcher matcher = pattern.matcher(email);
+            return matcher.matches();
+        }
 }

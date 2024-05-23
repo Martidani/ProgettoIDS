@@ -164,7 +164,7 @@ public class Application {
 	    } while (gerarchia.verificaEsistenzaNomeRadice(radice));
 
 	    String campo = InputDati.leggiStringaNonVuota("Campo -> ");
-	    Nodo root = new Nodo(radice, true, campo);
+	    Nodo root = new Nodo(radice, null, campo);
 
 	    creaValoriDominio(root);
 
@@ -211,10 +211,10 @@ public class Application {
 	        boolean isFoglia = InputDati.yesOrNo("È foglia? ");
 	        Nodo nodoChild;
 	        if (isFoglia) {
-	            nodoChild = new Nodo(nome);
+	            nodoChild = new Nodo(nome, radice.getNome());
 	            foglieAttuali.add(nodoChild);
 	        } else {
-	            nodoChild = creaNonFoglia(nome);
+	            nodoChild = creaNonFoglia(nome, radice);
 	        }
 
 	        try {
@@ -236,9 +236,9 @@ public class Application {
 	 * @param nome  Il nome del nodo.
 	 * @return      Il nodo non foglia creato.
 	 */
-	private static Nodo creaNonFoglia(String nome) {
+	private static Nodo creaNonFoglia(String nome, Nodo radice) {
 	    String campo = InputDati.leggiStringaNonVuota("Campo -> ");
-	    Nodo nodoChild = new Nodo(nome, false, campo);
+	    Nodo nodoChild = new Nodo(nome, radice.getNome(), campo);
 
 	    creaValoriDominio(nodoChild);
 
@@ -269,7 +269,7 @@ public class Application {
             }
         } while (InputDati.yesOrNo("Vuoi continuare l'inserimento? "));
 
-        FattoriDiConversione.addTransitivoFattoreConversione(gerarchia);
+        Nodo.addTransitivoFattoreConversione(gerarchia);
 	}
 	/**
 	 * Metodo per chiedere la foglia e la radice e ottenere il nodo corrispondente.
@@ -297,9 +297,10 @@ public class Application {
 	    double fattoreDiConversione;
 	    do {
 	        fattoreDiConversione = InputDati.leggiDouble("Fattore di conversione -> ");
-	    } while (!FattoriDiConversione.verificaFattoreConversione(fattoreDiConversione));
+	    } while (!Nodo.verificaFattoreConversione(fattoreDiConversione));
 	    return fattoreDiConversione;
 	}
+
 
 	
 	/**

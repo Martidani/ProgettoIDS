@@ -3,7 +3,6 @@ package it.unibs.ids.progetto;
 import java.util.ArrayList;
 
 import it.unibs.fp.mylib.InputDati;
-import it.unibs.ids.progetto.news.FattoriDiConversione;
 import it.unibs.ids.progetto.news.Geografia;
 import it.unibs.ids.progetto.news.ecccezioni.ConfLoginFailException;
 /**
@@ -134,18 +133,18 @@ public class Application {
      * @return           Il nodo radice creato.
      */
     public static Nodo creaRadice(Gerarchia gerarchia) {
-        String radice;
-        do {
-            radice = InputDati.leggiStringaNonVuota("Nome radice -> ");
-        } while (gerarchia.verificaEsistenzaNomeRadice(radice));
+	    String radice;
+	    do {
+	        radice = InputDati.leggiStringaNonVuota("Nome radice -> ");
+	    } while (gerarchia.verificaEsistenzaNomeRadice(radice));
 
-        String campo = InputDati.leggiStringaNonVuota("Campo -> ");
-        Nodo root = new Nodo(radice, true, campo);
+	    String campo = InputDati.leggiStringaNonVuota("Campo -> ");
+	    Nodo root = new Nodo(radice, null, campo);
 
-        creaValoriDominio(root);
+	    creaValoriDominio(root);
 
-        return root;
-    }
+	    return root;
+	}
     /**
      * Metodo per aggiungere i valori del dominio a un nodo.
      * 
@@ -172,54 +171,54 @@ public class Application {
      * @param radice         La radice dell'albero gerarchico.
      * @param foglieAttuali  La lista delle foglie attuali.
      */
-    public static void creaNodiFiglio(Nodo nodoParent, Gerarchia gerarchia, Nodo radice, ArrayList<Nodo> foglieAttuali) {
-        int numFigli = 0;
-        do {
-            numFigli++;
-            System.out.println("\n" + numFigli + "' figlio (di " + nodoParent.getNome() 
-            + " [" +nodoParent.getDominio(numFigli)+ "]): ");
+	public static void creaNodiFiglio(Nodo nodoParent, Gerarchia gerarchia, Nodo radice, ArrayList<Nodo> foglieAttuali) {
+	    int numFigli = 0;
+	    do {
+	        numFigli++;
+	        System.out.println("\n" + numFigli + "' figlio (di " + nodoParent.getNome() 
+	        + " [" +nodoParent.getDominio(numFigli)+ "]): ");
       
-            String nome;
-            do {
-                nome = InputDati.leggiStringaNonVuota("Nome -> ");
-            } while (radice.verificaEsistenzaNome(nome));
+	        String nome;
+	        do {
+	            nome = InputDati.leggiStringaNonVuota("Nome -> ");
+	        } while (radice.verificaEsistenzaNome(nome));
 
-            boolean isFoglia = InputDati.yesOrNo("È foglia? ");
-            Nodo nodoChild;
-            if (isFoglia) {
-                nodoChild = new Nodo(nome);
-                foglieAttuali.add(nodoChild);
-            } else {
-                nodoChild = creaNonFoglia(nome);
-            }
+	        boolean isFoglia = InputDati.yesOrNo("È foglia? ");
+	        Nodo nodoChild;
+	        if (isFoglia) {
+	            nodoChild = new Nodo(nome, radice.getNome());
+	            foglieAttuali.add(nodoChild);
+	        } else {
+	            nodoChild = creaNonFoglia(nome, radice);
+	        }
 
-            try {
-                nodoParent.addChild(nodoChild);
-            } catch (Exception e) {
-                e.getMessage();
-            }
-        } while (numFigli < nodoParent.getDominio().size());
+	        try {
+	            nodoParent.addChild(nodoChild);
+	        } catch (Exception e) {
+	            e.getMessage();
+	        }
+	    } while (numFigli < nodoParent.getDominio().size());
 
-        for (Nodo nodo : nodoParent.getChildren()) {
-            if (!nodo.isLeaf()) {
-                creaNodiFiglio(nodo, gerarchia, radice, foglieAttuali);
-            }
-        }
-    }
+	    for (Nodo nodo : nodoParent.getChildren()) {
+	        if (!nodo.isLeaf()) {
+	            creaNodiFiglio(nodo, gerarchia, radice, foglieAttuali);
+	        }
+	    }
+	}
     /**
      * Metodo per creare un nodo non foglia.
      * 
      * @param nome  Il nome del nodo.
      * @return      Il nodo non foglia creato.
      */
-    private static Nodo creaNonFoglia(String nome) {
-        String campo = InputDati.leggiStringaNonVuota("Campo -> ");
-        Nodo nodoChild = new Nodo(nome, false, campo);
+	private static Nodo creaNonFoglia(String nome, Nodo radice) {
+	    String campo = InputDati.leggiStringaNonVuota("Campo -> ");
+	    Nodo nodoChild = new Nodo(nome, radice.getNome(), campo);
 
-        creaValoriDominio(nodoChild);
+	    creaValoriDominio(nodoChild);
 
-        return nodoChild;
-    }
+	    return nodoChild;
+	}
 
 
     /**
@@ -229,7 +228,7 @@ public class Application {
      * @param foglieAttuali  La lista delle foglie attuali.
      * @throws Exception     Eccezione in caso di problemi durante l'inserimento.
      */
-    public static void creaFattoriConversione(Gerarchia gerarchia, ArrayList<Nodo> foglieAttuali)  {
+	public static void creaFattoriConversione(Gerarchia gerarchia, ArrayList<Nodo> foglieAttuali) {
         System.out.println("\nInserimento fattori di conversione:");
         do {
             Nodo nodo1 = chiediFoglia("Foglia 1:", gerarchia);
@@ -245,8 +244,8 @@ public class Application {
             }
         } while (InputDati.yesOrNo("Vuoi continuare l'inserimento? "));
 
-        FattoriDiConversione.addTransitivoFattoreConversione(gerarchia);
-    }
+        Nodo.addTransitivoFattoreConversione(gerarchia);
+	}
     /**
      * Metodo per chiedere la foglia e la radice e ottenere il nodo corrispondente.
      * 
@@ -271,12 +270,12 @@ public class Application {
      * @return            Il fattore di conversione inserito.
      */
     private static double chiediFattoreConversione(Gerarchia gerarchia) {
-        double fattoreDiConversione;
-        do {
-            fattoreDiConversione = InputDati.leggiDouble("Fattore di conversione -> ");
-        } while (!FattoriDiConversione.verificaFattoreConversione(fattoreDiConversione));
-        return fattoreDiConversione;
-    }
+	    double fattoreDiConversione;
+	    do {
+	        fattoreDiConversione = InputDati.leggiDouble("Fattore di conversione -> ");
+	    } while (!Nodo.verificaFattoreConversione(fattoreDiConversione));
+	    return fattoreDiConversione;
+	}
 
 
     /**

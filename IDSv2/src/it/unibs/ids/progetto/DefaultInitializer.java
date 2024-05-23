@@ -27,7 +27,7 @@ public class DefaultInitializer {
     private static final String DEFAULT_FPASSWORD = "user";
     private static final String DEFAULT_FEMAIL = "user@unibs.it";
     
-    public static final int FACTOR_VAL = 2;
+    public static final double FACTOR_VAL = 2;
     
     private Gerarchia gerarchia;
     private Utenza utenza;
@@ -78,33 +78,36 @@ public class DefaultInitializer {
         Gerarchia gerarchia = new Gerarchia();
 
         // Creazione del nodo radice
-        Nodo nodo1 = new Nodo(ROOT_NAME, true, ROOT_FIELD);
+        Nodo nodo1 = new Nodo(ROOT_NAME, null, ROOT_FIELD);
         for (String domainValue : ROOT_DOMAIN) {
             nodo1.addElementiDominio(domainValue);
         }
 
         // Creazione dei nodi figli
-        Nodo nodo11 = new Nodo(CHILD1_NAME);
-        Nodo nodo12 = new Nodo(CHILD2_NAME);
+        Nodo nodo11 = new Nodo(CHILD1_NAME, nodo1.getNome());
+        Nodo nodo12 = new Nodo(CHILD2_NAME, nodo1.getNome());
         try {
             nodo1.addChild(nodo11);
             nodo1.addChild(nodo12);
+
 
             // Aggiunta dei nodi all'albero e definizione dei fattori di conversione
             nodo11.addFattoreConversione(nodo12, FACTOR_VAL);
             nodo12.addFattoreConversione(nodo11, 1/FACTOR_VAL);
             Albero albero = new Albero(nodo1);
             
-            albero.setUtente(utenza.autenticazioneConfiguratore(DEFAULT_CUSERNAME, DEFAULT_CUSERNAME));
+            albero.setUtente(utenza.autenticazioneConfiguratore(DEFAULT_CUSERNAME, DEFAULT_CPASSWORD));
             gerarchia.addAlbero(albero);
-            FattoriDiConversione.addTransitivoFattoreConversione(gerarchia);
         
+
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         
         return gerarchia;
     }
+
 
     /**
      * Crea e restituisce un'utenza di default.

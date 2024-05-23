@@ -103,6 +103,6 @@ public class Credenziali implements Serializable {
         // Genera un ID e una password casuali
         String userID = Estrattore.estraiString(IDCHAR, IDLENTGH);
         String userPSSW = Estrattore.estraiString(PSSWCHAR, PSSWLENTGH);
-        return new Credenziali(userID.toString(), userPSSW.toString());
+        return new Credenziali(userID, userPSSW);
     }
 }

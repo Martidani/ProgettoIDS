@@ -110,7 +110,7 @@ public class DefaultInitializer {
             nodo12.addFattoreConversione(nodo11, 1/FACTOR_VAL);
             Albero albero = new Albero(nodo1);
             
-            albero.setUtente(utenza.autenticazioneConfiguratore(DEFAULT_CUSERNAME, DEFAULT_CUSERNAME));
+            albero.setUtente(utenza.autenticazioneConfiguratore(DEFAULT_CUSERNAME, DEFAULT_CPASSWORD));
             gerarchia.addAlbero(albero);
         
 

@@ -2,6 +2,7 @@ package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import it.unibs.ids.progetto.news.MailAddress;
 import it.unibs.ids.progetto.news.PropostaDiScambio;
 
 /**
@@ -16,7 +17,7 @@ public class Fruitore extends Utente implements Serializable {
     private static final long serialVersionUID = 1L;
     public static final char TIPOUTENTE = 'f';
     
-    private String indirizzo;
+    private MailAddress indirizzo;
     private Comprensorio comprensorioAppartenenza;
     private ArrayList<PropostaDiScambio> proposte;
     
@@ -26,7 +27,7 @@ public class Fruitore extends Utente implements Serializable {
      * 
      * @param credenziali Le credenziali associate al fruitore
      */
-    public Fruitore(Comprensorio comprensorioAppartenenza, Credenziali credenziali, String indirizzo) {
+    public Fruitore(Comprensorio comprensorioAppartenenza, Credenziali credenziali, MailAddress indirizzo) {
         super(TIPOUTENTE, credenziali);
         this.indirizzo = indirizzo;
         this.comprensorioAppartenenza = comprensorioAppartenenza;
@@ -34,11 +35,11 @@ public class Fruitore extends Utente implements Serializable {
         setIsDefinitivo(true);
     }
 
-	public String getIndirizzo() {
+	public MailAddress getIndirizzo() {
 		return indirizzo;
 	}
 
-	public void setIndirizzo(String indirizzo) {
+	public void setIndirizzo(MailAddress indirizzo) {
 		this.indirizzo = indirizzo;
 	}
 

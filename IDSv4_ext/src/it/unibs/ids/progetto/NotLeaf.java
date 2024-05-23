@@ -100,85 +100,10 @@ public class NotLeaf extends Nodo implements Serializable {
 		this.children.add(child);
 	}
 
-
-
-	/**
-	 * Genera una stringa del dominio associato al nodo.
-	 * 
-	 * @return Una stringa rappresentante il dominio associato al nodo.
-	 */
-	public String toString(String blank) {
-		StringBuffer bf = new StringBuffer();
-		bf.append(" " + nome + "\n" );
-		bf.append(blank + "campo: " + campo + "\n" );
-		bf.append(blank + toStringDomain() + "\n" );
-		bf.append(blank + toStringChildren());
-		
-		return bf.toString();
-	}
-	
-
-	/**
-	 * Genera una stringa del dominio associato al nodo.
-	 * 
-	 * @return Una stringa rappresentante il dominio associato al nodo.
-	 */
-	private String toStringDomain() {
-		StringBuffer bf = new StringBuffer();
-		bf.append("dominio: [");
-		for (String[] elem : this.dominio) {
-			bf.append("(valore: " + elem[0].toString());
-			if (elem.length > 1)
-				bf.append(", descrizione: " + elem[1].toString());
-			bf.append(")");
-		}
-		bf.append("]");
-		return bf.toString();
-	}
-
-	/**
-	 * Genera una rappresentazione testuale dei figli del nodo.
-	 * 
-	 * @return Una stringa rappresentante i figli del nodo.
-	 */
-	private String toStringChildren() {
-		StringBuffer bf = new StringBuffer();
-		int num = this.children.size();
-		if (num == 1)
-			bf.append(num + " figlio: [");
-		else
-			bf.append(num + " figli: [");
-		for (Nodo nodo : this.children) {
-			bf.append("(" + nodo.getNome());
-			bf.append(")");
-		}
-		bf.append("]");
-		return bf.toString();
-	}
-
-
 	@Override
 	public boolean isLeaf() {
 		return false;
 	}
-	
-	 public String toNavigationString() {
-	    	StringBuilder b = new StringBuilder();
-	    	b.append(" nome: " + this.nome);
-	    	
-
-	        b.append("\n |campo: " + this.campo);
-	        b.append("\n |dominio: ");
-	        int var = 0;
-	        for (String[] valore : this.dominio) {
-	        	var++;
-	    		b.append("\n  " + var + " - " + valore[0]);
-	    		if (valore.length>1)
-	    			b.append(", " + valore [1]);
-	    	}
-
-	    	return b.toString();
-	    }
 	
 }
 	

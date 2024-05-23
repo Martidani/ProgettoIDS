@@ -38,14 +38,6 @@ public abstract class Nodo implements Serializable {
 	 */
 	public abstract boolean isRoot();
 
-
-
-	/**
-	 * Genera una stringa del dominio associato al nodo.
-	 * 
-	 * @return Una stringa rappresentante il dominio associato al nodo.
-	 */
-	public abstract String toString(String blank) ;
 	
 
     /**
@@ -80,7 +72,6 @@ public abstract class Nodo implements Serializable {
         }
     }
     
-    public abstract String toNavigationString() ;
     
 
 

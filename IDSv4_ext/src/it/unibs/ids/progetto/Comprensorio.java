@@ -54,22 +54,6 @@ public class Comprensorio implements Serializable {
         this.comprensorio.add(luogo);
     }
     
-    /**
-     * Restituisce una rappresentazione testuale del comprensorio
-     * con elencati i nomi dei comuni presenti.
-     * 
-     * @return String La rappresentazione testuale del comprensorio
-     */
-    public String toString() {
-        StringBuffer bf = new StringBuffer();
-        bf.append(this.nome + "\n");
-        for (String comune : comprensorio) {
-            bf.append(" - " + comune);
-            bf.append("\n");
-        }
-        
-        return bf.toString();
-    }
-
+   
 
 }

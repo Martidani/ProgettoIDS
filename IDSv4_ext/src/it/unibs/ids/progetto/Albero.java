@@ -57,37 +57,7 @@ public class Albero implements Serializable {
         }
     }
 
-    /**
-     * Restituisce una rappresentazione testuale dell'albero.
-     * 
-     * @return Una stringa che rappresenta l'albero
-     */
-    public String toString() {
-        StringBuffer bf = new StringBuffer();
-        iterative(bf, this.radice, 1);
-        return bf.toString();
-    }
-
-    /**
-     * Metodo ausiliario ricorsivo per generare una rappresentazione testuale dell'albero.
-     * 
-     * @param bf Il buffer in cui aggiungere la rappresentazione
-     * @param nodo Il nodo corrente
-     * @param depth La profondità del nodo nella gerarchia
-     */
-    private static void iterative(StringBuffer bf, Nodo nodo, int depth) {
-        String asterischi = "*".repeat(depth); // Genera una stringa di asterischi in base al grado di "figlio di"
-        String blank = " ".repeat(depth + 1);
-        if (nodo.isLeaf()) {
-            bf.append(asterischi + " " + nodo.getNome());
-        } else {
-            bf.append(asterischi + nodo.toString(blank));
-            for (Nodo nodoChild : ((NotLeaf)nodo).getChildren()) {
-                bf.append("\n");
-                iterative(bf, nodoChild, depth + 1);
-            }
-        }
-    }
+  
 
     /**
      * Restituisce la radice dell'albero.

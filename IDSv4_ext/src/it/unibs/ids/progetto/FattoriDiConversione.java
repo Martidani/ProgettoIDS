@@ -134,25 +134,5 @@ public class FattoriDiConversione implements Serializable{
 
 
 
-
-	/**
-	 * Genera una stringa delle relazioni di una foglia con le altre foglie.
-	 * 
-	 * @return Una stringa rappresentante le relazioni con le foglie.
-	 */
-	public String toString(String nome) {
-		StringBuffer bf = new StringBuffer();
-		for (Entry<Leaf, Double> fatt : getFattori()) {
-			Leaf key = fatt.getKey();
-			Double val = fatt.getValue();
-			if (!nome.equals(key.getNome())) {
-				// Formatta il double con un massimo di tre decimali
-				String formattedVal = String.format("%.3f", val);
-				bf.append(nome + " - " + key.getNome() + " - " + formattedVal);
-				bf.append("\n");
-			}
-		}
-		return bf.toString();
-	}
 	
 }

@@ -56,21 +56,5 @@ public class Geografia implements Serializable {
 			return false;
 		return true;
 	}
-	/**
-	 * Restituisce una rappresentazione testuale della geografia, includendo la lista dei comprensori.
-	 * 
-	 * @return Una stringa che rappresenta la geografia
-	 */
-	@Override
-	public String toString() {
-		StringBuffer bf = new StringBuffer();
-		for (Comprensorio comprensorio : comprensori) {
-			bf.append(comprensorio.toString());
-			bf.append("\n");
-		}
-		
-		return bf.toString();
-	}
-	
 	
 }

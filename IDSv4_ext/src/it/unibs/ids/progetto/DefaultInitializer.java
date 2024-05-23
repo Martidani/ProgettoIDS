@@ -1,5 +1,6 @@
 package it.unibs.ids.progetto;
 
+import it.unibs.ids.progetto.news.MailAddress;
 
 /**
  * Classe per l'inizializzazione predefinita del sistema.
@@ -129,7 +130,7 @@ public class DefaultInitializer {
         
         // Creazione delle credenziali di default per l'utente fruitore user
         Credenziali credF = new Credenziali(DEFAULT_FUSERNAME, DEFAULT_FPASSWORD);
-        Fruitore fruitore = new Fruitore(this.defaultComprensorio(), credF, DEFAULT_FEMAIL);
+        Fruitore fruitore = new Fruitore(this.defaultComprensorio(), credF, new MailAddress(DEFAULT_FEMAIL));
         utenza.addUtente(fruitore);
         
         return utenza;

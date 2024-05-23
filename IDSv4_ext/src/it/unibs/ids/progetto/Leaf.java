@@ -70,37 +70,6 @@ public class Leaf extends Nodo implements Serializable {
     public double fattoreFoglia(Leaf foglia) {
     	return this.fattori.fattoreFoglia(foglia);
     }
-    
-	/**
-	 * Genera una stringa delle relazioni di una foglia con le altre foglie.
-	 * 
-	 * @return Una stringa rappresentante le relazioni con le foglie.
-	 */
-	public String toStringFactors() {
-		return fattori.toString(this.nome);
-	}
-
-	
-	/**
-	 * Genera una stringa del dominio associato al nodo.
-	 * 
-	 * @return Una stringa rappresentante il dominio associato al nodo.
-	 */
-	public String toString(String blank) {
-		StringBuffer bf = new StringBuffer();
-		bf.append(" " + nome + "\n" );
-		
-		return bf.toString();
-	}
-	
-
-	 public String toNavigationString() {
-	    	StringBuilder b = new StringBuilder();
-	    	b.append(" nome: " + this.nome);
-
-	    	b.append(" |foglia!|");
-	    	return b.toString();
-	    }
-
+  
 	
 }

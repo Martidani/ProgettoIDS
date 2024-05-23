@@ -5,6 +5,7 @@ import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.Credenziali;
 import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.Utente;
+import it.unibs.ids.progetto.news.MailAddress;
 import it.unibs.ids.progetto.news.main.model.Model;
 
 public class ControllerFruAccess  {
@@ -34,10 +35,14 @@ public class ControllerFruAccess  {
 		} while (!model.verificaEsistenzaComprensorio(c));
 		
 	    Credenziali credenziali = primoAccesso();
-	    String indirizzo = InputDati.leggiStringaNonVuota("  Indirizzo e-mail: ");
+	    String indirizzo;
+	    do {
+	    	indirizzo = InputDati.leggiStringaNonVuota("  Indirizzo e-mail: ");
+		} while (!MailAddress.isValidEmail(indirizzo));
+	    
 	    Comprensorio comprensorio = model.cercaComprensorio(c);
 
-	    Fruitore fruitore = new Fruitore(comprensorio, credenziali, indirizzo);
+	    Fruitore fruitore = new Fruitore(comprensorio, credenziali, new MailAddress(indirizzo));
 	    model.addUtente(fruitore);
 	}
 	

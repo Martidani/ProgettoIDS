@@ -15,7 +15,7 @@ import it.unibs.ids.progetto.Nodo;
  */
 public class DefaultInitializer {
     
-    public static final int FACTOR_VAL = 2;
+    public static final double FACTOR_VAL = 2;
 	private static final String ROOT_NAME = "system";
     private static final String ROOT_FIELD = "field";
     private static final String[] ROOT_DOMAIN = {"rootchildM", "rootchildF"};
@@ -79,17 +79,18 @@ public class DefaultInitializer {
         Gerarchia gerarchia = new Gerarchia();
 
         // Creazione del nodo radice
-        Nodo nodo1 = new Nodo(ROOT_NAME, true, ROOT_FIELD);
+        Nodo nodo1 = new Nodo(ROOT_NAME, null, ROOT_FIELD);
         for (String domainValue : ROOT_DOMAIN) {
             nodo1.addElementiDominio(domainValue);
         }
 
         // Creazione dei nodi figli
-        Nodo nodo11 = new Nodo(CHILD1_NAME);
-        Nodo nodo12 = new Nodo(CHILD2_NAME);
+        Nodo nodo11 = new Nodo(CHILD1_NAME, nodo1.getNome());
+        Nodo nodo12 = new Nodo(CHILD2_NAME, nodo1.getNome());
         try {
             nodo1.addChild(nodo11);
             nodo1.addChild(nodo12);
+
 
             // Aggiunta dei nodi all'albero e definizione dei fattori di conversione
             nodo11.addFattoreConversione(nodo12, FACTOR_VAL);
@@ -98,8 +99,9 @@ public class DefaultInitializer {
             
             albero.setUtente(utenza.autenticazioneConfiguratore(DEFAULT_USERNAME, DEFAULT_PASSWORD));
             gerarchia.addAlbero(albero);
-            FattoriDiConversione.addTransitivoFattoreConversione(gerarchia);
         
+
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
