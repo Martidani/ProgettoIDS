@@ -7,7 +7,7 @@ import it.unibs.ids.progetto.Nodo;
 import it.unibs.ids.progetto.PrestazioneOpera;
 
 /**
- * La classe PropostaDiScambio rappresenta una proposta di scambio tra due prestazioni.
+ * La classe Proposta rappresenta una proposta di scambio tra due prestazioni.
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
@@ -20,34 +20,64 @@ public abstract class Proposta implements Serializable {
     protected Fruitore fruitore;
     
     
-    public Proposta(PrestazioneOpera richiesta, PrestazioneOpera offerta,int ID,Fruitore fruitore) {
+    /**
+     * Costruttore della classe Proposta.
+     * 
+     * @param richiesta La prestazione richiesta nella proposta di scambio.
+     * @param offerta La prestazione offerta nella proposta di scambio.
+     * @param ID L'identificatore univoco della proposta.
+     * @param fruitore Il fruitore che ha effettuato la proposta.
+     */
+    public Proposta(PrestazioneOpera richiesta, PrestazioneOpera offerta, int ID, Fruitore fruitore) {
         
         this.richiesta = richiesta;
         this.offerta = offerta;
-        this.ID=ID;
-        this.fruitore=fruitore;
+        this.ID = ID;
+        this.fruitore = fruitore;
 
         setOfferta();
         setStatus();
     }
     
+    /**
+     * Restituisce l'identificatore della proposta.
+     * 
+     * @return L'identificatore della proposta.
+     */
     public int getID() {
 		return ID;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
+    /**
+     * Imposta l'identificatore della proposta.
+     * 
+     * @param ID L'identificatore della proposta da impostare.
+     */
+	public void setID(int ID) {
+		this.ID = ID;
 	}
 
-	
-	
+    /**
+     * Restituisce lo stato attuale della proposta.
+     * 
+     * @return Lo stato attuale della proposta.
+     */
 	public String getStatus() {
         return status;
     }
     
+    /**
+     * Restituisce il fruitore che ha effettuato la proposta.
+     * 
+     * @return Il fruitore che ha effettuato la proposta.
+     */
     public Fruitore getFruitore() {
     	return fruitore;
     }
+
+    /**
+     * Metodo astratto per impostare lo stato della proposta.
+     */
     public abstract void setStatus();
 
     /**
@@ -83,6 +113,11 @@ public abstract class Proposta implements Serializable {
         this.offerta.setDurata(durata);
     }
     
+    /**
+     * Restituisce una rappresentazione testuale della proposta.
+     * 
+     * @return Una stringa che rappresenta la proposta.
+     */
     public String toString() {
     	StringBuffer str = new StringBuffer();
     	
@@ -92,7 +127,5 @@ public abstract class Proposta implements Serializable {
     	
 		return str.toString();    	
     }
-    
-    
     
 }

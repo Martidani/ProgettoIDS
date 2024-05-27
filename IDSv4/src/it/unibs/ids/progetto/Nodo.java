@@ -367,13 +367,6 @@ public class Nodo implements Serializable {
         return null; // Restituiamo null se non è possibile calcolare il fattore di conversione
     }
     
-	private boolean isEmpty() {
-		if (fattori.size()==0)
-			return true;
-		return false;
-	}
-
-
 
 
 	/**

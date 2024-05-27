@@ -58,7 +58,7 @@ public class Application {
         if (InputDati.yesOrNo("Confermi l'offerta?")) {
             fruitore.addProposte(proposta);
             insiemeAperto.addPropostaAperta(proposta);
-			commercio.metodo(insiemeAperto);            
+			commercio.cercaProposteChiudibili(insiemeAperto);            
         } else {
 			commercio.decrementaNumProposte();
 		}
@@ -146,13 +146,13 @@ public class Application {
 	}
 	
 	
-	/**
-	 * Metodo per il login.
-	 * 
-	 * @param utenza  		  L'oggetto Utenza utilizzato per gestire l'accesso.
-	 * @param accesso         L'accesso corrente.
-	 * @return                L'accesso aggiornato.
-	 */
+    /**
+     * Metodo per il login.
+     * 
+     * @param utenza L'oggetto Utenza utilizzato per gestire l'accesso.
+     * @param type Il tipo di utente (configuratore o fruitore).
+     * @return Il risultato del login.
+     */
 	public static int login(Utenza utenza, char type) {
 		int accesso = 2;
 	    for (int i = 0; i < NUM_MAX_TENTATIVI; i++) {
@@ -168,10 +168,11 @@ public class Application {
 	/**
 	 * Metodo per effettuare il login.
 	 * 
-	 * @param utenza 	      L'oggetto Utenza utilizzato per verificare le credenziali.
-	 * @param ID              L'ID inserito.
-	 * @param PSSW            La password inserita.
-	 * @return                Il risultato del login.
+	 * @param utenza L'oggetto Utenza utilizzato per verificare le credenziali.
+	 * @param ID L'ID inserito.
+	 * @param PSSW La password inserita.
+	 * @param type Il tipo di utente (Configuratore o Fruitore).
+	 * @return Il risultato del login.
 	 */
 	private static int autenticazione(Utenza utenza, String ID, String PSSW, char type) {
 		
@@ -202,11 +203,11 @@ public class Application {
 	}
 
 
-	/**
-	 * Metodo per aggiungere un comprensorio.
-	 * 
-	 * @param gestioneUtenza  L'oggetto GestioneUtenza utilizzato per aggiungere il comprensorio.
-	 */
+    /**
+     * Metodo per aggiungere un comprensorio.
+     * 
+     * @param geografia L'oggetto Geografia utilizzato per aggiungere il comprensorio.
+     */
 	public static void creaComprensorio(Geografia geografia) {
 		
 		String nome;
@@ -309,12 +310,12 @@ public class Application {
 	        }
 	    }
 	}
-	/**
-	 * Metodo per creare un nodo non foglia.
-	 * 
-	 * @param nome  Il nome del nodo.
-	 * @return      Il nodo non foglia creato.
-	 */
+    /**
+     * Metodo per creare la radice dell'albero.
+     * 
+     * @param gerarchia L'oggetto Gerarchia utilizzato per verificare l'esistenza del nome radice.
+     * @return Il nodo radice creato.
+     */
 	private static Nodo creaNonFoglia(String nome, Nodo radice) {
 	    String campo = InputDati.leggiStringaNonVuota("Campo -> ");
 	    Nodo nodoChild = new Nodo(nome, radice.getNome(), campo);
@@ -325,13 +326,13 @@ public class Application {
 	}
 
 	
-	/**
-	 * Metodo per inserire i fattori di conversione tra nodi.
-	 * 
-	 * @param gerarchia       L'oggetto Gerarchia utilizzato per gestire la struttura gerarchica.
-	 * @param foglieAttuali  La lista delle foglie attuali.
-	 * @throws Exception     Eccezione in caso di problemi durante l'inserimento.
-	 */
+    /**
+     * Metodo per inserire i fattori di conversione tra nodi.
+     * 
+     * @param gerarchia L'oggetto Gerarchia utilizzato per gestire la struttura gerarchica.
+     * @param foglieAttuali La lista delle foglie attuali.
+     * @throws Exception Eccezione in caso di problemi durante l'inserimento.
+     */
 	public static void creaFattoriConversione(Gerarchia gerarchia, ArrayList<Nodo> foglieAttuali) {
         System.out.println("\nInserimento fattori di conversione:");
         do {
@@ -381,11 +382,11 @@ public class Application {
 	}
 
 	
-	/**
-	 * Metodo per stampare i fattori di conversione.
-	 * 
-	 * @param gerarchia  L'oggetto Gerarchia utilizzato per visualizzare i fattori di conversione.
-	 */
+    /**
+     * Metodo per stampare i fattori di conversione.
+     * 
+     * @param gerarchia L'oggetto Gerarchia utilizzato per visualizzare i fattori di conversione.
+     */
 	public static void stampaFattori(Gerarchia gerarchia) {
 	    String foglia = InputDati.leggiStringaNonVuota("Inserisci nome foglia: ");
 	    String radice = InputDati.leggiStringaNonVuota("Inserisci radice della gerarchia della foglia: ");
@@ -396,7 +397,14 @@ public class Application {
 	        System.out.println(nodo.toStringFactors());
 	}
 
-
+    /**
+     * Metodo per inserire i figli di un nodo non foglia.
+     * 
+     * @param nodoParent Il nodo genitore.
+     * @param gerarchia L'oggetto Gerarchia utilizzato per gestire la struttura gerarchica.
+     * @param radice La radice dell'albero gerarchico.
+     * @param foglieAttuali La lista delle foglie attuali.
+     */
 	public static void visualizzaProposte(Commercio commercio) {
 		System.out.println();
 		String proposteA =commercio.visualizzaProposteAperte();
@@ -414,7 +422,12 @@ public class Application {
 
 	}
 
-
+    /**
+     * Metodo per visualizzare le proposte di scambio relative a una foglia specifica.
+     * 
+     * @param commercio L'oggetto Commercio utilizzato per gestire le proposte di scambio.
+     * @param gerarchia L'oggetto Gerarchia utilizzato per ottenere la foglia specifica.
+     */
 	public static void visualizzaProposteFoglia(Commercio commercio,Gerarchia gerarchia) {
 		Nodo foglia = chiediFoglia("Foglia: ", gerarchia);
 		String proposteA =commercio.visualizzaProposteAperte(foglia);
@@ -433,7 +446,11 @@ public class Application {
 		}
 	}
 
-
+    /**
+     * Metodo per ritirare una proposta di scambio.
+     * 
+     * @param commercio L'oggetto Commercio utilizzato per gestire le proposte di scambio.
+     */
 	public static void ritiraProposte(Commercio commercio) {
 		
 		String proposte = commercio.visualizzaProposteAperte();

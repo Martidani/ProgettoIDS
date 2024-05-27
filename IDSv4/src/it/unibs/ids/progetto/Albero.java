@@ -2,12 +2,13 @@ package it.unibs.ids.progetto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
 /**
- * Questa classe rappresenta un albero gerarchico, composto da nodi, utilizzato per la gestione delle notizie.
+ * Questa classe rappresenta un albero gerarchico utilizzato per la gestione delle notizie.
  * Ogni albero ha una radice, foglie e un utente associato.
  * 
- * @author Daniele Martinelli
- * @author Federico Sabbadini
+ * Autore: Daniele Martinelli
+ * Autore: Federico Sabbadini
  */
 public class Albero implements Serializable {
 
@@ -111,6 +112,5 @@ public class Albero implements Serializable {
     public ArrayList<Nodo> getFoglie() {
         return foglie;
     }
-
-
 }
+

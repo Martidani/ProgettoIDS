@@ -1,4 +1,5 @@
 package it.unibs.ids.progetto;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,35 +12,43 @@ import java.util.ArrayList;
  */
 public class Comprensorio implements Serializable {
 
-	
     private static final long serialVersionUID = 1L;
-    private String nome;
-    private ArrayList<String> comprensorio;
+    private String nome; // Nome del comprensorio
+    private ArrayList<String> comprensorio; // Lista dei comuni nel comprensorio
     
     /**
      * Costruttore della classe Comprensorio.
      * Crea un nuovo oggetto Comprensorio con una lista vuota di comuni.
+     * 
+     * @param nome Il nome del comprensorio.
      */
     public Comprensorio(String nome) {
         this.comprensorio = new ArrayList<>();
         this.nome = nome;
     }
 
-    
+    /**
+     * Restituisce il nome del comprensorio.
+     * 
+     * @return Il nome del comprensorio.
+     */
     public String getNome() {
-		return nome;
-	}
+        return nome;
+    }
 
+    /**
+     * Imposta il nome del comprensorio.
+     * 
+     * @param nome Il nome del comprensorio da impostare.
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-
-	/**
+    /**
      * Restituisce la lista di comuni contenuti nel comprensorio.
      * 
-     * @return ArrayList<String> La lista di comuni
+     * @return La lista di comuni nel comprensorio.
      */
     public ArrayList<String> getComprensorio() {
         return comprensorio;
@@ -48,7 +57,7 @@ public class Comprensorio implements Serializable {
     /**
      * Aggiunge un nuovo comune alla lista del comprensorio.
      * 
-     * @param luogo Il nome del comune da aggiungere
+     * @param luogo Il nome del comune da aggiungere.
      */
     public void addComune(String luogo) {
         this.comprensorio.add(luogo);
@@ -58,18 +67,15 @@ public class Comprensorio implements Serializable {
      * Restituisce una rappresentazione testuale del comprensorio
      * con elencati i nomi dei comuni presenti.
      * 
-     * @return String La rappresentazione testuale del comprensorio
+     * @return Una stringa che rappresenta il comprensorio.
      */
+    @Override
     public String toString() {
-        StringBuffer bf = new StringBuffer();
-        bf.append(this.nome + "\n");
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.nome).append("\n");
         for (String comune : comprensorio) {
-            bf.append(" - " + comune);
-            bf.append("\n");
+            sb.append(" - ").append(comune).append("\n");
         }
-        
-        return bf.toString();
+        return sb.toString();
     }
-
-
 }

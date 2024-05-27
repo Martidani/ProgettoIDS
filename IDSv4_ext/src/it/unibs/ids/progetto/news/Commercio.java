@@ -134,7 +134,7 @@ public class Commercio implements Serializable {
 	}
 	
 	// L'algoritmo ritorna la lista di proposte chiudibili
-	public void metodo(InsiemeAperto insiemeAperto) {
+	public void cercaProposteChiudibili(InsiemeAperto insiemeAperto) {
 		
 	     List<PropostaAperta> listaChiudibili = algoritmo(insiemeAperto);
 	     if (listaChiudibili != null)

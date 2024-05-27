@@ -35,7 +35,7 @@ public class Main {
 
         if (utenza == null || gerarchia == null || geografia == null || commercio == null) {
             // Inizializzazione predefinita degli oggetti solo se non sono stati caricati da file
-            DefaultInitializer defaultInitializer = new DefaultInitializer();
+            DefaultInitializer defaultInitializer = DefaultInitializer.getDefaultInitializer();
             if (gerarchia == null)
             	gerarchia = defaultInitializer.getGerarchia();
             if (utenza == null)
@@ -71,7 +71,7 @@ public class Main {
 	            case 2:
 	            	if (InputDati.yesOrNo("Sei un fruitore?")) {
 	            		
-	            		accesso = Application.login(utenza, Fruitore.TIPOUTENTE);
+	            		accesso = Application.login(utenza, Fruitore.TIPO_UTENTE);
 	            		tipoFunzionamento=false;
 	            	} else {
 	            		accesso = Application.login(utenza, Configuratore.TIPOUTENTE);

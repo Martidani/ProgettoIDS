@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 /**
  * La classe PrestazioneOpera rappresenta una singola prestazione 
- * d'opera, che puo essere sia offerta che richiesta.
+ * d'opera, che può essere sia offerta che richiesta.
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class PrestazioneOpera implements Serializable {
 
-	private static final long serialVersionUID = 1L;
-	private Nodo foglia;
-	private int durata;
-	
+    private static final long serialVersionUID = 1L;
+    private Nodo foglia;
+    private int durata;
+    
     /**
      * Costruttore che inizializza una PrestazioneOpera con una foglia e una durata specificate.
      *
@@ -80,12 +80,17 @@ public class PrestazioneOpera implements Serializable {
         return foglia.getNome();
     }
     
+    /**
+     * Restituisce una rappresentazione in formato stringa della PrestazioneOpera.
+     *
+     * @return Una stringa che rappresenta la PrestazioneOpera.
+     */
     public String toString() {
-    	StringBuffer str = new StringBuffer();
-    	
-    	str.append("(foglia: " + foglia.getNome() + ", radice: " + foglia.root()  + ")");
-    	str.append(", (durata: " + durata + ")\n");
-    	
-		return str.toString();    	
+        StringBuffer str = new StringBuffer();
+        
+        str.append("(foglia: " + foglia.getNome() + ", radice: " + foglia.root()  + ")");
+        str.append(", (durata: " + durata + ")\n");
+        
+        return str.toString();        
     }
 }

@@ -65,6 +65,22 @@ public class DefaultInitializer {
     private static final String DEFAULT_F3_PASSWORD = "user3";
     private static final String DEFAULT_F3_EMAIL = "user3@unibs.it";
     
+    public static final int COMMERCIO_VAL_00 = 4;
+    public static final int COMMERCIO_VAL_01 = 6;
+    public static final int COMMERCIO_VAL_02 = 9;
+    public static final int COMMERCIO_VAL_03 = 4;
+    public static final int COMMERCIO_VAL_04 = 16;
+    public static final int COMMERCIO_VAL_05 = 12;
+    public static final int COMMERCIO_VAL_06 = 2;
+    public static final int COMMERCIO_VAL_07 = 10;
+    public static final int COMMERCIO_VAL_10 = 4;
+    public static final int COMMERCIO_VAL_11 = 7;
+    public static final int COMMERCIO_VAL_12 = 9;
+    public static final int COMMERCIO_VAL_13 = 4;
+    public static final int COMMERCIO_VAL_14 = 4;
+    public static final int COMMERCIO_VAL_15 = 12;
+    public static final int COMMERCIO_VAL_16 = 18;
+    public static final int COMMERCIO_VAL_17 = 4;
     
     private Gerarchia gerarchia;
     private Utenza utenza;
@@ -291,27 +307,112 @@ public class DefaultInitializer {
         
 
     	Commercio commercio = new Commercio();
-    	/*
-    	InsiemeAperto insiemeAperto1 = new InsiemeAperto(this.geografia.getComprensori().get(0));
-    	InsiemeAperto insiemeAperto2 = new InsiemeAperto(this.geografia.getComprensori().get(1));
-    	InsiemeAperto insiemeAperto3 = new InsiemeAperto(this.geografia.getComprensori().get(2));
+    	
+    	
+    	Fruitore fruitore0 = (Fruitore)utenza.getUtenti().get(2);
+    	commercio.setFruitoreDiSessione(fruitore0);
+    	InsiemeAperto insiemeAperto0 = new InsiemeAperto(fruitore0.getComprensorioAppartenenza());
 
-    	Richiesta r1 = new Richiesta(gerarchia.getFoglie().get(0), (int) FACTOR_VAL);
-    	Offerta o1 = new Offerta(gerarchia.getFoglie().get(1));
-		PropostaAperta proposta1 = new PropostaAperta(r1, o1, commercio.numProposte(),(Fruitore)utenza.getUtenti().get(1));
-	
-		Richiesta r2 = new Richiesta(gerarchia.getFoglie().get(1), (int) FACTOR_VAL*2);
-		Offerta o2 = new Offerta(gerarchia.getFoglie().get(0));
-		PropostaAperta proposta2 = new PropostaAperta(r2, o2, commercio.numProposte(),(Fruitore)utenza.getUtenti().get(1));
+		Richiesta r00 = new Richiesta(gerarchia.getFoglie().get(0), COMMERCIO_VAL_00);
+		Offerta o00 = new Offerta(gerarchia.getFoglie().get(1));
+		PropostaAperta proposta00 = new PropostaAperta(r00, o00, commercio.numProposte(),fruitore0);
 		
-		insiemeAperto1.addPropostaAperta(proposta1);
-		insiemeAperto1.addPropostaAperta(proposta2);
+		Richiesta r01 = new Richiesta(gerarchia.getFoglie().get(1), COMMERCIO_VAL_01);
+		Offerta o01 = new Offerta(gerarchia.getFoglie().get(2));
+		PropostaAperta proposta01 = new PropostaAperta(r01, o01, commercio.numProposte(),fruitore0);
+	
+		Richiesta r02 = new Richiesta(gerarchia.getFoglie().get(2), COMMERCIO_VAL_02);
+		Offerta o02 = new Offerta(gerarchia.getFoglie().get(0));
+		PropostaAperta proposta02 = new PropostaAperta(r02, o02, commercio.numProposte(),fruitore0);
+		
+		Richiesta r03 = new Richiesta(gerarchia.getFoglie().get(2), COMMERCIO_VAL_03);
+		Offerta o03 = new Offerta(gerarchia.getFoglie().get(4));
+		PropostaAperta proposta03 = new PropostaAperta(r03, o03, commercio.numProposte(),fruitore0);
+		
+		Richiesta r04 = new Richiesta(gerarchia.getFoglie().get(3), COMMERCIO_VAL_04);
+		Offerta o04 = new Offerta(gerarchia.getFoglie().get(5));
+		PropostaAperta proposta04 = new PropostaAperta(r04, o04, commercio.numProposte(),fruitore0);
+	
+		Richiesta r05 = new Richiesta(gerarchia.getFoglie().get(5), COMMERCIO_VAL_05);
+		Offerta o05 = new Offerta(gerarchia.getFoglie().get(2));
+		PropostaAperta proposta05 = new PropostaAperta(r05, o05, commercio.numProposte(),fruitore0);
+		
+		Richiesta r06 = new Richiesta(gerarchia.getFoglie().get(0), COMMERCIO_VAL_06);
+		Offerta o06 = new Offerta(gerarchia.getFoglie().get(4));
+		PropostaAperta proposta06 = new PropostaAperta(r06, o06, commercio.numProposte(),fruitore0);
+		
+		Richiesta r07 = new Richiesta(gerarchia.getFoglie().get(3), COMMERCIO_VAL_07);
+		Offerta o07 = new Offerta(gerarchia.getFoglie().get(0));
+		PropostaAperta proposta07 = new PropostaAperta(r07, o07, commercio.numProposte(),fruitore0);
+		
+		insiemeAperto0.addPropostaAperta(proposta00);		
+		insiemeAperto0.addPropostaAperta(proposta01);
+		insiemeAperto0.addPropostaAperta(proposta02);
+		insiemeAperto0.addPropostaAperta(proposta03);		
+		insiemeAperto0.addPropostaAperta(proposta04);
+		insiemeAperto0.addPropostaAperta(proposta05);
+		insiemeAperto0.addPropostaAperta(proposta06);
+		insiemeAperto0.addPropostaAperta(proposta07);
+		
+		commercio.addInsiemiAperti(insiemeAperto0);
+		commercio.cercaProposteChiudibili(insiemeAperto0);  
+		
+		
+    	Fruitore fruitore1 = (Fruitore)utenza.getUtenti().get(3);
+    	commercio.setFruitoreDiSessione(fruitore1);
+    	InsiemeAperto insiemeAperto1 = new InsiemeAperto(fruitore1.getComprensorioAppartenenza());
+
+    	Richiesta r10 = new Richiesta(gerarchia.getFoglie().get(3), COMMERCIO_VAL_10);
+		Offerta o10 = new Offerta(gerarchia.getFoglie().get(1));
+		PropostaAperta proposta10 = new PropostaAperta(r10, o10, commercio.numProposte(),fruitore1);
+		
+		Richiesta r11 = new Richiesta(gerarchia.getFoglie().get(4), COMMERCIO_VAL_11);
+    	Offerta o11 = new Offerta(gerarchia.getFoglie().get(2));
+		PropostaAperta proposta11 = new PropostaAperta(r11, o11, commercio.numProposte(),fruitore1);
+	
+		Richiesta r12 = new Richiesta(gerarchia.getFoglie().get(3), COMMERCIO_VAL_12);
+		Offerta o12 = new Offerta(gerarchia.getFoglie().get(0));
+		PropostaAperta proposta12 = new PropostaAperta(r12, o12, commercio.numProposte(),fruitore1);
+		
+		Richiesta r13 = new Richiesta(gerarchia.getFoglie().get(1), COMMERCIO_VAL_13);
+		Offerta o13 = new Offerta(gerarchia.getFoglie().get(4));
+		PropostaAperta proposta13 = new PropostaAperta(r13, o13, commercio.numProposte(),fruitore1);
+		
+		Richiesta r14 = new Richiesta(gerarchia.getFoglie().get(2), COMMERCIO_VAL_14);
+    	Offerta o14 = new Offerta(gerarchia.getFoglie().get(5));
+		PropostaAperta proposta14 = new PropostaAperta(r14, o14, commercio.numProposte(),fruitore1);
+	
+		Richiesta r15 = new Richiesta(gerarchia.getFoglie().get(5), COMMERCIO_VAL_15);
+		Offerta o15 = new Offerta(gerarchia.getFoglie().get(2));
+		PropostaAperta proposta15 = new PropostaAperta(r15, o15, commercio.numProposte(),fruitore1);
+		
+		Richiesta r16 = new Richiesta(gerarchia.getFoglie().get(3), COMMERCIO_VAL_16);
+		Offerta o16 = new Offerta(gerarchia.getFoglie().get(4));
+		PropostaAperta proposta16 = new PropostaAperta(r16, o16, commercio.numProposte(),fruitore1);
+		
+		Richiesta r17 = new Richiesta(gerarchia.getFoglie().get(1), COMMERCIO_VAL_17);
+    	Offerta o17 = new Offerta(gerarchia.getFoglie().get(2));
+		PropostaAperta proposta17 = new PropostaAperta(r17, o17, commercio.numProposte(),fruitore1);
+
+		
+		insiemeAperto1.addPropostaAperta(proposta10);		
+		insiemeAperto1.addPropostaAperta(proposta11);
+		insiemeAperto1.addPropostaAperta(proposta12);
+		insiemeAperto1.addPropostaAperta(proposta13);		
+		insiemeAperto1.addPropostaAperta(proposta14);
+		insiemeAperto1.addPropostaAperta(proposta15);
+		
+		insiemeAperto1.addPropostaAperta(proposta16);		
+		insiemeAperto1.addPropostaAperta(proposta17);
+
 		
 		commercio.addInsiemiAperti(insiemeAperto1);
-		commercio.metodo(insiemeAperto1);
-    	
-    	
-    	*/
+		commercio.cercaProposteChiudibili(insiemeAperto1); 
+		
+		commercio.ritira(proposta16);
+		commercio.ritira(proposta17);
+
     	return commercio;
     }
+    
 }

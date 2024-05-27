@@ -73,7 +73,7 @@ public class ModelCommercio implements Serializable{
 	}
 
 	public void metodo(InsiemeAperto insiemeAperto) {
-		commercio.metodo(insiemeAperto);
+		commercio.cercaProposteChiudibili(insiemeAperto);
 		
 	}
 

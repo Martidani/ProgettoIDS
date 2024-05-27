@@ -16,15 +16,15 @@ import it.unibs.ids.progetto.news.Proposta;
 public class Fruitore extends Utente implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    public static final char TIPOUTENTE = 'f';
+    public static final char TIPO_UTENTE = 'f'; // Costante che identifica il tipo di utente
     
     private static final String EMAIL_PATTERN =
-            "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+            "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"; // Pattern per la validazione dell'email
     private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN);
     
-    private String indirizzo;
-    private Comprensorio comprensorioAppartenenza;
-    private ArrayList<Proposta> proposte;
+    private String indirizzo; // Indirizzo del fruitore
+    private Comprensorio comprensorioAppartenenza; // Comprensorio a cui il fruitore appartiene
+    private ArrayList<Proposta> proposte; // Lista delle proposte di scambio del fruitore
     
     /**
      * Costruttore della classe Fruitore.
@@ -35,10 +35,10 @@ public class Fruitore extends Utente implements Serializable {
      * @param indirizzo                L'indirizzo del fruitore.
      */
     public Fruitore(Comprensorio comprensorioAppartenenza, Credenziali credenziali, String indirizzo) {
-        super(TIPOUTENTE, credenziali);
+        super(TIPO_UTENTE, credenziali);
         this.indirizzo = indirizzo;
         this.comprensorioAppartenenza = comprensorioAppartenenza;
-        this.proposte = new ArrayList<Proposta>();
+        this.proposte = new ArrayList<>();
         setIsDefinitivo(true);
     }
 
@@ -106,9 +106,14 @@ public class Fruitore extends Utente implements Serializable {
         this.credenziali.setDefinitive(x);
     }
     
-
-        public static boolean isValidEmail(String email) {
-            Matcher matcher = pattern.matcher(email);
-            return matcher.matches();
-        }
+    /**
+     * Verifica se un indirizzo email è valido.
+     * 
+     * @param email L'indirizzo email da verificare.
+     * @return True se l'indirizzo email è valido, False altrimenti.
+     */
+    public static boolean isValidEmail(String email) {
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
 }
