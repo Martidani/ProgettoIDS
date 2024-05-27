@@ -8,8 +8,7 @@ import java.util.*;
  * @author Federico Sabbadini
  */
 public class Estrattore {
-
-	private static Random estrattore = new Random();
+public static Random estrattore = new Random();
 	
 	/**
 	 * Metodo per estrarre un numero intero casuale compreso tra min e max (inclusi).

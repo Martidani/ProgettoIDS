@@ -13,16 +13,14 @@ import java.util.Date;
  */
 public class InputDati 
 {
-
-	  private static Scanner lettore = creaScanner();
+public static Scanner lettore = creaScanner();
 	  
 	  public static final String DATE_STRING = "Inserisci la data [gg/mm/yyyy]: ";
 	  public static final String ORARIO_STRING = "Inserisci l'orario [hh:mm:ss] -> ";
 	  public static final String ORARIO_STRING_NOHOUR = "Inserisci l'orario [mm:ss] -> ";
-	  
-	  private final static String ERRORE_FORMATO = "Attenzione: il dato inserito non e' nel formato corretto";
-	  private final static String ERRORE_MINIMO= "Attenzione: e' richiesto un valore maggiore o uguale a ";
-	  private final static String ERRORE_STRINGA_VUOTA= "Attenzione: non hai inserito alcun carattere";
+public final static String ERRORE_FORMATO = "Attenzione: il dato inserito non e' nel formato corretto";
+public final static String ERRORE_MINIMO= "Attenzione: e' richiesto un valore maggiore o uguale a ";
+private final static String ERRORE_STRINGA_VUOTA= "Attenzione: non hai inserito alcun carattere";
 	  private final static String ERRORE_MASSIMO= "Attenzione: e' richiesto un valore minore o uguale a ";
 	  private final static String MESSAGGIO_AMMISSIBILI= "Attenzione: i caratteri ammissibili sono: ";
 

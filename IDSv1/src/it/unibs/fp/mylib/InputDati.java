@@ -19,8 +19,8 @@ public class InputDati
 	  
 	  private final static String ERRORE_FORMATO = "Attenzione: il dato inserito non e' nel formato corretto";
 	  private final static String ERRORE_MINIMO= "Attenzione: e' richiesto un valore maggiore o uguale a ";
-	  private final static String ERRORE_STRINGA_VUOTA= "Attenzione: non hai inserito alcun carattere";
-	  private final static String ERRORE_MASSIMO= "Attenzione: e' richiesto un valore minore o uguale a ";
+public final static String ERRORE_STRINGA_VUOTA= "Attenzione: non hai inserito alcun carattere";
+public final static String ERRORE_MASSIMO= "Attenzione: e' richiesto un valore minore o uguale a ";
 	  private final static String MESSAGGIO_AMMISSIBILI= "Attenzione: i caratteri ammissibili sono: ";
 
 	  private final static char RISPOSTA_SI='S';

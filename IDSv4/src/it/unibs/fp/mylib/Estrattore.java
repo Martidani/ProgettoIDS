@@ -7,9 +7,7 @@ import java.util.*;
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class Estrattore {
-
-	
-	private static Random estrattore = new Random();
+public static Random estrattore = new Random();
 	
 	/**
 	 * Metodo per estrarre un numero int tra min e max
