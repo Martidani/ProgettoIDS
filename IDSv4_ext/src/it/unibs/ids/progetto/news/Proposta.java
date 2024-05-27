@@ -16,6 +16,7 @@ public abstract class Proposta implements Serializable {
     protected String status;
     protected Richiesta richiesta;
     protected Offerta offerta;
+    private static double VALORE_ACCETTAZIONE_ORA_PARZIALE = 0.1;
     protected int ID;
     protected Fruitore fruitore;
     
@@ -78,9 +79,7 @@ public abstract class Proposta implements Serializable {
 
         double fattore = foglia1.fattoreFoglia(foglia2);
 
-        durata = (int) (fattore * durata);
-
-        this.offerta.setDurata(durata);
+        this.offerta.setDurata((int) ( Math.floor( (fattore * durata)+VALORE_ACCETTAZIONE_ORA_PARZIALE )));
     }
     
     public String toString() {

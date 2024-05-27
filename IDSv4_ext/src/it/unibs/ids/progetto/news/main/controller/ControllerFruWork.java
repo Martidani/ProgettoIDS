@@ -52,9 +52,9 @@ public class ControllerFruWork  {
         InsiemeAperto insiemeAperto = model.getInsiemeApertoDiSessione();
         
 	       
-	       Leaf fogliaRichiesta = inserimentoPrestazioneOpera();
+	       Leaf fogliaRichiesta = inserimentoPrestazioneOpera(true);
 	       int durata = InputDati.leggiInteroPositivo("Inserisci durata -> ");
-	       Leaf fogliaOfferta = inserimentoPrestazioneOpera();
+	       Leaf fogliaOfferta = inserimentoPrestazioneOpera(false);
 
 	        Offerta offerta = new Offerta(fogliaOfferta);
 	        Richiesta richiesta = new Richiesta(fogliaRichiesta, durata);
@@ -74,12 +74,16 @@ public class ControllerFruWork  {
     	
 	}
 
-	private Leaf inserimentoPrestazioneOpera() {
+	private Leaf inserimentoPrestazioneOpera(boolean modeFun) {
 		String nomePrestazione;
 		String nomeRadicePrestazione;
 		Leaf foglia;
     	do {
-    		nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci richiesta [foglia di appartenenza] -> ");
+    		if (modeFun)
+    			nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci richiesta [foglia di appartenenza] -> ");
+    		else
+    			nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci offerta [foglia di appartenenza] -> ");
+
         	nomeRadicePrestazione = InputDati.leggiStringaNonVuota("Inserisci radice -> ");	
         	foglia = model.visualizzaFoglia(nomePrestazione, nomeRadicePrestazione);
 		} while (foglia == null);
