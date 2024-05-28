@@ -29,13 +29,5 @@ public class InsiemeRitirato implements Serializable{
 	}
 	
 	
-    public String toString() {
-    	StringBuffer str = new StringBuffer();
-    	
-    	for (PropostaRitirata propostaRitirata : proposteRitirate) {
-			str.append(propostaRitirata.toString()+"\n");
-		}
-    	
-		return str.toString();    	
-    }
+  
 }

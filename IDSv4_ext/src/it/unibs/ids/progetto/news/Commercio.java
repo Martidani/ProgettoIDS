@@ -31,9 +31,16 @@ public class Commercio implements Serializable {
 	public void setFruitoreDiSessione(Fruitore utenteDiSessione) {
 		this.fruitoreDiSessione = utenteDiSessione;
 	}
+	
+
+	public Fruitore getFruitoreDiSessione() {
+		return fruitoreDiSessione;
+	}
+	
 	public InsiemeAperto getInsiemeApertoDiSessione() {
 		return getInsiemeAperto(fruitoreDiSessione.getComprensorioAppartenenza());
 	}
+	
 
 	public int numProposte() {
 		setNumProposte();
@@ -50,6 +57,11 @@ public class Commercio implements Serializable {
 	public List<InsiemeAperto> getInsiemiAperti() {
 		return insiemiAperti;
 	}
+	public InsiemeRitirato getInsiemeRitirato() {
+		return insiemeRitirato;
+	}
+
+
 	// Dato il comprensorio mi ritorna l'insieme aperto di appertenenza
 	public InsiemeAperto getInsiemeAperto(Comprensorio comprensorio) {
 		for (InsiemeAperto insiemeAperto : insiemiAperti) {
@@ -279,133 +291,6 @@ public class Commercio implements Serializable {
 		return null;   
 }
     
-    
-    public String visualizzaProposteChiuse(){
-    	
-    	StringBuffer str = new StringBuffer();
-    	
-    	for (InsiemeChiuso insiemeChiuso : insiemiChiusi) {
-			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
-				
-				if (propostaChiusa.getFruitore().getID().equals(fruitoreDiSessione.getID())) {
-					
-					if (insiemeChiuso.getProposteChiuse().get(0)
-							.equals(propostaChiusa)) 
-						str.append("{");
-					
-					str.append("\n" + propostaChiusa.toString());
-					
-					if (insiemeChiuso.getProposteChiuse().get(insiemeChiuso.getProposteChiuse().size()-1)
-							.equals(propostaChiusa)) 
-						str.append("}\n\n");
-					
-				}
-			}
-		}
-    	
-    	return str.toString();
   
-    }
-    
-    public String visualizzaProposteRitirate(){
-    	
-    	StringBuffer str = new StringBuffer();
-    	
-    	
-    	for (PropostaRitirata propostaRitirata : insiemeRitirato.getProposteRitirate()) {
-    		if (propostaRitirata.getFruitore().getID().equals(fruitoreDiSessione.getID())) {
-				str.append(propostaRitirata.toString()+ "\n");
-			}
-		}
-    	
-    	
-    	return str.toString();
-  
-    }
-    
-    
-    public String visualizzaProposteAperte(){
-    	
-    	StringBuffer str = new StringBuffer();
-    	
-    	
-    	for (PropostaAperta propostaAperta : getInsiemeApertoDiSessione().getProposteAperte()) {
-			if (propostaAperta.getFruitore().getID().equals(fruitoreDiSessione.getID())) {
-				str.append(propostaAperta.toString()+ "\n");
-			}
-		}
-    	
-    	
-    	return str.toString();
-  
-    	
-    }
-    
-
-    public String visualizzaProposteChiuse(Nodo nodo){
-    	
-    	StringBuffer str = new StringBuffer();
-    	
-    	for (InsiemeChiuso insiemeChiuso : insiemiChiusi) {
-			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
-				if 		(propostaChiusa.getOfferta().getFoglia().root().equals(nodo.root()) 
-						&& propostaChiusa.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
-						||
-						propostaChiusa.getOfferta().getFoglia().root().equals(nodo.root()) 
-						&& propostaChiusa.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
-	    			str.append(propostaChiusa.toString()+ "\n");
-	    			
-	    		}
-			}
-		}
-    	
-    	return str.toString();
-  
-    }
-    
-    public String visualizzaProposteRitirate(Nodo nodo){
-    	
-    	StringBuffer str = new StringBuffer();
-    	
-    	
-    	for (PropostaRitirata propostaRitirata : insiemeRitirato.getProposteRitirate()) {
-    		if (propostaRitirata.getOfferta().getFoglia().root().equals(nodo.root()) 
-					&& propostaRitirata.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
-					||
-					propostaRitirata.getOfferta().getFoglia().root().equals(nodo.root()) 
-					&& propostaRitirata.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
-    			str.append(propostaRitirata.toString()+ "\n");
-    			
-    		}
-		}
-    	
-    	
-    	
-    	
-    	return str.toString();
-  
-    }
-    
-    public String visualizzaProposteAperte(Nodo nodo){
-    	
-    	StringBuffer str = new StringBuffer();
-    	
-    	for (InsiemeAperto insiemeAperto : insiemiAperti) {
-			for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
-				if (propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
-						&& propostaAperta.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
-						||
-						propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
-						&& propostaAperta.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
-					str.append(propostaAperta.toString()+ "\n");
-					
-				}
-			}
-		}
-    	
-    	return str.toString();
-  
-    	
-    }
 	    
 }

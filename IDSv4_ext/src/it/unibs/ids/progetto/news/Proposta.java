@@ -82,16 +82,7 @@ public abstract class Proposta implements Serializable {
         this.offerta.setDurata((int) ( Math.floor( (fattore * durata)+VALORE_ACCETTAZIONE_ORA_PARZIALE )));
     }
     
-    public String toString() {
-    	StringBuffer str = new StringBuffer();
-    	
-    	str.append("Richiesta " + richiesta.toString());
-    	str.append("Offerta " + offerta.toString());
-    	str.append("ID: " + this.getID() + "\n");
-    	
-		return str.toString();    	
-    }
-    
+   
     
     
 }

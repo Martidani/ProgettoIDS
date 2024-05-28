@@ -19,7 +19,7 @@ public class PrintManager {
      * 
      * @return Una stringa che rappresenta l'albero
      */
-    public String toString(Albero albero) {
+    public String toStringAlbero(Albero albero) {
         StringBuffer bf = new StringBuffer();
         iterative(bf, albero.getRadice(), 1);
         return bf.toString();
@@ -52,7 +52,7 @@ public class PrintManager {
      * 
      * @return String La rappresentazione testuale del comprensorio
      */
-    public String toString(Comprensorio comprensorio) {
+    public static String toStringComprensorio(Comprensorio comprensorio) {
         StringBuffer bf = new StringBuffer();
         bf.append(comprensorio.getNome() + "\n");
         for (String comune : comprensorio.getComprensorio()) {
@@ -91,10 +91,10 @@ public class PrintManager {
 	 * 
 	 * @return Una stringa che rappresenta la geografia
 	 */
-	public String toString(Geografia geografia) {
+	public static String toString(Geografia geografia) {
 		StringBuffer bf = new StringBuffer();
 		for (Comprensorio comprensorio : geografia.getComprensori()) {
-			bf.append(comprensorio.toString());
+			bf.append(toStringComprensorio(comprensorio));
 			bf.append("\n");
 		}
 		
@@ -108,7 +108,7 @@ public class PrintManager {
      * 
      * @return Una stringa che rappresenta la gerarchia
      */
-    public String toString(Gerarchia gerarchia) {
+    public static String toString(Gerarchia gerarchia) {
         StringBuilder builder = new StringBuilder();
         
         for (Nodo nodo : gerarchia.getRadici())  {
@@ -142,7 +142,183 @@ public class PrintManager {
     }
     
     
+    public static String visualizzaProposteChiuse(Commercio commercio){
+    	
+    	StringBuffer str = new StringBuffer();
+    	
+    	for (InsiemeChiuso insiemeChiuso : commercio.getInsiemiChiusi()) {
+			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
+				
+				if (propostaChiusa.getFruitore().getID().equals(commercio.getFruitoreDiSessione().getID())) {
+					
+					if (insiemeChiuso.getProposteChiuse().get(0)
+							.equals(propostaChiusa)) 
+						str.append("{");
+					
+					str.append("\n" + toStringProposta(propostaChiusa));
+					
+					if (insiemeChiuso.getProposteChiuse().get(insiemeChiuso.getProposteChiuse().size()-1)
+							.equals(propostaChiusa)) 
+						str.append("}\n\n");
+					
+				}
+			}
+		}
+    	
+    	return str.toString();
+  
+    }
     
+    public static String visualizzaProposteRitirate(Commercio commercio){
+    	
+    	StringBuffer str = new StringBuffer();
+    	
+    	
+    	for (PropostaRitirata propostaRitirata : commercio.getInsiemeRitirato().getProposteRitirate()) {
+    		if (propostaRitirata.getFruitore().getID().equals(commercio.getFruitoreDiSessione().getID())) {
+				str.append(toStringProposta(propostaRitirata)+ "\n");
+			}
+		}
+    	
+    	
+    	return str.toString();
+  
+    }
+    
+    
+    public static String visualizzaProposteAperte(Commercio commercio){
+    	
+    	StringBuffer str = new StringBuffer();
+    	
+    	
+    	for (PropostaAperta propostaAperta : commercio.getInsiemeApertoDiSessione().getProposteAperte()) {
+			if (propostaAperta.getFruitore().getID().equals(commercio.getFruitoreDiSessione().getID())) {
+				str.append(toStringProposta(propostaAperta)+ "\n");
+			}
+		}
+    	
+    	
+    	return str.toString();
+  
+    	
+    }
+    
+
+    public static String visualizzaProposteChiuse(Nodo nodo,Commercio commercio){
+    	
+    	StringBuffer str = new StringBuffer();
+    	
+    	for (InsiemeChiuso insiemeChiuso : commercio.getInsiemiChiusi()) {
+			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
+				if 		(propostaChiusa.getOfferta().getFoglia().root().equals(nodo.root()) 
+						&& propostaChiusa.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
+						||
+						propostaChiusa.getOfferta().getFoglia().root().equals(nodo.root()) 
+						&& propostaChiusa.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
+	    			str.append(toStringProposta(propostaChiusa)+ "\n");
+	    			
+	    		}
+			}
+		}
+    	
+    	return str.toString();
+  
+    }
+    
+    public static String visualizzaProposteRitirate(Nodo nodo,Commercio commercio){
+    	
+    	StringBuffer str = new StringBuffer();
+    	
+    	
+    	for (PropostaRitirata propostaRitirata : commercio.getInsiemeRitirato().getProposteRitirate()) {
+    		if (propostaRitirata.getOfferta().getFoglia().root().equals(nodo.root()) 
+					&& propostaRitirata.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
+					||
+					propostaRitirata.getOfferta().getFoglia().root().equals(nodo.root()) 
+					&& propostaRitirata.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
+    			str.append(toStringProposta(propostaRitirata)+ "\n");
+    			
+    		}
+		}
+    	
+    	
+    	
+    	
+    	return str.toString();
+  
+    }
+    
+    public static String visualizzaProposteAperte(Nodo nodo,Commercio commercio){
+    	
+    	StringBuffer str = new StringBuffer();
+    	
+    	for (InsiemeAperto insiemeAperto : commercio.getInsiemiAperti()) {
+			for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
+				if (propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
+						&& propostaAperta.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
+						||
+						propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
+						&& propostaAperta.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
+					str.append(toStringProposta(propostaAperta) + "\n");
+					
+				}
+			}
+		}
+    	
+    	return str.toString();
+  
+    	
+    }
+    
+    // Insieme aperto - Proposta aperta
+    
+    public static String toStringAperta(InsiemeAperto insiemeAperto) {
+    	StringBuffer str = new StringBuffer();
+    	
+    	for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
+			str.append(toStringProposta(propostaAperta)+"\n");
+		}
+    	
+		return str.toString();    	
+    }
+    
+    
+    // Insieme chiuso
+    public static String toStringChiuso(InsiemeChiuso insiemeChiuso) {
+    	StringBuffer str = new StringBuffer();
+    	
+    	for (PropostaChiusa propostachiusa : insiemeChiuso.getProposteChiuse()) {
+			str.append(toStringProposta(propostachiusa)+"\n");
+		}
+    	
+		return str.toString();    	
+    }
+    
+    
+    // Iniseme ritirato
+    
+    public static String toStringRitirato(InsiemeRitirato insiemeRitirato) {
+    	StringBuffer str = new StringBuffer();
+    	
+    	for (PropostaRitirata propostaRitirata : insiemeRitirato.getProposteRitirate()) {
+			str.append(toStringProposta(propostaRitirata)+"\n");
+		}
+    	
+		return str.toString();    	
+    }
+    
+    
+    // Classe proposta
+    
+    public static String toStringProposta(Proposta proposta) {
+    	StringBuffer str = new StringBuffer();
+    	
+    	str.append("Richiesta " + proposta.getRichiesta());
+    	str.append("Offerta " + proposta.getOfferta());
+    	str.append("ID: " + proposta.getID() + "\n");
+    	
+		return str.toString();    	
+    }
     
     
     

@@ -36,14 +36,12 @@ public class ModelGerarchia implements Serializable {
 		return gerarchia;
 	}
 
-
-
 	public void addAlbero(Albero albero) {
 		gerarchia.addAlbero(albero);
 	}
 
 	public String toStringGerarchia() {
-		return gerarchia.toString();
+		return PrintManager.toString(gerarchia);
 	}
 	public boolean verificaEsistenzaNomeRadice(String radice) {
 		return gerarchia.verificaEsistenzaNomeRadice(radice);

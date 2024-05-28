@@ -45,7 +45,7 @@ public class ControllerFruWork  {
 	}
 
 	public String stampaGeografia() {
-		return model.toStringGeografia().toString();
+		return model.toStringGeografia();
 	}
 	
 	public void proponiScambio() {

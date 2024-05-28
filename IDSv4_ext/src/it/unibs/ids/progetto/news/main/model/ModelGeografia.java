@@ -9,6 +9,7 @@ import it.unibs.ids.progetto.DefaultInitializer;
 
 import it.unibs.ids.progetto.FileManager;
 import it.unibs.ids.progetto.Geografia;
+import it.unibs.ids.progetto.news.PrintManager;
 
 
 
@@ -46,7 +47,7 @@ public class ModelGeografia implements Serializable {
 	}
 
 	public String toStringGeografia() {
-		return geografia.toString();
+		return PrintManager.toString(geografia);
 
 	}
 

@@ -28,14 +28,6 @@ public class InsiemeChiuso implements Serializable{
 	}
 	
 	
-    public String toString() {
-    	StringBuffer str = new StringBuffer();
-    	
-    	for (PropostaChiusa propostachiusa : proposteChiuse) {
-			str.append(propostachiusa.toString()+"\n");
-		}
-    	
-		return str.toString();    	
-    }
+    
 
 }

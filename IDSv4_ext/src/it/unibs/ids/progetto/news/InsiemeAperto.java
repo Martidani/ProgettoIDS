@@ -62,14 +62,6 @@ public class InsiemeAperto implements Serializable{
 		return false;
 	}
 
-    public String toString() {
-    	StringBuffer str = new StringBuffer();
-    	
-    	for (PropostaAperta propostaAperta : proposteAperte) {
-			str.append(propostaAperta.toString()+"\n");
-		}
-    	
-		return str.toString();    	
-    }
+   
 
 }

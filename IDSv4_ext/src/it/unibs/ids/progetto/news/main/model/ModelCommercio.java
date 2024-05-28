@@ -9,6 +9,7 @@ import it.unibs.ids.progetto.Nodo;
 import it.unibs.ids.progetto.Utente;
 import it.unibs.ids.progetto.news.Commercio;
 import it.unibs.ids.progetto.news.InsiemeAperto;
+import it.unibs.ids.progetto.news.PrintManager;
 import it.unibs.ids.progetto.news.PropostaAperta;
 
 public class ModelCommercio implements Serializable{
@@ -39,25 +40,24 @@ public class ModelCommercio implements Serializable{
 	
 	public String visualizzaProposteAperte(Nodo foglia) {
 		if (foglia == null) 
-			return commercio.visualizzaProposteAperte();
+			return PrintManager.visualizzaProposteAperte(commercio);
 		else
-			return commercio.visualizzaProposteAperte(foglia);
+			return PrintManager.visualizzaProposteAperte(foglia, commercio);
 		
 	}
 
-
 	public String visualizzaProposteChiuse(Nodo foglia) {
 		if (foglia == null) 
-			return commercio.visualizzaProposteChiuse();
+			return PrintManager.visualizzaProposteChiuse(commercio);
 		else
-			return commercio.visualizzaProposteChiuse(foglia);
+			return PrintManager.visualizzaProposteChiuse(foglia, commercio);
 	}
 
 	public String visualizzaProposteRitirate(Nodo foglia) {
 		if (foglia == null) 
-			return commercio.visualizzaProposteRitirate();
+			return PrintManager.visualizzaProposteRitirate(commercio);
 		else
-			return commercio.visualizzaProposteRitirate(foglia);
+			return PrintManager.visualizzaProposteRitirate(foglia, commercio);
 	}
 
 	public void save() {
