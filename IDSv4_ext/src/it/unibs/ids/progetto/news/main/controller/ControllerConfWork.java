@@ -77,7 +77,7 @@ public class ControllerConfWork  {
      * @param geografia  L'oggetto Geografia da stampare.
      */
     public  String stampaGeografia( ) {
-        return model.toStringGeografia().toString();
+        return model.toStringGeografia();
     }
 
     /**
@@ -86,7 +86,7 @@ public class ControllerConfWork  {
      * @param gerarchia  L'oggetto Gerarchia da stampare.
      */
     public  String stampaGerarchia( ) {
-        return model.toStringGerarchia().toString();
+        return model.toStringGerarchia();
     }
 
     /**

@@ -19,9 +19,10 @@ public class PrintManager {
      * 
      * @return Una stringa che rappresenta l'albero
      */
-    public String toStringAlbero(Albero albero) {
+    public static String toStringAlbero(Albero albero) {
         StringBuffer bf = new StringBuffer();
         iterative(bf, albero.getRadice(), 1);
+        
         return bf.toString();
     }
 
@@ -72,6 +73,7 @@ public class PrintManager {
 	 */
 	public static String toString(String nome, FattoriDiConversione fattori) {
 		StringBuffer bf = new StringBuffer();
+		bf.append("\n");
 		for (Entry<Leaf, Double> fatt : fattori.getFattori()) {
 			Leaf key = fatt.getKey();
 			Double val = fatt.getValue();
@@ -109,17 +111,18 @@ public class PrintManager {
      * @return Una stringa che rappresenta la gerarchia
      */
     public static String toString(Gerarchia gerarchia) {
-        StringBuilder builder = new StringBuilder();
+    	StringBuffer builder = new StringBuffer();
         
         for (Nodo nodo : gerarchia.getRadici())  {
             builder.append("\n\n");
             try {
-                builder.append(new Albero((NotLeaf) nodo).toString());
+                builder.append(toStringAlbero(new Albero((NotLeaf) nodo)));
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
+        builder.append("\n\n");
         return builder.toString();     
     }
     
@@ -173,13 +176,13 @@ public class PrintManager {
     	
     	StringBuffer str = new StringBuffer();
     	
-    	
+		str.append("{");
     	for (PropostaRitirata propostaRitirata : commercio.getInsiemeRitirato().getProposteRitirate()) {
     		if (propostaRitirata.getFruitore().getID().equals(commercio.getFruitoreDiSessione().getID())) {
 				str.append(toStringProposta(propostaRitirata)+ "\n");
 			}
 		}
-    	
+    	str.append("}\n\n");
     	
     	return str.toString();
   
@@ -190,14 +193,14 @@ public class PrintManager {
     	
     	StringBuffer str = new StringBuffer();
     	
-    	
+		str.append("{");
     	for (PropostaAperta propostaAperta : commercio.getInsiemeApertoDiSessione().getProposteAperte()) {
 			if (propostaAperta.getFruitore().getID().equals(commercio.getFruitoreDiSessione().getID())) {
 				str.append(toStringProposta(propostaAperta)+ "\n");
 			}
 		}
     	
-    	
+    	str.append("}\n\n");
     	return str.toString();
   
     	
@@ -207,7 +210,8 @@ public class PrintManager {
     public static String visualizzaProposteChiuse(Nodo nodo,Commercio commercio){
     	
     	StringBuffer str = new StringBuffer();
-    	
+		str.append("{");
+
     	for (InsiemeChiuso insiemeChiuso : commercio.getInsiemiChiusi()) {
 			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
 				if 		(propostaChiusa.getOfferta().getFoglia().root().equals(nodo.root()) 
@@ -220,7 +224,7 @@ public class PrintManager {
 	    		}
 			}
 		}
-    	
+    	str.append("}\n\n");
     	return str.toString();
   
     }
@@ -228,7 +232,8 @@ public class PrintManager {
     public static String visualizzaProposteRitirate(Nodo nodo,Commercio commercio){
     	
     	StringBuffer str = new StringBuffer();
-    	
+		str.append("{");
+
     	
     	for (PropostaRitirata propostaRitirata : commercio.getInsiemeRitirato().getProposteRitirate()) {
     		if (propostaRitirata.getOfferta().getFoglia().root().equals(nodo.root()) 
@@ -243,7 +248,7 @@ public class PrintManager {
     	
     	
     	
-    	
+    	str.append("}\n\n");
     	return str.toString();
   
     }
@@ -251,7 +256,8 @@ public class PrintManager {
     public static String visualizzaProposteAperte(Nodo nodo,Commercio commercio){
     	
     	StringBuffer str = new StringBuffer();
-    	
+		str.append("{");
+
     	for (InsiemeAperto insiemeAperto : commercio.getInsiemiAperti()) {
 			for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
 				if (propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
@@ -264,7 +270,7 @@ public class PrintManager {
 				}
 			}
 		}
-    	
+    	str.append("}\n\n");
     	return str.toString();
   
     	
@@ -313,15 +319,23 @@ public class PrintManager {
     public static String toStringProposta(Proposta proposta) {
     	StringBuffer str = new StringBuffer();
     	
-    	str.append("Richiesta " + proposta.getRichiesta());
-    	str.append("Offerta " + proposta.getOfferta());
-    	str.append("ID: " + proposta.getID() + "\n");
+    	str.append("Richiesta " + toStringPrestazione(proposta.getRichiesta()));
+    	str.append("\nOfferta " + toStringPrestazione(proposta.getOfferta()));
+    	str.append("\nID: " + proposta.getID() + "\n");
     	
 		return str.toString();    	
     }
     
     
-    
+    public static String toStringPrestazione(PrestazioneOpera prestazione) {
+    	StringBuffer str = new StringBuffer();
+    	
+    	str.append(" [" + prestazione.getFoglia().getNome()
+    			+ " (" + prestazione.getFoglia().root() + "), " 
+    			+ prestazione.getDurata() + "]");
+    	
+		return str.toString();    	
+    }
     
     
     
