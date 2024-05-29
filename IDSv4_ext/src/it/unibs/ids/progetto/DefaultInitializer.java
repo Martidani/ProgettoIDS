@@ -1,12 +1,5 @@
 package it.unibs.ids.progetto;
 
-import it.unibs.ids.progetto.news.Commercio;
-import it.unibs.ids.progetto.news.InsiemeAperto;
-import it.unibs.ids.progetto.news.MailAddress;
-import it.unibs.ids.progetto.news.Offerta;
-import it.unibs.ids.progetto.news.PropostaAperta;
-import it.unibs.ids.progetto.news.Richiesta;
-
 /**
  * Classe per l'inizializzazione predefinita del sistema.
  * 

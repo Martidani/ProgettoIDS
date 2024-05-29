@@ -1,8 +1,6 @@
 package it.unibs.ids.progetto;
 import java.io.*;
 
-import it.unibs.ids.progetto.news.Commercio;
-
 /**
  * DataManager è una classe utilizzata per gestire il caricamento e il salvataggio dei dati da e verso file di testo.
  * Supporta il caricamento e il salvataggio di oggetti delle classi Gerarchia, Geografia e Utenza.
