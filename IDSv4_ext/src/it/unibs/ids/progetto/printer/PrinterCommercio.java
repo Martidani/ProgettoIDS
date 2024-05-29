@@ -173,41 +173,41 @@ public class PrinterCommercio {
   
     	
     }
-    
-    // Insieme aperto - Proposta aperta
-    
-    private static String toStringAperta(InsiemeAperto insiemeAperto) {
-    	StringBuffer str = new StringBuffer();
-    	
-    	for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
-			str.append(toStringProposta(propostaAperta)+"\n");
-		}
-    	
-		return str.toString();    	
-    }
-    
-    
-    // Insieme chiuso
-    private static String toStringChiuso(InsiemeChiuso insiemeChiuso) {
-    	StringBuffer str = new StringBuffer();
-    	
-    	for (PropostaChiusa propostachiusa : insiemeChiuso.getProposteChiuse()) {
-			str.append(toStringProposta(propostachiusa)+"\n");
-		}
-    	
-		return str.toString();    	
-    }
-    
-    
-    // Iniseme ritirato
-    
-    private static String toStringRitirato(InsiemeRitirato insiemeRitirato) {
-    	StringBuffer str = new StringBuffer();
-    	
-    	for (PropostaRitirata propostaRitirata : insiemeRitirato.getProposteRitirate()) {
-			str.append(toStringProposta(propostaRitirata)+"\n");
-		}
-    	
-		return str.toString();    	
-    }
+//    
+//    // Insieme aperto - Proposta aperta
+//    
+//    private static String toStringAperta(InsiemeAperto insiemeAperto) {
+//    	StringBuffer str = new StringBuffer();
+//    	
+//    	for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
+//			str.append(toStringProposta(propostaAperta)+"\n");
+//		}
+//    	
+//		return str.toString();    	
+//    }
+//    
+//    
+//    // Insieme chiuso
+//    private static String toStringChiuso(InsiemeChiuso insiemeChiuso) {
+//    	StringBuffer str = new StringBuffer();
+//    	
+//    	for (PropostaChiusa propostachiusa : insiemeChiuso.getProposteChiuse()) {
+//			str.append(toStringProposta(propostachiusa)+"\n");
+//		}
+//    	
+//		return str.toString();    	
+//    }
+//    
+//    
+//    // Iniseme ritirato
+//    
+//    private static String toStringRitirato(InsiemeRitirato insiemeRitirato) {
+//    	StringBuffer str = new StringBuffer();
+//    	
+//    	for (PropostaRitirata propostaRitirata : insiemeRitirato.getProposteRitirate()) {
+//			str.append(toStringProposta(propostaRitirata)+"\n");
+//		}
+//    	
+//		return str.toString();    	
+//    }
 }

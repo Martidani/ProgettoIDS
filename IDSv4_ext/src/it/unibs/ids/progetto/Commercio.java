@@ -206,6 +206,9 @@ public class Commercio implements Serializable {
 	    		equals
 	    		(propostaB.getRichiesta().getFoglia().getNome()) 
 	    		&& 
+	    		propostaA.getOfferta().getFoglia().root.
+	    		equals(propostaB.getRichiesta().getFoglia().root) 
+	    		&&
 	    		propostaA.getOfferta().getDurata() 
 	    		== 
 	    		(propostaB.getRichiesta()).getDurata() ;
@@ -215,6 +218,9 @@ public class Commercio implements Serializable {
 	    return propostaA.getRichiesta().getFoglia().getNome().
 	    		equals
 	    		(propostaB.getOfferta().getFoglia().getNome()) 
+	    		&& 
+	    		propostaA.getRichiesta().getFoglia().root.
+	    		equals(propostaB.getOfferta().getFoglia().root) 
 	    		&& 
 	    		propostaA.getRichiesta().getDurata() 
 	    		== 

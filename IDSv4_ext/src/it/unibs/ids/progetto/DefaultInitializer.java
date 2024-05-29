@@ -7,56 +7,56 @@ package it.unibs.ids.progetto;
  */
 public class DefaultInitializer {
     
-    private static final String ROOT_NAME_0 = "Lezioni di musica";
-    private static final String ROOT_FIELD_0 = "Tipo";
-    private static final String[] ROOT_DOMAIN_0 = {"Teoria", "Pratica"};
-    private static final String CHILD_NAME_00 = "Lezioni di storia della musica";
-    private static final String CHILD_NAME_01 = "Lezioni di chitarra";
+    public static final String ROOT_NAME_0 = "Lezioni di musica";
+    public static final String ROOT_FIELD_0 = "Tipo";
+    public static final String[] ROOT_DOMAIN_0 = {"Teoria", "Pratica"};
+    public static final String CHILD_NAME_00 = "Lezioni di storia della musica";
+    public static final String CHILD_NAME_01 = "Lezioni di chitarra";
     public static final double FACTOR_VAL_00 = 1.5;
     
-    private static final String ROOT_NAME_1 = "Allenamento sportivo";
-    private static final String ROOT_FIELD_1 = "Tipologia";
-    private static final String[] ROOT_DOMAIN_1 = {"Individuale", "Collettivo"};
-    private static final String CHILD_NAME_10 = "Allenamento di tennis";
-    private static final String CHILD_NAME_11 = "Allenamento di calcio";
+    public static final String ROOT_NAME_1 = "Allenamento sportivo";
+    public static final String ROOT_FIELD_1 = "Tipologia";
+    public static final String[] ROOT_DOMAIN_1 = {"Individuale", "Collettivo"};
+    public static final String CHILD_NAME_10 = "Allenamento di tennis";
+    public static final String CHILD_NAME_11 = "Allenamento di calcio";
     public static final double FACTOR_VAL_10 = 1.5;
     public static final double FACTOR_VAL_11 = 1.5;
     
-    private static final String ROOT_NAME_2 = "Ripetizioni scolastiche";
-    private static final String ROOT_FIELD_2 = "Livello";
-    private static final String[] ROOT_DOMAIN_2 = {"Scuola media", "Scuola superiore",};
-    private static final String CHILD_NAME_20 = "Ripetizioni di matematica base";
-    private static final String CHILD_NAME_21 = "Ripetizioni di matematica avanzata";
+    public static final String ROOT_NAME_2 = "Ripetizioni scolastiche";
+    public static final String ROOT_FIELD_2 = "Livello";
+    public static final String[] ROOT_DOMAIN_2 = {"Scuola media", "Scuola superiore",};
+    public static final String CHILD_NAME_20 = "Ripetizioni di matematica base";
+    public static final String CHILD_NAME_21 = "Ripetizioni di matematica avanzata";
     public static final double FACTOR_VAL_20 = 1.2;
     public static final double FACTOR_VAL_21 = 2;
     
-	private static final String DEFAULT_NAME_COMMUNITY_0 = "Roma";
-    private static final String DEFAULT_COMMUNITY_01 = "Fiumicino";
-    private static final String DEFAULT_COMMUNITY_02 = "Tivoli";
-    private static final String DEFAULT_COMMUNITY_03 = "Frascati";
-	private static final String DEFAULT_NAME_COMMUNITY_1 = "Milano";
-    private static final String DEFAULT_COMMUNITY_11 = "Rho";
-    private static final String DEFAULT_COMMUNITY_12 = "Cinisello Balsamo";
-    private static final String DEFAULT_COMMUNITY_13 = "Sesto San Giovanni";
-	private static final String DEFAULT_NAME_COMMUNITY_2 = "Napoli";
-    private static final String DEFAULT_COMMUNITY_21 = "Pozzuoli";
-    private static final String DEFAULT_COMMUNITY_22 = "Casoria";
-    private static final String DEFAULT_COMMUNITY_23 = "Portici";
+    public static final String DEFAULT_NAME_COMMUNITY_0 = "Roma";
+    public static final String DEFAULT_COMMUNITY_01 = "Fiumicino";
+    public static final String DEFAULT_COMMUNITY_02 = "Tivoli";
+    public static final String DEFAULT_COMMUNITY_03 = "Frascati";
+    public static final String DEFAULT_NAME_COMMUNITY_1 = "Milano";
+    public static final String DEFAULT_COMMUNITY_11 = "Rho";
+    public static final String DEFAULT_COMMUNITY_12 = "Cinisello Balsamo";
+    public static final String DEFAULT_COMMUNITY_13 = "Sesto San Giovanni";
+    public static final String DEFAULT_NAME_COMMUNITY_2 = "Napoli";
+    public static final String DEFAULT_COMMUNITY_21 = "Pozzuoli";
+    public static final String DEFAULT_COMMUNITY_22 = "Casoria";
+    public static final String DEFAULT_COMMUNITY_23 = "Portici";
     
-    private static final String DEFAULT_C1_USERNAME = "federico";
-    private static final String DEFAULT_C1_PASSWORD = "sabbadini";
-    private static final String DEFAULT_C2_USERNAME = "daniele";
-    private static final String DEFAULT_C2_PASSWORD = "martinelli";
+    public static final String DEFAULT_C1_USERNAME = "federico";
+    public static final String DEFAULT_C1_PASSWORD = "sabbadini";
+    public static final String DEFAULT_C2_USERNAME = "daniele";
+    public static final String DEFAULT_C2_PASSWORD = "martinelli";
     
-    private static final String DEFAULT_F1_USERNAME = "user1";
-    private static final String DEFAULT_F1_PASSWORD = "user1";
-    private static final String DEFAULT_F1_EMAIL = "user1@unibs.it";
-    private static final String DEFAULT_F2_USERNAME = "user2";
-    private static final String DEFAULT_F2_PASSWORD = "user2";
-    private static final String DEFAULT_F2_EMAIL = "user2@unibs.it";
-    private static final String DEFAULT_F3_USERNAME = "user3";
-    private static final String DEFAULT_F3_PASSWORD = "user3";
-    private static final String DEFAULT_F3_EMAIL = "user3@unibs.it";
+    public static final String DEFAULT_F1_USERNAME = "user1";
+    public static final String DEFAULT_F1_PASSWORD = "user1";
+    public static final String DEFAULT_F1_EMAIL = "user1@unibs.it";
+    public static final String DEFAULT_F2_USERNAME = "user2";
+    public static final String DEFAULT_F2_PASSWORD = "user2";
+    public static final String DEFAULT_F2_EMAIL = "user2@unibs.it";
+    public static final String DEFAULT_F3_USERNAME = "user3";
+    public static final String DEFAULT_F3_PASSWORD = "user3";
+    public static final String DEFAULT_F3_EMAIL = "user3@unibs.it";
     
     public static final int COMMERCIO_VAL_00 = 4;
     public static final int COMMERCIO_VAL_01 = 6;
