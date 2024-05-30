@@ -1,9 +1,9 @@
 package it.unibs.ids.progetto.main.view;
 
-import it.unibs.fp.mylib.MyMenu;
 import it.unibs.ids.progetto.RootTreeException;
 import it.unibs.ids.progetto.main.controller.Controller;
 import it.unibs.ids.progetto.main.controller.ControllerConf;
+import it.unibs.ids.progetto.printer.PrintMenu;
 
 /**
  * Questa classe gestisce i menu dell'applicazione e le relative azioni.
@@ -16,12 +16,8 @@ public class ViewConf implements View {
 	private ControllerConf controllerConf;
 	private int scelta;
  
-    private final static String[] vociAccesso =  {"Registrazione","Login"};
-    private final static String[] voci =  {"Introdurre comprensorio geografico", "Introdurre albero", 
-    		"Visualizza comprensorio",  "Visualizza gerarchia", "Visualizza fattori di conversione", 
-    		"Visualizza proposte"};
-    private static MyMenu menuConfiguratore = new MyMenu("Menu principale configuratore", voci);
-    private static MyMenu menuAccesso = new MyMenu("Menu accesso configuratore", vociAccesso);
+    private static PrintMenu menuConfiguratore = PrintMenu.menuConfiguratore();
+    private static PrintMenu menuAccesso = PrintMenu.menuAccessoC();
 	
     public ViewConf(Controller controller) {
         this.controllerConf = (ControllerConf) controller;
@@ -50,11 +46,11 @@ public class ViewConf implements View {
                 break;
 
             case 3:
-            	System.out.println(controllerConf.stampaGeografia());;
+            	System.out.print(controllerConf.stampaGeografia());;
                 break;
 
             case 4:
-            	System.out.println(controllerConf.stampaGerarchia());;
+            	System.out.print(controllerConf.stampaGerarchia());;
                 break;
 
             case 5:

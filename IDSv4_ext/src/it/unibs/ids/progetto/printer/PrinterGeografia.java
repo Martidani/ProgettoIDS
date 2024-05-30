@@ -37,6 +37,7 @@ public class PrinterGeografia {
 	 */
 	public String toStringGeografia() {
 		StringBuffer bf = new StringBuffer();
+		bf.append("\n");
 		for (Comprensorio comprensorio : geografia.getComprensori()) {
 			bf.append(toStringComprensorio(comprensorio));
 			bf.append("\n");

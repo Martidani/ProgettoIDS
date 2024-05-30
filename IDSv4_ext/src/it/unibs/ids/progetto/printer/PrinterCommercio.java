@@ -25,9 +25,9 @@ public class PrinterCommercio {
 	private static String toStringProposta(Proposta proposta) {
     	StringBuffer str = new StringBuffer();
     	
-    	str.append("Richiesta " + toStringPrestazione(proposta.getRichiesta()));
-    	str.append("\nOfferta " + toStringPrestazione(proposta.getOfferta()));
-    	str.append("\nID: " + proposta.getID() + "\n");
+    	str.append("\nID: " + proposta.getID());
+    	str.append("\n  Richiesta " + toStringPrestazione(proposta.getRichiesta()));
+    	str.append("\n  Offerta " + toStringPrestazione(proposta.getOfferta()));
     	
 		return str.toString();    	
     }
@@ -52,15 +52,9 @@ public class PrinterCommercio {
 				
 				if (propostaChiusa.getFruitore().getID().equals(commercio.getFruitoreDiSessione().getID())) {
 					
-					if (insiemeChiuso.getProposteChiuse().get(0)
-							.equals(propostaChiusa)) 
-						str.append("{");
+					str.append(toStringProposta(propostaChiusa) + "\n");
 					
-					str.append("\n" + toStringProposta(propostaChiusa));
 					
-					if (insiemeChiuso.getProposteChiuse().get(insiemeChiuso.getProposteChiuse().size()-1)
-							.equals(propostaChiusa)) 
-						str.append("}\n\n");
 					
 				}
 			}
@@ -74,13 +68,12 @@ public class PrinterCommercio {
     	
     	StringBuffer str = new StringBuffer();
     	
-		str.append("{");
     	for (PropostaRitirata propostaRitirata : commercio.getInsiemeRitirato().getProposteRitirate()) {
     		if (propostaRitirata.getFruitore().getID().equals(commercio.getFruitoreDiSessione().getID())) {
 				str.append(toStringProposta(propostaRitirata)+ "\n");
 			}
 		}
-    	str.append("}\n\n");
+
     	
     	return str.toString();
   
@@ -91,14 +84,14 @@ public class PrinterCommercio {
     	
     	StringBuffer str = new StringBuffer();
     	
-		str.append("{");
+
     	for (PropostaAperta propostaAperta : commercio.getInsiemeApertoDiSessione().getProposteAperte()) {
 			if (propostaAperta.getFruitore().getID().equals(commercio.getFruitoreDiSessione().getID())) {
 				str.append(toStringProposta(propostaAperta)+ "\n");
 			}
 		}
     	
-    	str.append("}\n\n");
+
     	return str.toString();
   
     	
@@ -108,7 +101,7 @@ public class PrinterCommercio {
     public String visualizzaProposteChiuse(Nodo nodo){
     	
     	StringBuffer str = new StringBuffer();
-		str.append("{");
+
 
     	for (InsiemeChiuso insiemeChiuso : commercio.getInsiemiChiusi()) {
 			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
@@ -122,7 +115,7 @@ public class PrinterCommercio {
 	    		}
 			}
 		}
-    	str.append("}\n\n");
+
     	return str.toString();
   
     }
@@ -130,7 +123,7 @@ public class PrinterCommercio {
     public String visualizzaProposteRitirate(Nodo nodo){
     	
     	StringBuffer str = new StringBuffer();
-		str.append("{");
+
 
     	
     	for (PropostaRitirata propostaRitirata : commercio.getInsiemeRitirato().getProposteRitirate()) {
@@ -146,7 +139,7 @@ public class PrinterCommercio {
     	
     	
     	
-    	str.append("}\n\n");
+
     	return str.toString();
   
     }
@@ -154,7 +147,7 @@ public class PrinterCommercio {
     public String visualizzaProposteAperte(Nodo nodo){
     	
     	StringBuffer str = new StringBuffer();
-		str.append("{");
+
 
     	for (InsiemeAperto insiemeAperto : commercio.getInsiemiAperti()) {
 			for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
@@ -168,46 +161,9 @@ public class PrinterCommercio {
 				}
 			}
 		}
-    	str.append("}\n\n");
+  
     	return str.toString();
   
     	
     }
-//    
-//    // Insieme aperto - Proposta aperta
-//    
-//    private static String toStringAperta(InsiemeAperto insiemeAperto) {
-//    	StringBuffer str = new StringBuffer();
-//    	
-//    	for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
-//			str.append(toStringProposta(propostaAperta)+"\n");
-//		}
-//    	
-//		return str.toString();    	
-//    }
-//    
-//    
-//    // Insieme chiuso
-//    private static String toStringChiuso(InsiemeChiuso insiemeChiuso) {
-//    	StringBuffer str = new StringBuffer();
-//    	
-//    	for (PropostaChiusa propostachiusa : insiemeChiuso.getProposteChiuse()) {
-//			str.append(toStringProposta(propostachiusa)+"\n");
-//		}
-//    	
-//		return str.toString();    	
-//    }
-//    
-//    
-//    // Iniseme ritirato
-//    
-//    private static String toStringRitirato(InsiemeRitirato insiemeRitirato) {
-//    	StringBuffer str = new StringBuffer();
-//    	
-//    	for (PropostaRitirata propostaRitirata : insiemeRitirato.getProposteRitirate()) {
-//			str.append(toStringProposta(propostaRitirata)+"\n");
-//		}
-//    	
-//		return str.toString();    	
-//    }
 }

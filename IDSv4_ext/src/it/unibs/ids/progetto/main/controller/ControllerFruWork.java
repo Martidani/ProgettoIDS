@@ -99,14 +99,20 @@ public class ControllerFruWork  {
 		String proposteC =printManager.toStringProposteChiuse();
 		String proposteR =printManager.toStringProposteRitirate();
 		if (!proposteA.isBlank()) {
-			System.out.println(" Proposte Aperte: \n" + proposteA);
+			System.out.println("Proposte Aperte: \n{" + proposteA + "}\n");
 		}
+		else
+			System.out.println("\n{\nNon ci sono Proposte Aperte!\n}\n");
 		if (!proposteC.isBlank()) {
-			System.out.println(" Proposte Chiuse: \n" + proposteC);
+			System.out.println("\nProposte Chiuse: \n{" + proposteC + "}\n");
 		}
+		else
+			System.out.println("\n{\nNon ci sono Proposte Chiuse!\n}\n");
 		if (!proposteR.isBlank()) {
-			System.out.println(" Proposte Ritirate: \n" + proposteR);
+			System.out.println("\nProposte Ritirate: \n{" + proposteR + "}");
 		}
+		else
+			System.out.println("\n{\nNon ci sono Proposte Ritirate!\n}\n");
 		
 	}
 

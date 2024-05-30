@@ -40,7 +40,7 @@ public class ControllerConfWork  {
 		
 		String nome;
 		do {
-			nome = InputDati.leggiStringaNonVuota("Nome: ");
+			nome = InputDati.leggiStringaNonVuota("  Nome: ");
 		} while (model.verificaEsistenzaComprensorio(nome));
 		
 	    Comprensorio comprensorio = new Comprensorio(nome);
@@ -49,7 +49,7 @@ public class ControllerConfWork  {
         String comune;
 
         do {
-            comune = InputDati.leggiStringaNonVuota("  comune -> ");
+            comune = InputDati.leggiStringaNonVuota("  Comune -> ");
             comprensorio.addComune(comune);
         } while (!comune.equalsIgnoreCase("Exit"));
 
@@ -261,8 +261,8 @@ public class ControllerConfWork  {
     public  String stampaFattori( )  {
     	StringBuffer str = new StringBuffer();
     	
-        String foglia = InputDati.leggiStringaNonVuota("Inserisci nome foglia: ");
-        String radice = InputDati.leggiStringaNonVuota("Inserisci radice della gerarchia della foglia: ");
+        String foglia = InputDati.leggiStringaNonVuota("  Inserisci nome foglia: ");
+        String radice = InputDati.leggiStringaNonVuota("  Inserisci radice della gerarchia della foglia: ");
         Leaf nodo = model.visualizzaFoglia(foglia, radice);
         if (nodo == null)
             str.append("  Non è stata trovata nessuna corrispondenza");
@@ -292,14 +292,20 @@ public class ControllerConfWork  {
 		
 		System.out.println();
 		if (!proposteA.isBlank()) {
-			str.append(" Proposte Aperte: \n" + proposteA);
+			str.append("Proposte Aperte: \n{" + proposteA + "}\n");
 		}
+		else
+			str.append("\n{\nNon ci sono Proposte Aperte!\n}\n");
 		if (!proposteC.isBlank()) {
-			str.append(" Proposte Chiuse: \n" + proposteC);
+			str.append("\nProposte Chiuse: \n{" + proposteC + "}\n");
 		}
+		else
+			str.append("\n{\nNon ci sono Proposte Chiuse!\n}\n");
 		if (!proposteR.isBlank()) {
-			str.append(" Proposte Ritirate: \n" + proposteR);
+			str.append("\nProposte Ritirate: \n{" + proposteR + "}");
 		}
+		else
+			str.append("\n{\nNon ci sono Proposte Ritirate!\n}\n");
 		return str.toString();
 	}
 	

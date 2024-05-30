@@ -1,9 +1,9 @@
 package it.unibs.ids.progetto.main.view;
 
-import it.unibs.fp.mylib.MyMenu;
 import it.unibs.ids.progetto.RootTreeException;
 import it.unibs.ids.progetto.main.controller.Controller;
 import it.unibs.ids.progetto.main.controller.ControllerFru;
+import it.unibs.ids.progetto.printer.PrintMenu;
 
 
 public class ViewFru implements View {
@@ -11,11 +11,8 @@ public class ViewFru implements View {
 	private ControllerFru controllerFru;
 	private int scelta;
     
-	private final static String[] vociF = {"Naviga nella gerarchia", "Proponi uno scambio", 
-			"Visualizza proposte", "Ritira Proposte"};
-	private final static String[] vociAccesso = {"Registrazione","Login"};
-	private static MyMenu menuFruitore = new MyMenu("Menu principale fruitore", vociF);
-	private static MyMenu menuAccesso = new MyMenu("Menu accesso fruitore", vociAccesso);
+	private static PrintMenu menuFruitore = PrintMenu.menuFruitore();
+	private static PrintMenu menuAccesso = PrintMenu.menuAccessoF();
     
     public ViewFru(Controller controller) {
         this.controllerFru = (ControllerFru) controller;

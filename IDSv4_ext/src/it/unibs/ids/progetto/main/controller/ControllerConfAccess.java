@@ -35,8 +35,8 @@ public class ControllerConfAccess {
         Configuratore configuratore = new Configuratore();
         String id = configuratore.getID();
         String psswd = configuratore.getPassword();
-        System.out.println("ID di default: " + id);
-        System.out.println("Password di default: " + psswd);
+        System.out.println("  ID di default: " + id);
+        System.out.println("  Password di default: " + psswd);
 
         Credenziali credenziali = new Credenziali(id, psswd);
         configuratore.setCredenziali(credenziali);

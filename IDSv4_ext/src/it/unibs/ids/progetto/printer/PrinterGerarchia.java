@@ -22,17 +22,16 @@ public class PrinterGerarchia {
      */
 	public String toStringGerarchia() {
     	StringBuffer builder = new StringBuffer();
-        
+        builder.append("\n");
         for (Nodo nodo : gerarchia.getRadici())  {
-            builder.append("\n\n");
             try {
                 builder.append(toStringAlbero(new Albero((NotLeaf) nodo)));
+                builder.append("\n\n");
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
-        builder.append("\n\n");
         return builder.toString();     
     }
     
