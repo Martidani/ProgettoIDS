@@ -483,8 +483,12 @@ public class Application {
 
 	}
 
-
-	public static void visualizzaInsiemiChiusi(Commercio commercio, Gerarchia gerarchia) {
+/**
+     * Metodo per visualizzare le proposte di scambio relative a tutti gli insiemi chiusi.
+     * 
+     * @param commercio L'oggetto Commercio utilizzato per gestire le proposte di scambio.
+     */
+	public static void visualizzaInsiemiChiusi(Commercio commercio) {
 				
 		String proposteC =commercio.visualizzaProposteChiuseCommercio();
 		
