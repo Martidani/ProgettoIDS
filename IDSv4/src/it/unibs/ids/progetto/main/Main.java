@@ -131,7 +131,7 @@ public class Main {
 	                    break;
 	                    
 	                case 7:
-	                	Application.visualizzaInsiemiChiusi(commercio, gerarchia);
+	                	Application.visualizzaInsiemiChiusi(commercio);
 	                    break;
 
 	                default:
