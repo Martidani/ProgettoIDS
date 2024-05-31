@@ -1,10 +1,8 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import it.unibs.ids.progetto.Comprensorio;
 
 /**
  * La classe InsiemeAperto rappresenta un insieme di proposte di scambio aperte e in attesa di risposta.

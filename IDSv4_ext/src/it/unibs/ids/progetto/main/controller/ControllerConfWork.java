@@ -290,7 +290,7 @@ public class ControllerConfWork  {
 		String proposteC =printManager.toStringProposteChiuse(foglia);
 		String proposteR =printManager.toStringProposteRitirate(foglia);
 		
-		System.out.println();
+
 		if (!proposteA.isBlank()) {
 			str.append("Proposte Aperte: \n{" + proposteA + "}\n");
 		}
@@ -307,6 +307,20 @@ public class ControllerConfWork  {
 		else
 			str.append("\n{\nNon ci sono Proposte Ritirate!\n}\n");
 		return str.toString();
+	}
+
+	public String visualizzaInsiemiChiusi() {
+		
+		StringBuffer str = new StringBuffer();
+		String proposteC =printManager.visualizzaProposteChiuseCommercio();
+		
+
+		if (!proposteC.isBlank()) {
+			str.append("\nInsiemi Chiusi: " + proposteC);
+
+		}
+		return str.toString();
+		
 	}
 	
 

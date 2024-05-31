@@ -1,10 +1,6 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 
 import java.io.Serializable;
-
-import it.unibs.ids.progetto.Fruitore;
-import it.unibs.ids.progetto.Nodo;
-import it.unibs.ids.progetto.PrestazioneOpera;
 
 /**
  * La classe Proposta rappresenta una proposta di scambio tra due prestazioni.
@@ -121,11 +117,13 @@ public abstract class Proposta implements Serializable {
     public String toString() {
     	StringBuffer str = new StringBuffer();
     	
-    	str.append("Richiesta " + richiesta.toString());
-    	str.append("Offerta " + offerta.toString());
-    	str.append("ID: " + this.getID() + "\n");
+    	str.append("\nID: " + this.getID());
+    	str.append("\n  Richiesta " + this.getRichiesta().toString());
+    	str.append("\n  Offerta " + this.getOfferta().toString());
     	
 		return str.toString();    	
     }
+    
+    
     
 }

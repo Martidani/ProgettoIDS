@@ -1,13 +1,23 @@
-package it.unibs.ids.progetto;
+package it.unibs.ids.progetto.main;
 
 import java.util.ArrayList;
 
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.fp.mylib.MyMenu;
-import it.unibs.ids.progetto.news.Commercio;
-import it.unibs.ids.progetto.news.InsiemeAperto;
-import it.unibs.ids.progetto.news.Proposta;
-import it.unibs.ids.progetto.news.PropostaAperta;
+import it.unibs.ids.progetto.Commercio;
+import it.unibs.ids.progetto.Comprensorio;
+import it.unibs.ids.progetto.Configuratore;
+import it.unibs.ids.progetto.Credenziali;
+import it.unibs.ids.progetto.Fruitore;
+import it.unibs.ids.progetto.Geografia;
+import it.unibs.ids.progetto.Gerarchia;
+import it.unibs.ids.progetto.InsiemeAperto;
+import it.unibs.ids.progetto.NodeNotLeafException;
+import it.unibs.ids.progetto.Nodo;
+import it.unibs.ids.progetto.PrestazioneOpera;
+import it.unibs.ids.progetto.PropostaAperta;
+import it.unibs.ids.progetto.Utente;
+import it.unibs.ids.progetto.Utenza;
 
 /**
  * Questa classe contiene i metodi statici 
@@ -411,13 +421,13 @@ public class Application {
 		String proposteC =commercio.visualizzaProposteChiuse();
 		String proposteR =commercio.visualizzaProposteRitirate();
 		if (!proposteA.isBlank()) {
-			System.out.println(" Proposte Aperte: \n" + proposteA);
+			System.out.println("Proposte Aperte: \n{" + proposteA + "}\n");
 		}
 		if (!proposteC.isBlank()) {
-			System.out.println(" Proposte Chiuse: \n" + proposteC);
+			System.out.println("\nProposte Chiuse: \n{" + proposteC + "}\n");
 		}
 		if (!proposteR.isBlank()) {
-			System.out.println(" Proposte Ritirate: \n" + proposteR);
+			System.out.println( "\nProposte Ritirate: \n{" + proposteR + "}");
 		}
 
 	}
@@ -436,13 +446,13 @@ public class Application {
 		
 		System.out.println();
 		if (!proposteA.isBlank()) {
-			System.out.println(" Proposte Aperte: \n" + proposteA);
+			System.out.println("Proposte Aperte: \n{" + proposteA + "}\n");
 		}
 		if (!proposteC.isBlank()) {
-			System.out.println(" Proposte Chiuse: \n" + proposteC);
+			System.out.println("\nProposte Chiuse: \n{" + proposteC + "}\n");
 		}
 		if (!proposteR.isBlank()) {
-			System.out.println(" Proposte Ritirate: \n" + proposteR);
+			System.out.println("\nProposte Ritirate: \n{" + proposteR + "}");
 		}
 	}
 
@@ -471,6 +481,18 @@ public class Application {
 		else
 			System.out.println("Non ci sono proposte (aperte) ritirabili");
 
+	}
+
+
+	public static void visualizzaInsiemiChiusi(Commercio commercio, Gerarchia gerarchia) {
+				
+		String proposteC =commercio.visualizzaProposteChiuseCommercio();
+		
+		System.out.println();
+		if (!proposteC.isBlank()) {
+			System.out.println(" Insiemi Chiusi: \n" + proposteC);
+		}
+	
 	}
 
 

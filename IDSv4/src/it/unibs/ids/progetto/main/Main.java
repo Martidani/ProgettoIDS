@@ -1,9 +1,19 @@
-package it.unibs.ids.progetto;
+package it.unibs.ids.progetto.main;
 import java.util.ArrayList;
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.fp.mylib.MyMenu;
-import it.unibs.ids.progetto.news.Commercio;
-import it.unibs.ids.progetto.news.InsiemeAperto;
+import it.unibs.ids.progetto.Albero;
+import it.unibs.ids.progetto.Commercio;
+import it.unibs.ids.progetto.Configuratore;
+import it.unibs.ids.progetto.DefaultInitializer;
+import it.unibs.ids.progetto.FileManager;
+import it.unibs.ids.progetto.Fruitore;
+import it.unibs.ids.progetto.Geografia;
+import it.unibs.ids.progetto.Gerarchia;
+import it.unibs.ids.progetto.NodeNotLeafException;
+import it.unibs.ids.progetto.Nodo;
+import it.unibs.ids.progetto.RootTreeException;
+import it.unibs.ids.progetto.Utenza;
 
 /**
  * Classe Main per l'esecuzione del programma.
@@ -15,7 +25,7 @@ public class Main {
     
 	public final static String[] vociC = 
 		{"Introdurre comprensorio geografico", "Introdurre albero", "Visualizza comprensorio", 
-			"Visualizza gerarchia", "Visualizza fattori di conversione", "Visualizza proposte"};
+			"Visualizza gerarchia", "Visualizza fattori di conversione", "Visualizza proposte", "Visualizza insiemi chiusi"};
 	public final static String[] vociF = 
 		{"Naviga nella gerarchia", "Proponi uno scambio", "Visualizza proposte", "Ritira Proposte"};
 	public final static String[] vociAccesso = 
@@ -118,6 +128,10 @@ public class Main {
 	                    
 	                case 6:
 	                	Application.visualizzaProposteFoglia(commercio, gerarchia);
+	                    break;
+	                    
+	                case 7:
+	                	Application.visualizzaInsiemiChiusi(commercio, gerarchia);
 	                    break;
 
 	                default:

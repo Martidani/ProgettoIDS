@@ -46,5 +46,9 @@ public class ControllerConf implements Controller {
 	public String visualizzaProposteFoglia() {
 		return controllerConfWork.visualizzaProposteFoglia();
 	}
+
+	public String visualizzaInsiemiChiusi() {
+		return controllerConfWork.visualizzaInsiemiChiusi();
+	}
 	
 }

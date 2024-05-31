@@ -26,11 +26,14 @@ public class PrintManager {
 	PrinterGeografia geografiaPrinter;
 	PrinterGerarchia gerarchiaPrinter;
 	PrinterCommercio commercioPrinter;
+	PrinterUtenza utenzaPrinter;
 
 	public PrintManager(Model model) {
 		this.geografiaPrinter = new PrinterGeografia(model.getGeografia());
 		this.gerarchiaPrinter = new PrinterGerarchia(model.getGerarchia());;
 		this.commercioPrinter = new PrinterCommercio(model.getCommercio());;
+		this.utenzaPrinter = new PrinterUtenza(model.getUtenza());
+		
 	}
 	
 	
@@ -69,6 +72,12 @@ public class PrintManager {
 
 	public String toStringProposteRitirate(Nodo foglia) {
 		return commercioPrinter.visualizzaProposteRitirate(foglia);
+	}
+
+
+
+	public String visualizzaProposteChiuseCommercio() {
+		return commercioPrinter.visualizzaProposteChiuseCommercio();
 	}
 	 
     

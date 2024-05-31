@@ -1,11 +1,8 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import it.unibs.ids.progetto.Comprensorio;
-import it.unibs.ids.progetto.Fruitore;
-import it.unibs.ids.progetto.Nodo;
 
 /**
  * La classe Commercio gestisce le operazioni di commercio all'interno del sistema.
@@ -393,28 +390,18 @@ public class Commercio implements Serializable {
 }
     
     
-	/**
-	 * Visualizza le proposte chiuse dell'utente di sessione.
-	 * @return Una stringa contenente le proposte chiuse dell'utente di sessione.
-	 */
     public String visualizzaProposteChiuse(){
     	
     	StringBuffer str = new StringBuffer();
     	
-    	for (InsiemeChiuso insiemeChiuso : insiemiChiusi) {
+    	for (InsiemeChiuso insiemeChiuso : getInsiemiChiusi()) {
 			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
 				
-				if (propostaChiusa.getFruitore().getID().equals(utenteDiSessione.getID())) {
+				if (propostaChiusa.getFruitore().getID().equals(this.utenteDiSessione.getID())) {
 					
-					if (insiemeChiuso.getProposteChiuse().get(0)
-							.equals(propostaChiusa)) 
-						str.append("{");
+					str.append(propostaChiusa.toString() + "\n");
 					
-					str.append("\n" + propostaChiusa.toString());
 					
-					if (insiemeChiuso.getProposteChiuse().get(insiemeChiuso.getProposteChiuse().size()-1)
-							.equals(propostaChiusa)) 
-						str.append("}\n\n");
 					
 				}
 			}
@@ -424,58 +411,46 @@ public class Commercio implements Serializable {
   
     }
     
-    /**
-     * Visualizza le proposte ritirate dell'utente di sessione.
-     * @return Una stringa contenente le proposte ritirate dell'utente di sessione.
-     */
     public String visualizzaProposteRitirate(){
     	
     	StringBuffer str = new StringBuffer();
     	
-    	
-    	for (PropostaRitirata propostaRitirata : insiemeRitirato.getProposteRitirate()) {
-    		if (propostaRitirata.getFruitore().getID().equals(utenteDiSessione.getID())) {
+    	for (PropostaRitirata propostaRitirata : this.insiemeRitirato.getProposteRitirate()) {
+    		if (propostaRitirata.getFruitore().getID().equals(this.utenteDiSessione.getID())) {
 				str.append(propostaRitirata.toString()+ "\n");
 			}
 		}
-    	
+
     	
     	return str.toString();
   
     }
     
     
-    /**
-     * Visualizza le proposte aperte dell'utente di sessione.
-     * @return Una stringa contenente le proposte aperte dell'utente di sessione.
-     */
     public String visualizzaProposteAperte(){
     	
     	StringBuffer str = new StringBuffer();
     	
-    	
-    	for (PropostaAperta propostaAperta : getInsiemeApertoDiSessione().getProposteAperte()) {
-			if (propostaAperta.getFruitore().getID().equals(utenteDiSessione.getID())) {
+
+    	for (PropostaAperta propostaAperta : this.getInsiemeApertoDiSessione().getProposteAperte()) {
+			if (propostaAperta.getFruitore().getID().equals(this.utenteDiSessione.getID())) {
 				str.append(propostaAperta.toString()+ "\n");
 			}
 		}
     	
-    	
+
     	return str.toString();
   
     	
     }
     
-    /**
-     * Visualizza le proposte chiuse relative a un nodo specificato.
-     * @param nodo Il nodo di riferimento.
-     * @return Una stringa contenente le proposte chiuse relative al nodo specificato.
-     */
+
     public String visualizzaProposteChiuse(Nodo nodo){
     	
     	StringBuffer str = new StringBuffer();
-    	
-    	for (InsiemeChiuso insiemeChiuso : insiemiChiusi) {
+
+
+    	for (InsiemeChiuso insiemeChiuso : this.insiemiChiusi) {
 			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
 				if 		(propostaChiusa.getOfferta().getFoglia().root().equals(nodo.root()) 
 						&& propostaChiusa.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
@@ -487,22 +462,18 @@ public class Commercio implements Serializable {
 	    		}
 			}
 		}
-    	
+
     	return str.toString();
   
     }
     
-    /**
-     * Visualizza le proposte ritirate relative a un nodo specificato.
-     * @param nodo Il nodo di riferimento.
-     * @return Una stringa contenente le proposte ritirate relative al nodo specificato.
-     */
     public String visualizzaProposteRitirate(Nodo nodo){
     	
     	StringBuffer str = new StringBuffer();
+
+
     	
-    	
-    	for (PropostaRitirata propostaRitirata : insiemeRitirato.getProposteRitirate()) {
+    	for (PropostaRitirata propostaRitirata : this.insiemeRitirato.getProposteRitirate()) {
     		if (propostaRitirata.getOfferta().getFoglia().root().equals(nodo.root()) 
 					&& propostaRitirata.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
 					||
@@ -515,36 +486,52 @@ public class Commercio implements Serializable {
     	
     	
     	
-    	
+
     	return str.toString();
   
     }
     
-    /**
-     * Visualizza le proposte aperte relative a un nodo specificato.
-     * @param nodo Il nodo di riferimento.
-     * @return Una stringa contenente le proposte aperte relative al nodo specificato.
-     */
     public String visualizzaProposteAperte(Nodo nodo){
     	
     	StringBuffer str = new StringBuffer();
-    	
-    	for (InsiemeAperto insiemeAperto : insiemiAperti) {
+
+
+    	for (InsiemeAperto insiemeAperto : getInsiemiAperti()) {
 			for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
 				if (propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
 						&& propostaAperta.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
 						||
 						propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
 						&& propostaAperta.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
-					str.append(propostaAperta.toString()+ "\n");
+					str.append(propostaAperta.toString() + "\n");
 					
 				}
 			}
 		}
-    	
+  
     	return str.toString();
   
     	
     }
-	    
+    
+    public String visualizzaProposteChiuseCommercio(){
+    	
+    	StringBuffer str = new StringBuffer();
+
+
+    	for (InsiemeChiuso insiemeChiuso : this.insiemiChiusi) {
+    		str.append("{");
+			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
+				str.append(propostaChiusa.toString());
+				Fruitore fruitore = propostaChiusa.getFruitore();
+				str.append("\nUtente: " + fruitore.getID() + " - " + fruitore.getIndirizzo() + "\n");
+			}
+    		str.append("}\n");
+		}
+
+    	return str.toString();
+  
+    }
+    
+
 }

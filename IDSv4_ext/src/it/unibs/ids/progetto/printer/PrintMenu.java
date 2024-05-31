@@ -54,7 +54,7 @@ public class PrintMenu {
     final private static String[] vociAccesso =  {"Registrazione","Login"};
     final private static String[] vociC =  {"Introdurre comprensorio geografico", "Introdurre albero", 
     		"Visualizza comprensorio",  "Visualizza gerarchia", "Visualizza fattori di conversione", 
-    		"Visualizza proposte"};
+    		"Visualizza proposte", "Visualizza insiemi chiusi"};
 	final private static String[] vociF = {"Naviga nella gerarchia", "Proponi uno scambio", 
 			"Visualizza proposte", "Ritira Proposte"};
     

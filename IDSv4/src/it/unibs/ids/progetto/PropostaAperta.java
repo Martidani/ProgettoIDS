@@ -1,9 +1,6 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 
 import java.io.Serializable;
-
-import it.unibs.ids.progetto.Fruitore;
-import it.unibs.ids.progetto.PrestazioneOpera;
 
 /**
  * La classe PropostaAperta rappresenta una proposta di scambio che è aperta e in attesa di risposta.

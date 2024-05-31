@@ -60,6 +60,10 @@ public class ViewConf implements View {
             case 6:
             	System.out.println(controllerConf.visualizzaProposteFoglia());
                 break;
+                
+            case 7:
+            	System.out.println(controllerConf.visualizzaInsiemiChiusi());
+                break;
 
             default:
                 break;

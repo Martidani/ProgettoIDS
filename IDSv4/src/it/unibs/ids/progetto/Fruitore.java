@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import it.unibs.ids.progetto.news.Proposta;
-
 /**
  * La classe Fruitore rappresenta un utente con privilegi di configurazione.
  * Estende la classe astratta Utente.

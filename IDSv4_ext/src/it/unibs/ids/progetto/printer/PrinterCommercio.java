@@ -3,6 +3,7 @@ package it.unibs.ids.progetto.printer;
 import it.unibs.ids.progetto.Commercio;
 import it.unibs.ids.progetto.DefaultInitializer;
 import it.unibs.ids.progetto.FileManager;
+import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.InsiemeAperto;
 import it.unibs.ids.progetto.InsiemeChiuso;
 import it.unibs.ids.progetto.InsiemeRitirato;
@@ -166,4 +167,23 @@ public class PrinterCommercio {
   
     	
     }
+
+	public String visualizzaProposteChiuseCommercio() {
+    	StringBuffer str = new StringBuffer();
+
+
+    	for (InsiemeChiuso insiemeChiuso : this.commercio.getInsiemiChiusi()) {
+    		str.append("\n{");
+			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
+				str.append(toStringProposta(propostaChiusa));
+				Fruitore fruitore = propostaChiusa.getFruitore();
+				str.append(PrinterUtenza.toStringFruitore(fruitore));
+			}
+    		str.append("}\n");
+		}
+
+    	return str.toString();
+  
+    }
+	
 }

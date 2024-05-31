@@ -1,9 +1,5 @@
 package it.unibs.ids.progetto;
 
-import it.unibs.ids.progetto.news.Commercio;
-import it.unibs.ids.progetto.news.InsiemeAperto;
-import it.unibs.ids.progetto.news.PropostaAperta;
-
 /**
  * Classe per l'inizializzazione predefinita del sistema.
  * 
@@ -265,7 +261,7 @@ public class DefaultInitializer {
         				DEFAULT_F2_EMAIL);
         Credenziali credF3 = new Credenziali(DEFAULT_F3_USERNAME, DEFAULT_F3_PASSWORD);
         Fruitore fruitore3 = 
-        		new Fruitore(geografia.getGeografia().get(2), credF3, 
+        		new Fruitore(geografia.getGeografia().get(0), credF3, 
         				DEFAULT_F3_EMAIL);
         utenza.addUtente(fruitore1);
         utenza.addUtente(fruitore2);
@@ -319,8 +315,8 @@ public class DefaultInitializer {
 		PrestazioneOpera o00 = new PrestazioneOpera(gerarchia.getFoglie().get(1));
 		PropostaAperta proposta00 = new PropostaAperta(r00, o00, commercio.numProposte(),fruitore0);
 		
-    	PrestazioneOpera r01 = new PrestazioneOpera(gerarchia.getFoglie().get(1), COMMERCIO_VAL_01);
-    	PrestazioneOpera o01 = new PrestazioneOpera(gerarchia.getFoglie().get(2));
+		PrestazioneOpera r01 = new PrestazioneOpera(gerarchia.getFoglie().get(3), COMMERCIO_VAL_10);
+		PrestazioneOpera o01 = new PrestazioneOpera(gerarchia.getFoglie().get(1));
 		PropostaAperta proposta01 = new PropostaAperta(r01, o01, commercio.numProposte(),fruitore0);
 	
 		PrestazioneOpera r02 = new PrestazioneOpera(gerarchia.getFoglie().get(2), COMMERCIO_VAL_02);
@@ -355,18 +351,26 @@ public class DefaultInitializer {
 		insiemeAperto0.addPropostaAperta(proposta05);
 		insiemeAperto0.addPropostaAperta(proposta06);
 		insiemeAperto0.addPropostaAperta(proposta07);
+ 
+		
+    	Fruitore fruitore2 = (Fruitore)utenza.getUtenti().get(4);
+    	commercio.setUtenteDiSessione(fruitore2);
+    	
+    	PrestazioneOpera r10 = new PrestazioneOpera(gerarchia.getFoglie().get(1), COMMERCIO_VAL_01);
+    	PrestazioneOpera o10 = new PrestazioneOpera(gerarchia.getFoglie().get(2));
+		PropostaAperta proposta10 = new PropostaAperta(r10, o10, commercio.numProposte(),fruitore2);
+		
+		insiemeAperto0.addPropostaAperta(proposta10);
 		
 		commercio.addInsiemiAperti(insiemeAperto0);
-		commercio.cercaProposteChiudibili(insiemeAperto0);  
-		
+		commercio.cercaProposteChiudibili(insiemeAperto0); 
 		
     	Fruitore fruitore1 = (Fruitore)utenza.getUtenti().get(3);
     	commercio.setUtenteDiSessione(fruitore1);
     	InsiemeAperto insiemeAperto1 = new InsiemeAperto(fruitore1.getComprensorioAppartenenza());
 
-		PrestazioneOpera r10 = new PrestazioneOpera(gerarchia.getFoglie().get(3), COMMERCIO_VAL_10);
-		PrestazioneOpera o10 = new PrestazioneOpera(gerarchia.getFoglie().get(1));
-		PropostaAperta proposta10 = new PropostaAperta(r10, o10, commercio.numProposte(),fruitore1);
+		
+
 		
     	PrestazioneOpera r11 = new PrestazioneOpera(gerarchia.getFoglie().get(4), COMMERCIO_VAL_11);
     	PrestazioneOpera o11 = new PrestazioneOpera(gerarchia.getFoglie().get(2));
@@ -397,7 +401,7 @@ public class DefaultInitializer {
 		PropostaAperta proposta17 = new PropostaAperta(r17, o17, commercio.numProposte(),fruitore1);
 
 		
-		insiemeAperto1.addPropostaAperta(proposta10);		
+		
 		insiemeAperto1.addPropostaAperta(proposta11);
 		insiemeAperto1.addPropostaAperta(proposta12);
 		insiemeAperto1.addPropostaAperta(proposta13);		
