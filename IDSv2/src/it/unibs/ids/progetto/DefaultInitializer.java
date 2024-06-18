@@ -1,7 +1,5 @@
 package it.unibs.ids.progetto;
 
-import it.unibs.ids.progetto.news.Fruitore;
-
 /**
  * Classe per l'inizializzazione predefinita del sistema.
  * 

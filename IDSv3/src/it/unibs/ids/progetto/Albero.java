@@ -2,6 +2,8 @@ package it.unibs.ids.progetto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import it.unibs.ids.progetto.ecccezioni.RootTreeException;
 /**
  * Questa classe rappresenta un albero gerarchico, composto da nodi, utilizzato per la gestione delle notizie.
  * Ogni albero ha una radice, foglie e un utente associato.

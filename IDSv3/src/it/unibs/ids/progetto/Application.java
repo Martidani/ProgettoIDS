@@ -3,6 +3,7 @@ package it.unibs.ids.progetto;
 import java.util.ArrayList;
 
 import it.unibs.fp.mylib.InputDati;
+import it.unibs.ids.progetto.ecccezioni.NodeNotLeafException;
 
 /**
  * Questa classe contiene i metodi statici 

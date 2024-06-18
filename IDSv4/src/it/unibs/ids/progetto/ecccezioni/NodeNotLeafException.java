@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto;
+package it.unibs.ids.progetto.ecccezioni;
 
 /**
  * Eccezione lanciata quando un nodo non è una foglia.

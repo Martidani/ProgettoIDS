@@ -1,11 +1,4 @@
-package it.unibs.ids.progetto.news;
-
-import it.unibs.ids.progetto.Comprensorio;
-import it.unibs.ids.progetto.Configuratore;
-import it.unibs.ids.progetto.Credenziali;
-import it.unibs.ids.progetto.Gerarchia;
-import it.unibs.ids.progetto.Utenza;
-import it.unibs.ids.progetto.Nodo;
+package it.unibs.ids.progetto;
 
 /**
  * Classe per l'inizializzazione predefinita del sistema.

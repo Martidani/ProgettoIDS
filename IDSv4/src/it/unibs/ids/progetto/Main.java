@@ -1,19 +1,9 @@
-package it.unibs.ids.progetto.main;
+package it.unibs.ids.progetto;
 import java.util.ArrayList;
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.fp.mylib.MyMenu;
-import it.unibs.ids.progetto.Albero;
-import it.unibs.ids.progetto.Commercio;
-import it.unibs.ids.progetto.Configuratore;
-import it.unibs.ids.progetto.DefaultInitializer;
-import it.unibs.ids.progetto.FileManager;
-import it.unibs.ids.progetto.Fruitore;
-import it.unibs.ids.progetto.Geografia;
-import it.unibs.ids.progetto.Gerarchia;
-import it.unibs.ids.progetto.NodeNotLeafException;
-import it.unibs.ids.progetto.Nodo;
-import it.unibs.ids.progetto.RootTreeException;
-import it.unibs.ids.progetto.Utenza;
+import it.unibs.ids.progetto.ecccezioni.NodeNotLeafException;
+import it.unibs.ids.progetto.ecccezioni.RootTreeException;
 
 /**
  * Classe Main per l'esecuzione del programma.

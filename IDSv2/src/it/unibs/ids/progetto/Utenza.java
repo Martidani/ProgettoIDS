@@ -3,8 +3,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
-import it.unibs.ids.progetto.news.Fruitore;
-
 /**
  * La classe Utenza gestisce gli utenti nel sistema.
  * 

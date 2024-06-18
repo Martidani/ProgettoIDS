@@ -1,23 +1,10 @@
-package it.unibs.ids.progetto.main;
+package it.unibs.ids.progetto;
 
 import java.util.ArrayList;
 
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.fp.mylib.MyMenu;
-import it.unibs.ids.progetto.Commercio;
-import it.unibs.ids.progetto.Comprensorio;
-import it.unibs.ids.progetto.Configuratore;
-import it.unibs.ids.progetto.Credenziali;
-import it.unibs.ids.progetto.Fruitore;
-import it.unibs.ids.progetto.Geografia;
-import it.unibs.ids.progetto.Gerarchia;
-import it.unibs.ids.progetto.InsiemeAperto;
-import it.unibs.ids.progetto.NodeNotLeafException;
-import it.unibs.ids.progetto.Nodo;
-import it.unibs.ids.progetto.PrestazioneOpera;
-import it.unibs.ids.progetto.PropostaAperta;
-import it.unibs.ids.progetto.Utente;
-import it.unibs.ids.progetto.Utenza;
+import it.unibs.ids.progetto.ecccezioni.NodeNotLeafException;
 
 /**
  * Questa classe contiene i metodi statici 

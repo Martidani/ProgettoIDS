@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto;
+package it.unibs.ids.progetto.ecccezioni;
 
 
 public class NodeNotLeafException extends Exception {

@@ -3,8 +3,7 @@ package it.unibs.ids.progetto;
 import java.util.ArrayList;
 
 import it.unibs.fp.mylib.InputDati;
-import it.unibs.ids.progetto.news.Geografia;
-import it.unibs.ids.progetto.news.ecccezioni.ConfLoginFailException;
+import it.unibs.ids.progetto.ecccezioni.ConfLoginFailException;
 /**
  * Questa classe contiene i metodi statici 
  * necessari all'esecuzione del sistema

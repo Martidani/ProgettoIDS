@@ -4,7 +4,14 @@
     <eAnnotations xmi:id="_LwZE4BwMEe-urICxG0GjCg" source="http://ns.yatta.de/umllab">
       <contents xmi:type="ecore:EAnnotation" xmi:id="_LwZE4RwMEe-urICxG0GjCg" source="codegen">
         <details xmi:id="_LwZE4hwMEe-urICxG0GjCg" key="codegenDirectory" value="/IDSv2/src"/>
-        <details xmi:id="_NcSmABwMEe-urICxG0GjCg" key="AssociatedSourceCode" value="/IDSv2/src/it/unibs/fp/mylib/Estrattore.java;3055183081/1;/IDSv2/src/it/unibs/fp/mylib/InputDati.java;2071489935/1;/IDSv2/src/it/unibs/fp/mylib/MyMenu.java;1580912307/1;/IDSv2/src/it/unibs/ids/progetto/Albero.java;2054853043/1;/IDSv2/src/it/unibs/ids/progetto/Application.java;3041122250/1;/IDSv2/src/it/unibs/ids/progetto/Comprensorio.java;599848612/1;/IDSv2/src/it/unibs/ids/progetto/ConfLoginFailException.java;2375719345/1;/IDSv2/src/it/unibs/ids/progetto/Configuratore.java;3875704838/1;/IDSv2/src/it/unibs/ids/progetto/Credenziali.java;2873885030/1;/IDSv2/src/it/unibs/ids/progetto/DefaultInitializer.java;2045164454/1;/IDSv2/src/it/unibs/ids/progetto/FileManager.java;892677119/1;/IDSv2/src/it/unibs/ids/progetto/Geografia.java;3726938178/1;/IDSv2/src/it/unibs/ids/progetto/Gerarchia.java;3039619609/1;/IDSv2/src/it/unibs/ids/progetto/LeafHasChildrenException.java;1006233490/1;/IDSv2/src/it/unibs/ids/progetto/Main.java;1870911521/1;/IDSv2/src/it/unibs/ids/progetto/Nodo.java;1036907197/1;/IDSv2/src/it/unibs/ids/progetto/RootTreeException.java;256906465/1;/IDSv2/src/it/unibs/ids/progetto/Utente.java;2557043437/1;/IDSv2/src/it/unibs/ids/progetto/Utenza.java;3911254774/1;/IDSv2/src/it/unibs/ids/progetto/news/Fruitore.java;1563408009/1;"/>
+        <details xmi:id="_NcSmABwMEe-urICxG0GjCg" key="AssociatedSourceCode" value="/IDSv2/src/it/unibs/fp/mylib/Estrattore.java;638984309/1;/IDSv2/src/it/unibs/fp/mylib/InputDati.java;2071489935/1;/IDSv2/src/it/unibs/fp/mylib/MyMenu.java;1580912307/1;/IDSv2/src/it/unibs/ids/progetto/Albero.java;3251661835/1;/IDSv2/src/it/unibs/ids/progetto/Application.java;3225754794/1;/IDSv2/src/it/unibs/ids/progetto/Comprensorio.java;599848612/1;/IDSv2/src/it/unibs/ids/progetto/Configuratore.java;3875704838/1;/IDSv2/src/it/unibs/ids/progetto/Credenziali.java;2873885030/1;/IDSv2/src/it/unibs/ids/progetto/DefaultInitializer.java;233584624/1;/IDSv2/src/it/unibs/ids/progetto/FileManager.java;892677119/1;/IDSv2/src/it/unibs/ids/progetto/Geografia.java;3726938178/1;/IDSv2/src/it/unibs/ids/progetto/Gerarchia.java;3039619609/1;/IDSv2/src/it/unibs/ids/progetto/Main.java;2489173553/1;/IDSv2/src/it/unibs/ids/progetto/Nodo.java;2535052529/1;/IDSv2/src/it/unibs/ids/progetto/Utente.java;2557043437/1;/IDSv2/src/it/unibs/ids/progetto/Utenza.java;3451914576/1;/IDSv2/src/it/unibs/ids/progetto/Fruitore.java;2129056483/1;/IDSv2/src/it/unibs/ids/progetto/ecccezioni/ConfLoginFailException.java;3039340679/1;/IDSv2/src/it/unibs/ids/progetto/ecccezioni/LeafHasChildrenException.java;2894025989/1;/IDSv2/src/it/unibs/ids/progetto/ecccezioni/RootTreeException.java;2074741084/1;"/>
+      </contents>
+      <contents xmi:type="ecore:EAnnotation" xmi:id="_swIWYC1lEe-8Nr2H9gftQA" source="preferences">
+        <contents xmi:type="ecore:EAnnotation" xmi:id="_swIWYS1lEe-8Nr2H9gftQA" source="com.yattasolutions.codegen.reverse">
+          <details xmi:id="_swIWYi1lEe-8Nr2H9gftQA" key="com.yattasolutions.codegen.reverse.roundtrip.ReverseEngineerNewFiles" value="true"/>
+          <details xmi:id="_swIWYy1lEe-8Nr2H9gftQA" key="com.yattasolutions.codegen.reverse.roundtrip.RemoveDeletedFiles" value="true"/>
+          <details xmi:id="_swIWZC1lEe-8Nr2H9gftQA" key="com.yattasolutions.codegen.reverse.roundtrip.ReverseEngineerChangedFiles" value="true"/>
+        </contents>
       </contents>
     </eAnnotations>
     <elementImport xmi:id="_MA17sBwMEe-urICxG0GjCg">
@@ -39,7 +46,7 @@
         <packagedElement xmi:type="uml:Package" xmi:id="_MAD4khwMEe-urICxG0GjCg" name="fp">
           <packagedElement xmi:type="uml:Package" xmi:id="_MAFtwBwMEe-urICxG0GjCg" name="mylib">
             <packagedElement xmi:type="uml:Class" xmi:id="_MA0tkBwMEe-urICxG0GjCg" name="Estrattore">
-              <ownedComment xmi:id="_MFKbABwMEe-urICxG0GjCg">
+              <ownedComment xmi:id="_tEdAkC1lEe-8Nr2H9gftQA">
                 <body>Classe per generare Numeri Casuali
 
 Autore: Daniele Martinelli e Federico Sabbadini</body>
@@ -55,6 +62,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_ME-00xwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
                 </ownedParameter>
                 <language>java</language>
@@ -71,6 +79,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_ME_b4xwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
                 </ownedParameter>
                 <language>java</language>
@@ -90,6 +99,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_ME_b5xwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <language>java</language>
@@ -104,9 +114,6 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
 	</body>
               </ownedBehavior>
               <ownedOperation xmi:id="_MA2iwBwMEe-urICxG0GjCg" name="estraiIntero" isStatic="true" method="_ME-00BwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFLCEBwMEe-urICxG0GjCg">
-                  <body>Metodo per estrarre un numero int tra min e max</body>
-                </ownedComment>
                 <ownedParameter xmi:id="_MA2iwRwMEe-urICxG0GjCg" name="min">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
                 </ownedParameter>
@@ -118,9 +125,6 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MA3J0BwMEe-urICxG0GjCg" name="estraiDouble" isStatic="true" method="_ME_b4BwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFLCERwMEe-urICxG0GjCg">
-                  <body>Metodo per estrarre un numero double tra min e max</body>
-                </ownedComment>
                 <ownedParameter xmi:id="_MA3J0RwMEe-urICxG0GjCg" name="min">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
                 </ownedParameter>
@@ -132,10 +136,6 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MA3J1BwMEe-urICxG0GjCg" name="estraiString" isStatic="true" method="_ME_b5BwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFLCEhwMEe-urICxG0GjCg">
-                  <body>Metodo per estrarre una stringa di una certa 
-	 * lunghezza, tra un insieme di caratteri</body>
-                </ownedComment>
                 <ownedParameter xmi:id="_MA3J1RwMEe-urICxG0GjCg" name="lista">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
@@ -797,97 +797,9 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_MAKmQBwMEe-urICxG0GjCg" name="ids">
           <packagedElement xmi:type="uml:Package" xmi:id="_MAL0YBwMEe-urICxG0GjCg" name="progetto">
-            <packagedElement xmi:type="uml:Package" xmi:id="_MAMbcBwMEe-urICxG0GjCg" name="news">
-              <packagedElement xmi:type="uml:Class" xmi:id="_MBrpMBwMEe-urICxG0GjCg" name="Fruitore">
-                <ownedComment xmi:id="_MFNeZRwMEe-urICxG0GjCg">
-                  <body>La classe Configuratore rappresenta un utente con privilegi di configurazione.
-Estende la classe astratta Utente.
-
-Autore: Daniele Martinelli e Federico Sabbadini</body>
-                </ownedComment>
-                <generalization xmi:id="_MEN_1xwMEe-urICxG0GjCg" general="_MBmwsBwMEe-urICxG0GjCg"/>
-                <ownedAttribute xmi:id="_ME8_oRwMEe-urICxG0GjCg" name="serialVersionUID" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
-                  <defaultValue xmi:type="uml:LiteralString" xmi:id="_ME8_ohwMEe-urICxG0GjCg" value="1L"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_ME9msBwMEe-urICxG0GjCg" name="TIPOUTENTE" isLeaf="true" isStatic="true" isReadOnly="true">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
-                  <defaultValue xmi:type="uml:LiteralString" xmi:id="_ME9msRwMEe-urICxG0GjCg" value="'f'"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_ME9mshwMEe-urICxG0GjCg" name="indirizzo" isReadOnly="true">
-                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                </ownedAttribute>
-                <ownedAttribute xmi:id="_ME9msxwMEe-urICxG0GjCg" name="comprensorioAppartenenza" type="_MBIPkBwMEe-urICxG0GjCg" association="_MFOFYBwMEe-urICxG0GjCg"/>
-                <interfaceRealization xmi:id="_MEhh0RwMEe-urICxG0GjCg" client="_MBrpMBwMEe-urICxG0GjCg" supplier="_MD6d0BwMEe-urICxG0GjCg" contract="_MD6d0BwMEe-urICxG0GjCg"/>
-                <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFJz8BwMEe-urICxG0GjCg" name="Fruitore" specification="_MEN_0BwMEe-urICxG0GjCg">
-                  <ownedParameter xmi:id="_MFJz8RwMEe-urICxG0GjCg" name="comprensorioAppartenenza" type="_MBIPkBwMEe-urICxG0GjCg"/>
-                  <ownedParameter xmi:id="_MFJz8hwMEe-urICxG0GjCg" name="credenziali" type="_MBMhABwMEe-urICxG0GjCg"/>
-                  <ownedParameter xmi:id="_MFJz8xwMEe-urICxG0GjCg" name="indirizzo">
-                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                  </ownedParameter>
-                  <ownedParameter xmi:id="_MFJz9BwMEe-urICxG0GjCg" type="_MBrpMBwMEe-urICxG0GjCg" direction="return"/>
-                  <language>java</language>
-                  <body>super(TIPOUTENTE, credenziali);
-     this.indirizzo = indirizzo;
-     this.comprensorioAppartenenza = comprensorioAppartenenza;
-     setIsDefinitivo(true);
- </body>
-                </ownedBehavior>
-                <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFJz9RwMEe-urICxG0GjCg" name="setIndirizzo" specification="_MBs3UBwMEe-urICxG0GjCg">
-                  <ownedParameter xmi:id="_MFJz9hwMEe-urICxG0GjCg" name="indirizzo">
-                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                  </ownedParameter>
-                  <language>java</language>
-                  <body>this.indirizzo = indirizzo;
- </body>
-                </ownedBehavior>
-                <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFJz9xwMEe-urICxG0GjCg" name="setIsDefinitivo" specification="_MBs3UhwMEe-urICxG0GjCg">
-                  <ownedParameter xmi:id="_MFJz-BwMEe-urICxG0GjCg" name="x">
-                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
-                  </ownedParameter>
-                  <language>java</language>
-                  <body>this.credenziali.setDefinitive(x);
- </body>
-                </ownedBehavior>
-                <ownedOperation xmi:id="_MBs3UBwMEe-urICxG0GjCg" name="setIndirizzo" method="_MFJz9RwMEe-urICxG0GjCg">
-                  <ownedComment xmi:id="_MFOFYxwMEe-urICxG0GjCg">
-                    <body>Imposta l'indirizzo del fruitore.
-     * 
-     * @param indirizzo Il nuovo indirizzo del fruitore</body>
-                  </ownedComment>
-                  <ownedParameter xmi:id="_MBs3URwMEe-urICxG0GjCg" name="indirizzo">
-                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                  </ownedParameter>
-                </ownedOperation>
-                <ownedOperation xmi:id="_MBs3UhwMEe-urICxG0GjCg" name="setIsDefinitivo" method="_MFJz9xwMEe-urICxG0GjCg">
-                  <ownedParameter xmi:id="_MBs3UxwMEe-urICxG0GjCg" name="x">
-                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
-                  </ownedParameter>
-                </ownedOperation>
-                <ownedOperation xmi:id="_MEN_0BwMEe-urICxG0GjCg" name="Fruitore" method="_MFJz8BwMEe-urICxG0GjCg">
-                  <eAnnotations xmi:id="_MEN_1BwMEe-urICxG0GjCg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-                    <details xmi:id="_MEN_1RwMEe-urICxG0GjCg" key="create"/>
-                  </eAnnotations>
-                  <ownedComment xmi:id="_MFOFYhwMEe-urICxG0GjCg">
-                    <body>Costruttore della classe Fruitore.
-     * Crea un nuovo fruitore con le credenziali specificate.
-     * 
-     * @param credenziali Le credenziali associate al fruitore</body>
-                  </ownedComment>
-                  <ownedParameter xmi:id="_MEN_0RwMEe-urICxG0GjCg" name="comprensorioAppartenenza" type="_MBIPkBwMEe-urICxG0GjCg"/>
-                  <ownedParameter xmi:id="_MEN_0hwMEe-urICxG0GjCg" name="credenziali" type="_MBMhABwMEe-urICxG0GjCg"/>
-                  <ownedParameter xmi:id="_MEN_0xwMEe-urICxG0GjCg" name="indirizzo">
-                    <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
-                  </ownedParameter>
-                  <ownedParameter xmi:id="_MEN_1hwMEe-urICxG0GjCg" type="_MBrpMBwMEe-urICxG0GjCg" direction="return"/>
-                </ownedOperation>
-              </packagedElement>
-              <packagedElement xmi:type="uml:Association" xmi:id="_MFOFYBwMEe-urICxG0GjCg" name="" memberEnd="_ME9msxwMEe-urICxG0GjCg _MFOFYRwMEe-urICxG0GjCg">
-                <ownedEnd xmi:id="_MFOFYRwMEe-urICxG0GjCg" name="" type="_MBrpMBwMEe-urICxG0GjCg" association="_MFOFYBwMEe-urICxG0GjCg"/>
-              </packagedElement>
-            </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="_MAMbcBwMEe-urICxG0GjCg" name="news"/>
             <packagedElement xmi:type="uml:Class" xmi:id="_MBA60BwMEe-urICxG0GjCg" name="Albero">
-              <ownedComment xmi:id="_MFLpIBwMEe-urICxG0GjCg">
+              <ownedComment xmi:id="_uv2U_i1xEe-8Nr2H9gftQA">
                 <body>Questa classe rappresenta un albero gerarchico, composto da nodi, utilizzato per la gestione delle notizie.
 Ogni albero ha una radice, foglie e un utente associato.
 
@@ -899,12 +811,14 @@ Ogni albero ha una radice, foglie e un utente associato.
                 <defaultValue xmi:type="uml:LiteralString" xmi:id="_MErS0hwMEe-urICxG0GjCg" value="1L"/>
               </ownedAttribute>
               <ownedAttribute xmi:id="_MErS0xwMEe-urICxG0GjCg" name="radice" type="_MBeN0BwMEe-urICxG0GjCg" isReadOnly="true" association="_MFS94RwMEe-urICxG0GjCg"/>
-              <ownedAttribute xmi:id="_MErS1BwMEe-urICxG0GjCg" name="foglie" type="_MD7E4BwMEe-urICxG0GjCg" isReadOnly="true" association="_MFS95BwMEe-urICxG0GjCg"/>
               <ownedAttribute xmi:id="_MEr54RwMEe-urICxG0GjCg" name="utente" type="_MBmwsBwMEe-urICxG0GjCg" association="_MFLpIRwMEe-urICxG0GjCg"/>
+              <ownedAttribute xmi:id="_7ooL8C12Ee-8Nr2H9gftQA" name="utente_1_1_1" visibility="public" type="_MBYHMBwMEe-urICxG0GjCg" association="_7ooL8S12Ee-8Nr2H9gftQA"/>
               <interfaceRealization xmi:id="_MEUGcBwMEe-urICxG0GjCg" client="_MBA60BwMEe-urICxG0GjCg" supplier="_MD6d0BwMEe-urICxG0GjCg" contract="_MD6d0BwMEe-urICxG0GjCg"/>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFBRGBwMEe-urICxG0GjCg" name="Albero" specification="_MD7r8BwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFBRGRwMEe-urICxG0GjCg" name="radice" type="_MBeN0BwMEe-urICxG0GjCg"/>
-                <ownedParameter xmi:id="_MFBRGhwMEe-urICxG0GjCg" type="_MBA60BwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFBRGhwMEe-urICxG0GjCg" type="_MBA60BwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>if (radice.root()!=null) throw new RootTreeException();
      this.foglie = new ArrayList&lt;Nodo>();
@@ -926,6 +840,7 @@ Ogni albero ha una radice, foglie e un utente associato.
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFBRHRwMEe-urICxG0GjCg" name="toString" specification="_MBBh4BwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFBRHhwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <language>java</language>
@@ -959,7 +874,7 @@ Ogni albero ha una radice, foglie e un utente associato.
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
               </ownedOperation>
-              <ownedOperation xmi:id="_MD7r8BwMEe-urICxG0GjCg" name="Albero" method="_MFBRGBwMEe-urICxG0GjCg" raisedException="_MBmJoBwMEe-urICxG0GjCg">
+              <ownedOperation xmi:id="_MD7r8BwMEe-urICxG0GjCg" name="Albero" method="_MFBRGBwMEe-urICxG0GjCg" raisedException="_uvYa5S1xEe-8Nr2H9gftQA">
                 <eAnnotations xmi:id="_MD7r8hwMEe-urICxG0GjCg" source="http://www.eclipse.org/uml2/2.0.0/UML">
                   <details xmi:id="_MD7r8xwMEe-urICxG0GjCg" key="create"/>
                 </eAnnotations>
@@ -978,7 +893,7 @@ Ogni albero ha una radice, foglie e un utente associato.
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_MBElMBwMEe-urICxG0GjCg" name="Application">
-              <ownedComment xmi:id="_MFLpIxwMEe-urICxG0GjCg">
+              <ownedComment xmi:id="_qFjwEC1xEe-8Nr2H9gftQA">
                 <body>Questa classe contiene i metodi statici 
 necessari all'esecuzione del sistema
 
@@ -1022,7 +937,9 @@ necessari all'esecuzione del sistema
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFB4JRwMEe-urICxG0GjCg" name="primoAccesso" specification="_MD86FRwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFB4JhwMEe-urICxG0GjCg" name="utenza" type="_MBpM8BwMEe-urICxG0GjCg"/>
-                <ownedParameter xmi:id="_MFB4JxwMEe-urICxG0GjCg" type="_MBMhABwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFB4JxwMEe-urICxG0GjCg" type="_MBMhABwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>String ID;
 	    do {
@@ -1040,6 +957,7 @@ necessari all'esecuzione del sistema
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_MFB4KxwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
                 </ownedParameter>
                 <language>java</language>
@@ -1068,6 +986,7 @@ necessari all'esecuzione del sistema
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_MFB4MRwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
                 </ownedParameter>
                 <language>java</language>
@@ -1120,7 +1039,9 @@ necessari all'esecuzione del sistema
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFCfMBwMEe-urICxG0GjCg" name="creaRadice" specification="_MD-IMhwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFCfMRwMEe-urICxG0GjCg" name="gerarchia" type="_MBYHMBwMEe-urICxG0GjCg"/>
-                <ownedParameter xmi:id="_MFCfMhwMEe-urICxG0GjCg" type="_MBeN0BwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFCfMhwMEe-urICxG0GjCg" type="_MBeN0BwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>String radice;
 	    do {
@@ -1155,7 +1076,7 @@ necessari all'esecuzione del sistema
                 <ownedParameter xmi:id="_MFCfNhwMEe-urICxG0GjCg" name="nodoParent" type="_MBeN0BwMEe-urICxG0GjCg"/>
                 <ownedParameter xmi:id="_MFCfNxwMEe-urICxG0GjCg" name="gerarchia" type="_MBYHMBwMEe-urICxG0GjCg"/>
                 <ownedParameter xmi:id="_MFCfOBwMEe-urICxG0GjCg" name="radice" type="_MBeN0BwMEe-urICxG0GjCg"/>
-                <ownedParameter xmi:id="_MFCfORwMEe-urICxG0GjCg" name="foglieAttuali" type="_MD7E4BwMEe-urICxG0GjCg"/>
+                <ownedParameter xmi:id="_MFCfORwMEe-urICxG0GjCg" name="foglieAttuali"/>
                 <language>java</language>
                 <body>int numFigli = 0;
 	    do {
@@ -1196,7 +1117,9 @@ necessari all'esecuzione del sistema
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_MFCfPBwMEe-urICxG0GjCg" name="radice" type="_MBeN0BwMEe-urICxG0GjCg"/>
-                <ownedParameter xmi:id="_MFCfPRwMEe-urICxG0GjCg" type="_MBeN0BwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFCfPRwMEe-urICxG0GjCg" type="_MBeN0BwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>String campo = InputDati.leggiStringaNonVuota(&quot;Campo -> &quot;);
 	    Nodo nodoChild = new Nodo(nome, radice.getNome(), campo);
@@ -1208,7 +1131,7 @@ necessari all'esecuzione del sistema
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFCfPhwMEe-urICxG0GjCg" name="creaFattoriConversione" specification="_MEWisRwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFCfPxwMEe-urICxG0GjCg" name="gerarchia" type="_MBYHMBwMEe-urICxG0GjCg"/>
-                <ownedParameter xmi:id="_MFCfQBwMEe-urICxG0GjCg" name="foglieAttuali" type="_MD7E4BwMEe-urICxG0GjCg"/>
+                <ownedParameter xmi:id="_MFCfQBwMEe-urICxG0GjCg" name="foglieAttuali"/>
                 <language>java</language>
                 <body>System.out.println(&quot;\nInserimento fattori di conversione:&quot;);
      do {
@@ -1233,7 +1156,9 @@ necessari all'esecuzione del sistema
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_MFCfQxwMEe-urICxG0GjCg" name="gerarchia" type="_MBYHMBwMEe-urICxG0GjCg"/>
-                <ownedParameter xmi:id="_MFCfRBwMEe-urICxG0GjCg" type="_MBeN0BwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFCfRBwMEe-urICxG0GjCg" type="_MBeN0BwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>Nodo nodo;
 	    do {
@@ -1248,6 +1173,7 @@ necessari all'esecuzione del sistema
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFCfRRwMEe-urICxG0GjCg" name="chiediFattoreConversione" specification="_MD_WUBwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFCfRhwMEe-urICxG0GjCg" name="gerarchia" type="_MBYHMBwMEe-urICxG0GjCg"/>
                 <ownedParameter xmi:id="_MFCfRxwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
                 </ownedParameter>
                 <language>java</language>
@@ -1364,11 +1290,11 @@ necessari all'esecuzione del sistema
                 <ownedParameter xmi:id="_MEV7oRwMEe-urICxG0GjCg" name="nodoParent" type="_MBeN0BwMEe-urICxG0GjCg"/>
                 <ownedParameter xmi:id="_MEV7ohwMEe-urICxG0GjCg" name="gerarchia" type="_MBYHMBwMEe-urICxG0GjCg"/>
                 <ownedParameter xmi:id="_MEV7oxwMEe-urICxG0GjCg" name="radice" type="_MBeN0BwMEe-urICxG0GjCg"/>
-                <ownedParameter xmi:id="_MEV7pBwMEe-urICxG0GjCg" name="foglieAttuali" type="_MD7E4BwMEe-urICxG0GjCg"/>
+                <ownedParameter xmi:id="_MEV7pBwMEe-urICxG0GjCg" name="foglieAttuali"/>
               </ownedOperation>
               <ownedOperation xmi:id="_MEWisRwMEe-urICxG0GjCg" name="creaFattoriConversione" isStatic="true" method="_MFCfPhwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MEWishwMEe-urICxG0GjCg" name="gerarchia" type="_MBYHMBwMEe-urICxG0GjCg"/>
-                <ownedParameter xmi:id="_MEWisxwMEe-urICxG0GjCg" name="foglieAttuali" type="_MD7E4BwMEe-urICxG0GjCg"/>
+                <ownedParameter xmi:id="_MEWisxwMEe-urICxG0GjCg" name="foglieAttuali"/>
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_MBIPkBwMEe-urICxG0GjCg" name="Comprensorio">
@@ -1386,7 +1312,6 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               <ownedAttribute xmi:id="_MEtIABwMEe-urICxG0GjCg" name="nome">
                 <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
               </ownedAttribute>
-              <ownedAttribute xmi:id="_MEtIARwMEe-urICxG0GjCg" name="comprensorio" type="_MD7E4BwMEe-urICxG0GjCg" isReadOnly="true" association="_MFTk8RwMEe-urICxG0GjCg"/>
               <interfaceRealization xmi:id="_MEXJwRwMEe-urICxG0GjCg" client="_MBIPkBwMEe-urICxG0GjCg" supplier="_MD6d0BwMEe-urICxG0GjCg" contract="_MD6d0BwMEe-urICxG0GjCg"/>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFDGRBwMEe-urICxG0GjCg" name="Comprensorio" specification="_MBI2oBwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFDGRRwMEe-urICxG0GjCg" name="nome">
@@ -1439,30 +1364,6 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <ownedParameter xmi:id="_MBJdthwMEe-urICxG0GjCg" direction="return">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
-              </ownedOperation>
-            </packagedElement>
-            <packagedElement xmi:type="uml:Class" xmi:id="_MBKEwBwMEe-urICxG0GjCg" name="ConfLoginFailException">
-              <ownedComment xmi:id="_MFLpJRwMEe-urICxG0GjCg">
-                <body>Eccezione personalizzata per gestire il caso 
-in cui un tentativo di login da parte di un configuratore 
-fallisca a causa di credenziali errate.</body>
-              </ownedComment>
-              <generalization xmi:id="_MEYX4RwMEe-urICxG0GjCg" general="_MEXw0BwMEe-urICxG0GjCg"/>
-              <ownedAttribute xmi:id="_MEtvEBwMEe-urICxG0GjCg" name="serialVersionUID" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
-                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
-                <defaultValue xmi:type="uml:LiteralString" xmi:id="_MEtvERwMEe-urICxG0GjCg" value="1L"/>
-              </ownedAttribute>
-              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFDGSxwMEe-urICxG0GjCg" name="ConfLoginFailException" specification="_MBKr0BwMEe-urICxG0GjCg">
-                <ownedParameter xmi:id="_MFDGTBwMEe-urICxG0GjCg" type="_MBKEwBwMEe-urICxG0GjCg" direction="return"/>
-                <language>java</language>
-                <body>super(&quot;Credenziali di accesso del configuratore non valide!&quot;);
- </body>
-              </ownedBehavior>
-              <ownedOperation xmi:id="_MBKr0BwMEe-urICxG0GjCg" name="ConfLoginFailException" method="_MFDGSxwMEe-urICxG0GjCg">
-                <eAnnotations xmi:id="_MBKr0RwMEe-urICxG0GjCg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-                  <details xmi:id="_MBKr0hwMEe-urICxG0GjCg" key="create"/>
-                </eAnnotations>
-                <ownedParameter xmi:id="_MBKr0xwMEe-urICxG0GjCg" type="_MBKEwBwMEe-urICxG0GjCg" direction="return"/>
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_MBKr1BwMEe-urICxG0GjCg" name="Configuratore">
@@ -1617,7 +1518,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_MBOWMBwMEe-urICxG0GjCg" name="DefaultInitializer">
-              <ownedComment xmi:id="_MFMQMRwMEe-urICxG0GjCg">
+              <ownedComment xmi:id="_qFkXIC1xEe-8Nr2H9gftQA">
                 <body>Classe per l'inizializzazione predefinita del sistema.
 
 Autore: Daniele Martinelli e Federico Sabbadini</body>
@@ -1687,7 +1588,9 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               <ownedAttribute xmi:id="_MExZdhwMEe-urICxG0GjCg" name="utenza" type="_MBpM8BwMEe-urICxG0GjCg" isReadOnly="true" association="_MFUMARwMEe-urICxG0GjCg"/>
               <ownedAttribute xmi:id="_MExZdxwMEe-urICxG0GjCg" name="geografia" type="_MBVq8BwMEe-urICxG0GjCg" isReadOnly="true" association="_MFUMBBwMEe-urICxG0GjCg"/>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFDtXRwMEe-urICxG0GjCg" name="DefaultInitializer" specification="_MBPkUBwMEe-urICxG0GjCg">
-                <ownedParameter xmi:id="_MFDtXhwMEe-urICxG0GjCg" type="_MBOWMBwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFDtXhwMEe-urICxG0GjCg" type="_MBOWMBwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>this.utenza = defaultAccess();
      this.gerarchia = defaultTree();
@@ -1695,7 +1598,9 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
  </body>
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFEUYBwMEe-urICxG0GjCg" name="defaultTree" specification="_MBQLYRwMEe-urICxG0GjCg">
-                <ownedParameter xmi:id="_MFEUYRwMEe-urICxG0GjCg" type="_MBYHMBwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFEUYRwMEe-urICxG0GjCg" type="_MBYHMBwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>Gerarchia gerarchia = new Gerarchia();
 
@@ -1731,7 +1636,9 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
  </body>
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFEUYhwMEe-urICxG0GjCg" name="defaultAccess" specification="_MBQLYhwMEe-urICxG0GjCg">
-                <ownedParameter xmi:id="_MFEUYxwMEe-urICxG0GjCg" type="_MBpM8BwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFEUYxwMEe-urICxG0GjCg" type="_MBpM8BwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>Utenza utenza = new Utenza();
 
@@ -1750,7 +1657,9 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
  </body>
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFEUZBwMEe-urICxG0GjCg" name="defaultComprensorio" specification="_MBQLYxwMEe-urICxG0GjCg">
-                <ownedParameter xmi:id="_MFEUZRwMEe-urICxG0GjCg" type="_MBIPkBwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFEUZRwMEe-urICxG0GjCg" type="_MBIPkBwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>Comprensorio comprensorio = new Comprensorio(DEFAULT_NAME_COMMUNITY_0);
      comprensorio.addComune(DEFAULT_COMMUNITY_1);
@@ -1760,7 +1669,9 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
  </body>
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFEUZhwMEe-urICxG0GjCg" name="defaultWorld" specification="_MBQLZBwMEe-urICxG0GjCg">
-                <ownedParameter xmi:id="_MFEUZxwMEe-urICxG0GjCg" type="_MBVq8BwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFEUZxwMEe-urICxG0GjCg" type="_MBVq8BwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>Geografia geografia = new Geografia();
      geografia.addComprensorio(defaultComprensorio());
@@ -2006,7 +1917,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
                 <defaultValue xmi:type="uml:LiteralString" xmi:id="_MEzOpBwMEe-urICxG0GjCg" value="1L"/>
               </ownedAttribute>
-              <ownedAttribute xmi:id="_MEz1sBwMEe-urICxG0GjCg" name="geografia" type="_MD7E4BwMEe-urICxG0GjCg" isReadOnly="true" association="_MFUzERwMEe-urICxG0GjCg"/>
+              <ownedAttribute xmi:id="_hxSP8C11Ee-8Nr2H9gftQA" name="utente_1_1" visibility="public" type="_MBIPkBwMEe-urICxG0GjCg" association="_hxS3AC11Ee-8Nr2H9gftQA"/>
               <interfaceRealization xmi:id="_MEZmABwMEe-urICxG0GjCg" client="_MBVq8BwMEe-urICxG0GjCg" supplier="_MD6d0BwMEe-urICxG0GjCg" contract="_MD6d0BwMEe-urICxG0GjCg"/>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFE7ehwMEe-urICxG0GjCg" name="Geografia" specification="_MBWSABwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFE7exwMEe-urICxG0GjCg" type="_MBVq8BwMEe-urICxG0GjCg" direction="return"/>
@@ -2100,9 +2011,6 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
                 <defaultValue xmi:type="uml:LiteralString" xmi:id="_ME0cwBwMEe-urICxG0GjCg" value="1L"/>
               </ownedAttribute>
-              <ownedAttribute xmi:id="_ME0cwRwMEe-urICxG0GjCg" name="alberi" visibility="private" type="_MD7E4BwMEe-urICxG0GjCg" association="_MFUzFBwMEe-urICxG0GjCg"/>
-              <ownedAttribute xmi:id="_ME1D0BwMEe-urICxG0GjCg" name="radici" visibility="private" type="_MD7E4BwMEe-urICxG0GjCg" association="_MFVaIRwMEe-urICxG0GjCg"/>
-              <ownedAttribute xmi:id="_ME1D0xwMEe-urICxG0GjCg" name="foglie" type="_MD7E4BwMEe-urICxG0GjCg" isReadOnly="true" association="_MFVaJBwMEe-urICxG0GjCg"/>
               <interfaceRealization xmi:id="_MEaNEBwMEe-urICxG0GjCg" client="_MBYHMBwMEe-urICxG0GjCg" supplier="_MD6d0BwMEe-urICxG0GjCg" contract="_MD6d0BwMEe-urICxG0GjCg"/>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFFihRwMEe-urICxG0GjCg" name="Gerarchia" specification="_MBYuQBwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFFihhwMEe-urICxG0GjCg" type="_MBYHMBwMEe-urICxG0GjCg" direction="return"/>
@@ -2311,31 +2219,8 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <ownedParameter xmi:id="_MEa0JBwMEe-urICxG0GjCg" type="_MBeN0BwMEe-urICxG0GjCg" direction="return"/>
               </ownedOperation>
             </packagedElement>
-            <packagedElement xmi:type="uml:Class" xmi:id="_MBcYoBwMEe-urICxG0GjCg" name="LeafHasChildrenException">
-              <ownedComment xmi:id="_MFM3QRwMEe-urICxG0GjCg">
-                <body>Eccezione personalizzata per gestire il caso in cui unafoglia 
-tenti di aggiungere figli, il che non è consentito.</body>
-              </ownedComment>
-              <generalization xmi:id="_MEcCQBwMEe-urICxG0GjCg" general="_MEXw0BwMEe-urICxG0GjCg"/>
-              <ownedAttribute xmi:id="_ME1q4RwMEe-urICxG0GjCg" name="serialVersionUID" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
-                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
-                <defaultValue xmi:type="uml:LiteralString" xmi:id="_ME2R8BwMEe-urICxG0GjCg" value="1L"/>
-              </ownedAttribute>
-              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFGJmRwMEe-urICxG0GjCg" name="LeafHasChildrenException" specification="_MBcYoRwMEe-urICxG0GjCg">
-                <ownedParameter xmi:id="_MFGJmhwMEe-urICxG0GjCg" type="_MBcYoBwMEe-urICxG0GjCg" direction="return"/>
-                <language>java</language>
-                <body>super(&quot;Le foglie non possono avere figli&quot;);
- </body>
-              </ownedBehavior>
-              <ownedOperation xmi:id="_MBcYoRwMEe-urICxG0GjCg" name="LeafHasChildrenException" method="_MFGJmRwMEe-urICxG0GjCg">
-                <eAnnotations xmi:id="_MBcYohwMEe-urICxG0GjCg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-                  <details xmi:id="_MBcYoxwMEe-urICxG0GjCg" key="create"/>
-                </eAnnotations>
-                <ownedParameter xmi:id="_MBcYpBwMEe-urICxG0GjCg" type="_MBcYoBwMEe-urICxG0GjCg" direction="return"/>
-              </ownedOperation>
-            </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_MBc_sBwMEe-urICxG0GjCg" name="Main">
-              <ownedComment xmi:id="_MFM3QhwMEe-urICxG0GjCg">
+              <ownedComment xmi:id="_uv1t4C1xEe-8Nr2H9gftQA">
                 <body>Classe Main per l'esecuzione del programma.
 
 Autore: Daniele Martinelli e Federico Sabbadini</body>
@@ -2477,7 +2362,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
 	    FileManager.salvaSuFile(geografia);
  </body>
               </ownedBehavior>
-              <ownedOperation xmi:id="_MBdmwBwMEe-urICxG0GjCg" name="main" isStatic="true" method="_MFGJmxwMEe-urICxG0GjCg" raisedException="_MBmJoBwMEe-urICxG0GjCg">
+              <ownedOperation xmi:id="_MBdmwBwMEe-urICxG0GjCg" name="main" isStatic="true" method="_MFGJmxwMEe-urICxG0GjCg" raisedException="_uvYa5S1xEe-8Nr2H9gftQA">
                 <ownedParameter xmi:id="_MBdmwRwMEe-urICxG0GjCg" name="args">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MBdmwhwMEe-urICxG0GjCg" value="*"/>
@@ -2485,7 +2370,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_MBeN0BwMEe-urICxG0GjCg" name="Nodo">
-              <ownedComment xmi:id="_MFM3QxwMEe-urICxG0GjCg">
+              <ownedComment xmi:id="_uv1t4S1xEe-8Nr2H9gftQA">
                 <body>La classe Nodo rappresenta un nodo all'interno di un albero.
 Ogni nodo può essere una foglia o una non foglia.
 Se un nodo è una foglia, contiene i fattori di conversione verso altri nodi.
@@ -2533,7 +2418,9 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <ownedParameter xmi:id="_MFGwpRwMEe-urICxG0GjCg" name="campo">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
-                <ownedParameter xmi:id="_MFGwphwMEe-urICxG0GjCg" type="_MBeN0BwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFGwphwMEe-urICxG0GjCg" type="_MBeN0BwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>this.root = root;
 		this.campo = campo;
@@ -2551,7 +2438,9 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <ownedParameter xmi:id="_MFGwqRwMEe-urICxG0GjCg" name="root">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
-                <ownedParameter xmi:id="_MFGwqhwMEe-urICxG0GjCg" type="_MBeN0BwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFGwqhwMEe-urICxG0GjCg" type="_MBeN0BwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>this.nome = nome;
 		this.root = root;
@@ -2561,6 +2450,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFGwqxwMEe-urICxG0GjCg" name="isLeaf" specification="_MBfb9hwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFGwrBwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2569,6 +2459,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFGwrRwMEe-urICxG0GjCg" name="root" specification="_MBfb-BwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFGwrhwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2577,6 +2468,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFGwrxwMEe-urICxG0GjCg" name="getCampo" specification="_MBgDARwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFGwsBwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2588,6 +2480,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_MFGwsxwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2627,6 +2520,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_MFHXtBwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2641,6 +2535,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFHXtRwMEe-urICxG0GjCg" name="toStringFactors" specification="_MBgqFhwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFHXthwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2649,6 +2544,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFHXtxwMEe-urICxG0GjCg" name="toStringDomain" specification="_MBhRIRwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFHXuBwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2666,6 +2562,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFHXuRwMEe-urICxG0GjCg" name="toStringChildren" specification="_MBhRIxwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFHXuhwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2688,6 +2585,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_MFHXvRwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2700,6 +2598,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
                 <ownedParameter xmi:id="_MFHXwBwMEe-urICxG0GjCg" name="radice" type="_MBeN0BwMEe-urICxG0GjCg"/>
                 <ownedParameter xmi:id="_MFHXwRwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2717,6 +2616,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFHXwhwMEe-urICxG0GjCg" name="toNavigationString" specification="_MBh4MBwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFHXwxwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2741,6 +2641,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFH-wBwMEe-urICxG0GjCg" name="fattoreFoglia" specification="_MEJHVhwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFH-wRwMEe-urICxG0GjCg" name="nodo" type="_MBeN0BwMEe-urICxG0GjCg"/>
                 <ownedParameter xmi:id="_MFH-whwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2761,6 +2662,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_MFH-yBwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2786,7 +2688,9 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <ownedParameter xmi:id="_MFH-zBwMEe-urICxG0GjCg" name="nodo1" type="_MBeN0BwMEe-urICxG0GjCg"/>
                 <ownedParameter xmi:id="_MFH-zRwMEe-urICxG0GjCg" name="nodo2" type="_MBeN0BwMEe-urICxG0GjCg"/>
                 <ownedParameter xmi:id="_MFH-zhwMEe-urICxG0GjCg" name="visitati" type="_MEE14BwMEe-urICxG0GjCg"/>
-                <ownedParameter xmi:id="_MFH-zxwMEe-urICxG0GjCg" type="_MEcpUBwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFH-zxwMEe-urICxG0GjCg" type="_MEcpUBwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>Map&lt;Nodo, Double> fact = nodo1.getFattori();
      if (nodo1.equals(nodo2)) {
@@ -2812,6 +2716,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               </ownedBehavior>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFH-0BwMEe-urICxG0GjCg" name="isEmpty" specification="_MBifQBwMEe-urICxG0GjCg">
                 <ownedParameter xmi:id="_MFH-0RwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2825,6 +2730,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_MFH-1BwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <language>java</language>
@@ -2846,7 +2752,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <eAnnotations xmi:id="_MBe05BwMEe-urICxG0GjCg" source="http://www.eclipse.org/uml2/2.0.0/UML">
                   <details xmi:id="_MBe05RwMEe-urICxG0GjCg" key="create"/>
                 </eAnnotations>
-                <ownedComment xmi:id="_MFM3RBwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv1t4i1xEe-8Nr2H9gftQA">
                   <body>Costruttore non foglia.
 	 * 
 	 * @param nome   Il nome del nodo.
@@ -2868,7 +2774,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <eAnnotations xmi:id="_MBfb8xwMEe-urICxG0GjCg" source="http://www.eclipse.org/uml2/2.0.0/UML">
                   <details xmi:id="_MBfb9BwMEe-urICxG0GjCg" key="create"/>
                 </eAnnotations>
-                <ownedComment xmi:id="_MFM3RRwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv1t4y1xEe-8Nr2H9gftQA">
                   <body>Costruttore foglia.
 	 * Una foglia non può essere radice, in quanto una radice 
 	 * deve avere necessariamente almeno un figlio.
@@ -2884,7 +2790,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <ownedParameter xmi:id="_MBfb9RwMEe-urICxG0GjCg" type="_MBeN0BwMEe-urICxG0GjCg" direction="return"/>
               </ownedOperation>
               <ownedOperation xmi:id="_MBfb9hwMEe-urICxG0GjCg" name="isLeaf" method="_MFGwqxwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFM3RhwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv1t5C1xEe-8Nr2H9gftQA">
                   <body>Verifica se il nodo è una foglia.
 	 * 
 	 * @return True se il nodo è una foglia, altrimenti False.</body>
@@ -2894,7 +2800,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MBfb-BwMEe-urICxG0GjCg" name="root" method="_MFGwrRwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFM3RxwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv1t5S1xEe-8Nr2H9gftQA">
                   <body>Verifica se il nodo è una radice.
 	 * 
 	 * @return True se il nodo è una radice, altrimenti False.</body>
@@ -2904,7 +2810,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MBgDARwMEe-urICxG0GjCg" name="getCampo" method="_MFGwrxwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFM3SBwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv1t5i1xEe-8Nr2H9gftQA">
                   <body>Restituisce il campo associato al nodo.
 	 * 
 	 * @return Il campo associato al nodo.</body>
@@ -2914,7 +2820,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MBgDAxwMEe-urICxG0GjCg" name="getDominio" method="_MFGwsRwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFM3SRwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv1t5y1xEe-8Nr2H9gftQA">
                   <body>Restituisce il valore del dominio associato all'i-esimo figlio.
 	 * 
 	 * @param i L'indice del figlio.
@@ -2928,7 +2834,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MBgDBhwMEe-urICxG0GjCg" name="addElementiDominio" method="_MFGwtBwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFM3ShwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv1t6C1xEe-8Nr2H9gftQA">
                   <body>Aggiunge un elemento al dominio del nodo.
 	 * 
 	 * @param valore       Il valore da aggiungere al dominio.
@@ -2942,7 +2848,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MBgqERwMEe-urICxG0GjCg" name="addElementiDominio" method="_MFGwtxwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFM3SxwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv2U8C1xEe-8Nr2H9gftQA">
                   <body>Aggiunge un elemento al dominio del nodo.
 	 * 
 	 * @param valore Il valore da aggiungere al dominio.</body>
@@ -2952,7 +2858,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MBgqExwMEe-urICxG0GjCg" name="toString" method="_MFHXshwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFNeUBwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv2U8i1xEe-8Nr2H9gftQA">
                   <body>Genera una stringa del dominio associato al nodo.
 	 * 
 	 * @return Una stringa rappresentante il dominio associato al nodo.</body>
@@ -2965,7 +2871,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MBgqFhwMEe-urICxG0GjCg" name="toStringFactors" method="_MFHXtRwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFNeURwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv2U8y1xEe-8Nr2H9gftQA">
                   <body>Genera una stringa delle relazioni di una foglia con le altre foglie.
 	 * 
 	 * @return Una stringa rappresentante le relazioni con le foglie.</body>
@@ -2975,7 +2881,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MBhRIRwMEe-urICxG0GjCg" name="toStringDomain" visibility="private" method="_MFHXtxwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFNeUhwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv2U9C1xEe-8Nr2H9gftQA">
                   <body>Genera una stringa del dominio associato al nodo.
 	 * 
 	 * @return Una stringa rappresentante il dominio associato al nodo.</body>
@@ -2985,7 +2891,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MBhRIxwMEe-urICxG0GjCg" name="toStringChildren" visibility="private" method="_MFHXuRwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFNeUxwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv2U9S1xEe-8Nr2H9gftQA">
                   <body>Genera una rappresentazione testuale dei figli del nodo.
 	 * 
 	 * @return Una stringa rappresentante i figli del nodo.</body>
@@ -2995,7 +2901,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MBhRJRwMEe-urICxG0GjCg" name="verificaEsistenzaNome" method="_MFHXuxwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFNeVBwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv2U9i1xEe-8Nr2H9gftQA">
                   <body>Verifica se esiste un nodo non radice con il dato nome sotto il nodo radice specificato.
      * 
      * @param nome Il nome del nodo da cercare
@@ -3015,7 +2921,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MBh4MhwMEe-urICxG0GjCg" name="verificaFattoreConversione" isStatic="true" method="_MFH-xhwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFNeWBwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv2U-i1xEe-8Nr2H9gftQA">
                   <body>Verifica se un dato fattore di conversione è valido.
      * 
      * @param fattore Il fattore di conversione da verificare
@@ -3034,7 +2940,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MBifQhwMEe-urICxG0GjCg" name="toStringF" method="_MFH-0hwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFNeWxwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv2U_S1xEe-8Nr2H9gftQA">
                   <body>Genera una stringa delle relazioni di una foglia con le altre foglie.
 	 * 
 	 * @return Una stringa rappresentante le relazioni con le foglie.</body>
@@ -3046,8 +2952,8 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
               </ownedOperation>
-              <ownedOperation xmi:id="_MEJHUBwMEe-urICxG0GjCg" name="addChild" method="_MFHXsBwMEe-urICxG0GjCg" raisedException="_MBcYoBwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFM3TBwMEe-urICxG0GjCg">
+              <ownedOperation xmi:id="_MEJHUBwMEe-urICxG0GjCg" name="addChild" method="_MFHXsBwMEe-urICxG0GjCg" raisedException="_uvXz1C1xEe-8Nr2H9gftQA">
+                <ownedComment xmi:id="_uv2U8S1xEe-8Nr2H9gftQA">
                   <body>Aggiunge un nodo figlio a questo nodo.
 	 * 
 	 * @param child Il nodo figlio da aggiungere.
@@ -3056,7 +2962,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <ownedParameter xmi:id="_MEJHURwMEe-urICxG0GjCg" name="child" type="_MBeN0BwMEe-urICxG0GjCg"/>
               </ownedOperation>
               <ownedOperation xmi:id="_MEJHUhwMEe-urICxG0GjCg" name="verifica" visibility="private" isStatic="true" method="_MFHXvhwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFNeVRwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv2U9y1xEe-8Nr2H9gftQA">
                   <body>Verifica se esiste un nodo non radice con il dato nome sotto il nodo radice specificato.
      * 
      * @param nome Il nome del nodo da cercare
@@ -3072,7 +2978,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MEJHVhwMEe-urICxG0GjCg" name="fattoreFoglia" method="_MFH-wBwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFNeVhwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv2U-C1xEe-8Nr2H9gftQA">
                   <body>Verifica se esiste un fattore di conversione con una data foglia.
 	 * 
 	 * @param foglia La foglia con cui verificare la relazione.
@@ -3084,7 +2990,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 </ownedParameter>
               </ownedOperation>
               <ownedOperation xmi:id="_MEJuYhwMEe-urICxG0GjCg" name="addTransitivoFattoreConversione" isStatic="true" method="_MFH-yRwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFNeWRwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv2U-y1xEe-8Nr2H9gftQA">
                   <body>Aggiunge i fattori di conversione transitivi tra TUTTE le coppie di foglie nella gerarchia.
      * 
      * @param gerarchia La gerarchia su cui operare</body>
@@ -3092,7 +2998,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <ownedParameter xmi:id="_MEJuYxwMEe-urICxG0GjCg" name="gerarchia" type="_MBYHMBwMEe-urICxG0GjCg"/>
               </ownedOperation>
               <ownedOperation xmi:id="_MEdQYRwMEe-urICxG0GjCg" name="addFattoreConversione" method="_MFH-wxwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFNeVxwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv2U-S1xEe-8Nr2H9gftQA">
                   <body>Aggiunge un fattore di conversione associato al nodo.
 	 * 
 	 * @param foglia  Il nodo foglia con cui associare il fattore.
@@ -3102,7 +3008,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <ownedParameter xmi:id="_MEdQYxwMEe-urICxG0GjCg" name="fattore" type="_MEcpUBwMEe-urICxG0GjCg"/>
               </ownedOperation>
               <ownedOperation xmi:id="_MEdQZBwMEe-urICxG0GjCg" name="calcTransitivo" visibility="private" isStatic="true" method="_MFH-yxwMEe-urICxG0GjCg">
-                <ownedComment xmi:id="_MFNeWhwMEe-urICxG0GjCg">
+                <ownedComment xmi:id="_uv2U_C1xEe-8Nr2H9gftQA">
                   <body>Metodo per calcolare il fattore di conversione transitivo tra due nodi.
      * 
      * @param nodo1 Il primo nodo
@@ -3114,30 +3020,6 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <ownedParameter xmi:id="_MEdQZhwMEe-urICxG0GjCg" name="nodo2" type="_MBeN0BwMEe-urICxG0GjCg"/>
                 <ownedParameter xmi:id="_MEdQZxwMEe-urICxG0GjCg" name="visitati" type="_MEE14BwMEe-urICxG0GjCg"/>
                 <ownedParameter xmi:id="_MEdQaBwMEe-urICxG0GjCg" type="_MEcpUBwMEe-urICxG0GjCg" direction="return"/>
-              </ownedOperation>
-            </packagedElement>
-            <packagedElement xmi:type="uml:Class" xmi:id="_MBmJoBwMEe-urICxG0GjCg" name="RootTreeException">
-              <ownedComment xmi:id="_MFNeXBwMEe-urICxG0GjCg">
-                <body>Eccezione personalizzata per gestire il caso in cui un nodo 
-non radice tenti di essere inserito in testa ad un albero,
-il che non è consentito.</body>
-              </ownedComment>
-              <generalization xmi:id="_MEfsoBwMEe-urICxG0GjCg" general="_MEXw0BwMEe-urICxG0GjCg"/>
-              <ownedAttribute xmi:id="_ME7xgBwMEe-urICxG0GjCg" name="serialVersionUID" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
-                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
-                <defaultValue xmi:type="uml:LiteralString" xmi:id="_ME7xgRwMEe-urICxG0GjCg" value="1L"/>
-              </ownedAttribute>
-              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFIl0BwMEe-urICxG0GjCg" name="RootTreeException" specification="_MBmJoRwMEe-urICxG0GjCg">
-                <ownedParameter xmi:id="_MFIl0RwMEe-urICxG0GjCg" type="_MBmJoBwMEe-urICxG0GjCg" direction="return"/>
-                <language>java</language>
-                <body>super(&quot;Il nodo in testa all'albero deve essere radice&quot;);
- </body>
-              </ownedBehavior>
-              <ownedOperation xmi:id="_MBmJoRwMEe-urICxG0GjCg" name="RootTreeException" method="_MFIl0BwMEe-urICxG0GjCg">
-                <eAnnotations xmi:id="_MBmJohwMEe-urICxG0GjCg" source="http://www.eclipse.org/uml2/2.0.0/UML">
-                  <details xmi:id="_MBmJoxwMEe-urICxG0GjCg" key="create"/>
-                </eAnnotations>
-                <ownedParameter xmi:id="_MBmJpBwMEe-urICxG0GjCg" type="_MBmJoBwMEe-urICxG0GjCg" direction="return"/>
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_MBmwsBwMEe-urICxG0GjCg" name="Utente" isAbstract="true">
@@ -3274,7 +3156,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
               </ownedOperation>
             </packagedElement>
             <packagedElement xmi:type="uml:Class" xmi:id="_MBpM8BwMEe-urICxG0GjCg" name="Utenza">
-              <ownedComment xmi:id="_MFNeZBwMEe-urICxG0GjCg">
+              <ownedComment xmi:id="_qFk-MS1xEe-8Nr2H9gftQA">
                 <body>La classe Utenza gestisce gli utenti nel sistema.
 
 Autore: Daniele Martinelli e Federico Sabbadini</body>
@@ -3283,10 +3165,12 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
                 <defaultValue xmi:type="uml:LiteralString" xmi:id="_ME8YkhwMEe-urICxG0GjCg" value="1L"/>
               </ownedAttribute>
-              <ownedAttribute xmi:id="_ME8YkxwMEe-urICxG0GjCg" name="utenti" type="_MD7E4BwMEe-urICxG0GjCg" isReadOnly="true" association="_MFX2YBwMEe-urICxG0GjCg"/>
+              <ownedAttribute xmi:id="_97YjoC10Ee-8Nr2H9gftQA" name="utente_1" visibility="public" type="_MBmwsBwMEe-urICxG0GjCg" association="_97aY0C10Ee-8Nr2H9gftQA"/>
               <interfaceRealization xmi:id="_MEgTsBwMEe-urICxG0GjCg" client="_MBpM8BwMEe-urICxG0GjCg" supplier="_MD6d0BwMEe-urICxG0GjCg" contract="_MD6d0BwMEe-urICxG0GjCg"/>
               <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_MFJM4BwMEe-urICxG0GjCg" name="Utenza" specification="_MBpM8RwMEe-urICxG0GjCg">
-                <ownedParameter xmi:id="_MFJM4RwMEe-urICxG0GjCg" type="_MBpM8BwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFJM4RwMEe-urICxG0GjCg" type="_MBpM8BwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>this.utenti = new ArrayList&lt;>();
 	</body>
@@ -3305,7 +3189,9 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_MFJM5xwMEe-urICxG0GjCg" name="predicate" type="_MEMxsBwMEe-urICxG0GjCg"/>
-                <ownedParameter xmi:id="_MFJM6BwMEe-urICxG0GjCg" type="_MBmwsBwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFJM6BwMEe-urICxG0GjCg" type="_MBmwsBwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>return utenti.stream()
              .filter(utente -> utente.getID().equals(ID))
@@ -3322,7 +3208,9 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <ownedParameter xmi:id="_MFJM6xwMEe-urICxG0GjCg" name="Password">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
-                <ownedParameter xmi:id="_MFJM7BwMEe-urICxG0GjCg" type="_MBmwsBwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFJM7BwMEe-urICxG0GjCg" type="_MBmwsBwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>return autenticazione(ID, Password, utente -> utente.getTipoUtente() == Configuratore.TIPOUTENTE);
  </body>
@@ -3334,7 +3222,9 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                 <ownedParameter xmi:id="_MFJM7xwMEe-urICxG0GjCg" name="Password">
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
-                <ownedParameter xmi:id="_MFJM8BwMEe-urICxG0GjCg" type="_MBmwsBwMEe-urICxG0GjCg" direction="return"/>
+                <ownedParameter xmi:id="_MFJM8BwMEe-urICxG0GjCg" type="_MBmwsBwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
+                </ownedParameter>
                 <language>java</language>
                 <body>return autenticazione(ID, Password, utente -> utente.getTipoUtente() == Fruitore.TIPOUTENTE);
  </body>
@@ -3344,6 +3234,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
                 </ownedParameter>
                 <ownedParameter xmi:id="_MFJM8xwMEe-urICxG0GjCg" direction="return">
+                  <name xsi:nil="true"/>
                   <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
                 </ownedParameter>
                 <language>java</language>
@@ -3405,12 +3296,6 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
             <packagedElement xmi:type="uml:Association" xmi:id="_MFS94RwMEe-urICxG0GjCg" name="" memberEnd="_MFS94hwMEe-urICxG0GjCg _MErS0xwMEe-urICxG0GjCg">
               <ownedEnd xmi:id="_MFS94hwMEe-urICxG0GjCg" name="" type="_MBA60BwMEe-urICxG0GjCg" association="_MFS94RwMEe-urICxG0GjCg"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_MFS95BwMEe-urICxG0GjCg" name="" memberEnd="_MFS95RwMEe-urICxG0GjCg _MErS1BwMEe-urICxG0GjCg">
-              <ownedEnd xmi:id="_MFS95RwMEe-urICxG0GjCg" name="" type="_MBA60BwMEe-urICxG0GjCg" association="_MFS95BwMEe-urICxG0GjCg"/>
-            </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_MFTk8RwMEe-urICxG0GjCg" name="" memberEnd="_MFTk8hwMEe-urICxG0GjCg _MEtIARwMEe-urICxG0GjCg">
-              <ownedEnd xmi:id="_MFTk8hwMEe-urICxG0GjCg" name="" type="_MBIPkBwMEe-urICxG0GjCg" association="_MFTk8RwMEe-urICxG0GjCg"/>
-            </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_MFTk9BwMEe-urICxG0GjCg" name="" memberEnd="_MFTk9RwMEe-urICxG0GjCg _MExZdRwMEe-urICxG0GjCg">
               <ownedEnd xmi:id="_MFTk9RwMEe-urICxG0GjCg" name="" type="_MBOWMBwMEe-urICxG0GjCg" association="_MFTk9BwMEe-urICxG0GjCg"/>
             </packagedElement>
@@ -3419,18 +3304,6 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_MFUMBBwMEe-urICxG0GjCg" name="" memberEnd="_MFUMBRwMEe-urICxG0GjCg _MExZdxwMEe-urICxG0GjCg">
               <ownedEnd xmi:id="_MFUMBRwMEe-urICxG0GjCg" name="" type="_MBOWMBwMEe-urICxG0GjCg" association="_MFUMBBwMEe-urICxG0GjCg"/>
-            </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_MFUzERwMEe-urICxG0GjCg" name="" memberEnd="_MFUzEhwMEe-urICxG0GjCg _MEz1sBwMEe-urICxG0GjCg">
-              <ownedEnd xmi:id="_MFUzEhwMEe-urICxG0GjCg" name="" type="_MBVq8BwMEe-urICxG0GjCg" association="_MFUzERwMEe-urICxG0GjCg"/>
-            </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_MFUzFBwMEe-urICxG0GjCg" name="" memberEnd="_MFUzFRwMEe-urICxG0GjCg _ME0cwRwMEe-urICxG0GjCg">
-              <ownedEnd xmi:id="_MFUzFRwMEe-urICxG0GjCg" name="" type="_MBYHMBwMEe-urICxG0GjCg" association="_MFUzFBwMEe-urICxG0GjCg"/>
-            </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_MFVaIRwMEe-urICxG0GjCg" name="" memberEnd="_MFVaIhwMEe-urICxG0GjCg _ME1D0BwMEe-urICxG0GjCg">
-              <ownedEnd xmi:id="_MFVaIhwMEe-urICxG0GjCg" name="" type="_MBYHMBwMEe-urICxG0GjCg" association="_MFVaIRwMEe-urICxG0GjCg"/>
-            </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_MFVaJBwMEe-urICxG0GjCg" name="" memberEnd="_MFVaJRwMEe-urICxG0GjCg _ME1D0xwMEe-urICxG0GjCg">
-              <ownedEnd xmi:id="_MFVaJRwMEe-urICxG0GjCg" name="" type="_MBYHMBwMEe-urICxG0GjCg" association="_MFVaJBwMEe-urICxG0GjCg"/>
             </packagedElement>
             <packagedElement xmi:type="uml:Association" xmi:id="_MFWBMRwMEe-urICxG0GjCg" name="" memberEnd="_MFWBMhwMEe-urICxG0GjCg _ME4uMBwMEe-urICxG0GjCg">
               <ownedEnd xmi:id="_MFWBMhwMEe-urICxG0GjCg" name="" type="_MBeN0BwMEe-urICxG0GjCg" association="_MFWBMRwMEe-urICxG0GjCg"/>
@@ -3444,10 +3317,176 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
             <packagedElement xmi:type="uml:Association" xmi:id="_MFXPURwMEe-urICxG0GjCg" name="" memberEnd="_MFXPUhwMEe-urICxG0GjCg _ME7xhRwMEe-urICxG0GjCg">
               <ownedEnd xmi:id="_MFXPUhwMEe-urICxG0GjCg" name="" type="_MBmwsBwMEe-urICxG0GjCg" association="_MFXPURwMEe-urICxG0GjCg"/>
             </packagedElement>
-            <packagedElement xmi:type="uml:Association" xmi:id="_MFX2YBwMEe-urICxG0GjCg" name="" memberEnd="_MFX2YRwMEe-urICxG0GjCg _ME8YkxwMEe-urICxG0GjCg">
-              <ownedEnd xmi:id="_MFX2YRwMEe-urICxG0GjCg" name="" type="_MBpM8BwMEe-urICxG0GjCg" association="_MFX2YBwMEe-urICxG0GjCg"/>
+            <packagedElement xmi:type="uml:Class" xmi:id="_qFamIC1xEe-8Nr2H9gftQA" name="Fruitore">
+              <ownedComment xmi:id="_qFkXIS1xEe-8Nr2H9gftQA">
+                <body>La classe Configuratore rappresenta un utente con privilegi di configurazione.
+Estende la classe astratta Utente.
+
+Autore: Daniele Martinelli e Federico Sabbadini</body>
+              </ownedComment>
+              <generalization xmi:id="_qFdpcS1xEe-8Nr2H9gftQA" general="_MBmwsBwMEe-urICxG0GjCg"/>
+              <ownedAttribute xmi:id="_qFgswC1xEe-8Nr2H9gftQA" name="serialVersionUID" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_qFgswS1xEe-8Nr2H9gftQA" value="1L"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_qFgswi1xEe-8Nr2H9gftQA" name="TIPOUTENTE" isLeaf="true" isStatic="true" isReadOnly="true">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_qFgswy1xEe-8Nr2H9gftQA" value="'f'"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_qFhT0C1xEe-8Nr2H9gftQA" name="indirizzo" isReadOnly="true">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_qFhT0S1xEe-8Nr2H9gftQA" name="comprensorioAppartenenza" type="_MBIPkBwMEe-urICxG0GjCg" association="_qFkXIi1xEe-8Nr2H9gftQA"/>
+              <interfaceRealization xmi:id="_qFbNMC1xEe-8Nr2H9gftQA" client="_qFamIC1xEe-8Nr2H9gftQA" supplier="_MD6d0BwMEe-urICxG0GjCg" contract="_MD6d0BwMEe-urICxG0GjCg"/>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qFih8C1xEe-8Nr2H9gftQA" name="Fruitore" specification="_qFb0QC1xEe-8Nr2H9gftQA">
+                <ownedParameter xmi:id="_qFjJAC1xEe-8Nr2H9gftQA" name="comprensorioAppartenenza" type="_MBIPkBwMEe-urICxG0GjCg"/>
+                <ownedParameter xmi:id="_qFjJAS1xEe-8Nr2H9gftQA" name="credenziali" type="_MBMhABwMEe-urICxG0GjCg"/>
+                <ownedParameter xmi:id="_qFjJAi1xEe-8Nr2H9gftQA" name="indirizzo">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_qFjJAy1xEe-8Nr2H9gftQA" type="_qFamIC1xEe-8Nr2H9gftQA" direction="return"/>
+                <language>java</language>
+                <body>super(TIPOUTENTE, credenziali);
+     this.indirizzo = indirizzo;
+     this.comprensorioAppartenenza = comprensorioAppartenenza;
+     setIsDefinitivo(true);
+ </body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qFjJBC1xEe-8Nr2H9gftQA" name="setIndirizzo" specification="_qFcbUC1xEe-8Nr2H9gftQA">
+                <ownedParameter xmi:id="_qFjJBS1xEe-8Nr2H9gftQA" name="indirizzo">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>this.indirizzo = indirizzo;
+ </body>
+              </ownedBehavior>
+              <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_qFjJBi1xEe-8Nr2H9gftQA" name="setIsDefinitivo" specification="_qFcbUi1xEe-8Nr2H9gftQA">
+                <ownedParameter xmi:id="_qFjJBy1xEe-8Nr2H9gftQA" name="x">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+                <language>java</language>
+                <body>this.credenziali.setDefinitive(x);
+ </body>
+              </ownedBehavior>
+              <ownedOperation xmi:id="_qFb0QC1xEe-8Nr2H9gftQA" name="Fruitore" method="_qFih8C1xEe-8Nr2H9gftQA">
+                <eAnnotations xmi:id="_qFb0RC1xEe-8Nr2H9gftQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                  <details xmi:id="_qFb0RS1xEe-8Nr2H9gftQA" key="create"/>
+                </eAnnotations>
+                <ownedComment xmi:id="_qFkXJC1xEe-8Nr2H9gftQA">
+                  <body>Costruttore della classe Fruitore.
+     * Crea un nuovo fruitore con le credenziali specificate.
+     * 
+     * @param credenziali Le credenziali associate al fruitore</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_qFb0QS1xEe-8Nr2H9gftQA" name="comprensorioAppartenenza" type="_MBIPkBwMEe-urICxG0GjCg"/>
+                <ownedParameter xmi:id="_qFb0Qi1xEe-8Nr2H9gftQA" name="credenziali" type="_MBMhABwMEe-urICxG0GjCg"/>
+                <ownedParameter xmi:id="_qFb0Qy1xEe-8Nr2H9gftQA" name="indirizzo">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+                <ownedParameter xmi:id="_qFb0Ri1xEe-8Nr2H9gftQA" type="_qFamIC1xEe-8Nr2H9gftQA" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qFcbUC1xEe-8Nr2H9gftQA" name="setIndirizzo" method="_qFjJBC1xEe-8Nr2H9gftQA">
+                <ownedComment xmi:id="_qFkXJS1xEe-8Nr2H9gftQA">
+                  <body>Imposta l'indirizzo del fruitore.
+     * 
+     * @param indirizzo Il nuovo indirizzo del fruitore</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_qFcbUS1xEe-8Nr2H9gftQA" name="indirizzo">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qFcbUi1xEe-8Nr2H9gftQA" name="setIsDefinitivo" method="_qFjJBi1xEe-8Nr2H9gftQA">
+                <ownedParameter xmi:id="_qFdCYC1xEe-8Nr2H9gftQA" name="x">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Association" xmi:id="_qFkXIi1xEe-8Nr2H9gftQA" name="" memberEnd="_qFhT0S1xEe-8Nr2H9gftQA _qFkXIy1xEe-8Nr2H9gftQA">
+              <ownedEnd xmi:id="_qFkXIy1xEe-8Nr2H9gftQA" name="" type="_qFamIC1xEe-8Nr2H9gftQA" association="_qFkXIi1xEe-8Nr2H9gftQA"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Package" xmi:id="_uvGuEC1xEe-8Nr2H9gftQA" name="ecccezioni">
+              <packagedElement xmi:type="uml:Class" xmi:id="_uvXMwC1xEe-8Nr2H9gftQA" name="ConfLoginFailException">
+                <ownedComment xmi:id="_uv28AC1xEe-8Nr2H9gftQA">
+                  <body>Eccezione personalizzata per gestire il caso 
+in cui un tentativo di login da parte di un configuratore 
+fallisca a causa di credenziali errate.</body>
+                </ownedComment>
+                <generalization xmi:id="_uvXz0y1xEe-8Nr2H9gftQA" general="_MEXw0BwMEe-urICxG0GjCg"/>
+                <ownedAttribute xmi:id="_uvz4sC1xEe-8Nr2H9gftQA" name="serialVersionUID" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+                  <defaultValue xmi:type="uml:LiteralString" xmi:id="_uvz4sS1xEe-8Nr2H9gftQA" value="1L"/>
+                </ownedAttribute>
+                <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_uv1G0C1xEe-8Nr2H9gftQA" name="ConfLoginFailException" specification="_uvXMwS1xEe-8Nr2H9gftQA">
+                  <ownedParameter xmi:id="_uv1G0S1xEe-8Nr2H9gftQA" type="_uvXMwC1xEe-8Nr2H9gftQA" direction="return"/>
+                  <language>java</language>
+                  <body>super(&quot;Credenziali di accesso del configuratore non valide!&quot;);
+ </body>
+                </ownedBehavior>
+                <ownedOperation xmi:id="_uvXMwS1xEe-8Nr2H9gftQA" name="ConfLoginFailException" method="_uv1G0C1xEe-8Nr2H9gftQA">
+                  <eAnnotations xmi:id="_uvXz0C1xEe-8Nr2H9gftQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                    <details xmi:id="_uvXz0S1xEe-8Nr2H9gftQA" key="create"/>
+                  </eAnnotations>
+                  <ownedParameter xmi:id="_uvXz0i1xEe-8Nr2H9gftQA" type="_uvXMwC1xEe-8Nr2H9gftQA" direction="return"/>
+                </ownedOperation>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_uvXz1C1xEe-8Nr2H9gftQA" name="LeafHasChildrenException">
+                <ownedComment xmi:id="_uv28AS1xEe-8Nr2H9gftQA">
+                  <body>Eccezione personalizzata per gestire il caso in cui unafoglia 
+tenti di aggiungere figli, il che non è consentito.</body>
+                </ownedComment>
+                <generalization xmi:id="_uvYa5C1xEe-8Nr2H9gftQA" general="_MEXw0BwMEe-urICxG0GjCg"/>
+                <ownedAttribute xmi:id="_uvz4si1xEe-8Nr2H9gftQA" name="serialVersionUID" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+                  <defaultValue xmi:type="uml:LiteralString" xmi:id="_uvz4sy1xEe-8Nr2H9gftQA" value="1L"/>
+                </ownedAttribute>
+                <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_uv1G0i1xEe-8Nr2H9gftQA" name="LeafHasChildrenException" specification="_uvYa4C1xEe-8Nr2H9gftQA">
+                  <ownedParameter xmi:id="_uv1G0y1xEe-8Nr2H9gftQA" type="_uvXz1C1xEe-8Nr2H9gftQA" direction="return"/>
+                  <language>java</language>
+                  <body>super(&quot;Le foglie non possono avere figli&quot;);
+ </body>
+                </ownedBehavior>
+                <ownedOperation xmi:id="_uvYa4C1xEe-8Nr2H9gftQA" name="LeafHasChildrenException" method="_uv1G0i1xEe-8Nr2H9gftQA">
+                  <eAnnotations xmi:id="_uvYa4S1xEe-8Nr2H9gftQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                    <details xmi:id="_uvYa4i1xEe-8Nr2H9gftQA" key="create"/>
+                  </eAnnotations>
+                  <ownedParameter xmi:id="_uvYa4y1xEe-8Nr2H9gftQA" type="_uvXz1C1xEe-8Nr2H9gftQA" direction="return"/>
+                </ownedOperation>
+              </packagedElement>
+              <packagedElement xmi:type="uml:Class" xmi:id="_uvYa5S1xEe-8Nr2H9gftQA" name="RootTreeException">
+                <ownedComment xmi:id="_uv28Ai1xEe-8Nr2H9gftQA">
+                  <body>Eccezione personalizzata per gestire il caso in cui un nodo 
+non radice tenti di essere inserito in testa ad un albero,
+il che non è consentito.</body>
+                </ownedComment>
+                <generalization xmi:id="_uvZB9C1xEe-8Nr2H9gftQA" general="_MEXw0BwMEe-urICxG0GjCg"/>
+                <ownedAttribute xmi:id="_uvz4tC1xEe-8Nr2H9gftQA" name="serialVersionUID" visibility="private" isLeaf="true" isStatic="true" isReadOnly="true">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+                  <defaultValue xmi:type="uml:LiteralString" xmi:id="_uvz4tS1xEe-8Nr2H9gftQA" value="1L"/>
+                </ownedAttribute>
+                <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_uv1G1C1xEe-8Nr2H9gftQA" name="RootTreeException" specification="_uvZB8C1xEe-8Nr2H9gftQA">
+                  <ownedParameter xmi:id="_uv1G1S1xEe-8Nr2H9gftQA" type="_uvYa5S1xEe-8Nr2H9gftQA" direction="return"/>
+                  <language>java</language>
+                  <body>super(&quot;Il nodo in testa all'albero deve essere radice&quot;);
+ </body>
+                </ownedBehavior>
+                <ownedOperation xmi:id="_uvZB8C1xEe-8Nr2H9gftQA" name="RootTreeException" method="_uv1G1C1xEe-8Nr2H9gftQA">
+                  <eAnnotations xmi:id="_uvZB8S1xEe-8Nr2H9gftQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+                    <details xmi:id="_uvZB8i1xEe-8Nr2H9gftQA" key="create"/>
+                  </eAnnotations>
+                  <ownedParameter xmi:id="_uvZB8y1xEe-8Nr2H9gftQA" type="_uvYa5S1xEe-8Nr2H9gftQA" direction="return"/>
+                </ownedOperation>
+              </packagedElement>
             </packagedElement>
           </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_97aY0C10Ee-8Nr2H9gftQA" name="" visibility="public" memberEnd="_97YjoC10Ee-8Nr2H9gftQA _97aY0S10Ee-8Nr2H9gftQA">
+          <ownedEnd xmi:id="_97aY0S10Ee-8Nr2H9gftQA" name="" visibility="public" type="_MBpM8BwMEe-urICxG0GjCg" association="_97aY0C10Ee-8Nr2H9gftQA"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_hxS3AC11Ee-8Nr2H9gftQA" name="" visibility="public" memberEnd="_hxSP8C11Ee-8Nr2H9gftQA _hxS3AS11Ee-8Nr2H9gftQA">
+          <ownedEnd xmi:id="_hxS3AS11Ee-8Nr2H9gftQA" name="" visibility="public" type="_MBVq8BwMEe-urICxG0GjCg" association="_hxS3AC11Ee-8Nr2H9gftQA"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Association" xmi:id="_7ooL8S12Ee-8Nr2H9gftQA" name="" visibility="public" memberEnd="_7ooL8C12Ee-8Nr2H9gftQA _7ooL8i12Ee-8Nr2H9gftQA">
+          <ownedEnd xmi:id="_7ooL8i12Ee-8Nr2H9gftQA" name="" visibility="public" type="_MBA60BwMEe-urICxG0GjCg" association="_7ooL8S12Ee-8Nr2H9gftQA"/>
         </packagedElement>
       </packagedElement>
     </packagedElement>
@@ -3460,7 +3499,6 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
           <packagedElement xmi:type="uml:Interface" xmi:id="_MEMxsBwMEe-urICxG0GjCg" name="Predicate"/>
         </packagedElement>
         <packagedElement xmi:type="uml:DataType" xmi:id="_MD4ooBwMEe-urICxG0GjCg" name="Date"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="_MD7E4BwMEe-urICxG0GjCg" name="ArrayList"/>
         <packagedElement xmi:type="uml:Interface" xmi:id="_MEE14BwMEe-urICxG0GjCg" name="List"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_MEHSIBwMEe-urICxG0GjCg" name="HashMap"/>
         <packagedElement xmi:type="uml:Interface" xmi:id="_MEHSIhwMEe-urICxG0GjCg" name="Map"/>
@@ -3488,6 +3526,12 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
       </eAnnotations>
       <appliedProfile href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile"/>
     </profileApplication>
+    <profileApplication xmi:id="_eJJPIC12Ee-8Nr2H9gftQA">
+      <eAnnotations xmi:id="_eJJPIS12Ee-8Nr2H9gftQA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://ARCHITECTUREREVIEW_PROFILES/ArchitectureReview.profile.uml#_ypx9siN3EeK_4-5pMoCxQg"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://ARCHITECTUREREVIEW_PROFILES/ArchitectureReview.profile.uml#_qTOicCN3EeK_4-5pMoCxQg"/>
+    </profileApplication>
   </uml:Model>
   <UMLLabProfile:TargetLanguage xmi:id="_LwZr8hwMEe-urICxG0GjCg" base_Package="_LtBAwBwMEe-urICxG0GjCg">
     <languageName>java</languageName>
@@ -3500,16 +3544,11 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
   <UMLLabProfile:Annotations xmi:id="_MBajchwMEe-urICxG0GjCg" base_Element="_MBZ8YhwMEe-urICxG0GjCg">
     <annotations xmi:id="_MBajcxwMEe-urICxG0GjCg" name="Override"/>
   </UMLLabProfile:Annotations>
-  <UMLLabProfile:LegacyStyledElement xmi:id="_MBteYBwMEe-urICxG0GjCg" base_Element="_MBs3UhwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Annotations xmi:id="_MBteYRwMEe-urICxG0GjCg" base_Element="_MBs3UhwMEe-urICxG0GjCg">
-    <annotations xmi:id="_MBteYhwMEe-urICxG0GjCg" name="Override"/>
-  </UMLLabProfile:Annotations>
   <UMLLabProfile:Reference xmi:id="_MD3agRwMEe-urICxG0GjCg" base_Element="_MD3agBwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MD4BkRwMEe-urICxG0GjCg" base_Element="_MD4BkBwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MD4BkxwMEe-urICxG0GjCg" base_Element="_MD4BkhwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MD4ooRwMEe-urICxG0GjCg" base_Element="_MD4ooBwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MD6d0RwMEe-urICxG0GjCg" base_Element="_MD6d0BwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Reference xmi:id="_MD7E4RwMEe-urICxG0GjCg" base_Element="_MD7E4BwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MEFc8BwMEe-urICxG0GjCg" base_Element="_MEE14BwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MEHSIRwMEe-urICxG0GjCg" base_Element="_MEHSIBwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MEH5MBwMEe-urICxG0GjCg" base_Element="_MEHSIhwMEe-urICxG0GjCg"/>
@@ -3541,18 +3580,10 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
   <UMLLabProfile:LegacyStyledElement xmi:id="_MEqrwRwMEe-urICxG0GjCg" base_Element="_MEqrwBwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Array xmi:id="_MEqrxBwMEe-urICxG0GjCg" base_Element="_MEqrwhwMEe-urICxG0GjCg"/>
   <UMLLabProfile:LegacyStyledElement xmi:id="_MErS0BwMEe-urICxG0GjCg" base_Element="_MEqrwhwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Generics xmi:id="_MEr54BwMEe-urICxG0GjCg" genericsValue="Nodo" base_Element="_MErS1BwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Generics xmi:id="_MEtIAhwMEe-urICxG0GjCg" genericsValue="String" base_Element="_MEtIARwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Array xmi:id="_MEvkRhwMEe-urICxG0GjCg" base_Element="_MEvkRBwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Generics xmi:id="_MEz1sRwMEe-urICxG0GjCg" genericsValue="Comprensorio" base_Element="_MEz1sBwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Generics xmi:id="_ME0cwhwMEe-urICxG0GjCg" genericsValue="Albero" base_Element="_ME0cwRwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:LegacyStyledElement xmi:id="_ME0cwxwMEe-urICxG0GjCg" base_Element="_ME0cwRwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Generics xmi:id="_ME1D0RwMEe-urICxG0GjCg" genericsValue="Nodo" base_Element="_ME1D0BwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:LegacyStyledElement xmi:id="_ME1D0hwMEe-urICxG0GjCg" base_Element="_ME1D0BwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Generics xmi:id="_ME1q4BwMEe-urICxG0GjCg" genericsValue="Nodo" base_Element="_ME1D0xwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Array xmi:id="_ME2R8xwMEe-urICxG0GjCg" dimensions="1" base_Element="_ME2R8RwMEe-urICxG0GjCg"/>
   <UMLLabProfile:LegacyStyledElement xmi:id="_ME2R9RwMEe-urICxG0GjCg" base_Element="_ME2R8RwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Array xmi:id="_ME25AhwMEe-urICxG0GjCg" base_Element="_ME25ABwMEe-urICxG0GjCg"/>
+  <UMLLabProfile:Array xmi:id="_ME25AhwMEe-urICxG0GjCg" dimensions="0" base_Element="_ME25ABwMEe-urICxG0GjCg"/>
   <UMLLabProfile:LegacyStyledElement xmi:id="_ME25BBwMEe-urICxG0GjCg" base_Element="_ME25ABwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Array xmi:id="_ME3gERwMEe-urICxG0GjCg" dimensions="1" base_Element="_ME25BRwMEe-urICxG0GjCg"/>
   <UMLLabProfile:LegacyStyledElement xmi:id="_ME3gExwMEe-urICxG0GjCg" base_Element="_ME25BRwMEe-urICxG0GjCg"/>
@@ -3568,9 +3599,10 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
   <UMLLabProfile:Generics xmi:id="_ME58UxwMEe-urICxG0GjCg" genericsValue="Nodo, Double" base_Element="_ME58URwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Generics xmi:id="_ME6jYRwMEe-urICxG0GjCg" genericsValue="Nodo, Double" base_Element="_ME6jYBwMEe-urICxG0GjCg"/>
   <UMLLabProfile:LegacyStyledElement xmi:id="_ME8YkBwMEe-urICxG0GjCg" base_Element="_ME7xhRwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Generics xmi:id="_ME8_oBwMEe-urICxG0GjCg" genericsValue="Utente" base_Element="_ME8YkxwMEe-urICxG0GjCg"/>
   <uml:OpaqueBehavior xmi:id="_MFGwoBwMEe-urICxG0GjCg" name="getFattori" specification="_ME6jYBwMEe-urICxG0GjCg">
-    <ownedParameter xmi:id="_MFGwoRwMEe-urICxG0GjCg" type="_MEHSIhwMEe-urICxG0GjCg" direction="return"/>
+    <ownedParameter xmi:id="_MFGwoRwMEe-urICxG0GjCg" type="_MEHSIhwMEe-urICxG0GjCg" direction="return">
+      <name xsi:nil="true"/>
+    </ownedParameter>
     <language>java</language>
     <body>return fattori;
 	</body>
@@ -3578,18 +3610,15 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
   <UMLLabProfile:Reference xmi:id="_MFSW0BwMEe-urICxG0GjCg" base_Element="_MFRvwBwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MFS94BwMEe-urICxG0GjCg" base_Element="_MFSW0RwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MFS94xwMEe-urICxG0GjCg" base_Element="_MFS94RwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Reference xmi:id="_MFTk8BwMEe-urICxG0GjCg" base_Element="_MFS95BwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Reference xmi:id="_MFTk8xwMEe-urICxG0GjCg" base_Element="_MFTk8RwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MFUMABwMEe-urICxG0GjCg" base_Element="_MFTk9BwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MFUMAxwMEe-urICxG0GjCg" base_Element="_MFUMARwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MFUzEBwMEe-urICxG0GjCg" base_Element="_MFUMBBwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Reference xmi:id="_MFUzExwMEe-urICxG0GjCg" base_Element="_MFUzERwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Reference xmi:id="_MFVaIBwMEe-urICxG0GjCg" base_Element="_MFUzFBwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Reference xmi:id="_MFVaIxwMEe-urICxG0GjCg" base_Element="_MFVaIRwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Reference xmi:id="_MFWBMBwMEe-urICxG0GjCg" base_Element="_MFVaJBwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MFWBMxwMEe-urICxG0GjCg" base_Element="_MFWBMRwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MFWoQhwMEe-urICxG0GjCg" base_Element="_MFWoQBwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MFXPUBwMEe-urICxG0GjCg" base_Element="_MFWoQxwMEe-urICxG0GjCg"/>
   <UMLLabProfile:Reference xmi:id="_MFXPUxwMEe-urICxG0GjCg" base_Element="_MFXPURwMEe-urICxG0GjCg"/>
-  <UMLLabProfile:Reference xmi:id="_MFX2YhwMEe-urICxG0GjCg" base_Element="_MFX2YBwMEe-urICxG0GjCg"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_qFdCYS1xEe-8Nr2H9gftQA" base_Element="_qFcbUi1xEe-8Nr2H9gftQA"/>
+  <UMLLabProfile:Annotations xmi:id="_qFdCYi1xEe-8Nr2H9gftQA" base_Element="_qFcbUi1xEe-8Nr2H9gftQA">
+    <annotations xmi:id="_qFdpcC1xEe-8Nr2H9gftQA" name="Override"/>
+  </UMLLabProfile:Annotations>
 </xmi:XMI>

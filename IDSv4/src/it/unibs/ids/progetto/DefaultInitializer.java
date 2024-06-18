@@ -1,5 +1,7 @@
 package it.unibs.ids.progetto;
 
+import it.unibs.ids.progetto.ecccezioni.NodeNotLeafException;
+
 /**
  * Classe per l'inizializzazione predefinita del sistema.
  * 

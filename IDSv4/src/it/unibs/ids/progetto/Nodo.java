@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import it.unibs.ids.progetto.ecccezioni.LeafHasChildrenException;
+
 /**
  * La classe Nodo rappresenta un nodo all'interno di un albero.
  * Ogni nodo può essere una foglia o una non foglia.

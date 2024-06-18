@@ -1,11 +1,7 @@
 package it.unibs.ids.progetto;
 import java.util.ArrayList;
 import it.unibs.fp.mylib.MyMenu;
-import it.unibs.ids.progetto.news.Albero;
-import it.unibs.ids.progetto.news.DefaultInitializer;
-import it.unibs.ids.progetto.news.FileManager;
-import it.unibs.ids.progetto.news.Geografia;
-import it.unibs.ids.progetto.news.ecccezioni.RootTreeException;
+import it.unibs.ids.progetto.ecccezioni.RootTreeException;
 
 /**
  * Classe Main per l'esecuzione del programma.

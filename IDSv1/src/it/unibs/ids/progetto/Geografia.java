@@ -1,7 +1,6 @@
-package it.unibs.ids.progetto.news;
+package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
-import it.unibs.ids.progetto.Comprensorio;
 
 /**
  * La classe Geografia rappresenta l'insieme di 

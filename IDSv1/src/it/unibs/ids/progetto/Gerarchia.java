@@ -3,8 +3,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unibs.ids.progetto.news.Albero;
-
 /**
  * La classe Gerarchia rappresenta l'insieme di tutti gli 
  * alberi nel sistema e gestisce le operazioni su di essi.

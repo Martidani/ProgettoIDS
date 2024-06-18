@@ -1,5 +1,7 @@
 package it.unibs.ids.progetto;
 
+import it.unibs.ids.progetto.ecccezioni.NodeNotLeafException;
+
 /**
  * La classe PrestazioneOpera rappresenta una singola prestazione 
  * d'opera, che puo essere sia offerta che richiesta.

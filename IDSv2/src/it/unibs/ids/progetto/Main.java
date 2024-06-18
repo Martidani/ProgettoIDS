@@ -2,7 +2,7 @@ package it.unibs.ids.progetto;
 import java.util.ArrayList;
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.fp.mylib.MyMenu;
-import it.unibs.ids.progetto.news.Fruitore;
+import it.unibs.ids.progetto.ecccezioni.RootTreeException;
 
 /**
  * Classe Main per l'esecuzione del programma.

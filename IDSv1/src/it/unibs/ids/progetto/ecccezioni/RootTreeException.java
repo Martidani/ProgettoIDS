@@ -1,9 +1,12 @@
-package it.unibs.ids.progetto;
+package it.unibs.ids.progetto.ecccezioni;
 
 /**
  * Eccezione personalizzata per gestire il caso in cui un nodo 
  * non radice tenti di essere inserito in testa ad un albero,
  * il che non è consentito.
+ * 
+ * @author Daniele Martinelli
+ * @author Federico Sabbadini
  */
 public class RootTreeException extends Exception {
     
@@ -11,11 +14,9 @@ public class RootTreeException extends Exception {
 
     /**
      * Costruttore predefinito per l'eccezione RootTreeException.
-     * Viene chiamato quando una foglia tenta di aggiungere figli.
+     * Viene chiamato quando un nodo non radice tenta di essere inserito in testa all'albero.
      */
     public RootTreeException() {
         super("Il nodo in testa all'albero deve essere radice");
     }
-    
-    
 }
