@@ -1,7 +1,5 @@
 package it.unibs.ids.progetto.testing;
 
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -12,7 +10,6 @@ import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.InsiemeAperto;
-import it.unibs.ids.progetto.InsiemeChiuso;
 import it.unibs.ids.progetto.Offerta;
 import it.unibs.ids.progetto.PropostaAperta;
 import it.unibs.ids.progetto.Richiesta;
@@ -22,7 +19,6 @@ class CommercioTest {
 	
 	private Utenza utenza = DefaultInitializer.getDefaultInitializer().getUtenza();
 	private Gerarchia gerarchia = DefaultInitializer.getDefaultInitializer().getGerarchia();
-	private Geografia geografia = DefaultInitializer.getDefaultInitializer().getGeografia();
 	
 	
 	

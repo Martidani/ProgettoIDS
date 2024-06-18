@@ -388,150 +388,156 @@ public class Commercio implements Serializable {
     	}
 		return null;   
 }
-    
-    
-    public String visualizzaProposteChiuse(){
-    	
-    	StringBuffer str = new StringBuffer();
-    	
-    	for (InsiemeChiuso insiemeChiuso : getInsiemiChiusi()) {
-			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
-				
-				if (propostaChiusa.getFruitore().getID().equals(this.utenteDiSessione.getID())) {
-					
-					str.append(propostaChiusa.toString() + "\n");
-					
-					
-					
-				}
-			}
-		}
-    	
-    	return str.toString();
-  
-    }
-    
-    public String visualizzaProposteRitirate(){
-    	
-    	StringBuffer str = new StringBuffer();
-    	
-    	for (PropostaRitirata propostaRitirata : this.insiemeRitirato.getProposteRitirate()) {
-    		if (propostaRitirata.getFruitore().getID().equals(this.utenteDiSessione.getID())) {
-				str.append(propostaRitirata.toString()+ "\n");
-			}
-		}
+	/**
+	 * Visualizza tutte le proposte chiuse per l'utente di sessione corrente.
+	 * @return Una stringa contenente tutte le proposte chiuse dell'utente di sessione.
+	 */
+	public String visualizzaProposteChiuse(){
+	    StringBuffer str = new StringBuffer();
+	    
+	    // Itera attraverso tutti gli insiemi chiusi
+	    for (InsiemeChiuso insiemeChiuso : getInsiemiChiusi()) {
+	        // Itera attraverso tutte le proposte chiuse di ogni insieme
+	        for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
+	            // Controlla se la proposta chiusa appartiene all'utente di sessione
+	            if (propostaChiusa.getFruitore().getID().equals(this.utenteDiSessione.getID())) {
+	                str.append(propostaChiusa.toString() + "\n");
+	            }
+	        }
+	    }
+	    
+	    return str.toString();
+	}
 
-    	
-    	return str.toString();
-  
-    }
-    
-    
-    public String visualizzaProposteAperte(){
-    	
-    	StringBuffer str = new StringBuffer();
-    	
+	/**
+	 * Visualizza tutte le proposte ritirate per l'utente di sessione corrente.
+	 * @return Una stringa contenente tutte le proposte ritirate dell'utente di sessione.
+	 */
+	public String visualizzaProposteRitirate(){
+	    StringBuffer str = new StringBuffer();
+	    
+	    // Itera attraverso tutte le proposte ritirate
+	    for (PropostaRitirata propostaRitirata : this.insiemeRitirato.getProposteRitirate()) {
+	        // Controlla se la proposta ritirata appartiene all'utente di sessione
+	        if (propostaRitirata.getFruitore().getID().equals(this.utenteDiSessione.getID())) {
+	            str.append(propostaRitirata.toString()+ "\n");
+	        }
+	    }
+	    
+	    return str.toString();
+	}
 
-    	for (PropostaAperta propostaAperta : this.getInsiemeApertoDiSessione().getProposteAperte()) {
-			if (propostaAperta.getFruitore().getID().equals(this.utenteDiSessione.getID())) {
-				str.append(propostaAperta.toString()+ "\n");
-			}
-		}
-    	
+	/**
+	 * Visualizza tutte le proposte aperte per l'utente di sessione corrente.
+	 * @return Una stringa contenente tutte le proposte aperte dell'utente di sessione.
+	 */
+	public String visualizzaProposteAperte(){
+	    StringBuffer str = new StringBuffer();
+	    
+	    // Itera attraverso tutte le proposte aperte dell'insieme aperto di sessione corrente
+	    for (PropostaAperta propostaAperta : this.getInsiemeApertoDiSessione().getProposteAperte()) {
+	        // Controlla se la proposta aperta appartiene all'utente di sessione
+	        if (propostaAperta.getFruitore().getID().equals(this.utenteDiSessione.getID())) {
+	            str.append(propostaAperta.toString()+ "\n");
+	        }
+	    }
+	    
+	    return str.toString();
+	}
 
-    	return str.toString();
-  
-    	
-    }
-    
+	/**
+	 * Visualizza tutte le proposte chiuse associate ad un determinato nodo.
+	 * @param nodo Il nodo di cui si vogliono visualizzare le proposte chiuse.
+	 * @return Una stringa contenente tutte le proposte chiuse associate al nodo specificato.
+	 */
+	public String visualizzaProposteChiuse(Nodo nodo){
+	    StringBuffer str = new StringBuffer();
+	    
+	    // Itera attraverso tutti gli insiemi chiusi
+	    for (InsiemeChiuso insiemeChiuso : this.insiemiChiusi) {
+	        // Itera attraverso tutte le proposte chiuse di ogni insieme
+	        for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
+	            // Controlla se la proposta chiusa è associata al nodo specificato
+	            if (propostaChiusa.getOfferta().getFoglia().root().equals(nodo.root()) 
+	                    && propostaChiusa.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
+	                    || propostaChiusa.getOfferta().getFoglia().root().equals(nodo.root()) 
+	                    && propostaChiusa.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
+	                str.append(propostaChiusa.toString()+ "\n");
+	            }
+	        }
+	    }
+	    
+	    return str.toString();
+	}
 
-    public String visualizzaProposteChiuse(Nodo nodo){
-    	
-    	StringBuffer str = new StringBuffer();
+	/**
+	 * Visualizza tutte le proposte ritirate associate ad un determinato nodo.
+	 * @param nodo Il nodo di cui si vogliono visualizzare le proposte ritirate.
+	 * @return Una stringa contenente tutte le proposte ritirate associate al nodo specificato.
+	 */
+	public String visualizzaProposteRitirate(Nodo nodo){
+	    StringBuffer str = new StringBuffer();
+	    
+	    // Itera attraverso tutte le proposte ritirate
+	    for (PropostaRitirata propostaRitirata : this.insiemeRitirato.getProposteRitirate()) {
+	        // Controlla se la proposta ritirata è associata al nodo specificato
+	        if (propostaRitirata.getOfferta().getFoglia().root().equals(nodo.root()) 
+	                && propostaRitirata.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
+	                || propostaRitirata.getOfferta().getFoglia().root().equals(nodo.root()) 
+	                && propostaRitirata.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
+	            str.append(propostaRitirata.toString()+ "\n");
+	        }
+	    }
+	    
+	    return str.toString();
+	}
 
+	/**
+	 * Visualizza tutte le proposte aperte associate ad un determinato nodo.
+	 * @param nodo Il nodo di cui si vogliono visualizzare le proposte aperte.
+	 * @return Una stringa contenente tutte le proposte aperte associate al nodo specificato.
+	 */
+	public String visualizzaProposteAperte(Nodo nodo){
+	    StringBuffer str = new StringBuffer();
+	    
+	    // Itera attraverso tutti gli insiemi aperti
+	    for (InsiemeAperto insiemeAperto : getInsiemiAperti()) {
+	        // Itera attraverso tutte le proposte aperte di ogni insieme
+	        for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
+	            // Controlla se la proposta aperta è associata al nodo specificato
+	            if (propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
+	                    && propostaAperta.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
+	                    || propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
+	                    && propostaAperta.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
+	                str.append(propostaAperta.toString() + "\n");
+	            }
+	        }
+	    }
+	    
+	    return str.toString();
+	}
 
-    	for (InsiemeChiuso insiemeChiuso : this.insiemiChiusi) {
-			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
-				if 		(propostaChiusa.getOfferta().getFoglia().root().equals(nodo.root()) 
-						&& propostaChiusa.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
-						||
-						propostaChiusa.getOfferta().getFoglia().root().equals(nodo.root()) 
-						&& propostaChiusa.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
-	    			str.append(propostaChiusa.toString()+ "\n");
-	    			
-	    		}
-			}
-		}
-
-    	return str.toString();
-  
-    }
-    
-    public String visualizzaProposteRitirate(Nodo nodo){
-    	
-    	StringBuffer str = new StringBuffer();
-
-
-    	
-    	for (PropostaRitirata propostaRitirata : this.insiemeRitirato.getProposteRitirate()) {
-    		if (propostaRitirata.getOfferta().getFoglia().root().equals(nodo.root()) 
-					&& propostaRitirata.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
-					||
-					propostaRitirata.getOfferta().getFoglia().root().equals(nodo.root()) 
-					&& propostaRitirata.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
-    			str.append(propostaRitirata.toString()+ "\n");
-    			
-    		}
-		}
-    	
-    	
-    	
-
-    	return str.toString();
-  
-    }
-    
-    public String visualizzaProposteAperte(Nodo nodo){
-    	
-    	StringBuffer str = new StringBuffer();
-
-
-    	for (InsiemeAperto insiemeAperto : getInsiemiAperti()) {
-			for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
-				if (propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
-						&& propostaAperta.getOfferta().getFoglia().getNome().equals(nodo.getNome()) 
-						||
-						propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
-						&& propostaAperta.getRichiesta().getFoglia().getNome().equals(nodo.getNome())) {
-					str.append(propostaAperta.toString() + "\n");
-					
-				}
-			}
-		}
-  
-    	return str.toString();
-  
-    	
-    }
-    
-    public String visualizzaProposteChiuseCommercio(){
-    	
-    	StringBuffer str = new StringBuffer();
-
-
-    	for (InsiemeChiuso insiemeChiuso : this.insiemiChiusi) {
-    		str.append("{");
-			for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
-				str.append(propostaChiusa.toString());
-				Fruitore fruitore = propostaChiusa.getFruitore();
-				str.append("\nUtente: " + fruitore.getID() + " - " + fruitore.getIndirizzo() + "\n");
-			}
-    		str.append("}\n");
-		}
-
-    	return str.toString();
-  
-    }
-    
+	/**
+	 * Visualizza tutte le proposte chiuse presenti nel sistema.
+	 * @return Una stringa contenente tutte le proposte chiuse con i dettagli degli utenti associati.
+	 */
+	public String visualizzaProposteChiuseCommercio(){
+	    StringBuffer str = new StringBuffer();
+	    
+	    // Itera attraverso tutti gli insiemi chiusi
+	    for (InsiemeChiuso insiemeChiuso : this.insiemiChiusi) {
+	        str.append("{");
+	        // Itera attraverso tutte le proposte chiuse di ogni insieme
+	        for (PropostaChiusa propostaChiusa : insiemeChiuso.getProposteChiuse()) {
+	            str.append(propostaChiusa.toString());
+	            Fruitore fruitore = propostaChiusa.getFruitore();
+	            // Aggiunge i dettagli dell'utente alla stringa
+	            str.append("\nUtente: " + fruitore.getID() + " - " + fruitore.getIndirizzo() + "\n");
+	        }
+	        str.append("}\n");
+	    }
+	    
+	    return str.toString();
+	}
 
 }

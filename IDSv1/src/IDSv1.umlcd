@@ -19,6 +19,9 @@
     </sourceRole>
     <targetRole xmi:id="_DXBbphwLEe-urICxG0GjCg" aggregationKind="NONE" name="estrattore" navigable="true">
       <modelElement href="IDSv1.uml#_DMzIoBwLEe-urICxG0GjCg"/>
+      <stereotypes xmi:id="_HP7rcC1lEe-8Nr2H9gftQA" name="LegacyStyledElement">
+        <modelElement href="IDSv1.uml#_DM0WwBwLEe-urICxG0GjCg"/>
+      </stereotypes>
       <visibility xmi:id="_DXBbpxwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DXBbqBwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
     </targetRole>
@@ -47,6 +50,9 @@
     </sourceRole>
     <targetRole xmi:id="_DXNB1hwLEe-urICxG0GjCg" aggregationKind="NONE" name="lettore" navigable="true">
       <modelElement href="IDSv1.uml#_DNNYUBwLEe-urICxG0GjCg"/>
+      <stereotypes xmi:id="_HP85kC1lEe-8Nr2H9gftQA" name="LegacyStyledElement">
+        <modelElement href="IDSv1.uml#_DNNYUhwLEe-urICxG0GjCg"/>
+      </stereotypes>
       <visibility xmi:id="_DXNB1xwLEe-urICxG0GjCg" label="-"/>
       <cardinality xmi:id="_DXNB2BwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
     </targetRole>
@@ -65,6 +71,9 @@
     </sourceRole>
     <targetRole xmi:id="_DXbrVhwLEe-urICxG0GjCg" aggregationKind="NONE" name="comprensorio" navigable="true">
       <modelElement href="IDSv1.uml#_DM4BIRwLEe-urICxG0GjCg"/>
+      <stereotypes xmi:id="_HP9goC1lEe-8Nr2H9gftQA" name="Generics">
+        <modelElement href="IDSv1.uml#_DM4oMBwLEe-urICxG0GjCg"/>
+      </stereotypes>
       <visibility xmi:id="_DXbrVxwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DXbrWBwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
     </targetRole>
@@ -115,6 +124,9 @@
     </sourceRole>
     <targetRole xmi:id="_DYEkghwLEe-urICxG0GjCg" aggregationKind="NONE" name="utenti" navigable="true">
       <modelElement href="IDSv1.uml#_DM_88xwLEe-urICxG0GjCg"/>
+      <stereotypes xmi:id="_HP_V0C1lEe-8Nr2H9gftQA" name="Generics">
+        <modelElement href="IDSv1.uml#_DNAkABwLEe-urICxG0GjCg"/>
+      </stereotypes>
       <visibility xmi:id="_DYFLkxwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DYFLkhwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
     </targetRole>
@@ -135,6 +147,12 @@
     </sourceRole>
     <targetRole xmi:id="_DYYGghwLEe-urICxG0GjCg" aggregationKind="NONE" name="alberi" navigable="true">
       <modelElement href="IDSv1.uml#_DM7EchwLEe-urICxG0GjCg"/>
+      <stereotypes xmi:id="_HQBLAC1lEe-8Nr2H9gftQA" name="Generics">
+        <modelElement href="IDSv1.uml#_DM7rgBwLEe-urICxG0GjCg"/>
+      </stereotypes>
+      <stereotypes xmi:id="_HQBLAS1lEe-8Nr2H9gftQA" name="LegacyStyledElement">
+        <modelElement href="IDSv1.uml#_DM7rgRwLEe-urICxG0GjCg"/>
+      </stereotypes>
       <visibility xmi:id="_DYZUohwLEe-urICxG0GjCg" label="-"/>
       <cardinality xmi:id="_DYZUoRwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
     </targetRole>
@@ -152,6 +170,12 @@
     </sourceRole>
     <targetRole xmi:id="_DYYGhhwLEe-urICxG0GjCg" aggregationKind="NONE" name="radici" navigable="true">
       <modelElement href="IDSv1.uml#_DM7rghwLEe-urICxG0GjCg"/>
+      <stereotypes xmi:id="_HQByEC1lEe-8Nr2H9gftQA" name="Generics">
+        <modelElement href="IDSv1.uml#_DM8SkBwLEe-urICxG0GjCg"/>
+      </stereotypes>
+      <stereotypes xmi:id="_HQCZIC1lEe-8Nr2H9gftQA" name="LegacyStyledElement">
+        <modelElement href="IDSv1.uml#_DM8SkRwLEe-urICxG0GjCg"/>
+      </stereotypes>
       <visibility xmi:id="_DYZUqBwLEe-urICxG0GjCg" label="-"/>
       <cardinality xmi:id="_DYZUpxwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
     </targetRole>
@@ -169,6 +193,9 @@
     </sourceRole>
     <targetRole xmi:id="_DYYtkBwLEe-urICxG0GjCg" aggregationKind="NONE" name="foglie" navigable="true">
       <modelElement href="IDSv1.uml#_DM8SkhwLEe-urICxG0GjCg"/>
+      <stereotypes xmi:id="_HQCZIS1lEe-8Nr2H9gftQA" name="Generics">
+        <modelElement href="IDSv1.uml#_DM85oBwLEe-urICxG0GjCg"/>
+      </stereotypes>
       <visibility xmi:id="_DYZ7sRwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DYZ7sBwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
     </targetRole>
@@ -240,6 +267,9 @@
     </sourceRole>
     <targetRole xmi:id="_DY5D5RwLEe-urICxG0GjCg" aggregationKind="NONE" name="dominio" navigable="true">
       <modelElement href="IDSv1.uml#_DNJt8hwLEe-urICxG0GjCg"/>
+      <stereotypes xmi:id="_HQDnQC1lEe-8Nr2H9gftQA" name="Generics">
+        <modelElement href="IDSv1.uml#_DNKVABwLEe-urICxG0GjCg"/>
+      </stereotypes>
       <visibility xmi:id="_DY65FxwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DY65FhwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
     </targetRole>
@@ -278,6 +308,12 @@
     </sourceRole>
     <targetRole xmi:id="_DY8HNhwLEe-urICxG0GjCg" aggregationKind="NONE" name="fattori" navigable="true">
       <modelElement href="IDSv1.uml#_DNK8EhwLEe-urICxG0GjCg"/>
+      <stereotypes xmi:id="_HQDnQS1lEe-8Nr2H9gftQA" name="LegacyStyledElement">
+        <modelElement href="IDSv1.uml#_DNK8ExwLEe-urICxG0GjCg"/>
+      </stereotypes>
+      <stereotypes xmi:id="_HQEOUC1lEe-8Nr2H9gftQA" name="Generics">
+        <modelElement href="IDSv1.uml#_DNLjIBwLEe-urICxG0GjCg"/>
+      </stereotypes>
       <visibility xmi:id="_DY8HNxwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DY8HOBwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
     </targetRole>
@@ -361,6 +397,9 @@
     </sourceRole>
     <targetRole xmi:id="_DZdEkhwLEe-urICxG0GjCg" aggregationKind="NONE" name="geografia" navigable="true">
       <modelElement href="IDSv1.uml#_DNHRsBwLEe-urICxG0GjCg"/>
+      <stereotypes xmi:id="_HQE1YC1lEe-8Nr2H9gftQA" name="Generics">
+        <modelElement href="IDSv1.uml#_DNHRsRwLEe-urICxG0GjCg"/>
+      </stereotypes>
       <visibility xmi:id="_DZeSsRwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DZeSsBwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
     </targetRole>
@@ -407,6 +446,9 @@
     </sourceRole>
     <targetRole xmi:id="_DZv_gRwLEe-urICxG0GjCg" aggregationKind="NONE" name="foglie" navigable="true">
       <modelElement href="IDSv1.uml#_DNBLEhwLEe-urICxG0GjCg"/>
+      <stereotypes xmi:id="_HQFccC1lEe-8Nr2H9gftQA" name="Generics">
+        <modelElement href="IDSv1.uml#_DNByIBwLEe-urICxG0GjCg"/>
+      </stereotypes>
       <visibility xmi:id="_DZwmkRwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DZwmkBwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
     </targetRole>
@@ -857,9 +899,9 @@
     </attributes>
     <attributes xmi:id="_DY8uTRwLEe-urICxG0GjCg" name="dominio">
       <modelElement href="IDSv1.uml#_DNJt8hwLEe-urICxG0GjCg"/>
-      <stereotypes xmi:id="_DY8uThwLEe-urICxG0GjCg" name="Generics">
-        <modelElement href="IDSv1.uml#_DNKVABwLEe-urICxG0GjCg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_HQ1qYC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HQ24gC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HRApgC1lEe-8Nr2H9gftQA" name="Generics"/>
       <visibility xmi:id="_DY8uTxwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DY8uUBwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
       <type xmi:id="_DY8uURwLEe-urICxG0GjCg" name="List">
@@ -884,12 +926,12 @@
     </attributes>
     <attributes xmi:id="_DY8uWhwLEe-urICxG0GjCg" name="fattori">
       <modelElement href="IDSv1.uml#_DNK8EhwLEe-urICxG0GjCg"/>
-      <stereotypes xmi:id="_DY8uWxwLEe-urICxG0GjCg" name="LegacyStyledElement">
-        <modelElement href="IDSv1.uml#_DNK8ExwLEe-urICxG0GjCg"/>
-      </stereotypes>
-      <stereotypes xmi:id="_DY8uXBwLEe-urICxG0GjCg" name="Generics">
-        <modelElement href="IDSv1.uml#_DNLjIBwLEe-urICxG0GjCg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_HQ3fkC1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_HQ3fkS1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HQ4tsC1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_HQ4tsS1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HRBQkC1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_HRBQkS1lEe-8Nr2H9gftQA" name="Generics"/>
       <visibility xmi:id="_DY8uXRwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DY8uXhwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
       <type xmi:id="_DY8uXxwLEe-urICxG0GjCg" name="HashMap">
@@ -1297,9 +1339,9 @@
     </attributes>
     <attributes xmi:id="_DZe5xxwLEe-urICxG0GjCg" name="geografia">
       <modelElement href="IDSv1.uml#_DNHRsBwLEe-urICxG0GjCg"/>
-      <stereotypes xmi:id="_DZe5yBwLEe-urICxG0GjCg" name="Generics">
-        <modelElement href="IDSv1.uml#_DNHRsRwLEe-urICxG0GjCg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_HQ7xAC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HQ8YEC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HRCesC1lEe-8Nr2H9gftQA" name="Generics"/>
       <visibility xmi:id="_DZe5yRwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DZe5yhwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
       <type xmi:id="_DZe5yxwLEe-urICxG0GjCg" name="ArrayList">
@@ -1390,9 +1432,9 @@
     <visibility xmi:id="_DXNo4hwLEe-urICxG0GjCg" label="+"/>
     <attributes xmi:id="_DXNo4xwLEe-urICxG0GjCg" defaultValue="creaScanner()" name="lettore" staticAttribute="true">
       <modelElement href="IDSv1.uml#_DNNYUBwLEe-urICxG0GjCg"/>
-      <stereotypes xmi:id="_DXNo5BwLEe-urICxG0GjCg" name="LegacyStyledElement">
-        <modelElement href="IDSv1.uml#_DNNYUhwLEe-urICxG0GjCg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_HQpdIC1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_HQqEMC1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_HRDFwC1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
       <visibility xmi:id="_DXNo5RwLEe-urICxG0GjCg" label="-"/>
       <cardinality xmi:id="_DXNo5hwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
       <type xmi:id="_DXNo5xwLEe-urICxG0GjCg" name="Scanner">
@@ -1808,9 +1850,9 @@
     <visibility xmi:id="_DXBbqxwLEe-urICxG0GjCg" label="+"/>
     <attributes xmi:id="_DXBbrBwLEe-urICxG0GjCg" defaultValue="new Random()" name="estrattore" staticAttribute="true">
       <modelElement href="IDSv1.uml#_DMzIoBwLEe-urICxG0GjCg"/>
-      <stereotypes xmi:id="_DXBbrRwLEe-urICxG0GjCg" name="LegacyStyledElement">
-        <modelElement href="IDSv1.uml#_DM0WwBwLEe-urICxG0GjCg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_HQnn8C1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_HQoPAC1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_HRGJEC1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
       <visibility xmi:id="_DXBbrhwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DXBbrxwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
       <type xmi:id="_DXBbsBwLEe-urICxG0GjCg" name="Random">
@@ -2118,9 +2160,9 @@
     </attributes>
     <attributes xmi:id="_DYFypxwLEe-urICxG0GjCg" name="utenti">
       <modelElement href="IDSv1.uml#_DM_88xwLEe-urICxG0GjCg"/>
-      <stereotypes xmi:id="_DYFyqBwLEe-urICxG0GjCg" name="Generics">
-        <modelElement href="IDSv1.uml#_DNAkABwLEe-urICxG0GjCg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_HQtHgC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HQtukC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HRJzcC1lEe-8Nr2H9gftQA" name="Generics"/>
       <visibility xmi:id="_DYFyqRwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DYFyqhwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
       <type xmi:id="_DYFyqxwLEe-urICxG0GjCg" name="ArrayList">
@@ -2209,12 +2251,12 @@
     </attributes>
     <attributes xmi:id="_DYbJ1xwLEe-urICxG0GjCg" name="alberi">
       <modelElement href="IDSv1.uml#_DM7EchwLEe-urICxG0GjCg"/>
-      <stereotypes xmi:id="_DYbJ2BwLEe-urICxG0GjCg" name="Generics">
-        <modelElement href="IDSv1.uml#_DM7rgBwLEe-urICxG0GjCg"/>
-      </stereotypes>
-      <stereotypes xmi:id="_DYbJ2RwLEe-urICxG0GjCg" name="LegacyStyledElement">
-        <modelElement href="IDSv1.uml#_DM7rgRwLEe-urICxG0GjCg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_HQu8sC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HQu8sS1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_HQvjwC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HQwK0C1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_HRKagC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HRKagS1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
       <visibility xmi:id="_DYbJ2hwLEe-urICxG0GjCg" label="-"/>
       <cardinality xmi:id="_DYbJ2xwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
       <type xmi:id="_DYbJ3BwLEe-urICxG0GjCg" name="ArrayList">
@@ -2223,12 +2265,12 @@
     </attributes>
     <attributes xmi:id="_DYbJ3RwLEe-urICxG0GjCg" name="radici">
       <modelElement href="IDSv1.uml#_DM7rghwLEe-urICxG0GjCg"/>
-      <stereotypes xmi:id="_DYbJ3hwLEe-urICxG0GjCg" name="Generics">
-        <modelElement href="IDSv1.uml#_DM8SkBwLEe-urICxG0GjCg"/>
-      </stereotypes>
-      <stereotypes xmi:id="_DYbJ3xwLEe-urICxG0GjCg" name="LegacyStyledElement">
-        <modelElement href="IDSv1.uml#_DM8SkRwLEe-urICxG0GjCg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_HQwx4C1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HQxY8C1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_HQyAAC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HQynEC1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
+      <stereotypes xmi:id="_HRLooC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HRLooS1lEe-8Nr2H9gftQA" name="LegacyStyledElement"/>
       <visibility xmi:id="_DYbJ4BwLEe-urICxG0GjCg" label="-"/>
       <cardinality xmi:id="_DYbJ4RwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
       <type xmi:id="_DYbJ4hwLEe-urICxG0GjCg" name="ArrayList">
@@ -2237,9 +2279,9 @@
     </attributes>
     <attributes xmi:id="_DYbJ4xwLEe-urICxG0GjCg" name="foglie">
       <modelElement href="IDSv1.uml#_DM8SkhwLEe-urICxG0GjCg"/>
-      <stereotypes xmi:id="_DYbJ5BwLEe-urICxG0GjCg" name="Generics">
-        <modelElement href="IDSv1.uml#_DM85oBwLEe-urICxG0GjCg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_HQzOIC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HQz1MC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HRM2wC1lEe-8Nr2H9gftQA" name="Generics"/>
       <visibility xmi:id="_DYbJ5RwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DYbJ5hwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
       <type xmi:id="_DYbJ5xwLEe-urICxG0GjCg" name="ArrayList">
@@ -2385,9 +2427,9 @@
     </attributes>
     <attributes xmi:id="_DZxNqxwLEe-urICxG0GjCg" name="foglie">
       <modelElement href="IDSv1.uml#_DNBLEhwLEe-urICxG0GjCg"/>
-      <stereotypes xmi:id="_DZxNrBwLEe-urICxG0GjCg" name="Generics">
-        <modelElement href="IDSv1.uml#_DNByIBwLEe-urICxG0GjCg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_HQ9mMC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HQ-NQC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HROr8C1lEe-8Nr2H9gftQA" name="Generics"/>
       <visibility xmi:id="_DZxNrRwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DZxNrhwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
       <type xmi:id="_DZxNrxwLEe-urICxG0GjCg" name="ArrayList">
@@ -2805,9 +2847,9 @@
     </attributes>
     <attributes xmi:id="_DXbrZBwLEe-urICxG0GjCg" name="comprensorio">
       <modelElement href="IDSv1.uml#_DM4BIRwLEe-urICxG0GjCg"/>
-      <stereotypes xmi:id="_DXbrZRwLEe-urICxG0GjCg" name="Generics">
-        <modelElement href="IDSv1.uml#_DM4oMBwLEe-urICxG0GjCg"/>
-      </stereotypes>
+      <stereotypes xmi:id="_HQrSUC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HQr5YC1lEe-8Nr2H9gftQA" name="Generics"/>
+      <stereotypes xmi:id="_HRP6EC1lEe-8Nr2H9gftQA" name="Generics"/>
       <visibility xmi:id="_DXbrZhwLEe-urICxG0GjCg" label="+"/>
       <cardinality xmi:id="_DXbrZxwLEe-urICxG0GjCg" label="1" max="1" min="1"/>
       <type xmi:id="_DXbraBwLEe-urICxG0GjCg" name="ArrayList">

@@ -19,6 +19,7 @@ public class Leaf extends Nodo implements Serializable {
 		this.nome = nome;
 		this.root = root;
 		this.fattori = new FattoriDiConversione();
+		this.fattori.addFattoreConversione(this, 1.0);
 	}
 
 	/**

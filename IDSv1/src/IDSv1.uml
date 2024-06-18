@@ -3067,6 +3067,7 @@ Autore: Daniele Martinelli e Federico Sabbadini</body>
             </packagedElement>
           </packagedElement>
         </packagedElement>
+        <packagedElement xmi:type="uml:Class" xmi:id="_F73bgC1lEe-8Nr2H9gftQA" name="NewClass1"/>
       </packagedElement>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_DGKVIBwLEe-urICxG0GjCg" name="java">
