@@ -1,7 +1,6 @@
 package it.unibs.ids.progetto.printer;
 
 import it.unibs.ids.progetto.Albero;
-import it.unibs.ids.progetto.Commercio;
 import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.Nodo;
 import it.unibs.ids.progetto.NotLeaf;

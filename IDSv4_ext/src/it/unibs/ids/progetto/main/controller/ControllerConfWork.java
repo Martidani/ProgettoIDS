@@ -3,11 +3,18 @@ package it.unibs.ids.progetto.main.controller;
 import java.util.ArrayList;
 import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.Albero;
+import it.unibs.ids.progetto.Commercio;
 import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.FattoriDiConversione;
+import it.unibs.ids.progetto.Geografia;
 import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.RootTreeException;
+import it.unibs.ids.progetto.Utenza;
 import it.unibs.ids.progetto.main.model.Model;
+import it.unibs.ids.progetto.main.model.ModelCommercio;
+import it.unibs.ids.progetto.main.model.ModelGeografia;
+import it.unibs.ids.progetto.main.model.ModelGerarchia;
+import it.unibs.ids.progetto.main.model.ModelUtenza;
 import it.unibs.ids.progetto.printer.PrinterLeaf;
 import it.unibs.ids.progetto.printer.PrintManager;
 import it.unibs.ids.progetto.Leaf;
@@ -22,12 +29,14 @@ import it.unibs.ids.progetto.NotLeaf;
  */
 public class ControllerConfWork  {
 
-	protected Model model;
     private PrintManager printManager;
+	private ModelGerarchia modelGerarchia;
+	private ModelGeografia modelGeografia;
 	
 	public ControllerConfWork (Model model) {
 		super();
-		this.model = model;
+        this.modelGerarchia = model.getModelGerarchia();
+        this.modelGeografia = model.getModelGeografia();
 	    this.printManager = new PrintManager(model);
 	}
 	
@@ -41,7 +50,7 @@ public class ControllerConfWork  {
 		String nome;
 		do {
 			nome = InputDati.leggiStringaNonVuota("  Nome: ");
-		} while (model.verificaEsistenzaComprensorio(nome));
+		} while (modelGeografia.verificaEsistenzaComprensorio(nome));
 		
 	    Comprensorio comprensorio = new Comprensorio(nome);
 
@@ -56,7 +65,7 @@ public class ControllerConfWork  {
         int size = comprensorio.getComprensorio().size();
         comprensorio.getComprensorio().remove(size - 1);
 
-        model.addComprensorio(comprensorio);
+        modelGeografia.addComprensorio(comprensorio);
     }
 
     /**
@@ -70,7 +79,7 @@ public class ControllerConfWork  {
         ArrayList<Leaf> foglieAttuali = new ArrayList<>();
         NotLeaf root = creaRadice();
         creaNodiFiglio(root, root, foglieAttuali);
-        model.addAlbero(new Albero(root));
+        modelGerarchia.addAlbero(new Albero(root));
         creaFattoriConversione( foglieAttuali);
     }
 
@@ -103,7 +112,7 @@ public class ControllerConfWork  {
         String radice;
         do {
             radice = InputDati.leggiStringaNonVuota("Nome radice -> ");
-        } while (model.verificaEsistenzaNomeRadice(radice));
+        } while (modelGerarchia.verificaEsistenzaNomeRadice(radice));
 
         String campo = InputDati.leggiStringaNonVuota("Campo -> ");
         NotLeaf root = new NotLeaf(radice, null, campo);
@@ -215,7 +224,7 @@ public class ControllerConfWork  {
             }
         } while (InputDati.yesOrNo("Vuoi continuare l'inserimento? "));
 
-        model.addTransitivoFattoreConversione();
+        modelGerarchia.addTransitivoFattoreConversione();
     }
 
     /**
@@ -232,7 +241,7 @@ public class ControllerConfWork  {
             System.out.println(messaggio);
             String foglia = InputDati.leggiStringaNonVuota("  Nome -> ");
             String radice = InputDati.leggiStringaNonVuota("  Radice -> ");
-            nodo = model.visualizzaFoglia(foglia, radice);
+            nodo = modelGerarchia.visualizzaFoglia(foglia, radice);
             
         } while (nodo == null);
         return nodo;
@@ -263,7 +272,7 @@ public class ControllerConfWork  {
     	
         String foglia = InputDati.leggiStringaNonVuota("  Inserisci nome foglia: ");
         String radice = InputDati.leggiStringaNonVuota("  Inserisci radice della gerarchia della foglia: ");
-        Leaf nodo = model.visualizzaFoglia(foglia, radice);
+        Leaf nodo = modelGerarchia.visualizzaFoglia(foglia, radice);
         if (nodo == null)
             str.append("  Non è stata trovata nessuna corrispondenza");
         else

@@ -5,6 +5,9 @@ import it.unibs.ids.progetto.Configuratore;
 import it.unibs.ids.progetto.Credenziali;
 import it.unibs.ids.progetto.Utente;
 import it.unibs.ids.progetto.main.model.Model;
+import it.unibs.ids.progetto.main.model.ModelCommercio;
+import it.unibs.ids.progetto.main.model.ModelUtenza;
+
 
 
 /**
@@ -19,10 +22,15 @@ public class ControllerConfAccess {
      * Numero massimo di tentativi di login consentiti.
      */
     private static final int NUM_MAX_TENTATIVI = 3;
-	protected Model model;
+	private ModelUtenza modelUtenza;
+	private ModelCommercio modelCommercio;
+
 	
-	public ControllerConfAccess(Model model) {
-		this.model = model;
+	public ControllerConfAccess (Model model) {
+		super();
+        this.modelUtenza = model.getModelUtenza();
+        this.modelCommercio = model.getModelCommercio();
+
 	}
     
     
@@ -41,7 +49,7 @@ public class ControllerConfAccess {
         Credenziali credenziali = new Credenziali(id, psswd);
         configuratore.setCredenziali(credenziali);
         configuratore.setIsDefinitivo(false);
-        model.addUtente(configuratore);
+        modelUtenza.addUtente(configuratore);
     }
 	
 	/**
@@ -53,7 +61,7 @@ public class ControllerConfAccess {
 	 * @return                Il risultato del login.
 	 */
 	public int autenticazione(String ID, String PSSW) {
-		Utente utente = model.autenticazioneConfiguratore(ID, PSSW);
+		Utente utente = modelUtenza.autenticazioneConfiguratore(ID, PSSW);
 		if (utente == null) {
 	    	System.out.println(" ! Non esiste alcun configuratore con queste credenziali !");
 	        return 1;
@@ -65,7 +73,8 @@ public class ControllerConfAccess {
 	        return 2;
 	    } else {
 	        System.out.println("-> Utente riconosciuto");
-			model.setUtenteDiSessione(utente);
+	        modelUtenza.setUtenteDiSessione(utente);
+	        modelCommercio.setUtenteDiSessione(utente);
 	        return 2;
 	    }
 	}
@@ -83,8 +92,8 @@ public class ControllerConfAccess {
 	    String ID;
 	    do {
 	        ID = InputDati.leggiStringaNonVuota("  ID: ");
-	        if (model.verificaEsistenzaID(ID)) System.out.println(" ! ID già utilizzato ! ");
-	    } while (model.verificaEsistenzaID(ID));
+	        if (modelUtenza.verificaEsistenzaID(ID)) System.out.println(" ! ID già utilizzato ! ");
+	    } while (modelUtenza.verificaEsistenzaID(ID));
 
 	    String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
 	    return new Credenziali(ID, PSSW);

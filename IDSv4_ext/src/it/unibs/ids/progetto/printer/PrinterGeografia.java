@@ -1,6 +1,5 @@
 package it.unibs.ids.progetto.printer;
 
-import it.unibs.ids.progetto.Commercio;
 import it.unibs.ids.progetto.Comprensorio;
 import it.unibs.ids.progetto.Geografia;
 

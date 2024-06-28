@@ -10,6 +10,9 @@ import it.unibs.ids.progetto.Offerta;
 import it.unibs.ids.progetto.PropostaAperta;
 import it.unibs.ids.progetto.Richiesta;
 import it.unibs.ids.progetto.main.model.Model;
+import it.unibs.ids.progetto.main.model.ModelCommercio;
+import it.unibs.ids.progetto.main.model.ModelGerarchia;
+import it.unibs.ids.progetto.main.model.ModelUtenza;
 import it.unibs.ids.progetto.printer.PrinterLeaf;
 import it.unibs.ids.progetto.printer.PrinterNotLeaf;
 import it.unibs.ids.progetto.printer.PrintManager;
@@ -17,11 +20,17 @@ import it.unibs.ids.progetto.printer.PrintManager;
 public class ControllerFruWork  {
 
 	
-	protected Model model;
     private PrintManager printManager;
 	
+	private ModelUtenza modelUtenza;
+	private ModelGerarchia modelGerarchia;
+	private ModelCommercio modelCommercio;
+	
 	public ControllerFruWork (Model model) {
-		this.model = model;
+		super();
+        this.modelUtenza = model.getModelUtenza();
+        this.modelGerarchia = model.getModelGerarchia();
+        this.modelCommercio = model.getModelCommercio();
 	    this.printManager = new PrintManager(model);
 	}
 
@@ -30,7 +39,7 @@ public class ControllerFruWork  {
 		System.out.println(ger + "\n");
       
 		String nomeRadice = InputDati.leggiStringaNonVuota("Scegli radice -> ");
-		NotLeaf radice = model.visualizzaRadice(nomeRadice);
+		NotLeaf radice = modelGerarchia.visualizzaRadice(nomeRadice);
 		System.out.println(PrinterNotLeaf.toNavigationString(radice) + "\n");
 		Nodo child;
 				
@@ -52,7 +61,7 @@ public class ControllerFruWork  {
 	}
 	
 	public void proponiScambio() {
-        InsiemeAperto insiemeAperto = model.getInsiemeApertoDiSessione();
+        InsiemeAperto insiemeAperto = modelCommercio.getInsiemeApertoDiSessione();
         
 	       
 	       Leaf fogliaRichiesta = inserimentoPrestazioneOpera(true);
@@ -61,18 +70,18 @@ public class ControllerFruWork  {
 
 	        Offerta offerta = new Offerta(fogliaOfferta);
 	        Richiesta richiesta = new Richiesta(fogliaRichiesta, durata);
-	        Fruitore fruitore = (Fruitore) model.getUtenteDiSessione();
-	        PropostaAperta proposta = new PropostaAperta(richiesta, offerta, model.numProposte(),fruitore);
+	        Fruitore fruitore = (Fruitore) modelUtenza.getUtenteDiSessione();
+	        PropostaAperta proposta = new PropostaAperta(richiesta, offerta, modelCommercio.numProposte(),fruitore);
 	       
 	        System.out.println("\nOfferta: ");
 	        System.out.println("[" + offerta.getNome() + ", "+ offerta.getDurata() + " ore]");
 	        
 	        if (InputDati.yesOrNo("Confermi l'offerta?")) {
-	            model.addProposte(proposta);
+	            modelUtenza.addProposte(proposta);
 	            insiemeAperto.addPropostaAperta(proposta);
-	            model.metodo(insiemeAperto);            
+	            modelCommercio.metodo(insiemeAperto);            
 	        } else {
-				model.decrementaNumProposte();
+	        	modelCommercio.decrementaNumProposte();
 			}
     	
 	}
@@ -88,7 +97,7 @@ public class ControllerFruWork  {
     			nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci offerta [foglia di appartenenza] -> ");
 
         	nomeRadicePrestazione = InputDati.leggiStringaNonVuota("Inserisci radice -> ");	
-        	foglia = model.visualizzaFoglia(nomePrestazione, nomeRadicePrestazione);
+        	foglia = modelGerarchia.visualizzaFoglia(nomePrestazione, nomeRadicePrestazione);
 		} while (foglia == null);
 		return foglia;
 	}
@@ -128,9 +137,9 @@ public class ControllerFruWork  {
 			do {
 				 s1 = InputDati.leggiInteroNonNegativo("\nInserisci ID proposta: ");
 				 
-			} while ((proposta = model.cercaProposta(s1)) == null);
+			} while ((proposta = modelCommercio.cercaProposta(s1)) == null);
 			
-			model.ritira(proposta);
+			modelCommercio.ritira(proposta);
 		}
 		else
 			System.out.println("Non ci sono proposte (aperte) ritirabili");

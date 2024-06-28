@@ -1,24 +1,7 @@
 package it.unibs.ids.progetto.printer;
 
-import java.util.Map.Entry;
-
-import it.unibs.ids.progetto.Albero;
-import it.unibs.ids.progetto.Commercio;
-import it.unibs.ids.progetto.Comprensorio;
-import it.unibs.ids.progetto.FattoriDiConversione;
-import it.unibs.ids.progetto.Geografia;
-import it.unibs.ids.progetto.Gerarchia;
-import it.unibs.ids.progetto.InsiemeAperto;
-import it.unibs.ids.progetto.InsiemeChiuso;
-import it.unibs.ids.progetto.InsiemeRitirato;
-import it.unibs.ids.progetto.Leaf;
 import it.unibs.ids.progetto.Nodo;
-import it.unibs.ids.progetto.NotLeaf;
-import it.unibs.ids.progetto.PrestazioneOpera;
-import it.unibs.ids.progetto.Proposta;
-import it.unibs.ids.progetto.PropostaAperta;
-import it.unibs.ids.progetto.PropostaChiusa;
-import it.unibs.ids.progetto.PropostaRitirata;
+
 import it.unibs.ids.progetto.main.model.Model;
 
 public class PrintManager {

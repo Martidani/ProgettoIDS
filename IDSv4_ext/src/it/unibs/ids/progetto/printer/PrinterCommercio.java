@@ -1,12 +1,9 @@
 package it.unibs.ids.progetto.printer;
 
 import it.unibs.ids.progetto.Commercio;
-import it.unibs.ids.progetto.DefaultInitializer;
-import it.unibs.ids.progetto.FileManager;
 import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.InsiemeAperto;
 import it.unibs.ids.progetto.InsiemeChiuso;
-import it.unibs.ids.progetto.InsiemeRitirato;
 import it.unibs.ids.progetto.Nodo;
 import it.unibs.ids.progetto.PrestazioneOpera;
 import it.unibs.ids.progetto.Proposta;

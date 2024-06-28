@@ -7,10 +7,9 @@ import it.unibs.ids.progetto.DefaultInitializer;
 import it.unibs.ids.progetto.FileManager;
 import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.InsiemeAperto;
-import it.unibs.ids.progetto.Nodo;
 import it.unibs.ids.progetto.PropostaAperta;
 import it.unibs.ids.progetto.Utente;
-import it.unibs.ids.progetto.printer.PrintManager;
+
 
 public class ModelCommercio implements Serializable{
 

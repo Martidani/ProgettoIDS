@@ -10,7 +10,7 @@ import it.unibs.ids.progetto.FileManager;
 import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.Leaf;
 import it.unibs.ids.progetto.NotLeaf;
-import it.unibs.ids.progetto.printer.PrintManager;
+
 
 public class ModelGerarchia implements Serializable {
 

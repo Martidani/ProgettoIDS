@@ -7,6 +7,9 @@ import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.MailAddress;
 import it.unibs.ids.progetto.Utente;
 import it.unibs.ids.progetto.main.model.Model;
+import it.unibs.ids.progetto.main.model.ModelCommercio;
+import it.unibs.ids.progetto.main.model.ModelGeografia;
+import it.unibs.ids.progetto.main.model.ModelUtenza;
 
 public class ControllerFruAccess  {
 
@@ -15,10 +18,15 @@ public class ControllerFruAccess  {
      * Numero massimo di tentativi di login consentiti.
      */
     private static final int NUM_MAX_TENTATIVI = 3;
-	protected Model model;
+	private ModelUtenza modelUtenza;
+	private ModelGeografia modelGeografia;
+	private ModelCommercio modelCommercio;
 	
-	public ControllerFruAccess(Model model) {
-		this.model = model;
+	public ControllerFruAccess (Model model) {
+		super();
+        this.modelUtenza = model.getModelUtenza();
+        this.modelGeografia = model.getModelGeografia();
+        this.modelCommercio = model.getModelCommercio();
 	}
 
 
@@ -32,7 +40,7 @@ public class ControllerFruAccess  {
 		String c;
 		do {
 			c = InputDati.leggiStringaNonVuota("  Comprensorio: ");
-		} while (!model.verificaEsistenzaComprensorio(c));
+		} while (!modelGeografia.verificaEsistenzaComprensorio(c));
 		
 	    Credenziali credenziali = primoAccesso();
 	    String indirizzo;
@@ -40,10 +48,10 @@ public class ControllerFruAccess  {
 	    	indirizzo = InputDati.leggiStringaNonVuota("  Indirizzo e-mail: ");
 		} while (!MailAddress.isValidEmail(indirizzo));
 	    
-	    Comprensorio comprensorio = model.cercaComprensorio(c);
+	    Comprensorio comprensorio = modelGeografia.cercaComprensorio(c);
 
 	    Fruitore fruitore = new Fruitore(comprensorio, credenziali, new MailAddress(indirizzo));
-	    model.addUtente(fruitore);
+	    modelUtenza.addUtente(fruitore);
 	}
 	
 	/**
@@ -55,14 +63,16 @@ public class ControllerFruAccess  {
 	 * @return                Il risultato del login.
 	 */
 	public int autenticazione(String ID, String PSSW) {
-		Utente utente = model.autenticazioneFruitore(ID, PSSW);
+		Utente utente = modelUtenza.autenticazioneFruitore(ID, PSSW);
 		
 	    if (utente == null) {
 	    		System.out.println(" ! Non esiste alcun fruitore con queste credenziali !");
 	        return 1;
 	    }  else {
 	        System.out.println("-> Utente riconosciuto");
-			model.setUtenteDiSessione(utente);
+	        modelUtenza.setUtenteDiSessione(utente);
+	        modelCommercio.setUtenteDiSessione(utente);
+
 	        return 2;
 	    }
 	}
@@ -79,8 +89,8 @@ public class ControllerFruAccess  {
 	    String ID;
 	    do {
 	        ID = InputDati.leggiStringaNonVuota("  ID: ");
-	        if (model.verificaEsistenzaID(ID)) System.out.println(" ! ID già utilizzato ! ");
-	    } while (model.verificaEsistenzaID(ID));
+	        if (modelUtenza.verificaEsistenzaID(ID)) System.out.println(" ! ID già utilizzato ! ");
+	    } while (modelUtenza.verificaEsistenzaID(ID));
 
 	    String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
 	    return new Credenziali(ID, PSSW);

@@ -9,7 +9,7 @@ import it.unibs.ids.progetto.DefaultInitializer;
 
 import it.unibs.ids.progetto.FileManager;
 import it.unibs.ids.progetto.Geografia;
-import it.unibs.ids.progetto.printer.PrintManager;
+
 
 
 
