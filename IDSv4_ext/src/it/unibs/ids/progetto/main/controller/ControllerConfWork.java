@@ -79,8 +79,10 @@ public class ControllerConfWork  {
         ArrayList<Leaf> foglieAttuali = new ArrayList<>();
         NotLeaf root = creaRadice();
         creaNodiFiglio(root, root, foglieAttuali);
-        modelGerarchia.addAlbero(new Albero(root));
-        creaFattoriConversione( foglieAttuali);
+        Albero albero = new Albero(root);
+        modelGerarchia.addAlbero(albero);
+        int numFoglie = albero.getFoglie().size(); 
+        creaFattoriConversione( foglieAttuali, numFoglie);
     }
 
     /**
@@ -208,8 +210,8 @@ public class ControllerConfWork  {
      * @throws LeafHasChildrenException 
      * @throws Exception     Eccezione in caso di problemi durante l'inserimento.
      */
-    private  void creaFattoriConversione(ArrayList<Leaf> foglieAttuali) {
-        System.out.println("\nInserimento fattori di conversione:");
+    private  void creaFattoriConversione(ArrayList<Leaf> foglieAttuali, int numFoglie) {
+        System.out.println("\nInserimento fattori di conversione: ["+ numFoglie + "] fattori da inserire");
         do {
         	Leaf nodo1 = chiediFoglia("Foglia 1:");
         	Leaf nodo2 = chiediFoglia("Foglia 2:");
@@ -222,7 +224,9 @@ public class ControllerConfWork  {
                 nodo1.addFattoreConversione(nodo2, fattoreDiConversione);
                 nodo2.addFattoreConversione(nodo1, 1 / fattoreDiConversione);
             }
-        } while (InputDati.yesOrNo("Vuoi continuare l'inserimento? "));
+            numFoglie--;
+            System.out.println();
+        } while (numFoglie>0);
 
         modelGerarchia.addTransitivoFattoreConversione();
     }
@@ -260,6 +264,8 @@ public class ControllerConfWork  {
         } while (!FattoriDiConversione.verificaFattoreConversione(fattoreDiConversione));
         return fattoreDiConversione;
     }
+    
+    
 
     /**
      * Metodo per stampare i fattori di conversione di un nodo.

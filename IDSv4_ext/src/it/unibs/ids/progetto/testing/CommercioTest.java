@@ -29,6 +29,78 @@ public class CommercioTest {
     }
 
     @Test
+    void test_Chiudi_NessunaProposta() {
+        InsiemeAperto insiemeAperto0 = new InsiemeAperto(fruitore0.getComprensorioAppartenenza());
+        commercio.addInsiemiAperti(insiemeAperto0);
+        commercio.cercaProposteChiudibili(insiemeAperto0);
+
+        assertEquals(0, commercio.getInsiemiChiusi().size());
+    }
+
+    @Test
+    void test_Chiudi_ProposteConValoriEstremi() {
+        InsiemeAperto insiemeAperto0 = new InsiemeAperto(fruitore0.getComprensorioAppartenenza());
+
+        int val = Integer.MAX_VALUE-1;
+        PropostaAperta proposta00 = createProposta(
+                new Richiesta(gerarchia.getFoglie().get(1), val),
+                new Offerta(gerarchia.getFoglie().get(0))
+        );
+
+        PropostaAperta proposta01 = createProposta(
+                new Richiesta(gerarchia.getFoglie().get(0), proposta00.getOfferta().getDurata()),
+                new Offerta(gerarchia.getFoglie().get(1))
+        );
+
+        aggiungiProposteAperte(insiemeAperto0, proposta00, proposta01);
+
+        // Verificare che le proposte siano chiuse correttamente anche con valori estremi
+        assertEquals(2, commercio.getInsiemiChiusi().get(0).getProposteChiuse().size());
+    }
+
+    
+
+    @Test
+    void test_Chiudi_ProposteConRichiestaZero() {
+        InsiemeAperto insiemeAperto0 = new InsiemeAperto(fruitore0.getComprensorioAppartenenza());
+
+        PropostaAperta proposta00 = createProposta(
+                new Richiesta(gerarchia.getFoglie().get(0), 0),
+                new Offerta(gerarchia.getFoglie().get(1))
+        );
+
+        PropostaAperta proposta01 = createProposta(
+                new Richiesta(gerarchia.getFoglie().get(1), 0),
+                new Offerta(gerarchia.getFoglie().get(0))
+        );
+
+        aggiungiProposteAperte(insiemeAperto0, proposta00, proposta01);
+
+        // Verificare che le proposte siano chiuse correttamente anche con richieste di valore zero
+        assertEquals(2, commercio.getInsiemiChiusi().get(0).getProposteChiuse().size());
+    }
+
+    @Test
+    void test_Chiudi_ProposteConRichiestaNegativa() {
+        InsiemeAperto insiemeAperto0 = new InsiemeAperto(fruitore0.getComprensorioAppartenenza());
+
+        PropostaAperta proposta00 = createProposta(
+                new Richiesta(gerarchia.getFoglie().get(0), -1),
+                new Offerta(gerarchia.getFoglie().get(1))
+        );
+
+        PropostaAperta proposta01 = createProposta(
+                new Richiesta(gerarchia.getFoglie().get(1), -1),
+                new Offerta(gerarchia.getFoglie().get(0))
+        );
+
+        aggiungiProposteAperte(insiemeAperto0, proposta00, proposta01);
+
+        // Verificare che le proposte non vengano chiuse con richieste negative
+        assertEquals(0, commercio.getInsiemiChiusi().size());
+    }
+
+    @Test
     void test_Chiudi_3Proposte() {
         InsiemeAperto insiemeAperto0 = new InsiemeAperto(fruitore0.getComprensorioAppartenenza());
 

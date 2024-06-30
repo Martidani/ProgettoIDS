@@ -19,7 +19,64 @@ class FattoriDiConversioneTest {
         gerarchia = new Gerarchia();
     }
 
+    @Test
+    void test_FattoreConversione_LimiteSuperiore() throws Exception {
+        NotLeaf nodo0 = creaNodoRadice(DefaultInitializer.ROOT_NAME_0, DefaultInitializer.ROOT_FIELD_0, DefaultInitializer.ROOT_DOMAIN_0);
 
+        Leaf nodo00 = creaNodoFoglia(DefaultInitializer.CHILD_NAME_00, DefaultInitializer.ROOT_NAME_0);
+        Leaf nodo01 = creaNodoFoglia(DefaultInitializer.CHILD_NAME_01, DefaultInitializer.ROOT_NAME_0);
+
+        nodo0.addChild(nodo00);
+        nodo0.addChild(nodo01);
+
+        nodo00.addFattoreConversione(nodo01, 2.0);
+        nodo01.addFattoreConversione(nodo00, 0.5);
+
+        creaAlbero(nodo0);
+
+        assertEquals(2.0, nodo00.fattoreFoglia(nodo01));
+        assertEquals(0.5, nodo01.fattoreFoglia(nodo00));
+    }
+
+    @Test
+    void test_FattoreConversione_LimiteInferiore() throws Exception {
+        NotLeaf nodo0 = creaNodoRadice(DefaultInitializer.ROOT_NAME_0, DefaultInitializer.ROOT_FIELD_0, DefaultInitializer.ROOT_DOMAIN_0);
+
+        Leaf nodo00 = creaNodoFoglia(DefaultInitializer.CHILD_NAME_00, DefaultInitializer.ROOT_NAME_0);
+        Leaf nodo01 = creaNodoFoglia(DefaultInitializer.CHILD_NAME_01, DefaultInitializer.ROOT_NAME_0);
+
+        nodo0.addChild(nodo00);
+        nodo0.addChild(nodo01);
+
+        nodo00.addFattoreConversione(nodo01, 0.5);
+        nodo01.addFattoreConversione(nodo00, 2.0);
+
+        creaAlbero(nodo0);
+
+        assertEquals(0.5, nodo00.fattoreFoglia(nodo01));
+        assertEquals(2.0, nodo01.fattoreFoglia(nodo00));
+    }
+
+
+
+    @Test
+    void test_FattoreConversione_Null() throws Exception {
+        NotLeaf nodo0 = creaNodoRadice(DefaultInitializer.ROOT_NAME_0, DefaultInitializer.ROOT_FIELD_0, DefaultInitializer.ROOT_DOMAIN_0);
+
+        Leaf nodo00 = creaNodoFoglia(DefaultInitializer.CHILD_NAME_00, DefaultInitializer.ROOT_NAME_0);
+        Leaf nodo01 = creaNodoFoglia(DefaultInitializer.CHILD_NAME_01, DefaultInitializer.ROOT_NAME_0);
+
+        nodo0.addChild(nodo00);
+        nodo0.addChild(nodo01);
+
+        // Non aggiungiamo alcun fattore di conversione
+
+        creaAlbero(nodo0);
+
+        assertEquals(0, nodo00.fattoreFoglia(nodo01));
+    }
+
+   
     @Test
     void test_FattoreConversione_TraFoglieDiStessoAlbero() throws Exception {
         NotLeaf nodo0 = creaNodoRadice(DefaultInitializer.ROOT_NAME_0, DefaultInitializer.ROOT_FIELD_0, DefaultInitializer.ROOT_DOMAIN_0);
