@@ -15,8 +15,8 @@ import java.util.Set;
 public class FattoriDiConversione implements Serializable{
 
     private static final long serialVersionUID = 1L;
-	private static final double MIN_FATTORECONVERSIONE = 0.5;
-    private static final double MAX_FATTORECONVERSIONE = 2.0;
+	public static final double MIN_FATTORECONVERSIONE = 0.5;
+    public static final double MAX_FATTORECONVERSIONE = 2.0;
     
 	private HashMap<Leaf, Double> fattori;
     

@@ -12,7 +12,7 @@ import it.unibs.ids.progetto.PropostaAperta;
 import it.unibs.ids.progetto.Richiesta;
 import it.unibs.ids.progetto.Utenza;
 
-public class CommercioTest {
+public class CommercioRegoleTest {
 	
     private Utenza utenza;
     private Gerarchia gerarchia;
@@ -27,10 +27,21 @@ public class CommercioTest {
         fruitore0 = (Fruitore) utenza.getUtenti().get(2);
         commercio.setFruitoreDiSessione(fruitore0);
     }
+    private PropostaAperta createProposta(Richiesta richiesta, Offerta offerta) {
+        return new PropostaAperta(richiesta, offerta, commercio.numProposte(), fruitore0);
+    }
 
+    private void aggiungiProposteAperte(InsiemeAperto insiemeAperto, PropostaAperta... proposte) {
+        for (PropostaAperta proposta : proposte) {
+            insiemeAperto.addPropostaAperta(proposta);
+        }
+        commercio.addInsiemiAperti(insiemeAperto);
+        commercio.cercaProposteChiudibili(insiemeAperto);
+    }
+
+    //------------------------------------------------------------------------------------------ 
+    //---------------------------Equivalence Partitioning Test---------------------------------- 
     //------------------------------------------------------------------------------------------
-    //------------------------------------------------------------------------------------------
-    
     @Test
     void test_Chiudi_3Proposte() {
         InsiemeAperto insiemeAperto0 = new InsiemeAperto(fruitore0.getComprensorioAppartenenza());
@@ -156,8 +167,8 @@ public class CommercioTest {
     }
     
     //------------------------------------------------------------------------------------------
+    //---------------------------------Boundary Value Analysis----------------------------------
     //------------------------------------------------------------------------------------------
-    
     @Test
     void test_Chiudi_NessunaProposta() {
         InsiemeAperto insiemeAperto0 = new InsiemeAperto(fruitore0.getComprensorioAppartenenza());
@@ -228,20 +239,5 @@ public class CommercioTest {
 
         // Verificare che le proposte non vengano chiuse con richieste negative
         assertEquals(0, commercio.getInsiemiChiusi().size());
-    }
-
-    //------------------------------------------------------------------------------------------
-    //------------------------------------------------------------------------------------------
-    // metodi di utilità
-    private PropostaAperta createProposta(Richiesta richiesta, Offerta offerta) {
-        return new PropostaAperta(richiesta, offerta, commercio.numProposte(), fruitore0);
-    }
-
-    private void aggiungiProposteAperte(InsiemeAperto insiemeAperto, PropostaAperta... proposte) {
-        for (PropostaAperta proposta : proposte) {
-            insiemeAperto.addPropostaAperta(proposta);
-        }
-        commercio.addInsiemiAperti(insiemeAperto);
-        commercio.cercaProposteChiudibili(insiemeAperto);
     }
 }
