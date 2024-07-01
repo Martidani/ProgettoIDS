@@ -148,6 +148,27 @@ class FattoriDiConversioneTest {
 
         assertNotEquals(1 / DefaultInitializer.FACTOR_VAL_00 * DefaultInitializer.FACTOR_VAL_10, nodo10.fattoreFoglia(nodo01));
     }
+    @Test
+    void test_FattoreNonCorretto_Identita() throws Exception {
+        NotLeaf nodo0 = creaNodoRadice(DefaultInitializer.ROOT_NAME_0, DefaultInitializer.ROOT_FIELD_0, DefaultInitializer.ROOT_DOMAIN_0);
+
+        Leaf nodo00 = creaNodoFoglia(DefaultInitializer.CHILD_NAME_00, DefaultInitializer.ROOT_NAME_0);
+        Leaf nodo01 = creaNodoFoglia(DefaultInitializer.CHILD_NAME_01, DefaultInitializer.ROOT_NAME_0);
+        Leaf nodo10 = creaNodoFoglia(DefaultInitializer.CHILD_NAME_10, DefaultInitializer.ROOT_NAME_0);
+
+        nodo0.addChild(nodo00);
+        nodo0.addChild(nodo01);
+        nodo0.addChild(nodo10);
+
+        nodo00.addFattoreConversione(nodo01, DefaultInitializer.FACTOR_VAL_00);
+        nodo01.addFattoreConversione(nodo00, 1 / DefaultInitializer.FACTOR_VAL_00);
+        nodo00.addFattoreConversione(nodo10, DefaultInitializer.FACTOR_VAL_10);
+        nodo10.addFattoreConversione(nodo00, 1 / DefaultInitializer.FACTOR_VAL_10);
+
+        creaAlbero(nodo0);
+
+        assertNotEquals(1.1, nodo00.fattoreFoglia(nodo00));
+    }
     
     //------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------
@@ -207,27 +228,7 @@ class FattoriDiConversioneTest {
 
         assertEquals(0, nodo00.fattoreFoglia(nodo01));
     }
-    @Test
-    void test_FattoreNonCorretto_Identita() throws Exception {
-        NotLeaf nodo0 = creaNodoRadice(DefaultInitializer.ROOT_NAME_0, DefaultInitializer.ROOT_FIELD_0, DefaultInitializer.ROOT_DOMAIN_0);
-
-        Leaf nodo00 = creaNodoFoglia(DefaultInitializer.CHILD_NAME_00, DefaultInitializer.ROOT_NAME_0);
-        Leaf nodo01 = creaNodoFoglia(DefaultInitializer.CHILD_NAME_01, DefaultInitializer.ROOT_NAME_0);
-        Leaf nodo10 = creaNodoFoglia(DefaultInitializer.CHILD_NAME_10, DefaultInitializer.ROOT_NAME_0);
-
-        nodo0.addChild(nodo00);
-        nodo0.addChild(nodo01);
-        nodo0.addChild(nodo10);
-
-        nodo00.addFattoreConversione(nodo01, DefaultInitializer.FACTOR_VAL_00);
-        nodo01.addFattoreConversione(nodo00, 1 / DefaultInitializer.FACTOR_VAL_00);
-        nodo00.addFattoreConversione(nodo10, DefaultInitializer.FACTOR_VAL_10);
-        nodo10.addFattoreConversione(nodo00, 1 / DefaultInitializer.FACTOR_VAL_10);
-
-        creaAlbero(nodo0);
-
-        assertNotEquals(1.1, nodo00.fattoreFoglia(nodo00));
-    }
+    
     
     //------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------
