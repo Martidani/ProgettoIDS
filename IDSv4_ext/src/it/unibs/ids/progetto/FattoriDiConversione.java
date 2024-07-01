@@ -24,7 +24,10 @@ public class FattoriDiConversione implements Serializable{
 		return fattori.entrySet();
 	}
 
-
+	public FattoriDiConversione() {
+		this.fattori = new HashMap<Leaf, Double>();
+	}
+	
 	/**
 	 * Verifica se esiste un fattore di conversione con una data foglia.
 	 * 
@@ -97,43 +100,34 @@ public class FattoriDiConversione implements Serializable{
         if (nodo1.equals(nodo2)) {
             return getFattoreIdentità();
             
-        } else if (esisteFattoreDiretto(nodo1, nodo2)) {
+        } else if (getFattoreDiretto(nodo1, nodo2) != 0) {
             return getFattoreDiretto(nodo1, nodo2);
             
         } else {
-           return getFattoreIndiretto(nodo1, nodo2, visitati);
+        	if (nodo1.getFattori().isEmpty()) 
+                return null;
+            
+            for (Map.Entry<Leaf, Double> entry : nodo1.getFattori()) {
+                Leaf key = entry.getKey();
+                if (!visitati.contains(key)) {
+                    visitati.add(key);
+                    Double val = calcTransitivo(key, nodo2, visitati);
+                    if (val != null) 
+                        return entry.getValue() * val; 
+                }
+            }
             
         }
+        return null;
     }
 	
 	private static double getFattoreIdentità() {
 		return 1.0;
 	}
-	
-	private static boolean esisteFattoreDiretto(Leaf nodo1, Leaf nodo2) {
-		return getFattoreDiretto(nodo1, nodo2) != 0;
-	}
 
 	private static double getFattoreDiretto(Leaf nodo1, Leaf nodo2) {
-		return nodo2.fattoreFoglia(nodo1);
+		return nodo1.fattoreFoglia(nodo2);
 	}
 	
-    private static Double getFattoreIndiretto(Leaf nodo1, Leaf nodo2, List<Leaf> visitati) {
-    	Set<Entry<Leaf,Double>> fact = nodo1.getFattori();
-    	
-        if (fact.isEmpty()) 
-            return null;
-
-        for (Map.Entry<Leaf, Double> entry : fact) {
-            Leaf key = entry.getKey();
-            if (!visitati.contains(key)) {
-                visitati.add(key);
-                Double val = calcTransitivo(key, nodo2, visitati);
-                if (val != null) 
-                    return entry.getValue() * val; 
-            }
-        }
-        return null;
-    }
 
 }
