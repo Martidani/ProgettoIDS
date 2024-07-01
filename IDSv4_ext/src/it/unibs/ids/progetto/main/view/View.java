@@ -1,6 +1,6 @@
 package it.unibs.ids.progetto.main.view;
 
-import it.unibs.ids.progetto.RootTreeException;
+import it.unibs.ids.progetto.eccezioni.RootTreeException;
 import it.unibs.ids.progetto.printer.PrintMenu;
 
 public interface View {

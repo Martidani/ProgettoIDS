@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto;
+package it.unibs.ids.progetto.eccezioni;
 
 /**
  * Eccezione personalizzata per gestire il caso in cui un nodo 

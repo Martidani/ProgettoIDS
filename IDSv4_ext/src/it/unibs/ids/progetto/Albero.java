@@ -3,6 +3,8 @@ package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import it.unibs.ids.progetto.eccezioni.RootTreeException;
+
 
 public class Albero implements Serializable {
 

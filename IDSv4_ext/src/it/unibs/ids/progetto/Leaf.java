@@ -1,6 +1,8 @@
 package it.unibs.ids.progetto;
 
 import java.io.Serializable;
+import java.util.Set;
+import java.util.Map.Entry;
 
 public class Leaf extends Nodo implements Serializable {
 
@@ -45,9 +47,10 @@ public class Leaf extends Nodo implements Serializable {
 	 * 
 	 * @return Il dominio associato al nodo.
 	 */
-	public FattoriDiConversione getFattori() {
-		return fattori;
-	}
+	public Set<Entry<Leaf,Double>> getFattori() {
+		return fattori.getFattori();
+		}
+
 	
 	/**
 	 * Verifica se il nodo è una radice.

@@ -1,7 +1,4 @@
 package it.unibs.ids.progetto;
-
-
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-
 
 /**
  * Classe per la gestione dei fattori di conversione.
@@ -24,21 +19,10 @@ public class FattoriDiConversione implements Serializable{
     private static final double MAX_FATTORECONVERSIONE = 2.0;
     
 	private HashMap<Leaf, Double> fattori;
-
-	
-	
-    public FattoriDiConversione() {
-		this.fattori = new HashMap<Leaf, Double>();
-	}
     
-
-
-	
 	public Set<Entry<Leaf,Double>> getFattori() {
 		return fattori.entrySet();
 	}
-
-
 
 
 	/**
@@ -52,8 +36,7 @@ public class FattoriDiConversione implements Serializable{
 			return fattori.get(foglia);
 		return 0;
 	}
-
-
+	
 	/**
 	 * Aggiunge un fattore di conversione associato al nodo.
 	 * 
@@ -63,8 +46,6 @@ public class FattoriDiConversione implements Serializable{
 	public void addFattoreConversione(Leaf foglia, Double fattore) {
 		fattori.put(foglia, fattore);
 	}
-
-
 
     /**
      * Verifica se un dato fattore di conversione è valido.
@@ -85,13 +66,21 @@ public class FattoriDiConversione implements Serializable{
         
         for (Leaf nodo1 : gerarchia.getFoglie()) {
             for (Leaf nodo2 : gerarchia.getFoglie()) {
-                if (!nodo1.equals(nodo2) && nodo1.getFattori().fattoreFoglia(nodo2) == 0) {
-                    Double fattore = calcTransitivo(nodo1, nodo2, new ArrayList<>());
-                    if (fattore != null) {
-                    	nodo1.addFattoreConversione(nodo2, fattore);
-                    }
+            	if (shouldAddTransitivoFattore(nodo1, nodo2)) {
+                    addFattoreIfCalculated(nodo1, nodo2);
                 }
             }
+        }
+    }
+    
+    private static boolean shouldAddTransitivoFattore(Leaf nodo1, Leaf nodo2) {
+        return !nodo1.equals(nodo2) && nodo1.fattoreFoglia(nodo2) == 0;
+    }
+
+    private static void addFattoreIfCalculated(Leaf nodo1, Leaf nodo2) {
+        Double fattore = calcTransitivo(nodo1, nodo2, new ArrayList<>());
+        if (fattore != null) {
+            nodo1.addFattoreConversione(nodo2, fattore);
         }
     }
 
@@ -104,35 +93,47 @@ public class FattoriDiConversione implements Serializable{
      * @return Il fattore di conversione transitivo tra i due nodi, null se non è possibile calcolarlo
      */
     private static Double calcTransitivo(Leaf nodo1, Leaf nodo2, List<Leaf> visitati) {
-    	FattoriDiConversione fact = nodo1.getFattori();
+    	
         if (nodo1.equals(nodo2)) {
-            return 1.0;
-        } else if (fact.fattoreFoglia(nodo2) != 0) {
-            return fact.fattoreFoglia(nodo2);
+            return getFattoreIdentità();
+            
+        } else if (esisteFattoreDiretto(nodo1, nodo2)) {
+            return getFattoreDiretto(nodo1, nodo2);
+            
         } else {
-            if (fact.isEmpty())
-                return null;
-            for (Map.Entry<Leaf, Double> entry : fact.getFattori()) {
-            	Leaf key = entry.getKey();
-                if (!visitati.contains(key)) {
-                    visitati.add(key);
-                    Double val = calcTransitivo(key, nodo2, visitati);
-                    if (val != null) {
-                        return entry.getValue() * val;
-                    }
-                }
-            }
+           return getFattoreIndiretto(nodo1, nodo2, visitati);
+            
         }
-        return null; // Restituiamo null se non è possibile calcolare il fattore di conversione
     }
-    
-	private boolean isEmpty() {
-		if (fattori.size()==0)
-			return true;
-		return false;
+	
+	private static double getFattoreIdentità() {
+		return 1.0;
+	}
+	
+	private static boolean esisteFattoreDiretto(Leaf nodo1, Leaf nodo2) {
+		return getFattoreDiretto(nodo1, nodo2) != 0;
 	}
 
-
-
+	private static double getFattoreDiretto(Leaf nodo1, Leaf nodo2) {
+		return nodo2.fattoreFoglia(nodo1);
+	}
 	
+    private static Double getFattoreIndiretto(Leaf nodo1, Leaf nodo2, List<Leaf> visitati) {
+    	Set<Entry<Leaf,Double>> fact = nodo1.getFattori();
+    	
+        if (fact.isEmpty()) 
+            return null;
+
+        for (Map.Entry<Leaf, Double> entry : fact) {
+            Leaf key = entry.getKey();
+            if (!visitati.contains(key)) {
+                visitati.add(key);
+                Double val = calcTransitivo(key, nodo2, visitati);
+                if (val != null) 
+                    return entry.getValue() * val; 
+            }
+        }
+        return null;
+    }
+
 }

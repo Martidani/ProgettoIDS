@@ -1,6 +1,6 @@
 package it.unibs.ids.progetto.main.controller;
 
-import it.unibs.ids.progetto.RootTreeException;
+import it.unibs.ids.progetto.eccezioni.RootTreeException;
 import it.unibs.ids.progetto.main.model.Model;
 import it.unibs.ids.progetto.printer.PrintManager;
 

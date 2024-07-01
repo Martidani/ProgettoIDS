@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.unibs.ids.progetto.eccezioni.LeafHasChildrenException;
+
 
 public class NotLeaf extends Nodo implements Serializable {
 

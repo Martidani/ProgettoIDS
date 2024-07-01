@@ -1,8 +1,7 @@
 package it.unibs.ids.progetto.printer;
 
+import java.util.Set;
 import java.util.Map.Entry;
-
-import it.unibs.ids.progetto.FattoriDiConversione;
 import it.unibs.ids.progetto.Leaf;
 import it.unibs.ids.progetto.Nodo;
 
@@ -15,7 +14,9 @@ public class PrinterLeaf{
   	 * @return Una stringa rappresentante le relazioni con le foglie.
   	 */
   	public static String toStringFactors(Nodo nodo) {
-  		return toString((nodo.getNome()),((Leaf) nodo).getFattori());
+  		return toString(
+  				(nodo.getNome()),((Leaf) nodo).getFattori()
+  				);
   			
   	}
 
@@ -47,10 +48,10 @@ public class PrinterLeaf{
  	 * 
  	 * @return Una stringa rappresentante le relazioni con le foglie.
  	 */
- 	public static String toString(String nome, FattoriDiConversione fattori) {
+ 	public static String toString(String nome, Set<Entry<Leaf,Double>> fattori) {
  		StringBuffer bf = new StringBuffer();
  		bf.append("\n");
- 		for (Entry<Leaf, Double> fatt : fattori.getFattori()) {
+ 		for (Entry<Leaf, Double> fatt : fattori) {
  			Leaf key = fatt.getKey();
  			Double val = fatt.getValue();
  			if (!nome.equals(key.getNome())) {
