@@ -100,26 +100,16 @@ public class FattoriDiConversione implements Serializable{
         if (nodo1.equals(nodo2)) {
             return getFattoreIdentità();
             
-        } else if (getFattoreDiretto(nodo1, nodo2) != 0) {
+        } else if (nodo1.fattoreFoglia(nodo2) != 0) {
             return getFattoreDiretto(nodo1, nodo2);
             
         } else {
-        	if (nodo1.getFattori().isEmpty()) 
-                return null;
-            
-            for (Map.Entry<Leaf, Double> entry : nodo1.getFattori()) {
-                Leaf key = entry.getKey();
-                if (!visitati.contains(key)) {
-                    visitati.add(key);
-                    Double val = calcTransitivo(key, nodo2, visitati);
-                    if (val != null) 
-                        return entry.getValue() * val; 
-                }
-            }
-            
+        	return getFattoreIndiretto(nodo1, nodo2, visitati);
         }
-        return null;
+        
     }
+
+
 	
 	private static double getFattoreIdentità() {
 		return 1.0;
@@ -128,6 +118,24 @@ public class FattoriDiConversione implements Serializable{
 	private static double getFattoreDiretto(Leaf nodo1, Leaf nodo2) {
 		return nodo1.fattoreFoglia(nodo2);
 	}
+	
+    private static Double getFattoreIndiretto(Leaf nodo1, Leaf nodo2, List<Leaf> visitati) {
+    	Set<Entry<Leaf,Double>> fact = nodo1.getFattori();
+    	
+        if (fact.isEmpty()) 
+            return null;
+
+        for (Map.Entry<Leaf, Double> entry : fact) {
+            Leaf key = entry.getKey();
+            if (!visitati.contains(key)) {
+                visitati.add(key);
+                Double val = calcTransitivo(key, nodo2, visitati);
+                if (val != null) 
+                    return entry.getValue() * val; 
+            }
+        }
+        return null;
+    }
 	
 
 }
