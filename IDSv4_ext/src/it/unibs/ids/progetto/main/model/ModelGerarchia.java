@@ -3,13 +3,12 @@ package it.unibs.ids.progetto.main.model;
 import java.io.Serializable;
 
 import it.unibs.ids.progetto.Albero;
-
-import it.unibs.ids.progetto.DefaultInitializer;
 import it.unibs.ids.progetto.FattoriDiConversione;
-import it.unibs.ids.progetto.FileManager;
 import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.Leaf;
 import it.unibs.ids.progetto.NotLeaf;
+import it.unibs.ids.progetto.servizi.DefaultInitializer;
+import it.unibs.ids.progetto.servizi.FileManager;
 
 
 public class ModelGerarchia implements Serializable {

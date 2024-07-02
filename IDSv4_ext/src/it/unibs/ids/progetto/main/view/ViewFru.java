@@ -3,7 +3,7 @@ package it.unibs.ids.progetto.main.view;
 import it.unibs.ids.progetto.eccezioni.RootTreeException;
 import it.unibs.ids.progetto.main.controller.Controller;
 import it.unibs.ids.progetto.main.controller.ControllerFru;
-import it.unibs.ids.progetto.printer.PrintMenu;
+import it.unibs.ids.progetto.servizi.printer.PrintMenu;
 
 
 public class ViewFru implements View {

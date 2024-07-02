@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto;
+package it.unibs.ids.progetto.servizi;
 
 import java.io.Serializable;
 import java.util.regex.Matcher;

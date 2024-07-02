@@ -4,11 +4,9 @@ import java.io.Serializable;
 
 
 import it.unibs.ids.progetto.Comprensorio;
-
-import it.unibs.ids.progetto.DefaultInitializer;
-
-import it.unibs.ids.progetto.FileManager;
 import it.unibs.ids.progetto.Geografia;
+import it.unibs.ids.progetto.servizi.DefaultInitializer;
+import it.unibs.ids.progetto.servizi.FileManager;
 
 
 

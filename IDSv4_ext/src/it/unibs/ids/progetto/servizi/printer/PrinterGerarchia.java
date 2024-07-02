@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.printer;
+package it.unibs.ids.progetto.servizi.printer;
 
 import it.unibs.ids.progetto.Albero;
 import it.unibs.ids.progetto.Gerarchia;

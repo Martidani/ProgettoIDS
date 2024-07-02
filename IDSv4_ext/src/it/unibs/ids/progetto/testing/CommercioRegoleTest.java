@@ -3,7 +3,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import it.unibs.ids.progetto.Commercio;
-import it.unibs.ids.progetto.DefaultInitializer;
 import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.InsiemeAperto;
@@ -11,6 +10,7 @@ import it.unibs.ids.progetto.Offerta;
 import it.unibs.ids.progetto.PropostaAperta;
 import it.unibs.ids.progetto.Richiesta;
 import it.unibs.ids.progetto.Utenza;
+import it.unibs.ids.progetto.servizi.DefaultInitializer;
 
 public class CommercioRegoleTest {
 	

@@ -3,7 +3,7 @@ package it.unibs.ids.progetto.main.view;
 import it.unibs.ids.progetto.eccezioni.RootTreeException;
 import it.unibs.ids.progetto.main.controller.Controller;
 import it.unibs.ids.progetto.main.controller.ControllerConf;
-import it.unibs.ids.progetto.printer.PrintMenu;
+import it.unibs.ids.progetto.servizi.printer.PrintMenu;
 
 /**
  * Questa classe gestisce i menu dell'applicazione e le relative azioni.

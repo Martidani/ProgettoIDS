@@ -2,6 +2,8 @@ package it.unibs.ids.progetto;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import it.unibs.ids.progetto.servizi.MailAddress;
+
 
 /**
  * La classe Configuratore rappresenta un utente con privilegi di configurazione.

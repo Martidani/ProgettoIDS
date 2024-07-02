@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unibs.ids.progetto.*;
+import it.unibs.ids.progetto.servizi.DefaultInitializer;
 
 class FattoriDiConversioneTest {
 

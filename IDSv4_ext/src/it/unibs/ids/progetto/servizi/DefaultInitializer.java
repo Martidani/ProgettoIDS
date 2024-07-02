@@ -1,4 +1,21 @@
-package it.unibs.ids.progetto;
+package it.unibs.ids.progetto.servizi;
+
+import it.unibs.ids.progetto.Albero;
+import it.unibs.ids.progetto.Commercio;
+import it.unibs.ids.progetto.Comprensorio;
+import it.unibs.ids.progetto.Configuratore;
+import it.unibs.ids.progetto.Credenziali;
+import it.unibs.ids.progetto.FattoriDiConversione;
+import it.unibs.ids.progetto.Fruitore;
+import it.unibs.ids.progetto.Geografia;
+import it.unibs.ids.progetto.Gerarchia;
+import it.unibs.ids.progetto.InsiemeAperto;
+import it.unibs.ids.progetto.Leaf;
+import it.unibs.ids.progetto.NotLeaf;
+import it.unibs.ids.progetto.Offerta;
+import it.unibs.ids.progetto.PropostaAperta;
+import it.unibs.ids.progetto.Richiesta;
+import it.unibs.ids.progetto.Utenza;
 
 /**
  * Classe per l'inizializzazione predefinita del sistema.

@@ -1,6 +1,7 @@
 package it.unibs.ids.progetto;
 import java.io.Serializable;
-import it.unibs.fp.mylib.Estrattore;
+
+import it.unibs.ids.progetto.servizi.Estrattore;
 
 /**
  * La classe Credenziali rappresenta le credenziali di accesso di un utente.

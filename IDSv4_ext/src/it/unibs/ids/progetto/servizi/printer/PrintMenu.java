@@ -1,6 +1,6 @@
-package it.unibs.ids.progetto.printer;
+package it.unibs.ids.progetto.servizi.printer;
 
-import it.unibs.fp.mylib.InputDati;
+import it.unibs.ids.progetto.servizi.InputDati;
 
 /**
  * Questa classe rappresenta un menu testuale generico a più voci.

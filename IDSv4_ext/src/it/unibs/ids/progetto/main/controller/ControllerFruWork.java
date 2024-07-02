@@ -1,6 +1,5 @@
 package it.unibs.ids.progetto.main.controller;
 
-import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.InsiemeAperto;
 import it.unibs.ids.progetto.Leaf;
@@ -13,9 +12,10 @@ import it.unibs.ids.progetto.main.model.Model;
 import it.unibs.ids.progetto.main.model.ModelCommercio;
 import it.unibs.ids.progetto.main.model.ModelGerarchia;
 import it.unibs.ids.progetto.main.model.ModelUtenza;
-import it.unibs.ids.progetto.printer.PrinterLeaf;
-import it.unibs.ids.progetto.printer.PrinterNotLeaf;
-import it.unibs.ids.progetto.printer.PrintManager;
+import it.unibs.ids.progetto.servizi.InputDati;
+import it.unibs.ids.progetto.servizi.printer.PrintManager;
+import it.unibs.ids.progetto.servizi.printer.PrinterLeaf;
+import it.unibs.ids.progetto.servizi.printer.PrinterNotLeaf;
 
 public class ControllerFruWork  {
 

@@ -1,7 +1,7 @@
 package it.unibs.ids.progetto.main.controller;
 
 import it.unibs.ids.progetto.main.model.Model;
-import it.unibs.ids.progetto.printer.PrintManager;
+import it.unibs.ids.progetto.servizi.printer.PrintManager;
 
 public class ControllerFru implements Controller {
 

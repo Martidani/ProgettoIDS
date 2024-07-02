@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.printer;
+package it.unibs.ids.progetto.servizi.printer;
 
 import java.util.Set;
 import java.util.Map.Entry;

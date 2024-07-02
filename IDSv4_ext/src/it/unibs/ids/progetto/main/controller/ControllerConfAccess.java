@@ -1,12 +1,12 @@
 package it.unibs.ids.progetto.main.controller;
 
-import it.unibs.fp.mylib.InputDati;
 import it.unibs.ids.progetto.Configuratore;
 import it.unibs.ids.progetto.Credenziali;
 import it.unibs.ids.progetto.Utente;
 import it.unibs.ids.progetto.main.model.Model;
 import it.unibs.ids.progetto.main.model.ModelCommercio;
 import it.unibs.ids.progetto.main.model.ModelUtenza;
+import it.unibs.ids.progetto.servizi.InputDati;
 
 
 

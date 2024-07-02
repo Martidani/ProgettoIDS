@@ -4,13 +4,12 @@ package it.unibs.ids.progetto.main.model;
 import java.io.Serializable;
 
 import it.unibs.ids.progetto.Configuratore;
-import it.unibs.ids.progetto.DefaultInitializer;
-
-import it.unibs.ids.progetto.FileManager;
 import it.unibs.ids.progetto.Fruitore;
 import it.unibs.ids.progetto.PropostaAperta;
 import it.unibs.ids.progetto.Utente;
 import it.unibs.ids.progetto.Utenza;
+import it.unibs.ids.progetto.servizi.DefaultInitializer;
+import it.unibs.ids.progetto.servizi.FileManager;
 
 
 public class ModelUtenza implements Serializable {
