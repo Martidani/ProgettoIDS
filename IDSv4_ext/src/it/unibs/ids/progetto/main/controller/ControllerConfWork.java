@@ -308,7 +308,7 @@ public class ControllerConfWork  {
 		
 
 		if (!proposteA.isBlank()) {
-			str.append("Proposte Aperte: \n{" + proposteA + "}\n");
+			str.append("\nProposte Aperte: \n{" + proposteA + "}\n");
 		}
 		else
 			str.append("\n{\nNon ci sono Proposte Aperte!\n}\n");

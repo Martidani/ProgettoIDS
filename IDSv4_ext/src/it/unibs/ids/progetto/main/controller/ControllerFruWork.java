@@ -108,7 +108,7 @@ public class ControllerFruWork  {
 		String proposteC =printManager.toStringProposteChiuse();
 		String proposteR =printManager.toStringProposteRitirate();
 		if (!proposteA.isBlank()) {
-			System.out.println("Proposte Aperte: \n{" + proposteA + "}\n");
+			System.out.println("\nProposte Aperte: \n{" + proposteA + "}\n");
 		}
 		else
 			System.out.println("\n{\nNon ci sono Proposte Aperte!\n}\n");

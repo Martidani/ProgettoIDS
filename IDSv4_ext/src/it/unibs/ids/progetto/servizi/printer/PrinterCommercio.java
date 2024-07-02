@@ -146,7 +146,6 @@ public class PrinterCommercio {
     	
     	StringBuffer str = new StringBuffer();
 
-
     	for (InsiemeAperto insiemeAperto : commercio.getInsiemiAperti()) {
 			for (PropostaAperta propostaAperta : insiemeAperto.getProposteAperte()) {
 				if (propostaAperta.getOfferta().getFoglia().root().equals(nodo.root()) 
