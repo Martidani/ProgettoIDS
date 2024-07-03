@@ -7,23 +7,12 @@ import it.unibs.ids.progetto.Gerarchia;
 import it.unibs.ids.progetto.Utenza;
 
 /**
- * DataManager è una classe utilizzata per gestire il caricamento e il salvataggio dei dati da e verso file di testo.
- * Supporta il caricamento e il salvataggio di oggetti delle classi Gerarchia, Geografia e Utenza.
+ * FileManager è una classe utilizzata per gestire il caricamento e il salvataggio 
+ * di oggetti delle classi Gerarchia, Geografia, Utenza e Commercio.
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class FileManager {
-    
-	
-	private static final String SAVE_G_ERR = "Errore durante il salvataggio della gerarchia su file: ";
-	private static final String SAVE_U_ERR = "Errore durante il salvataggio dell' utenza su file: ";
-	private static final String SAVE_GE_ERR = "Errore durante il salvataggio della geografia su file: ";
-	private static final String SAVE_C_ERR = "Errore durante il salvataggio del commercio su file: ";
-	
-	private static final String UPLOAD_U_ERR = "Errore durante il caricamento dell' utenza: ";
-	private static final String UPLOAD_G_ERR = "Errore durante il caricamento della gerarchia: ";
-	private static final String UPLOAD_GE_ERR = "Errore durante il caricamento della geografia: ";
-	private static final String UPLOAD_C_ERR = "Errore durante il caricamento del commercio: ";
 	
     private static final String UTENZA_FILE = "utenza.txt";
     private static final String GERARCHIA_FILE = "gerarchia.txt";
@@ -34,37 +23,37 @@ public class FileManager {
     /**
      * Restituisce il percorso del file utilizzato per la memorizzazione della gerarchia.
      * 
-     * @return Il percorso del file della gerarchia
+     * @return Il file della gerarchia
      */
-    public static String getGerarchiaFile() {
-        return GERARCHIA_FILE;
+    public static File getGerarchiaFile() {
+        return new File(GERARCHIA_FILE);
     }
     
     /**
      * Restituisce il percorso del file utilizzato per la memorizzazione del commercio.
      * 
-     * @return Il percorso del file del commercio
+     * @return Il file del commercio
      */
-    public static String getCommercioFile() {
-        return COMMERCIO_FILE;
+    public static File getCommercioFile() {
+        return new File(COMMERCIO_FILE);
     }
 
     /**
      * Restituisce il percorso del file utilizzato per la memorizzazione dell' utenza.
      * 
-     * @return Il percorso del file delL' utenza
+     * @return Il file dell' utenza
      */
-    public static String getUtenzaFile() {
-        return UTENZA_FILE;
+    public static File getUtenzaFile() {
+        return new File(UTENZA_FILE);
     }
     
     /**
      * Restituisce il percorso del file utilizzato per la memorizzazione della geografia.
      * 
-     * @return Il percorso del file della geografia
+     * @return Il file della geografia
      */
-    public static String getGeografiaFile() {
-        return GEOGRAFIA_FILE;
+    public static File getGeografiaFile() {
+        return new File(GEOGRAFIA_FILE);
     }
 	
     /**
@@ -73,12 +62,7 @@ public class FileManager {
      * @return La gerarchia caricata, null in caso di errore durante il caricamento.
      */
     public static Gerarchia caricaGerarchia() {
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(getGerarchiaFile()))) {
-            return (Gerarchia) inputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println(UPLOAD_G_ERR + e.getMessage());
-            return null;
-        }
+    	return (Gerarchia) FileService.caricaSingoloOggetto(getGerarchiaFile());
     }
 
     /**
@@ -87,11 +71,7 @@ public class FileManager {
      * @param gerarchia La gerarchia da salvare.
      */
     public static void salvaSuFile(Gerarchia gerarchia) {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(getGerarchiaFile()))) {
-            outputStream.writeObject(gerarchia);
-        } catch (IOException e) {
-            System.err.println(SAVE_G_ERR + e.getMessage());
-        }
+    	FileService.salvaSingoloOggetto(getGerarchiaFile(), gerarchia);
     }
 
     /**
@@ -100,12 +80,7 @@ public class FileManager {
      * @return L' utenza caricata, null in caso di errore durante il caricamento.
      */
     public static Utenza caricaUtenza() {
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(getUtenzaFile()))) {
-            return (Utenza) inputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println(UPLOAD_U_ERR + e.getMessage());
-            return null;
-        }
+        return (Utenza) FileService.caricaSingoloOggetto(getUtenzaFile());
     }
 
     /**
@@ -114,11 +89,7 @@ public class FileManager {
      * @param gestioneUtenza L' utenza da salvare.
      */
     public static void salvaSuFile(Utenza utenza) {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(getUtenzaFile()))) {
-            outputStream.writeObject(utenza);
-        } catch (IOException e) {
-            System.err.println(SAVE_U_ERR + e.getMessage());
-        }
+    	FileService.salvaSingoloOggetto(getUtenzaFile(), utenza);
     }
     
     /**
@@ -127,12 +98,7 @@ public class FileManager {
      * @return La geografia caricata, null in caso di errore durante il caricamento.
      */
     public static Geografia caricaGeografia() {
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(getGeografiaFile()))) {
-            return (Geografia) inputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println(UPLOAD_GE_ERR + e.getMessage());
-            return null;
-        }
+        return (Geografia) FileService.caricaSingoloOggetto(getGeografiaFile());
     }
 
     /**
@@ -141,11 +107,7 @@ public class FileManager {
      * @param geografia La geografia da salvare.
      */
     public static void salvaSuFile(Geografia geografia) {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(getGeografiaFile()))) {
-            outputStream.writeObject(geografia);
-        } catch (IOException e) {
-            System.err.println(SAVE_GE_ERR + e.getMessage());
-        }
+    	FileService.salvaSingoloOggetto(getGeografiaFile(), geografia);
     }
     
     /**
@@ -154,12 +116,7 @@ public class FileManager {
      * @return Il commercio caricato, null in caso di errore durante il caricamento.
      */
     public static Commercio caricaCommercio() {
-        try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(getCommercioFile()))) {
-            return (Commercio) inputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            System.err.println(UPLOAD_C_ERR + e.getMessage());
-            return null;
-        }
+    	return (Commercio) FileService.caricaSingoloOggetto(getCommercioFile());
     }
     
     /**
@@ -168,11 +125,7 @@ public class FileManager {
      * @param Il commercio da salvare.
      */
     public static void salvaSuFile(Commercio commercio) {
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(getCommercioFile()))) {
-            outputStream.writeObject(commercio);
-        } catch (IOException e) {
-            System.err.println(SAVE_C_ERR + e.getMessage());
-        }
+    	FileService.salvaSingoloOggetto(getCommercioFile(), commercio);
     }
 
 
