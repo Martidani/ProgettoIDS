@@ -30,11 +30,17 @@ public class Gerarchia implements Serializable {
     }
     
  
- 
+    /**
+     * Restituisce la lista delle foglie
+     * @return lista foglie
+     */
     public ArrayList<Leaf> getFoglie() {
 		return foglie;
 	}
-    
+    /**
+     * Restituisce la lista dei nodi radice
+     * @return lista radici
+     */
     public ArrayList<Nodo> getRadici() {
 		return radici;
 	}

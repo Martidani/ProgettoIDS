@@ -1,31 +1,31 @@
 package it.unibs.ids.progetto;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.unibs.ids.progetto.servizi.MailAddress;
 
-
 /**
- * La classe Configuratore rappresenta un utente con privilegi di configurazione.
- * Estende la classe astratta Utente.
+ * La classe Fruitore rappresenta un utente con privilegi di fruizione.
+ * Estende la classe astratta Utente e implementa Serializable.
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
 public class Fruitore extends Utente implements Serializable {
 
-	
     private static final long serialVersionUID = 1L;
     public static final char TIPOUTENTE = 'f';
     
     private MailAddress indirizzo;
     private Comprensorio comprensorioAppartenenza;
     private ArrayList<Proposta> proposte;
-    
+
     /**
      * Costruttore della classe Fruitore.
-     * Crea un nuovo fruitore con le credenziali specificate.
      * 
-     * @param credenziali Le credenziali associate al fruitore
+     * @param comprensorioAppartenenza il comprensorio di appartenenza del fruitore
+     * @param credenziali le credenziali dell'utente
+     * @param indirizzo l'indirizzo email del fruitore
      */
     public Fruitore(Comprensorio comprensorioAppartenenza, Credenziali credenziali, MailAddress indirizzo) {
         super(TIPOUTENTE, credenziali);
@@ -35,35 +35,67 @@ public class Fruitore extends Utente implements Serializable {
         setIsDefinitivo(true);
     }
 
-	public MailAddress getIndirizzo() {
-		return indirizzo;
-	}
+    /**
+     * Restituisce l'indirizzo email del fruitore.
+     * 
+     * @return l'indirizzo email del fruitore
+     */
+    public MailAddress getIndirizzo() {
+        return indirizzo;
+    }
 
-	public void setIndirizzo(MailAddress indirizzo) {
-		this.indirizzo = indirizzo;
-	}
+    /**
+     * Imposta l'indirizzo email del fruitore.
+     * 
+     * @param indirizzo il nuovo indirizzo email del fruitore
+     */
+    public void setIndirizzo(MailAddress indirizzo) {
+        this.indirizzo = indirizzo;
+    }
 
-	public Comprensorio getComprensorioAppartenenza() {
-		return comprensorioAppartenenza;
-	}
+    /**
+     * Restituisce il comprensorio di appartenenza del fruitore.
+     * 
+     * @return il comprensorio di appartenenza del fruitore
+     */
+    public Comprensorio getComprensorioAppartenenza() {
+        return comprensorioAppartenenza;
+    }
 
-	public void setComprensorioAppartenenza(Comprensorio comprensorioAppartenenza) {
-		this.comprensorioAppartenenza = comprensorioAppartenenza;
-	}
+    /**
+     * Imposta il comprensorio di appartenenza del fruitore.
+     * 
+     * @param comprensorioAppartenenza il nuovo comprensorio di appartenenza del fruitore
+     */
+    public void setComprensorioAppartenenza(Comprensorio comprensorioAppartenenza) {
+        this.comprensorioAppartenenza = comprensorioAppartenenza;
+    }
 
-	@Override
-	public void setIsDefinitivo(boolean x) {
-		this.credenziali.setDefinitive(x);
-	}
- 
-	
-	public ArrayList<Proposta> getProposte() {
-		return proposte;
-	}
+    /**
+     * Imposta se le credenziali dell'utente sono definitive.
+     * 
+     * @param x true se le credenziali sono definitive, false altrimenti
+     */
+    @Override
+    public void setIsDefinitivo(boolean x) {
+        this.credenziali.setDefinitive(x);
+    }
 
-	public void addProposte(Proposta proposta) {
-		this.proposte.add(proposta);
-	}
+    /**
+     * Restituisce la lista di proposte del fruitore.
+     * 
+     * @return la lista di proposte del fruitore
+     */
+    public ArrayList<Proposta> getProposte() {
+        return proposte;
+    }
 
-
+    /**
+     * Aggiunge una proposta alla lista di proposte del fruitore.
+     * 
+     * @param proposta la proposta da aggiungere
+     */
+    public void addProposte(Proposta proposta) {
+        this.proposte.add(proposta);
+    }
 }

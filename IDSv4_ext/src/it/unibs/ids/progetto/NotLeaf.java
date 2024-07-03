@@ -101,6 +101,9 @@ public class NotLeaf extends Nodo implements Serializable {
 		this.children.add(child);
 	}
 
+	/**
+	 * Restituisce false in quanto non foglia
+	 */
 	@Override
 	public boolean isLeaf() {
 		return false;

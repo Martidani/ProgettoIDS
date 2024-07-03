@@ -17,134 +17,151 @@ import it.unibs.ids.progetto.servizi.printer.PrintManager;
 import it.unibs.ids.progetto.servizi.printer.PrinterLeaf;
 import it.unibs.ids.progetto.servizi.printer.PrinterNotLeaf;
 
-public class ControllerFruWork  {
+/**
+ * ControllerFruWork gestisce le operazioni principali dell'applicazione,
+ * coordinando i modelli e la gestione dei dati.
+ */
+public class ControllerFruWork {
 
-	
-    private PrintManager printManager;
-	
-	private ModelUtenza modelUtenza;
-	private ModelGerarchia modelGerarchia;
-	private ModelCommercio modelCommercio;
-	
-	public ControllerFruWork (Model model) {
-		super();
+    private PrintManager printManager;  // Gestore di stampa per l'output
+
+    private ModelUtenza modelUtenza;  // Modello per le operazioni legate agli utenti
+    private ModelGerarchia modelGerarchia;  // Modello per la gerarchia dei nodi
+    private ModelCommercio modelCommercio;  // Modello per le operazioni commerciali
+
+    /**
+     * Costruttore del controller che inizializza i modelli e il gestore di stampa.
+     * @param model Il modello principale dell'applicazione
+     */
+    public ControllerFruWork(Model model) {
+        super();
         this.modelUtenza = model.getModelUtenza();
         this.modelGerarchia = model.getModelGerarchia();
         this.modelCommercio = model.getModelCommercio();
-	    this.printManager = new PrintManager(model);
-	}
+        this.printManager = new PrintManager(model);
+    }
 
-	public void navigaGerarchia() {
-		String ger = printManager.toStringRadici();
-		System.out.println(ger + "\n");
-      
-		String nomeRadice = InputDati.leggiStringaNonVuota("Scegli radice -> ");
-		NotLeaf radice = modelGerarchia.visualizzaRadice(nomeRadice);
-		System.out.println(PrinterNotLeaf.toNavigationString(radice) + "\n");
-		Nodo child;
-				
-		do {
-			int valoreDominio = InputDati.leggiIntero("Scegli l'opzione -> ");	
-			child = radice.getChildren().get(valoreDominio-1);
+    /**
+     * Permette di navigare nella gerarchia dei nodi a partire dalla radice scelta.
+     */
+    public void navigaGerarchia() {
+        String ger = printManager.toStringRadici();
+        System.out.println(ger + "\n");
 
-			if (child.isLeaf() )
-					System.out.println(PrinterLeaf.toNavigationString(child)+ "\n");
-			else
-				System.out.println(PrinterNotLeaf.toNavigationString(child)+ "\n");
+        String nomeRadice = InputDati.leggiStringaNonVuota("Scegli radice -> ");
+        NotLeaf radice = modelGerarchia.visualizzaRadice(nomeRadice);
+        System.out.println(PrinterNotLeaf.toNavigationString(radice) + "\n");
+        Nodo child;
 
-				
-		} while (!child.isLeaf());
-	}
+        do {
+            int valoreDominio = InputDati.leggiIntero("Scegli l'opzione -> ");
+            child = radice.getChildren().get(valoreDominio - 1);
 
-	public String stampaGeografia() {
-		return printManager.toStringGeografia();
-	}
-	
-	public void proponiScambio() {
+            if (child.isLeaf())
+                System.out.println(PrinterLeaf.toNavigationString(child) + "\n");
+            else
+                System.out.println(PrinterNotLeaf.toNavigationString(child) + "\n");
+
+        } while (!child.isLeaf());
+    }
+
+    /**
+     * Restituisce una stringa rappresentante la geografia dell'applicazione.
+     * @return Una stringa rappresentante la geografia
+     */
+    public String stampaGeografia() {
+        return printManager.toStringGeografia();
+    }
+
+    /**
+     * Permette all'utente di proporre uno scambio commerciale.
+     */
+    public void proponiScambio() {
         InsiemeAperto insiemeAperto = modelCommercio.getInsiemeApertoDiSessione();
-        
-	       
-	       Leaf fogliaRichiesta = inserimentoPrestazioneOpera(true);
-	       int durata = InputDati.leggiInteroPositivo("Inserisci durata -> ");
-	       Leaf fogliaOfferta = inserimentoPrestazioneOpera(false);
 
-	        Offerta offerta = new Offerta(fogliaOfferta);
-	        Richiesta richiesta = new Richiesta(fogliaRichiesta, durata);
-	        Fruitore fruitore = (Fruitore) modelUtenza.getUtenteDiSessione();
-	        PropostaAperta proposta = new PropostaAperta(richiesta, offerta, modelCommercio.numProposte(),fruitore);
-	       
-	        System.out.println("\nOfferta: ");
-	        System.out.println("[" + offerta.getNome() + ", "+ offerta.getDurata() + " ore]");
-	        
-	        if (InputDati.yesOrNo("Confermi l'offerta?")) {
-	            modelUtenza.addProposte(proposta);
-	            insiemeAperto.addPropostaAperta(proposta);
-	            modelCommercio.metodo(insiemeAperto);            
-	        } else {
-	        	modelCommercio.decrementaNumProposte();
-			}
-    	
-	}
+        Leaf fogliaRichiesta = inserimentoPrestazioneOpera(true);
+        int durata = InputDati.leggiInteroPositivo("Inserisci durata -> ");
+        Leaf fogliaOfferta = inserimentoPrestazioneOpera(false);
 
-	private Leaf inserimentoPrestazioneOpera(boolean modeFun) {
-		String nomePrestazione;
-		String nomeRadicePrestazione;
-		Leaf foglia;
-    	do {
-    		if (modeFun)
-    			nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci richiesta [foglia di appartenenza] -> ");
-    		else
-    			nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci offerta [foglia di appartenenza] -> ");
+        Offerta offerta = new Offerta(fogliaOfferta);
+        Richiesta richiesta = new Richiesta(fogliaRichiesta, durata);
+        Fruitore fruitore = (Fruitore) modelUtenza.getUtenteDiSessione();
+        PropostaAperta proposta = new PropostaAperta(richiesta, offerta, modelCommercio.numProposte(), fruitore);
 
-        	nomeRadicePrestazione = InputDati.leggiStringaNonVuota("Inserisci radice -> ");	
-        	foglia = modelGerarchia.visualizzaFoglia(nomePrestazione, nomeRadicePrestazione);
-		} while (foglia == null);
-		return foglia;
-	}
+        System.out.println("\nOfferta: ");
+        System.out.println("[" + offerta.getNome() + ", " + offerta.getDurata() + " ore]");
 
-	public void visualizzaProposte() {
-		System.out.println();
-		String proposteA =printManager.toStringProposteAperte();
-		String proposteC =printManager.toStringProposteChiuse();
-		String proposteR =printManager.toStringProposteRitirate();
-		if (!proposteA.isBlank()) {
-			System.out.println("\nProposte Aperte: \n{" + proposteA + "}\n");
-		}
-		else
-			System.out.println("\n{\nNon ci sono Proposte Aperte!\n}\n");
-		if (!proposteC.isBlank()) {
-			System.out.println("\nProposte Chiuse: \n{" + proposteC + "}\n");
-		}
-		else
-			System.out.println("\n{\nNon ci sono Proposte Chiuse!\n}\n");
-		if (!proposteR.isBlank()) {
-			System.out.println("\nProposte Ritirate: \n{" + proposteR + "}");
-		}
-		else
-			System.out.println("\n{\nNon ci sono Proposte Ritirate!\n}\n");
-		
-	}
+        if (InputDati.yesOrNo("Confermi l'offerta?")) {
+            modelUtenza.addProposte(proposta);
+            insiemeAperto.addPropostaAperta(proposta);
+            modelCommercio.metodo(insiemeAperto);
+        } else {
+            modelCommercio.decrementaNumProposte();
+        }
+    }
 
-	public void ritiraProposte() {
-		String proposte = printManager.toStringProposteAperte();
-		
+    /**
+     * Metodo privato per l'inserimento di una foglia di prestazione opera.
+     * @param modeFun True se è una richiesta, False se è un'offerta
+     * @return La foglia di prestazione opera inserita
+     */
+    private Leaf inserimentoPrestazioneOpera(boolean modeFun) {
+        String nomePrestazione;
+        String nomeRadicePrestazione;
+        Leaf foglia;
+        do {
+            if (modeFun)
+                nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci richiesta [foglia di appartenenza] -> ");
+            else
+                nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci offerta [foglia di appartenenza] -> ");
 
-		int s1;
-		PropostaAperta proposta;
-		System.out.println("Proposte da ritirare: \n\n" + proposte);
-		
-		if (!proposte.isBlank() && InputDati.yesOrNo("\nVuoi ritirare una proposta? \n") ) {
-			do {
-				 s1 = InputDati.leggiInteroNonNegativo("\nInserisci ID proposta: ");
-				 
-			} while ((proposta = modelCommercio.cercaProposta(s1)) == null);
-			
-			modelCommercio.ritira(proposta);
-		}
-		else
-			System.out.println("Non ci sono proposte (aperte) ritirabili");
+            nomeRadicePrestazione = InputDati.leggiStringaNonVuota("Inserisci radice -> ");
+            foglia = modelGerarchia.visualizzaFoglia(nomePrestazione, nomeRadicePrestazione);
+        } while (foglia == null);
+        return foglia;
+    }
 
-	}
-		
-	}
+    /**
+     * Visualizza le proposte aperte, chiuse e ritirate.
+     */
+    public void visualizzaProposte() {
+        System.out.println();
+        String proposteA = printManager.toStringProposteAperte();
+        String proposteC = printManager.toStringProposteChiuse();
+        String proposteR = printManager.toStringProposteRitirate();
+        if (!proposteA.isBlank()) {
+            System.out.println("\nProposte Aperte: \n{" + proposteA + "}\n");
+        } else
+            System.out.println("\n{\nNon ci sono Proposte Aperte!\n}\n");
+        if (!proposteC.isBlank()) {
+            System.out.println("\nProposte Chiuse: \n{" + proposteC + "}\n");
+        } else
+            System.out.println("\n{\nNon ci sono Proposte Chiuse!\n}\n");
+        if (!proposteR.isBlank()) {
+            System.out.println("\nProposte Ritirate: \n{" + proposteR + "}");
+        } else
+            System.out.println("\n{\nNon ci sono Proposte Ritirate!\n}\n");
+    }
 
+    /**
+     * Permette di ritirare una proposta aperta.
+     */
+    public void ritiraProposte() {
+        String proposte = printManager.toStringProposteAperte();
+
+        int s1;
+        PropostaAperta proposta;
+        System.out.println("Proposte da ritirare: \n\n" + proposte);
+
+        if (!proposte.isBlank() && InputDati.yesOrNo("\nVuoi ritirare una proposta? \n")) {
+            do {
+                s1 = InputDati.leggiInteroNonNegativo("\nInserisci ID proposta: ");
+
+            } while ((proposta = modelCommercio.cercaProposta(s1)) == null);
+
+            modelCommercio.ritira(proposta);
+        } else
+            System.out.println("Non ci sono proposte (aperte) ritirabili");
+    }
+
+}

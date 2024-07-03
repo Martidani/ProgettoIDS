@@ -313,6 +313,11 @@ public class DefaultInitializer {
         return geografia;
     }
     
+    /**
+     * Metodo per la creazione di default di un insieme di proposte (Aperte, chiuse,ritirate)
+     * @return commercio di default
+     */
+    
     private Commercio defaultCommercio()  {
         
 

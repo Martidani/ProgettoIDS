@@ -5,76 +5,86 @@ import it.unibs.ids.progetto.main.controller.Controller;
 import it.unibs.ids.progetto.main.controller.ControllerFru;
 import it.unibs.ids.progetto.servizi.printer.PrintMenu;
 
-
+/**
+ * La classe ViewFru implementa l'interfaccia View e gestisce le interazioni tra l'utente
+ * di tipo fruitore e il sistema.
+ */
 public class ViewFru implements View {
 
-	private ControllerFru controllerFru;
-	private int scelta;
-    
-	private static PrintMenu menuFruitore = PrintMenu.menuFruitore();
-	private static PrintMenu menuAccesso = PrintMenu.menuAccessoF();
-    
-    public ViewFru(Controller controller) {
-        this.controllerFru = (ControllerFru) controller;
-        this.scelta=0;
-	}
-    
-    private void menu() {
-		scelta = menuFruitore.scegli();
-		switch (scelta) {
+    private ControllerFru controllerFru; // Controller specifico per i fruitori
+    private int scelta; // Variabile per memorizzare la scelta dell'utente
 
-		    case 1:
-		    	controllerFru.navigaGerarchia();
-		    	break;
-		        
-		    case 2:
-		    	controllerFru.proponiScambio();
-		    	break;
-		    	
-		    case 3:
-		    	controllerFru.visualizzaProposte();
-		    	break;
-		    	
-		    case 4:
-		    	controllerFru.ritiraProposte();
-		    	break;
-		    	
-		    default:
-		        break;
-		}
-	}
+    private static PrintMenu menuFruitore = PrintMenu.menuFruitore(); // Menu specifico per i fruitori
+    private static PrintMenu menuAccesso = PrintMenu.menuAccessoF(); // Menu di accesso
     
     /**
-     * Metodo che gestisce il menu di accesso.
-     * 
-     * @param utenza L'utente che sta effettuando l'accesso.
-     * @return La scelta effettuata dall'utente.
+     * Costruttore della classe ViewFru.
+     * @param controller Il controller da associare alla vista, convertito a ControllerFru
      */
-    private void menuAccesso() {
-    	scelta = menuAccesso.scegli();
+    public ViewFru(Controller controller) {
+        this.controllerFru = (ControllerFru) controller;
+        this.scelta = 0;
+    }
+    
+    /**
+     * Metodo privato che gestisce il menu delle operazioni disponibili per il fruitore.
+     */
+    private void menu() {
+        scelta = menuFruitore.scegli();
         switch (scelta) {
-        case 1:
-             System.out.print(controllerFru.stampaGeografia());
-             controllerFru.registrazione();
-
-            break;
-
-        case 2:
-        	scelta = controllerFru.login();
-            break;
-
-        default:
-            break;
+            case 1:
+                controllerFru.navigaGerarchia();
+                break;
+                
+            case 2:
+                controllerFru.proponiScambio();
+                break;
+                
+            case 3:
+                controllerFru.visualizzaProposte();
+                break;
+                
+            case 4:
+                controllerFru.ritiraProposte();
+                break;
+                
+            default:
+                break;
         }
     }
     
+    /**
+     * Metodo privato che gestisce il menu di accesso iniziale per il fruitore.
+     */
+    private void menuAccesso() {
+        scelta = menuAccesso.scegli();
+        switch (scelta) {
+            case 1:
+                System.out.print(controllerFru.stampaGeografia());
+                controllerFru.registrazione();
+                break;
+
+            case 2:
+                scelta = controllerFru.login();
+                break;
+
+            default:
+                break;
+        }
+    }
+    
+    /**
+     * Implementazione del metodo run() dell'interfaccia View.
+     * Gestisce il flusso di esecuzione dell'applicazione per il fruitore.
+     */
+    @Override
     public void run() throws RootTreeException {
-	    //accensione del sistema
+        // Gestione del menu di accesso
         do {
-        	menuAccesso();
+            menuAccesso();
         } while (scelta == 1);
 
-	    //modalità fruitore
+        // Modalità fruitore
         if (scelta != 0) {
             do {
                 menu();

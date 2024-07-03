@@ -298,6 +298,10 @@ public class ControllerConfWork  {
         return printManager.toStringGerarchia().toString();
     }
 
+    /**
+     * Metodo per visualizzare proposte reletive alla foglia inserita 
+     * 
+     */
 	public String visualizzaProposteFoglia() {
 		StringBuffer str = new StringBuffer();
 		
@@ -325,6 +329,9 @@ public class ControllerConfWork  {
 		return str.toString();
 	}
 
+	/**
+	 * Metodo che visualizza gli insiemi chiusi
+	 */
 	public String visualizzaInsiemiChiusi() {
 		
 		StringBuffer str = new StringBuffer();

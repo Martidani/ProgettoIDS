@@ -72,6 +72,11 @@ public class Leaf extends Nodo implements Serializable {
     }
   
 
+    /**
+     * Data una foglia restituisce il fattore foglia associatp
+     * @param foglia
+     * @return fattore foglia double
+     */
     public double fattoreFoglia(Leaf foglia) {
     	return this.fattori.fattoreFoglia(foglia);
     }
