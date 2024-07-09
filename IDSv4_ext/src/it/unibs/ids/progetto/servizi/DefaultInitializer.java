@@ -107,12 +107,17 @@ public class DefaultInitializer {
         this.commercio = defaultCommercio();
     }
 
-    private static DefaultInitializer defaultInitializer;
+    private static volatile DefaultInitializer defaultInitializer;
     //singleton
     public static DefaultInitializer getDefaultInitializer() {
-    	if (defaultInitializer == null)
-    		defaultInitializer= new DefaultInitializer(); 
-    	return defaultInitializer;
+    	if (defaultInitializer == null) { 
+    		synchronized (DefaultInitializer.class) {
+    		if (defaultInitializer == null) {
+    			defaultInitializer = new DefaultInitializer(); 
+				}
+    		}
+    	}
+		return defaultInitializer;
     }
     /**
      * Restituisce l'albero gerarchico predefinito.
