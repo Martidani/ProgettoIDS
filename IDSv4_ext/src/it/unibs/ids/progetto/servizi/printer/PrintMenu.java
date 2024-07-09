@@ -1,6 +1,6 @@
 package it.unibs.ids.progetto.servizi.printer;
 
-import it.unibs.ids.progetto.servizi.InputDati;
+import it.unibs.ids.progetto.main.view.InputView;
 
 /**
  * Questa classe rappresenta un menu testuale generico a più voci.
@@ -34,7 +34,7 @@ public class PrintMenu {
 
     public int scegli() {
         stampaMenu();
-        return InputDati.leggiInteroRange(RICHIESTA_INSERIMENTO, 0, voci.length);
+        return InputView.leggiInteroRange(RICHIESTA_INSERIMENTO, 0, voci.length);
     }
     public void stampaMenu() {
         System.out.println(CORNICE);

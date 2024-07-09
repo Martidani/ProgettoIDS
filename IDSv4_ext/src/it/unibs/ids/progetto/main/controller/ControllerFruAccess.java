@@ -8,7 +8,7 @@ import it.unibs.ids.progetto.main.model.Model;
 import it.unibs.ids.progetto.main.model.ModelCommercio;
 import it.unibs.ids.progetto.main.model.ModelGeografia;
 import it.unibs.ids.progetto.main.model.ModelUtenza;
-import it.unibs.ids.progetto.servizi.InputDati;
+import it.unibs.ids.progetto.main.view.InputView;
 import it.unibs.ids.progetto.servizi.MailAddress;
 
 public class ControllerFruAccess  {
@@ -39,13 +39,13 @@ public class ControllerFruAccess  {
 		
 		String c;
 		do {
-			c = InputDati.leggiStringaNonVuota("  Comprensorio: ");
+			c = InputView.leggiStringaNonVuota("  Comprensorio: ");
 		} while (!modelGeografia.verificaEsistenzaComprensorio(c));
 		
 	    Credenziali credenziali = primoAccesso();
 	    String indirizzo;
 	    do {
-	    	indirizzo = InputDati.leggiStringaNonVuota("  Indirizzo e-mail: ");
+	    	indirizzo = InputView.leggiStringaNonVuota("  Indirizzo e-mail: ");
 		} while (!MailAddress.isValidEmail(indirizzo));
 	    
 	    Comprensorio comprensorio = modelGeografia.cercaComprensorio(c);
@@ -88,11 +88,11 @@ public class ControllerFruAccess  {
 	public Credenziali primoAccesso() {
 	    String ID;
 	    do {
-	        ID = InputDati.leggiStringaNonVuota("  ID: ");
+	        ID = InputView.leggiStringaNonVuota("  ID: ");
 	        if (modelUtenza.verificaEsistenzaID(ID)) System.out.println(" ! ID già utilizzato ! ");
 	    } while (modelUtenza.verificaEsistenzaID(ID));
 
-	    String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
+	    String PSSW = InputView.leggiStringaNonVuota("  Password: ");
 	    return new Credenziali(ID, PSSW);
 	}
 	
@@ -107,8 +107,8 @@ public class ControllerFruAccess  {
 		int accesso = 2;
 	    for (int i = 0; i < NUM_MAX_TENTATIVI; i++) {
 	        System.out.println("Inserisci dati di login: ");
-	        String ID = InputDati.leggiStringaNonVuota("  ID: ");
-	        String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
+	        String ID = InputView.leggiStringaNonVuota("  ID: ");
+	        String PSSW = InputView.leggiStringaNonVuota("  Password: ");
 	        accesso = autenticazione(ID, PSSW);
 	        if (accesso != 1) {
 	            break;

@@ -1,4 +1,4 @@
-package it.unibs.ids.progetto.servizi;
+package it.unibs.ids.progetto.main.view;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -11,7 +11,7 @@ import java.util.Date;
  * 
  * Autore: Daniele Martinelli e Federico Sabbadini
  */
-public class InputDati 
+public class InputView 
 {
 
 	  private static Scanner lettore = creaScanner();
@@ -280,7 +280,7 @@ public class InputDati
 	  public static char leggiSesso (String msg) {
 			char sesso;
 			do {
-				sesso = InputDati.leggiChar(msg);
+				sesso = InputView.leggiChar(msg);
 			} while ((sesso != 'M' && sesso != 'F') && (sesso != 'm' && sesso != 'f'));
 			
 			return sesso;

@@ -6,7 +6,7 @@ import it.unibs.ids.progetto.Utente;
 import it.unibs.ids.progetto.main.model.Model;
 import it.unibs.ids.progetto.main.model.ModelCommercio;
 import it.unibs.ids.progetto.main.model.ModelUtenza;
-import it.unibs.ids.progetto.servizi.InputDati;
+import it.unibs.ids.progetto.main.view.InputView;
 
 
 
@@ -91,11 +91,11 @@ public class ControllerConfAccess {
 	public Credenziali primoAccesso() {
 	    String ID;
 	    do {
-	        ID = InputDati.leggiStringaNonVuota("  ID: ");
+	        ID = InputView.leggiStringaNonVuota("  ID: ");
 	        if (modelUtenza.verificaEsistenzaID(ID)) System.out.println(" ! ID già utilizzato ! ");
 	    } while (modelUtenza.verificaEsistenzaID(ID));
 
-	    String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
+	    String PSSW = InputView.leggiStringaNonVuota("  Password: ");
 	    return new Credenziali(ID, PSSW);
 	}
 	
@@ -110,8 +110,8 @@ public class ControllerConfAccess {
 		int accesso = 2;
 	    for (int i = 0; i < NUM_MAX_TENTATIVI; i++) {
 	        System.out.println("Inserisci dati di login: ");
-	        String ID = InputDati.leggiStringaNonVuota("  ID: ");
-	        String PSSW = InputDati.leggiStringaNonVuota("  Password: ");
+	        String ID = InputView.leggiStringaNonVuota("  ID: ");
+	        String PSSW = InputView.leggiStringaNonVuota("  Password: ");
 	        accesso = autenticazione(ID, PSSW);
 	        if (accesso != 1) {
 	            break;

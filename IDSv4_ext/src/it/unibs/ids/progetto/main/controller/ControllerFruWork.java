@@ -12,7 +12,7 @@ import it.unibs.ids.progetto.main.model.Model;
 import it.unibs.ids.progetto.main.model.ModelCommercio;
 import it.unibs.ids.progetto.main.model.ModelGerarchia;
 import it.unibs.ids.progetto.main.model.ModelUtenza;
-import it.unibs.ids.progetto.servizi.InputDati;
+import it.unibs.ids.progetto.main.view.InputView;
 import it.unibs.ids.progetto.servizi.printer.PrintManager;
 import it.unibs.ids.progetto.servizi.printer.PrinterLeaf;
 import it.unibs.ids.progetto.servizi.printer.PrinterNotLeaf;
@@ -48,13 +48,13 @@ public class ControllerFruWork {
         String ger = printManager.toStringRadici();
         System.out.println(ger + "\n");
 
-        String nomeRadice = InputDati.leggiStringaNonVuota("Scegli radice -> ");
+        String nomeRadice = InputView.leggiStringaNonVuota("Scegli radice -> ");
         NotLeaf radice = modelGerarchia.visualizzaRadice(nomeRadice);
         System.out.println(PrinterNotLeaf.toNavigationString(radice) + "\n");
         Nodo child;
 
         do {
-            int valoreDominio = InputDati.leggiIntero("Scegli l'opzione -> ");
+            int valoreDominio = InputView.leggiIntero("Scegli l'opzione -> ");
             child = radice.getChildren().get(valoreDominio - 1);
 
             if (child.isLeaf())
@@ -80,7 +80,7 @@ public class ControllerFruWork {
         InsiemeAperto insiemeAperto = modelCommercio.getInsiemeApertoDiSessione();
 
         Leaf fogliaRichiesta = inserimentoPrestazioneOpera(true);
-        int durata = InputDati.leggiInteroPositivo("Inserisci durata -> ");
+        int durata = InputView.leggiInteroPositivo("Inserisci durata -> ");
         Leaf fogliaOfferta = inserimentoPrestazioneOpera(false);
 
         Offerta offerta = new Offerta(fogliaOfferta);
@@ -91,7 +91,7 @@ public class ControllerFruWork {
         System.out.println("\nOfferta: ");
         System.out.println("[" + offerta.getNome() + ", " + offerta.getDurata() + " ore]");
 
-        if (InputDati.yesOrNo("Confermi l'offerta?")) {
+        if (InputView.yesOrNo("Confermi l'offerta?")) {
             modelUtenza.addProposte(proposta);
             insiemeAperto.addPropostaAperta(proposta);
             modelCommercio.metodo(insiemeAperto);
@@ -111,11 +111,11 @@ public class ControllerFruWork {
         Leaf foglia;
         do {
             if (modeFun)
-                nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci richiesta [foglia di appartenenza] -> ");
+                nomePrestazione = InputView.leggiStringaNonVuota("Inserisci richiesta [foglia di appartenenza] -> ");
             else
-                nomePrestazione = InputDati.leggiStringaNonVuota("Inserisci offerta [foglia di appartenenza] -> ");
+                nomePrestazione = InputView.leggiStringaNonVuota("Inserisci offerta [foglia di appartenenza] -> ");
 
-            nomeRadicePrestazione = InputDati.leggiStringaNonVuota("Inserisci radice -> ");
+            nomeRadicePrestazione = InputView.leggiStringaNonVuota("Inserisci radice -> ");
             foglia = modelGerarchia.visualizzaFoglia(nomePrestazione, nomeRadicePrestazione);
         } while (foglia == null);
         return foglia;
@@ -153,9 +153,9 @@ public class ControllerFruWork {
         PropostaAperta proposta;
         System.out.println("Proposte da ritirare: \n\n" + proposte);
 
-        if (!proposte.isBlank() && InputDati.yesOrNo("\nVuoi ritirare una proposta? \n")) {
+        if (!proposte.isBlank() && InputView.yesOrNo("\nVuoi ritirare una proposta? \n")) {
             do {
-                s1 = InputDati.leggiInteroNonNegativo("\nInserisci ID proposta: ");
+                s1 = InputView.leggiInteroNonNegativo("\nInserisci ID proposta: ");
 
             } while ((proposta = modelCommercio.cercaProposta(s1)) == null);
 

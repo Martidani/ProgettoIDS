@@ -15,7 +15,7 @@ import it.unibs.ids.progetto.main.model.ModelCommercio;
 import it.unibs.ids.progetto.main.model.ModelGeografia;
 import it.unibs.ids.progetto.main.model.ModelGerarchia;
 import it.unibs.ids.progetto.main.model.ModelUtenza;
-import it.unibs.ids.progetto.servizi.InputDati;
+import it.unibs.ids.progetto.main.view.InputView;
 import it.unibs.ids.progetto.servizi.printer.PrintManager;
 import it.unibs.ids.progetto.servizi.printer.PrinterLeaf;
 import it.unibs.ids.progetto.Leaf;
@@ -50,7 +50,7 @@ public class ControllerConfWork  {
 		
 		String nome;
 		do {
-			nome = InputDati.leggiStringaNonVuota("  Nome: ");
+			nome = InputView.leggiStringaNonVuota("  Nome: ");
 		} while (modelGeografia.verificaEsistenzaComprensorio(nome));
 		
 	    Comprensorio comprensorio = new Comprensorio(nome);
@@ -59,7 +59,7 @@ public class ControllerConfWork  {
         String comune;
 
         do {
-            comune = InputDati.leggiStringaNonVuota("  Comune -> ");
+            comune = InputView.leggiStringaNonVuota("  Comune -> ");
             comprensorio.addComune(comune);
         } while (!comune.equalsIgnoreCase("Exit"));
 
@@ -114,10 +114,10 @@ public class ControllerConfWork  {
     private  NotLeaf creaRadice( ) throws RootTreeException {
         String radice;
         do {
-            radice = InputDati.leggiStringaNonVuota("Nome radice -> ");
+            radice = InputView.leggiStringaNonVuota("Nome radice -> ");
         } while (modelGerarchia.verificaEsistenzaNomeRadice(radice));
 
-        String campo = InputDati.leggiStringaNonVuota("Campo -> ");
+        String campo = InputView.leggiStringaNonVuota("Campo -> ");
         NotLeaf root = new NotLeaf(radice, null, campo);
 
         creaValoriDominio(root);
@@ -134,14 +134,14 @@ public class ControllerConfWork  {
         int num = 0;
         do {
             num++;
-            String valoreDominio = InputDati.leggiStringaNonVuota(num + "' valore del dominio -> ");
-            if (InputDati.yesOrNo("  Vuoi inserire una descrizione di " + valoreDominio + "? ")) {
-                String descrizioneDominio = InputDati.leggiStringaNonVuota("Descrizione -> ");
+            String valoreDominio = InputView.leggiStringaNonVuota(num + "' valore del dominio -> ");
+            if (InputView.yesOrNo("  Vuoi inserire una descrizione di " + valoreDominio + "? ")) {
+                String descrizioneDominio = InputView.leggiStringaNonVuota("Descrizione -> ");
                 nodo.addElementiDominio(valoreDominio, descrizioneDominio);
             } else {
                 nodo.addElementiDominio(valoreDominio);
             }
-        } while (InputDati.yesOrNo("Vuoi aggiugere un altro elemento al dominio? "));
+        } while (InputView.yesOrNo("Vuoi aggiugere un altro elemento al dominio? "));
     }
 
     /**
@@ -162,10 +162,10 @@ public class ControllerConfWork  {
       
             String nome;
             do {
-                nome = InputDati.leggiStringaNonVuota("Nome -> ");
+                nome = InputView.leggiStringaNonVuota("Nome -> ");
             } while (radice.verificaEsistenzaNome(nome));
 
-            boolean isFoglia = InputDati.yesOrNo("È foglia? ");
+            boolean isFoglia = InputView.yesOrNo("È foglia? ");
             Nodo nodoChild;
             if (isFoglia) {
                 nodoChild = new Leaf(nome, radice.getNome());
@@ -195,7 +195,7 @@ public class ControllerConfWork  {
      * @return      Il nodo non foglia creato.
      */
 	private static Nodo creaNonFoglia(String nome, Nodo radice) {
-	    String campo = InputDati.leggiStringaNonVuota("Campo -> ");
+	    String campo = InputView.leggiStringaNonVuota("Campo -> ");
 	    NotLeaf nodoChild = new NotLeaf(nome, radice.getNome(), campo);
 
 	    creaValoriDominio(nodoChild);
@@ -244,8 +244,8 @@ public class ControllerConfWork  {
     	Leaf nodo;
         do {
             System.out.println(messaggio);
-            String foglia = InputDati.leggiStringaNonVuota("  Nome -> ");
-            String radice = InputDati.leggiStringaNonVuota("  Radice -> ");
+            String foglia = InputView.leggiStringaNonVuota("  Nome -> ");
+            String radice = InputView.leggiStringaNonVuota("  Radice -> ");
             nodo = modelGerarchia.visualizzaFoglia(foglia, radice);
             
         } while (nodo == null);
@@ -261,7 +261,7 @@ public class ControllerConfWork  {
     private  double chiediFattoreConversione( ) {
         double fattoreDiConversione;
         do {
-            fattoreDiConversione = InputDati.leggiDouble("Fattore di conversione -> ");
+            fattoreDiConversione = InputView.leggiDouble("Fattore di conversione -> ");
         } while (!FattoriDiConversione.verificaFattoreConversione(fattoreDiConversione));
         return fattoreDiConversione;
     }
@@ -277,8 +277,8 @@ public class ControllerConfWork  {
     public  String stampaFattori( )  {
     	StringBuffer str = new StringBuffer();
     	
-        String foglia = InputDati.leggiStringaNonVuota("  Inserisci nome foglia: ");
-        String radice = InputDati.leggiStringaNonVuota("  Inserisci radice della gerarchia della foglia: ");
+        String foglia = InputView.leggiStringaNonVuota("  Inserisci nome foglia: ");
+        String radice = InputView.leggiStringaNonVuota("  Inserisci radice della gerarchia della foglia: ");
         Leaf nodo = modelGerarchia.visualizzaFoglia(foglia, radice);
         if (nodo == null)
             str.append("  Non è stata trovata nessuna corrispondenza");
